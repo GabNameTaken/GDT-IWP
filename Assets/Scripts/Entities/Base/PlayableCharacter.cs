@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayableCharacter : MonoBehaviour
+public class PlayableCharacter : EntityBase
 {
     [SerializeField] SkillSet skillSet;
     [SerializeField] Entity character;
-    public Stats stats;
-    public int turnMeter;
 
     private void Awake()
     {
@@ -15,5 +13,10 @@ public class PlayableCharacter : MonoBehaviour
         stats = character.baseStats;
     }
 
+    private void Update()
+    {
+        if (!isMoving) return;
 
+        
+    }
 }
