@@ -544,14 +544,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01ffd4f4ee43ab4fab42a57a375c922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  stats: {fileID: 0}
+  turnMeter: 0
+  isMoving: 0
   skillSet:
     S1: {fileID: 0}
     S2: {fileID: 0}
     S3: {fileID: 0}
     PassiveSkill: {fileID: 0}
   character: {fileID: 11400000, guid: ec886acc9362fd64cb7eff1bc57f9910, type: 2}
-  stats: {fileID: 0}
-  turnMeter: 0
 --- !u!1 &1580818398
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class StateMachineController : MonoBehaviour
 {
+    public EntityBase self;
+    public List<EntityBase> listOfTargets;
+
     [SerializeField] private BaseState _initialState;
 
     private void Awake()
