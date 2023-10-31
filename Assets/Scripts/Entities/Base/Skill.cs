@@ -22,7 +22,7 @@ public class Skill : ScriptableObject
     public List<Entity> _listOfTargets;
     
     protected int damage;
-    public virtual int Use(EntityBase attacker, EntityBase attackee)
+    public virtual float CalculateDamage(EntityBase attacker, EntityBase attackee)
     {
         //check for crit
         //(Attack - EnemyDef + scalingMultiplier) * cdmg (if it crits) * multiplier
@@ -31,7 +31,6 @@ public class Skill : ScriptableObject
         else
             damage = (int)Mathf.Round(attacker.trueStats.attack - attackee.trueStats.defense);
 
-        attackee.TakeDamage(damage);
         return damage;
     }
 
@@ -39,5 +38,10 @@ public class Skill : ScriptableObject
     {
         float randomValue = Random.Range(0f, 100f); // Generate a random value between 0 and 100
         return randomValue <= criticalChancePercentage; // Check if the random value is less than or equal to the critical chance percentage
+    }
+
+    public virtual void Use(EntityBase attacker, EntityBase attackee)
+    {
+        attackee.TakeDamage(CalculateDamage(attacker, attackee));
     }
 }

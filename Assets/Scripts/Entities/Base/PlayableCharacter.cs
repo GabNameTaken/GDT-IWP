@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayableCharacter : EntityBase
 {
     [SerializeField] SkillSet skillSet;
-
-    bool selectedS1, selectedS2, selectedS3 = false;
+    bool selectedS1, selectedS2, selectedS3, attacking = false;
+    
     private void Awake()
     {
         skillSet = entity.baseSkillSet;
@@ -23,7 +23,17 @@ public class PlayableCharacter : EntityBase
             if (selectedS1)
             {
                 selectedS1 = false;
+                attacking = true;
+                skillSet.S1.Use(this, listOfTargets[0]);
+                CombatUIManager.Instance.UpdatePlayerTeamHealth();
+            }
+        }
+        if (attacking)
+        {
+            if (!animator.IsInTransition(0))
+            {
                 isMoving = false;
+                attacking = false;
                 CombatManager.Instance.EndTurn(this);
             }
         }

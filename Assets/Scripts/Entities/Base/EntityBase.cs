@@ -16,9 +16,11 @@ public class EntityBase : MonoBehaviour
 
     public GameObject turnMeterUI;
 
+    public List<EntityBase> listOfTargets;
+
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
 
     public virtual void TakeDamage(float damage)

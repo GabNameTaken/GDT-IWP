@@ -35,6 +35,8 @@ public class CombatManager : MonoBehaviour
         foreach (PlayableCharacter playerMember in entitiesOnField)
             playerParty.Add(playerMember);
 
+        CombatUIManager.Instance.AddPlayerTeamStats(playerParty);
+
         turnOrderUI.AddFighters(entitiesOnField);
         IncreaseTurnMeter(CalculateNumberOfIncrease());
         SetTurn();

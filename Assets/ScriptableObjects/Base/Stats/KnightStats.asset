@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: KnightStats
   m_EditorClassIdentifier: 
   stats:
+    maxHealth: 6405
     health: 6405
     defense: 752
     attack: 839

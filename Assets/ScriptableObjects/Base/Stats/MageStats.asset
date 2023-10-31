@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MageStats
   m_EditorClassIdentifier: 
   stats:
+    maxHealth: 4895
     health: 4895
     defense: 652
     attack: 1359
