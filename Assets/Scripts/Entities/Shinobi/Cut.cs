@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Skills/Cut")]
 public class Cut : Skill
 {
-    
+
 }

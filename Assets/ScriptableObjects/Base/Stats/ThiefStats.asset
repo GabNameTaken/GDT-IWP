@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 758a44e7913dd30439ea74d128f1c91c, type: 3}
   m_Name: ThiefStats
   m_EditorClassIdentifier: 
-  health: 6266
-  defense: 473
-  attack: 1228
-  speed: 113
-  critRate: 15
-  critDMG: 150
-  classType: {fileID: 11400000, guid: 8767eb3d8348bd142a5a5bb48a9d3b15, type: 2}
-  element: {fileID: 0}
+  stats:
+    health: 6266
+    defense: 473
+    attack: 1228
+    speed: 113
+    critRate: 15
+    critDMG: 150

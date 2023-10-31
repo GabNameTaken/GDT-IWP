@@ -22,14 +22,16 @@ public class Skill : ScriptableObject
     public List<Entity> _listOfTargets;
     
     protected int damage;
-    protected virtual int Use(Stats currentStats, Stats enemyStats)
+    public virtual int Use(EntityBase attacker, EntityBase attackee)
     {
         //check for crit
         //(Attack - EnemyDef + scalingMultiplier) * cdmg (if it crits) * multiplier
-        if (IsCriticalHit(currentStats.critRate))
-            damage = (int)Mathf.Round((currentStats.attack - enemyStats.defense) * (currentStats.critDMG / 100) * multiplier);
+        if (IsCriticalHit(attacker.trueStats.critRate))
+            damage = (int)Mathf.Round((attacker.trueStats.attack - attackee.trueStats.defense) * (attacker.trueStats.critDMG / 100) * multiplier);
         else
-            damage = (int)Mathf.Round(currentStats.attack - enemyStats.defense);  
+            damage = (int)Mathf.Round(attacker.trueStats.attack - attackee.trueStats.defense);
+
+        attackee.TakeDamage(damage);
         return damage;
     }
 

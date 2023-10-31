@@ -6,12 +6,23 @@ public class EntityBase : MonoBehaviour
 {
     public Animator animator;
 
-    public Stats stats;
+    public Entity entity;
+    [SerializeField] BaseStats baseStats;
+    [HideInInspector] public Stats trueStats;
+
     public float turnMeter;
-    public bool isMoving;
+    public bool isMoving = false;
+    public bool isDead = false;
+
+    public GameObject turnMeterUI;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+
+    public virtual void TakeDamage(float damage)
+    {
+        trueStats.health -= damage;
     }
 }

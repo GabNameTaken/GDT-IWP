@@ -14,8 +14,8 @@ public class Entity : ScriptableObject
     [SerializeField] Element _element;
     public Element element => _element;
 
-    [SerializeField] Stats _baseStats;
-    public Stats baseStats => _baseStats;
+    [SerializeField] BaseStats _baseStats;
+    public BaseStats baseStats => _baseStats;
 
     [SerializeField] SkillSet _baseSkillSet;
     public SkillSet baseSkillSet =>_baseSkillSet;
