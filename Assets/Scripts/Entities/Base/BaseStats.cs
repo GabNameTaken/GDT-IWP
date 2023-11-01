@@ -14,4 +14,15 @@ public class Stats
 {
     public float maxHealth, health, defense, attack;
     public int speed, critRate = 15, critDMG = 150;
+
+    public Stats(Stats stats) 
+    {
+        maxHealth = stats.maxHealth;
+        health = stats.health;
+        defense = stats.defense;
+        attack = stats.attack;
+        speed = stats.speed;
+        critRate = stats.critRate;
+        critDMG = stats.critDMG;
+    }
 }

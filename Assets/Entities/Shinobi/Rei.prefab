@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3914517098219591056}
+  - component: {fileID: 8693705553923623106}
   m_Layer: 0
   m_Name: Rei
   m_TagString: Untagged
@@ -29,9 +30,74 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5540757755567315991}
+  - {fileID: 1915550668315687283}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8693705553923623106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135445076921900636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01ffd4f4ee43ab4fab42a57a375c922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1874787198069982829}
+  entity: {fileID: 11400000, guid: ec886acc9362fd64cb7eff1bc57f9910, type: 2}
+  baseStats: {fileID: 11400000, guid: c9195dca45e3aa541b07912997f804bc, type: 2}
+  trueStats:
+    maxHealth: 0
+    health: 0
+    defense: 0
+    attack: 0
+    speed: 0
+    critRate: 0
+    critDMG: 0
+  turnMeter: 0
+  isMoving: 0
+  isDead: 0
+  turnMeterUI: {fileID: 0}
+  listOfTargets: []
+  skillSet:
+    S1: {fileID: 11400000, guid: 668b2a2dfc27e0e449d1d996748ef375, type: 2}
+    S2: {fileID: 0}
+    S3: {fileID: 0}
+    PassiveSkill: {fileID: 0}
+--- !u!1 &9118409423426736496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1915550668315687283}
+  m_Layer: 0
+  m_Name: CameraPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1915550668315687283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9118409423426736496}
+  m_LocalRotation: {x: -0.08682413, y: -0.08682413, z: -0.0075961305, w: 0.99240386}
+  m_LocalPosition: {x: 0.897, y: 1.243, z: -1.193}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3914517098219591056}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -10, y: -10, z: 0}
 --- !u!1001 &5435282555956493308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93,6 +159,11 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: c5f9d6a102094604a81535cc38138f5a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 235e1509bba5ae644adb1d2cfab6cd50, type: 3}
+--- !u!95 &1874787198069982829 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 235e1509bba5ae644adb1d2cfab6cd50, type: 3}
+  m_PrefabInstance: {fileID: 5435282555956493308}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5540757755567315991 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 235e1509bba5ae644adb1d2cfab6cd50, type: 3}

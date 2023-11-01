@@ -9,8 +9,8 @@ public class PlayableCharacter : EntityBase
     
     private void Awake()
     {
-        skillSet = entity.baseSkillSet;
-        trueStats = entity.baseStats.Stats;
+        skillSet = new SkillSet(entity.baseSkillSet);
+        trueStats = new Stats(entity.baseStats.Stats);
     }
 
     private void Update()
@@ -34,6 +34,8 @@ public class PlayableCharacter : EntityBase
             {
                 isMoving = false;
                 attacking = false;
+                if (!isDead)
+                    animator.Play("Idle");
                 CombatManager.Instance.EndTurn(this);
             }
         }

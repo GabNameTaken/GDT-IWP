@@ -33,7 +33,7 @@ public class CombatUIManager : MonoBehaviour
     {
         for (int i = 0; i < teamHealth.Count; i++)
         {
-            if (teamHealth[i] == null)
+            if (teamHealth[i].character == null)
                 continue;
             teamHealth[i].UpdateHealthUI();
         }
