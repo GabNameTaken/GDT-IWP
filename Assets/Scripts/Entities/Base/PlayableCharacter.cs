@@ -30,7 +30,7 @@ public class PlayableCharacter : EntityBase
         }
         if (attacking)
         {
-            if (!animator.IsInTransition(0))
+            //if (animator.IsInTransition(0))
             {
                 isMoving = false;
                 attacking = false;

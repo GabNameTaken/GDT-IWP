@@ -22,19 +22,18 @@ public class CombatManager : MonoBehaviour
 
     public List<EntityBase> entitiesOnField;
     List<PlayableCharacter> playerParty = new();
-    List<EntityBase> enemyParty = new();
+    public List<Enemy> enemyParty = new();
 
-    private void Start()
+    public void StartBattle()
     {
-        StartBattle();
-    }
-    void StartBattle()
-    {
+        playerParty = PlayerTeamManager.Instance.playerTeam;
+
+        entitiesOnField.AddRange(playerParty);
+        entitiesOnField.AddRange(enemyParty);
         foreach (EntityBase entity in entitiesOnField)
             entity.turnMeter = 0;
-        foreach (PlayableCharacter playerMember in entitiesOnField)
-            playerParty.Add(playerMember);
 
+        
         CombatUIManager.Instance.AddPlayerTeamStats(playerParty);
 
         turnOrderUI.AddFighters(entitiesOnField);
