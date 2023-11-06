@@ -26,10 +26,14 @@ public class CombatManager : MonoBehaviour
 
     public void StartBattle()
     {
-        playerParty = PlayerTeamManager.Instance.playerTeam;
+        playerParty.Clear();
+        for (int i = 0; i < PlayerTeamManager.Instance.teamPrefabs.Count; i++)
+        {
+            playerParty.Add(PlayerTeamManager.Instance.teamPrefabs[i].GetComponent<PlayableCharacter>());
+        }
 
         entitiesOnField.AddRange(playerParty);
-        entitiesOnField.AddRange(enemyParty);
+        //entitiesOnField.AddRange(enemyParty);
         foreach (EntityBase entity in entitiesOnField)
             entity.turnMeter = 0;
 
