@@ -63,7 +63,7 @@ MonoBehaviour:
   turnMeterUI: {fileID: 0}
   listOfTargets: []
   skillSet:
-    S1: {fileID: 11400000, guid: 668b2a2dfc27e0e449d1d996748ef375, type: 2}
+    S1: {fileID: 0}
     S2: {fileID: 0}
     S3: {fileID: 0}
     PassiveSkill: {fileID: 0}
