@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ReiStats
   m_EditorClassIdentifier: 
   stats:
-    maxHealth: 6266
-    health: 6266
-    defense: 473
-    attack: 1228
-    speed: 113
-    critRate: 15
+    maxHealth: 5380
+    health: 5380
+    defense: 483
+    attack: 1119
+    speed: 129
+    critRate: 23
     critDMG: 150

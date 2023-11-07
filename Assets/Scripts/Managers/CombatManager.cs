@@ -107,28 +107,23 @@ public class CombatManager : MonoBehaviour
 
         if (!anyEntityMoving)
         {
-            foreach (EntityBase entity in entitiesOnField)
-            {
-                if (entity.turnMeter >= 100 && !entity.isDead)
-                {
-                    entity.isMoving = true;
-                    if (entity.GetComponent<PlayableCharacter>())
-                    {
-                        battleCamera.transform.position = entity.transform.Find("CameraPosition").transform.position;
-                        battleCamera.transform.rotation = entity.transform.Find("CameraPosition").transform.rotation;
+            EntityBase entity = entitiesOnField.Where(entity => !entity.isDead).OrderByDescending(entity => entity.turnMeter).FirstOrDefault();
 
-                        entity.listOfTargets.Clear();
-                        foreach (Enemy enemy in enemyParty)
-                        {
-                            if (!enemy.isDead)
-                                entity.listOfTargets.Add(enemy);
-                        }
-                    }
-                    else if (entity.GetComponent<Enemy>())
-                        entity.GetComponent<Enemy>().SetToMove();
-                    break; // Exit the loop after setting isMoving
+            entity.isMoving = true;
+            if (entity.GetComponent<PlayableCharacter>())
+            {
+                battleCamera.transform.position = entity.transform.Find("CameraPosition").transform.position;
+                battleCamera.transform.rotation = entity.transform.Find("CameraPosition").transform.rotation;
+
+                entity.listOfTargets.Clear();
+                foreach (Enemy enemy in enemyParty)
+                {
+                    if (!enemy.isDead)
+                        entity.listOfTargets.Add(enemy);
                 }
             }
+            else if (entity.GetComponent<Enemy>())
+                entity.GetComponent<Enemy>().SetToMove();
         }
     }
 
