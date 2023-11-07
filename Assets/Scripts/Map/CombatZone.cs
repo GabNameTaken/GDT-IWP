@@ -11,15 +11,15 @@ public class CombatZone : MonoBehaviour
     public List<Enemy> wave2Enemies;
 
     [Header("Player team")]
-    public List<GameObject> teamSlots;
+    public List<Transform> teamSlots;
 
-    private void Awake()
+    private void Start()
     {
         CombatManager.Instance.enemyParty = wave1Enemies;
         for (int i = 0; i < PlayerTeamManager.Instance.teamPrefabs.Count; i++)
         {
-            GameObject member = Instantiate(PlayerTeamManager.Instance.teamPrefabs[i], teamSlots[i].transform);
-            member.transform.position = teamSlots[i].transform.position;
+            GameObject member = Instantiate(PlayerTeamManager.Instance.teamPrefabs[i], teamSlots[i]);
+            member.transform.position = teamSlots[i].position;
 
             // Calculate the rotation angle by adding 180 degrees to the Y-axis rotation of wave1Enemies
             float newRotationY = wave1Enemies[i].transform.rotation.eulerAngles.y + 180f;
@@ -27,6 +27,6 @@ public class CombatZone : MonoBehaviour
             // Apply the new rotation to the player team member
             member.transform.rotation = Quaternion.Euler(0, newRotationY, 0);
         }
-        CombatManager.Instance.StartBattle();
+        CombatManager.Instance.StartBattle(this);
     }
 }

@@ -460,7 +460,7 @@ Animator:
   m_GameObject: {fileID: 1931298151966786}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 6520c6d7889f4c72b416f07f34edd515, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9bbcf96c9a254c5ba654027c656d7b39, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7f37890b3e5b4f747a800da2e01e5832, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -482,9 +482,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc7e07d3bef3264998b57093d449ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  entity: {fileID: 0}
-  baseStats: {fileID: 0}
+  animator: {fileID: 95457531584545886}
+  entity: {fileID: 11400000, guid: a2fa46ce6bd3e7d41bc2d413c97352ce, type: 2}
+  baseStats: {fileID: 11400000, guid: 1e56de40fcd10da4fb3f3c414d1cf47f, type: 2}
   trueStats:
     maxHealth: 0
     health: 0
@@ -498,6 +498,11 @@ MonoBehaviour:
   isDead: 0
   turnMeterUI: {fileID: 0}
   listOfTargets: []
+  skillSet:
+    S1: {fileID: 0}
+    S2: {fileID: 0}
+    S3: {fileID: 0}
+    PassiveSkill: {fileID: 0}
 --- !u!1 &8710358598630575395
 GameObject:
   m_ObjectHideFlags: 0

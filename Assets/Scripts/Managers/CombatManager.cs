@@ -18,22 +18,26 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    [SerializeField] Camera battleCamera;
     [SerializeField] TurnOrderUI turnOrderUI;
 
     public List<EntityBase> entitiesOnField;
-    List<PlayableCharacter> playerParty = new();
+    public List<PlayableCharacter> playerParty = new();
     public List<Enemy> enemyParty = new();
 
-    public void StartBattle()
+    public void StartBattle(CombatZone combatZone)
     {
         playerParty.Clear();
-        for (int i = 0; i < PlayerTeamManager.Instance.teamPrefabs.Count; i++)
+        for (int i = 0; i < combatZone.teamSlots.Count; i++)
         {
-            playerParty.Add(PlayerTeamManager.Instance.teamPrefabs[i].GetComponent<PlayableCharacter>());
+            if (combatZone.teamSlots[i].childCount > 0)
+            {
+                playerParty.Add(combatZone.teamSlots[i].GetChild(0).GetComponent<PlayableCharacter>());
+            }
         }
 
         entitiesOnField.AddRange(playerParty);
-        //entitiesOnField.AddRange(enemyParty);
+        entitiesOnField.AddRange(enemyParty);
         foreach (EntityBase entity in entitiesOnField)
             entity.turnMeter = 0;
 
@@ -108,6 +112,20 @@ public class CombatManager : MonoBehaviour
                 if (entity.turnMeter >= 100 && !entity.isDead)
                 {
                     entity.isMoving = true;
+                    if (entity.GetComponent<PlayableCharacter>())
+                    {
+                        battleCamera.transform.position = entity.transform.Find("CameraPosition").transform.position;
+                        battleCamera.transform.rotation = entity.transform.Find("CameraPosition").transform.rotation;
+
+                        entity.listOfTargets.Clear();
+                        foreach (Enemy enemy in enemyParty)
+                        {
+                            if (!enemy.isDead)
+                                entity.listOfTargets.Add(enemy);
+                        }
+                    }
+                    else if (entity.GetComponent<Enemy>())
+                        entity.GetComponent<Enemy>().SetToMove();
                     break; // Exit the loop after setting isMoving
                 }
             }

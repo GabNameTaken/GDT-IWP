@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayableCharacter : EntityBase
 {
     [SerializeField] SkillSet skillSet;
-    bool selectedS1, selectedS2, selectedS3, attacking = false;
-    
+    bool selectedS1, selectedS2, selectedS3 = false;
+
+    public int currentTargetNum = 0;
     private void Awake()
     {
         skillSet = new SkillSet(entity.baseSkillSet);
@@ -18,27 +20,30 @@ public class PlayableCharacter : EntityBase
         if (!isMoving) return;
 
         SkillSelectionCheck();
+        SelectTarget();
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            originalPosition = transform.position;
+            originalRotation = transform.rotation;
             if (selectedS1)
             {
                 selectedS1 = false;
-                attacking = true;
-                skillSet.S1.Use(this, listOfTargets[0]);
-                CombatUIManager.Instance.UpdatePlayerTeamHealth();
+
+                MoveToTarget(skillSet.S1);
+                currentTargetNum = 0;
             }
         }
-        if (attacking)
-        {
-            //if (animator.IsInTransition(0))
-            {
-                isMoving = false;
-                attacking = false;
-                if (!isDead)
-                    animator.Play("Idle");
-                CombatManager.Instance.EndTurn(this);
-            }
-        }
+    }
+
+    void MoveToTarget(Skill skill)
+    {
+        Tween moveTween = transform.DOJump(listOfTargets[currentTargetNum].transform.position, 0.5f, 1, 0.5f);
+        moveTween.OnComplete(() => Attack(skill));
+    }
+
+    void Attack(Skill skill)
+    {
+        skill.Use(this, listOfTargets[currentTargetNum]);
     }
 
     bool SkillSelectionCheck()
@@ -82,5 +87,19 @@ public class PlayableCharacter : EntityBase
         }
 
         return false;
+    }
+
+    void SelectTarget()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (currentTargetNum > 0)
+                currentTargetNum--;
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if (currentTargetNum < listOfTargets.Count)
+                currentTargetNum++;
+        }
     }
 }

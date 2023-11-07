@@ -18,8 +18,6 @@ public class Skill : ScriptableObject
 
     [SerializeField] protected float _multiplier;
     public float multiplier => _multiplier;
-
-    public List<Entity> _listOfTargets;
     
     protected int damage;
     public virtual float CalculateDamage(EntityBase attacker, EntityBase attackee)
@@ -43,5 +41,18 @@ public class Skill : ScriptableObject
     public virtual void Use(EntityBase attacker, EntityBase attackee)
     {
         attackee.TakeDamage(CalculateDamage(attacker, attackee));
+        CombatUIManager.Instance.UpdatePlayerTeamHealth();
+
+        CombatManager.Instance.StartCoroutine(SkillAnimationCoroutine(attacker));
     }
+
+    IEnumerator SkillAnimationCoroutine(EntityBase attacker)
+    {
+        yield return null;
+
+        yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length);
+        attacker.PostSkill();
+    }
+
+    
 }

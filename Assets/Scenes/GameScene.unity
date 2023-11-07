@@ -1260,8 +1260,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 002c0056702ede44bb856f100920e23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleCamera: {fileID: 963194227}
   turnOrderUI: {fileID: 727379692}
   entitiesOnField: []
+  playerParty: []
   enemyParty: []
 --- !u!4 &702711035
 Transform:
@@ -1788,7 +1790,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &963194226
 AudioListener:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class MapManager : MonoBehaviour
         {
             Instance = this;
         }
+        currentMap = Instantiate(map[currentMapNum]);
     }
 
     [SerializeField] List<GameObject> mapZones;
@@ -22,10 +23,6 @@ public class MapManager : MonoBehaviour
     public int currentMapNum = 0;
     GameObject currentMap;
 
-    private void Start()
-    {
-        currentMap = Instantiate(map[currentMapNum]);
-    }
     void SpawnNextZone()
     {
         
