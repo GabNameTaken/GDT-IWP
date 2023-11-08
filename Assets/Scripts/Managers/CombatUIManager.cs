@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class CombatUIManager : MonoBehaviour
 {
@@ -19,23 +20,24 @@ public class CombatUIManager : MonoBehaviour
     }
 
     [SerializeField] List<HealthUI> teamHealth;
+    public List<HealthUI> listOfHealthUIs = new();
 
-    public void AddPlayerTeamStats(List<PlayableCharacter> playerTeam)
+    public void SetUpPlayerUI(List<PlayableCharacter> playerTeam)
     {
         for (int i = 0; i < playerTeam.Count; i++)
         {
             teamHealth[i].character = playerTeam[i];
             teamHealth[i].SetUpUI();
         }
+        listOfHealthUIs.AddRange(teamHealth);
     }
 
-    public void UpdatePlayerTeamHealth()
+    public void UpdateHealth(EntityBase entity)
     {
-        for (int i = 0; i < teamHealth.Count; i++)
+        if (CombatManager.Instance.entitiesOnField.Contains(entity))
         {
-            if (teamHealth[i].character == null)
-                continue;
-            teamHealth[i].UpdateHealthUI();
+            HealthUI healthUI = listOfHealthUIs.FirstOrDefault(health => health.character == entity);
+            healthUI.UpdateHealthUI();
         }
     }
 }

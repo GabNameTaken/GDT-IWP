@@ -6,10 +6,12 @@ using DG.Tweening;
 public class Enemy : EntityBase
 {
     [SerializeField] SkillSet skillSet;
+    [SerializeField] Canvas worldSpaceCanvas;
     private void Awake()
     {
         skillSet = new SkillSet(entity.baseSkillSet);
         trueStats = new Stats(entity.baseStats.Stats);
+        worldSpaceCanvas.worldCamera = Camera.main;
     }
 
     public void SetToMove()

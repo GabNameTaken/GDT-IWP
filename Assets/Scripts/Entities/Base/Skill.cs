@@ -41,7 +41,6 @@ public class Skill : ScriptableObject
     public virtual void Use(EntityBase attacker, EntityBase attackee)
     {
         attackee.TakeDamage(CalculateDamage(attacker, attackee));
-        CombatUIManager.Instance.UpdatePlayerTeamHealth();
 
         CombatManager.Instance.StartCoroutine(SkillAnimationCoroutine(attacker));
     }

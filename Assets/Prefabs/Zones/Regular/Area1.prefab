@@ -273,7 +273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5893490509970328532}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -295,6 +295,7 @@ GameObject:
   - component: {fileID: 8017051726391539987}
   - component: {fileID: 7764973226000211531}
   - component: {fileID: 6324896510159308631}
+  - component: {fileID: 2149239935299815807}
   m_Layer: 0
   m_Name: CombatTerrain
   m_TagString: Untagged
@@ -362,6 +363,15 @@ TerrainCollider:
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: bdcc19c38f807684b952f84248ce83c0, type: 2}
   m_EnableTreeColliders: 1
+--- !u!45 &2149239935299815807
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6517572427838768098}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 59573b088aaea0442bf29e0a0e9d1339, type: 2}
 --- !u!1001 &4090669684291730822
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using DG.Tweening;
 public class EntityBase : MonoBehaviour
 {
@@ -29,6 +31,32 @@ public class EntityBase : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         trueStats.health -= damage;
+        if (trueStats.health <= 0)
+        {
+            trueStats.health = 0;
+            OnDeath();
+        }
+        CombatUIManager.Instance.UpdateHealth(this);
+    }
+
+    void OnDeath()
+    {
+        isDead = true;
+        animator.Play("Dead");
+        //StartCoroutine(DeathAnimationCoroutine());
+        Death();
+    }
+
+    //IEnumerator DeathAnimationCoroutine()
+    //{
+    //    yield return null;
+
+    //    yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+    //}
+
+    void Death()
+    {
+        //delink everything
     }
 
     public void PostSkill()

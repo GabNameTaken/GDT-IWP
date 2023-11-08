@@ -42,7 +42,7 @@ public class CombatManager : MonoBehaviour
             entity.turnMeter = 0;
 
         
-        CombatUIManager.Instance.AddPlayerTeamStats(playerParty);
+        CombatUIManager.Instance.SetUpPlayerUI(playerParty);
 
         turnOrderUI.AddFighters(entitiesOnField);
         IncreaseTurnMeter(CalculateNumberOfIncrease());

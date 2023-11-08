@@ -18,6 +18,15 @@ public class HealthUI : MonoBehaviour
         healthSlider = transform.Find("HealthBarSlider").GetComponent<Slider>();
     }
 
+    private void Start()
+    {
+        if (character != null)
+        {
+            CombatUIManager.Instance.listOfHealthUIs.Add(this);
+            SetUpUI();
+        }
+    }
+
     public void SetUpUI()
     {
         nameText.text = character.entity.entityName;
