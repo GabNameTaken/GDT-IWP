@@ -18,6 +18,6 @@ MonoBehaviour:
   _baseStats: {fileID: 11400000, guid: c9195dca45e3aa541b07912997f804bc, type: 2}
   _baseSkillSet:
     S1: {fileID: 11400000, guid: 668b2a2dfc27e0e449d1d996748ef375, type: 2}
-    S2: {fileID: 0}
+    S2: {fileID: 11400000, guid: e6d9d5d7ca33bb74d8ad983ef0823675, type: 2}
     S3: {fileID: 0}
     PassiveSkill: {fileID: 0}

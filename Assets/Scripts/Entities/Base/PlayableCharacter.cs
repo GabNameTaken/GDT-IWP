@@ -6,8 +6,7 @@ using DG.Tweening;
 public class PlayableCharacter : EntityBase
 {
     [SerializeField] SkillSet skillSet;
-    bool selectedS1, selectedS2, selectedS3 = false;
-
+    bool attacking = false;
     public int currentTargetNum = 0;
     private void Awake()
     {
@@ -17,76 +16,49 @@ public class PlayableCharacter : EntityBase
 
     private void Update()
     {
-        if (!isMoving) return;
+        if (!isMoving || attacking) return;
 
         SkillSelectionCheck();
         SelectTarget();
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && currentSkillCode != SKILL_CODE.NONE)
         {
-            originalPosition = transform.position;
-            originalRotation = transform.rotation;
-            if (selectedS1)
-            {
-                selectedS1 = false;
-
-                MoveToTarget(skillSet.S1);
-                currentTargetNum = 0;
-            }
+            UseSkill(currentSkillCode);
         }
     }
 
-    void MoveToTarget(Skill skill)
+    enum SKILL_CODE
     {
-        Tween moveTween = transform.DOJump(listOfTargets[currentTargetNum].transform.position, 0.5f, 1, 0.5f);
-        moveTween.OnComplete(() => Attack(skill));
+        S1,
+        S2,
+        S3,
+        NONE,
     }
+    SKILL_CODE currentSkillCode = SKILL_CODE.NONE;
 
-    void Attack(Skill skill)
-    {
-        skill.Use(this, listOfTargets[currentTargetNum]);
-    }
-
-    bool SkillSelectionCheck()
+    int keyIndex = (int)SKILL_CODE.NONE;
+    void SkillSelectionCheck()
     {
         // Define an array to store the KeyCode values for your skills
-        KeyCode[] skillKeys = { KeyCode.E, KeyCode.Q, KeyCode.R };
+        KeyCode[] skillKeys = { KeyCode.Q, KeyCode.E, KeyCode.R };
 
         for (int i = 0; i < skillKeys.Length; i++)
         {
             if (Input.GetKeyDown(skillKeys[i]))
             {
-                if (selectedS1)
-                {
-                    selectedS1 = !(i == 0);
-
-                    selectedS2 = i == 1 ? true : false;
-                    selectedS3 = i == 2 ? true : false;
-                }
-                else if (selectedS2)
-                {
-                    selectedS2 = i == 1 ? false : true;
-
-                    selectedS1 = i == 0 ? true : false;
-                    selectedS3 = i == 2 ? true : false;
-                }
-                else if (selectedS3)
-                {
-                    selectedS3 = i == 2 ? false : true;
-
-                    selectedS2 = i == 1 ? true : false;
-                    selectedS1 = i == 0 ? true : false;
-                }
-                else
-                {
-                    selectedS1 = i == 0 ? true : false;
-                    selectedS2 = i == 1 ? true : false;
-                    selectedS3 = i == 2 ? true : false;
-                }
-                return true;
+                keyIndex = i;
+                if (currentSkillCode == (SKILL_CODE)keyIndex)
+                    UseSkill(currentSkillCode);
             }
         }
-
-        return false;
+        if (currentSkillCode == SKILL_CODE.NONE)
+        {
+            currentSkillCode = (SKILL_CODE)keyIndex;
+        }
+        else if (currentSkillCode < SKILL_CODE.NONE)
+        {
+            if ((int)currentSkillCode != keyIndex)
+                currentSkillCode = SKILL_CODE.NONE;
+        }
     }
 
     void SelectTarget()
@@ -101,5 +73,36 @@ public class PlayableCharacter : EntityBase
             if (currentTargetNum < listOfTargets.Count)
                 currentTargetNum++;
         }
+    }
+
+    void UseSkill(SKILL_CODE skill)
+    {
+        attacking = true;
+        switch (skill)
+        {
+            case SKILL_CODE.S1:
+                {
+                    Attack(skillSet.S1);
+                    break;
+                }
+            case SKILL_CODE.S2:
+                {
+                    Attack(skillSet.S2);
+                    break;
+                }
+            case SKILL_CODE.S3:
+                {
+                    Attack(skillSet.S3);
+                    break;
+                }
+        }
+    }
+
+    void Attack(Skill skill)
+    {
+        skill.Use(this, listOfTargets[currentTargetNum]);
+        currentTargetNum = 0;
+        keyIndex = (int)SKILL_CODE.NONE;
+        attacking = false;
     }
 }

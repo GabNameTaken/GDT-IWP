@@ -20,8 +20,8 @@ public class EntityBase : MonoBehaviour
 
     public List<EntityBase> listOfTargets;
 
-    protected Vector3 originalPosition;
-    protected Quaternion originalRotation;
+    public Vector3 originalPosition;
+    public Quaternion originalRotation;
 
     private void Awake()
     {

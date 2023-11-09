@@ -12,20 +12,33 @@ public class Enemy : EntityBase
         skillSet = new SkillSet(entity.baseSkillSet);
         trueStats = new Stats(entity.baseStats.Stats);
         worldSpaceCanvas.worldCamera = Camera.main;
+        if (skillSet.S3)
+            skillSet.S3.currentCooldown = skillSet.S3.cooldown;
+        if (skillSet.S2)
+            skillSet.S2.currentCooldown = skillSet.S2.cooldown;
     }
 
     public void SetToMove()
     {
-        originalPosition = transform.position;
-        originalRotation = transform.rotation;
-        PlayableCharacter target = SelectSingleTarget();
-        Tween jumpOnToPlayer = transform.DOJump(target.transform.position, 0.5f, 1, 1);
-        jumpOnToPlayer.OnComplete(SelectSkill);
+        SelectSkill();
     }
 
     void SelectSkill()
     {
-        skillSet.S1.Use(this, listOfTargets[0]);
+        if (skillSet.S3 && skillSet.S3.currentCooldown <= 0)
+        {
+            //target
+            //use skill
+        }
+        else if (skillSet.S2 && skillSet.S2.currentCooldown <= 0)
+        {
+
+        }
+        else if (skillSet.S1)
+        {
+            PlayableCharacter target = SelectSingleTarget();
+            skillSet.S1.Use(this, target);
+        }
     }
 
     PlayableCharacter SelectSingleTarget()

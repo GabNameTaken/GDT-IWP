@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Skill : ScriptableObject
 {
@@ -16,16 +17,20 @@ public class Skill : ScriptableObject
     [SerializeField] protected int _Cooldown;
     public int cooldown => _Cooldown;
 
+    public int currentCooldown;
+
     [SerializeField] protected float _multiplier;
     public float multiplier => _multiplier;
-    
+
+    protected float additionalScalings = 0;
+
     protected int damage;
     public virtual float CalculateDamage(EntityBase attacker, EntityBase attackee)
     {
         //check for crit
         //(Attack - EnemyDef + scalingMultiplier) * cdmg (if it crits) * multiplier
         if (IsCriticalHit(attacker.trueStats.critRate))
-            damage = (int)Mathf.Round((attacker.trueStats.attack - attackee.trueStats.defense) * (attacker.trueStats.critDMG / 100) * multiplier);
+            damage = (int)Mathf.Round((attacker.trueStats.attack - attackee.trueStats.defense) * (attacker.trueStats.critDMG / 100) * (multiplier + additionalScalings));
         else
             damage = (int)Mathf.Round(attacker.trueStats.attack - attackee.trueStats.defense);
 
@@ -52,6 +57,4 @@ public class Skill : ScriptableObject
         yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length);
         attacker.PostSkill();
     }
-
-    
 }
