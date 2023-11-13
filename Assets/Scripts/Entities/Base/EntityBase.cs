@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using cakeslice;
+
 public class EntityBase : MonoBehaviour
 {
     public Animator animator;
@@ -12,12 +14,15 @@ public class EntityBase : MonoBehaviour
     [SerializeField] BaseStats baseStats;
     [HideInInspector] public Stats trueStats;
 
+    public List<Debuff> debuffList;
+
     public float turnMeter;
     public bool isMoving = false;
     public bool isDead = false;
 
     public GameObject turnMeterUI;
 
+    public cakeslice.Outline outline;
     public List<EntityBase> listOfTargets;
 
     public Vector3 originalPosition;
@@ -69,5 +74,15 @@ public class EntityBase : MonoBehaviour
         }
         else
             CombatManager.Instance.EndTurn(this);
+    }
+
+    public virtual void TakeTurn()
+    {
+        isMoving = true;
+        foreach (Debuff debuff in debuffList)
+        {
+            debuff.Apply(this);
+        }
+        //play animation
     }
 }

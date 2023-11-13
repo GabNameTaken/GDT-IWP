@@ -3,8 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+public enum SKILL_CODE
+{
+    S1,
+    S2,
+    S3,
+    NONE,
+}
+
 public class Skill : ScriptableObject
 {
+    public enum SKILL_TARGETS
+    {
+        SINGLE_TARGET,
+        ALL,
+        ADJACENT,
+        NONE,
+        TOTAL
+    }
+
+    public SKILL_TARGETS targets;
+
     [SerializeField] protected string _skillName;
     public string skillName => _skillName;
 

@@ -2,42 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Linq;
 
 public class Enemy : EntityBase
 {
     [SerializeField] SkillSet skillSet;
     [SerializeField] Canvas worldSpaceCanvas;
+
     private void Awake()
     {
         skillSet = new SkillSet(entity.baseSkillSet);
         trueStats = new Stats(entity.baseStats.Stats);
         worldSpaceCanvas.worldCamera = Camera.main;
-        if (skillSet.S3)
-            skillSet.S3.currentCooldown = skillSet.S3.cooldown;
-        if (skillSet.S2)
-            skillSet.S2.currentCooldown = skillSet.S2.cooldown;
+        if (skillSet.SkillDict.ContainsKey(SKILL_CODE.S2))
+            skillSet.SkillDict[SKILL_CODE.S2].currentCooldown = skillSet.SkillDict[SKILL_CODE.S2].cooldown;
+        if (skillSet.SkillDict.ContainsKey(SKILL_CODE.S3))
+            skillSet.SkillDict[SKILL_CODE.S3].currentCooldown = skillSet.SkillDict[SKILL_CODE.S3].cooldown;
     }
 
-    public void SetToMove()
+    public override void TakeTurn()
     {
+        base.TakeTurn();
         SelectSkill();
     }
 
     void SelectSkill()
     {
-        if (skillSet.S3 && skillSet.S3.currentCooldown <= 0)
+        if (skillSet.SkillDict.ContainsKey(SKILL_CODE.S3) && skillSet.SkillDict[SKILL_CODE.S3].currentCooldown <= 0)
         {
             //target
             //use skill
         }
-        else if (skillSet.S2 && skillSet.S2.currentCooldown <= 0)
+        else if (skillSet.SkillDict.ContainsKey(SKILL_CODE.S2) && skillSet.SkillDict[SKILL_CODE.S2].currentCooldown <= 0)
         {
 
         }
-        else if (skillSet.S1)
+        else if (skillSet.SkillDict.ContainsKey(SKILL_CODE.S1))
         {
             PlayableCharacter target = SelectSingleTarget();
-            skillSet.S1.Use(this, target);
+            skillSet.SkillDict[SKILL_CODE.S1].Use(this, target);
         }
     }
 

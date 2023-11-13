@@ -109,7 +109,6 @@ public class CombatManager : MonoBehaviour
         {
             EntityBase entity = entitiesOnField.Where(entity => !entity.isDead).OrderByDescending(entity => entity.turnMeter).FirstOrDefault();
 
-            entity.isMoving = true;
             if (entity.GetComponent<PlayableCharacter>())
             {
                 battleCamera.transform.position = entity.transform.Find("CameraPosition").transform.position;
@@ -122,8 +121,7 @@ public class CombatManager : MonoBehaviour
                         entity.listOfTargets.Add(enemy);
                 }
             }
-            else if (entity.GetComponent<Enemy>())
-                entity.GetComponent<Enemy>().SetToMove();
+            entity.TakeTurn();
         }
     }
 
