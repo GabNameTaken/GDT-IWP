@@ -58,7 +58,7 @@ public class Enemy : EntityBase
         if (listOfTargetable.Count > 0)
         {
             // Generate a random index within the range of valid indices
-            int randomIndex = UnityEngine.Random.Range(0, listOfTargets.Count);
+            int randomIndex = UnityEngine.Random.Range(0, listOfTargetable.Count);
 
             // Select the random PlayableCharacter
             PlayableCharacter randomTarget = listOfTargetable[randomIndex];

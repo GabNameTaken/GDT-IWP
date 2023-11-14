@@ -3339,6 +3339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamPrefabs:
   - {fileID: 3135445076921900636, guid: 6ef6b36823e4a184fb034d3a12622575, type: 3}
+  - {fileID: 3135445076921900636, guid: d85b58e3534fe764db211266f5883552, type: 3}
 --- !u!1 &2052019172
 GameObject:
   m_ObjectHideFlags: 0

@@ -51,7 +51,7 @@ public class Skill : ScriptableObject
         if (IsCriticalHit(attacker.trueStats.critRate))
             damage = (int)Mathf.Round((attacker.trueStats.attack - attackee.trueStats.defense) * (attacker.trueStats.critDMG / 100) * (multiplier + additionalScalings));
         else
-            damage = (int)Mathf.Round(attacker.trueStats.attack - attackee.trueStats.defense);
+            damage = (int)Mathf.Round((attacker.trueStats.attack - attackee.trueStats.defense) * (multiplier + additionalScalings));
 
         return damage;
     }
@@ -69,11 +69,12 @@ public class Skill : ScriptableObject
         CombatManager.Instance.StartCoroutine(SkillAnimationCoroutine(attacker));
     }
 
+    protected bool stayOnAnimation = false;
     IEnumerator SkillAnimationCoroutine(EntityBase attacker)
     {
         yield return null;
 
         yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length);
-        attacker.PostSkill();
+        attacker.PostSkill(stayOnAnimation);
     }
 }
