@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityName: Reinhardt
   _classType: {fileID: 11400000, guid: 2382ac6684b2f6943b2fbb36c016c1f2, type: 2}
-  _element: {fileID: 11400000, guid: 8f1783046292f954abb811a4a6668d55, type: 2}
+  _element: {fileID: 11400000, guid: 5f7c5c6e3c8f99649aac3baef2874f2f, type: 2}
   _baseStats: {fileID: 11400000, guid: aa82d86514ee6614398a50f3af2dddb4, type: 2}
   _baseSkillSet:
     skillList:
