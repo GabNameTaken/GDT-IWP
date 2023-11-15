@@ -45,7 +45,7 @@ public class PlayableCharacter : EntityBase
                     UseSkill(currentSkillCode);
 
                 if ((SKILL_CODE)keyIndex != SKILL_CODE.NONE)
-                    SelectTargets(skillSet.SkillDict[(SKILL_CODE)keyIndex].targets);
+                    SelectTargets(skillSet.SkillDict[(SKILL_CODE)keyIndex].targets, false);
             }
         }
         if (currentSkillCode == SKILL_CODE.NONE)
@@ -66,18 +66,18 @@ public class PlayableCharacter : EntityBase
             if (currentTargetNum > 0)
                 currentTargetNum--;
             if (currentSkillCode != SKILL_CODE.NONE)
-                SelectTargets(skillSet.SkillDict[currentSkillCode].targets);
+                SelectTargets(skillSet.SkillDict[currentSkillCode].targets,false);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             if (currentTargetNum < listOfTargets.Count - 1)
                 currentTargetNum++;
             if (currentSkillCode != SKILL_CODE.NONE)
-                SelectTargets(skillSet.SkillDict[currentSkillCode].targets);
+                SelectTargets(skillSet.SkillDict[currentSkillCode].targets,false);
         }
     }
 
-    void SelectTargets(Skill.SKILL_TARGETS targetType)
+    void SelectTargets(Skill.SKILL_TARGETS targetType, bool turnOffHighlights)
     {
         foreach (EntityBase entity in listOfTargets)
             entity.outline.eraseRenderer = true;
@@ -85,21 +85,21 @@ public class PlayableCharacter : EntityBase
         switch (targetType)
         {
             case Skill.SKILL_TARGETS.SINGLE_TARGET:
-                listOfTargets[currentTargetNum].outline.eraseRenderer = false;
+                listOfTargets[currentTargetNum].outline.eraseRenderer = turnOffHighlights;
                 break;
 
             case Skill.SKILL_TARGETS.ADJACENT:
-                listOfTargets[currentTargetNum].outline.eraseRenderer = false;
+                listOfTargets[currentTargetNum].outline.eraseRenderer = turnOffHighlights;
 
                 if (currentTargetNum - 1 >= 0)
-                    listOfTargets[currentTargetNum - 1].outline.eraseRenderer = false;
+                    listOfTargets[currentTargetNum - 1].outline.eraseRenderer = turnOffHighlights;
                 if (currentTargetNum + 1 < listOfTargets.Count)
-                    listOfTargets[currentTargetNum + 1].outline.eraseRenderer = false;
+                    listOfTargets[currentTargetNum + 1].outline.eraseRenderer = turnOffHighlights;
                 break;
 
             case Skill.SKILL_TARGETS.ALL:
                 foreach (EntityBase entity in listOfTargets)
-                    entity.GetComponent<Enemy>().outline.eraseRenderer = false;
+                    entity.GetComponent<Enemy>().outline.eraseRenderer = turnOffHighlights;
                 break;
 
             case Skill.SKILL_TARGETS.NONE:
@@ -116,7 +116,7 @@ public class PlayableCharacter : EntityBase
     void Attack(Skill skill)
     {
         skill.Use(this, listOfTargets[currentTargetNum]);
-        listOfTargets[currentTargetNum].outline.eraseRenderer = true;
+        SelectTargets(skill.targets, true);
         currentTargetNum = 0;
         keyIndex = (int)SKILL_CODE.NONE;
         listOfTargets.Clear();

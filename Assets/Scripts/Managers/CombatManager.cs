@@ -39,7 +39,7 @@ public class CombatManager : MonoBehaviour
         entitiesOnField.AddRange(playerParty);
         entitiesOnField.AddRange(enemyParty);
         foreach (EntityBase entity in entitiesOnField)
-            entity.turnMeter = 0;
+            entity.turnMeter = UnityEngine.Random.Range(0, 10);
 
         
         CombatUIManager.Instance.SetUpPlayerUI(playerParty);

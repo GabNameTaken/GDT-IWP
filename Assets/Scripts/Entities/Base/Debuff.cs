@@ -18,8 +18,6 @@ public class Debuff : ScriptableObject
 
     protected float scalingAmount;
 
-    public int numOfTurns;
-
     public virtual void Apply(EntityBase entity)
     {
         if (entity.isMoving)
@@ -36,10 +34,6 @@ public class Debuff : ScriptableObject
 
     void RemoveDebuff()
     {
-        numOfTurns--;
-        if (numOfTurns <= 0)
-        {
-            Destroy(this);
-        }
+        
     }
 }
