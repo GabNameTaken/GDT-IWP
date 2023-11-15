@@ -25,7 +25,7 @@ public class EntityBase : MonoBehaviour
     [SerializeField] BaseStats baseStats;
     [HideInInspector] public Stats trueStats;
 
-    public List<Debuff> debuffList;
+    public List<Debuff> debuffList = new();
 
     public float turnMeter;
     public bool isMoving = false;
@@ -94,10 +94,10 @@ public class EntityBase : MonoBehaviour
         isMoving = true;
         originalPosition = transform.position;
         originalRotation = transform.rotation;
-
+        
         foreach (Debuff debuff in debuffList)
         {
-            debuff.Apply(this);
+            debuff.ApplyEffect();
         }
         //play animation
         if (animator.HasState(0, Animator.StringToHash("Ready")))

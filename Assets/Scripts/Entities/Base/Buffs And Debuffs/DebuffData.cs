@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Debuff : ScriptableObject
+public class DebuffData : ScriptableObject
 {
     [SerializeField] string _name;
     public string debuffName => _name;
@@ -16,24 +16,13 @@ public class Debuff : ScriptableObject
     [SerializeField] float _multiplier;
     public float multiplier => _multiplier;
 
-    protected float scalingAmount;
-
-    public virtual void Apply(EntityBase entity)
+    public virtual void ApplyEffect(EntityBase source, EntityBase dest)
     {
-        if (entity.isMoving)
-        {
-            entity.TakeDamage(CalculateDamage(entity));
-            RemoveDebuff();
-        }
+
     }
 
-    public virtual float CalculateDamage(EntityBase entity)
+    protected virtual float CalculateDMG(EntityBase source, EntityBase dest)
     {
-        return multiplier * scalingAmount;
-    }
-
-    void RemoveDebuff()
-    {
-        
+        return 0;
     }
 }
