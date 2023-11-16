@@ -14,7 +14,7 @@ public class Curse : Skill
         foreach(Enemy enemy in CombatManager.Instance.enemyParty)
         {
             base.Use(attacker, enemy);
-            InitPoison(attacker, attackee);
+            InitPoison(attacker, enemy);
             enemy.debuffList.Add(poisonDebuff);
         }
     }

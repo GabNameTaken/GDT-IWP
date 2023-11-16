@@ -22,15 +22,14 @@ public class Debuff
     public virtual void ApplyEffect()
     {
         // Apply the debuff's effects to the character
-        // You can access debuffData to get other properties and effects
-        debuffData.ApplyEffect(receiver, giver);
+        debuffData.ApplyEffect(giver, receiver);
         DecreaseDuration();
     }
 
     protected void DecreaseDuration()
     {
         remainingDuration--;
-        //if (remainingDuration <= 0)
-        //    return;
+        if (remainingDuration <= 0)
+            receiver.debuffList.Remove(this);
     }
 }

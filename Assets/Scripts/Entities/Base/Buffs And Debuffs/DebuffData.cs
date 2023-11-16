@@ -20,9 +20,4 @@ public class DebuffData : ScriptableObject
     {
 
     }
-
-    protected virtual float CalculateDMG(EntityBase source, EntityBase dest)
-    {
-        return 0;
-    }
 }
