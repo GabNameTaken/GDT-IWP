@@ -29,15 +29,18 @@ public class HealthUI : MonoBehaviour
 
     public void SetUpUI()
     {
-        nameText.text = character.entity.entityName;
+        if (nameText)
+            nameText.text = character.entity.entityName;
         healthSlider.maxValue = character.trueStats.maxHealth;  //Update Max HP
         healthSlider.value = character.trueStats.health;    //Set current HP
-        healthText.text = Mathf.RoundToInt(character.trueStats.health).ToString();
+        if (healthText)
+            healthText.text = Mathf.RoundToInt(character.trueStats.health).ToString();
     }
     public void UpdateHealthUI()
     {
         healthSlider.maxValue = character.trueStats.maxHealth;  //Update Max HP
         healthSlider.value = character.trueStats.health;    //Set current HP
-        healthText.text = Mathf.RoundToInt(character.trueStats.health).ToString();
+        if (healthText)
+            healthText.text = Mathf.RoundToInt(character.trueStats.health).ToString();
     }
 }
