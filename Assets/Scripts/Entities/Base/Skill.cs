@@ -69,6 +69,13 @@ public class Skill : ScriptableObject
         CombatManager.Instance.StartCoroutine(SkillAnimationCoroutine(attacker));
     }
 
+    protected virtual Debuff InitDebuff(EntityBase attacker, EntityBase attackee, int duration, DebuffData debuffData)
+    {
+        Debuff debuff = new Debuff(attacker, attackee, duration);
+        debuff.debuffData = debuffData;
+        return debuff;
+    }
+
     protected bool stayOnAnimation = false;
     IEnumerator SkillAnimationCoroutine(EntityBase attacker)
     {

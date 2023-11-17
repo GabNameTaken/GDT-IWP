@@ -25,11 +25,14 @@ public class EntityBase : MonoBehaviour
     [SerializeField] BaseStats baseStats;
     [HideInInspector] public Stats trueStats;
 
+    [SerializeField] protected SkillSet skillSet;
+
     public List<Debuff> debuffList = new();
 
     public float turnMeter;
     public bool isMoving = false;
     public bool isDead = false;
+    protected bool attacking = false;
 
     public GameObject turnMeterUI;
 
@@ -95,14 +98,22 @@ public class EntityBase : MonoBehaviour
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         
-        foreach (Debuff debuff in debuffList)
-        {
-            debuff.ApplyEffect();
-        }
         //play animation
         if (animator.HasState(0, Animator.StringToHash("Ready")))
             animator.Play("Ready");
         else
             animator.Play("Idle");
+
+        foreach (Debuff debuff in debuffList)
+        {
+            debuff.ApplyEffect();
+        }
+    }
+
+    public virtual void Provoked(EntityBase provoker)
+    {
+        attacking = true;
+        skillSet.SkillDict[SKILL_CODE.S1].Use(this, provoker);
+        listOfTargets.Clear();
     }
 }

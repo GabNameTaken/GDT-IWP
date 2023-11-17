@@ -6,7 +6,6 @@ using System.Linq;
 
 public class Enemy : EntityBase
 {
-    [SerializeField] SkillSet skillSet;
     [SerializeField] Canvas worldSpaceCanvas;
 
     private void Awake()
@@ -23,7 +22,10 @@ public class Enemy : EntityBase
     public override void TakeTurn()
     {
         base.TakeTurn();
-        SelectSkill();
+        if (attacking)
+            return;
+        else
+            SelectSkill();
     }
 
     void SelectSkill()
@@ -74,4 +76,6 @@ public class Enemy : EntityBase
         }
         return null;
     }
+
+
 }

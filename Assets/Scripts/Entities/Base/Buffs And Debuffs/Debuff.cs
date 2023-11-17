@@ -30,6 +30,11 @@ public class Debuff
     {
         remainingDuration--;
         if (remainingDuration <= 0)
+        {
+            debuffData.OnRemove(giver, receiver);
             receiver.debuffList.Remove(this);
+        }
     }
+
+
 }

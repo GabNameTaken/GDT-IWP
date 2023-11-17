@@ -6,8 +6,6 @@ using System.Linq;
 
 public class PlayableCharacter : EntityBase
 {
-    [SerializeField] SkillSet skillSet;
-    bool attacking = false;
     public int currentTargetNum = 0;
     private void Awake()
     {

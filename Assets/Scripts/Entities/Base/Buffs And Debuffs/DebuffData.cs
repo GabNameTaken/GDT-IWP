@@ -20,4 +20,9 @@ public class DebuffData : ScriptableObject
     {
 
     }
+
+    public virtual void OnRemove(EntityBase source, EntityBase dest)
+    {
+
+    }
 }
