@@ -13,9 +13,12 @@ public class HealthUI : MonoBehaviour
 
     private void Awake()
     {
-        nameText = transform.Find("Name").GetComponent<TMP_Text>();
-        healthText = transform.Find("HealthText").GetComponent<TMP_Text>();
-        healthSlider = transform.Find("HealthBarSlider").GetComponent<Slider>();
+        if (transform.Find("Name"))
+            nameText = transform.Find("Name").GetComponent<TMP_Text>();
+        if (transform.Find("HealthText"))
+            healthText = transform.Find("HealthText").GetComponent<TMP_Text>();
+        if (transform.Find("HealthBarSlider"))
+            healthSlider = transform.Find("HealthBarSlider").GetComponent<Slider>();
     }
 
     private void Start()

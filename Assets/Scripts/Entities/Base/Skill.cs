@@ -71,8 +71,7 @@ public class Skill : ScriptableObject
 
     protected virtual Debuff InitDebuff(EntityBase attacker, EntityBase attackee, int duration, DebuffData debuffData)
     {
-        Debuff debuff = new Debuff(attacker, attackee, duration);
-        debuff.debuffData = debuffData;
+        Debuff debuff = new Debuff(attacker, attackee, duration, debuffData);
         return debuff;
     }
 

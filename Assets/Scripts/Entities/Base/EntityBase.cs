@@ -28,6 +28,7 @@ public class EntityBase : MonoBehaviour
     [SerializeField] protected SkillSet skillSet;
 
     public List<Debuff> debuffList = new();
+    public StatusEffectUI statusEffectUI;
 
     public float turnMeter;
     public bool isMoving = false;
