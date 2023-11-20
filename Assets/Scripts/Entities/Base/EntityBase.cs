@@ -86,11 +86,14 @@ public class EntityBase : MonoBehaviour
 
         if (transform.position != originalPosition)
         {
-            transform.DOMove(originalPosition, 1, false).OnComplete(()=> CombatManager.Instance.EndTurn(this));
+            transform.DOMove(originalPosition, 1, false).OnComplete(() => CombatManager.Instance.EndTurn(this));
             transform.DORotate(originalRotation.eulerAngles, 1);
         }
         else
+        {
             CombatManager.Instance.EndTurn(this);
+            attacking = false;
+        }
     }
 
     public virtual void TakeTurn()
@@ -105,10 +108,8 @@ public class EntityBase : MonoBehaviour
         else
             animator.Play("Idle");
 
-        foreach (Debuff debuff in debuffList)
-        {
-            debuff.ApplyEffect();
-        }
+        for (int i = 0; i < debuffList.Count; i++)
+            debuffList[i].ApplyEffect();
     }
 
     public virtual void Provoked(EntityBase provoker)

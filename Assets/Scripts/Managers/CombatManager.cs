@@ -46,7 +46,6 @@ public class CombatManager : MonoBehaviour
 
         turnOrderUI.AddFighters(entitiesOnField);
         IncreaseTurnMeter(CalculateNumberOfIncrease());
-        SetTurn();
     }
 
     float CalculateNextTurn(EntityBase entity)
@@ -89,6 +88,7 @@ public class CombatManager : MonoBehaviour
             //Debug.Log(entity.name + ": " + entity.turnMeter);
         }
         turnOrderUI.UpdateTurnOrder();
+        SetTurn();
     }
 
     void SetTurn()
@@ -138,7 +138,6 @@ public class CombatManager : MonoBehaviour
             //end battle
         }
         IncreaseTurnMeter(CalculateNumberOfIncrease());
-        SetTurn();
     }
 
     void CheckForEndBattle()
