@@ -22,7 +22,7 @@ public class CombatZone : MonoBehaviour
             member.transform.position = teamSlots[i].position;
 
             // Calculate the rotation angle by adding 180 degrees to the Y-axis rotation of wave1Enemies
-            float newRotationY = wave1Enemies[i].transform.rotation.eulerAngles.y + 180f;
+            float newRotationY = wave1Enemies[0].transform.rotation.eulerAngles.y + 180f;
 
             // Apply the new rotation to the player team member
             member.transform.rotation = Quaternion.Euler(0, newRotationY, 0);
