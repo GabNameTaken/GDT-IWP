@@ -195,7 +195,6 @@ MonoBehaviour:
   - {fileID: 2980503904617368373}
   - {fileID: 5335650280553436262}
   - {fileID: 9164895782606535323}
-  - {fileID: 7215758834190080366}
   wave2Enemies: []
   teamSlots:
   - {fileID: 4530575849946034809}
@@ -892,6 +891,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimePBR (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1931298151966786, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4047972025199878, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -968,6 +971,10 @@ PrefabInstance:
     - target: {fileID: 1931298151966786, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
       propertyPath: m_Name
       value: SlimePBR (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1931298151966786, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4047972025199878, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
       propertyPath: m_RootOrder
@@ -1046,6 +1053,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimePBR (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1931298151966786, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4047972025199878, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1092,21 +1103,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3552708173560533596, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
---- !u!114 &7215758834190080366 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1267792866353673907, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
-  m_PrefabInstance: {fileID: 8483546434350723037}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bc7e07d3bef3264998b57093d449ca1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &8481963731966673627 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4047972025199878, guid: 65ece6c46159c16409497eb561cecb66, type: 3}

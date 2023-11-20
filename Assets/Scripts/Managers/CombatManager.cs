@@ -87,6 +87,7 @@ public class CombatManager : MonoBehaviour
             entity.turnMeter += (float)(entity.trueStats.speed / 100f) * numberOfIncrease;
             //Debug.Log(entity.name + ": " + entity.turnMeter);
         }
+        Debug.Log("turnmeter increase");
         turnOrderUI.UpdateTurnOrder();
         SetTurn();
     }
@@ -94,7 +95,7 @@ public class CombatManager : MonoBehaviour
     void SetTurn()
     {
         bool anyEntityMoving = false;
-
+        Debug.Log("turn set");
         // Check if any entity has isMoving set to true
         foreach (EntityBase entity in entitiesOnField)
         {

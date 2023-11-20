@@ -98,6 +98,7 @@ public class EntityBase : MonoBehaviour
 
     public virtual void TakeTurn()
     {
+        //Debug.Log(name + " taken turn");
         isMoving = true;
         originalPosition = transform.position;
         originalRotation = transform.rotation;
