@@ -18,7 +18,6 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    [SerializeField] Camera battleCamera;
     [SerializeField] TurnOrderUI turnOrderUI;
 
     public List<EntityBase> entitiesOnField;
@@ -111,8 +110,7 @@ public class CombatManager : MonoBehaviour
 
             if (entity.GetComponent<PlayableCharacter>())
             {
-                battleCamera.transform.position = entity.transform.Find("CameraPosition").transform.position;
-                battleCamera.transform.rotation = entity.transform.Find("CameraPosition").transform.rotation;
+                CameraManager.Instance.MoveCamera(entity.gameObject, CAMERA_POSITIONS.LOW_BACK, 1f);
 
                 entity.listOfTargets.Clear();
                 foreach (Enemy enemy in enemyParty)

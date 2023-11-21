@@ -14,7 +14,6 @@ public class Lunge : Skill
         Tween moveTween = attacker.transform.DOJump(attackee.transform.position, 0.5f, 1, 1);
         moveTween.OnComplete(() =>
         {
-            //moveTween.Kill();
             attacker.animator.Play("LungeAttack");
             base.Use(attacker, attackee);
         });

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -12,7 +13,7 @@ public class Debuff
     DebuffData debuffData;
     public DebuffData data => debuffData;
     public int duration;
-    protected int remainingDuration;
+    public int remainingDuration;
 
     public EntityBase giver;
     public EntityBase receiver;
@@ -40,11 +41,7 @@ public class Debuff
     {
         remainingDuration--;
         statusEffectUI.UpdateStatus(icon, remainingDuration);
-
         if (remainingDuration <= 0)
-        {
-            debuffData.OnRemove(giver, receiver);
             receiver.debuffList.Remove(this);
-        }
     }
 }

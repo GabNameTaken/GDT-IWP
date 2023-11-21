@@ -723,7 +723,9 @@ MonoBehaviour:
     speed: 0
     critRate: 0
     critDMG: 0
-  debuffList: []
+  skillSet:
+    skillList: []
+  statusEffectUI: {fileID: 0}
   turnMeter: 0
   isMoving: 0
   isDead: 0
@@ -732,8 +734,6 @@ MonoBehaviour:
   listOfTargets: []
   originalPosition: {x: 0, y: 0, z: 0}
   originalRotation: {x: 0, y: 0, z: 0, w: 0}
-  skillSet:
-    skillList: []
   currentTargetNum: 0
 --- !u!1 &3182172690914392216
 GameObject:

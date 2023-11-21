@@ -11,6 +11,8 @@ public class Cut : Skill
         attacker.originalPosition = attacker.transform.position;
         attacker.originalRotation = attacker.transform.rotation;
 
+        CameraManager.Instance.MoveCamera(attackee.gameObject, CAMERA_POSITIONS.HIGH_FRONT_SELF, 0.1f);
+
         Tween moveTween = attacker.transform.DOJump(attackee.transform.position, 0.5f, 1, 0.5f);
         moveTween.OnComplete(() =>
         {

@@ -6,17 +6,6 @@ using TMPro;
 using DG.Tweening;
 using cakeslice;
 
-public enum CAMERA_POSITIONS
-{
-    HIGH_BACK,
-    LOW_BACK,
-    LOW_FRONT_SELF,
-    HIGH_FRONT_SELF,
-    PLAYER_TEAM_BACK,
-    PLAYER_TEAM_FRONT,
-    NONE,
-}
-
 public class EntityBase : MonoBehaviour
 {
     public Animator animator;
@@ -84,22 +73,18 @@ public class EntityBase : MonoBehaviour
         if (!remainInAnimation)
             animator.Play("Idle");
 
+        attacking = false;
         if (transform.position != originalPosition)
         {
             transform.DOMove(originalPosition, 1, false).OnComplete(() => CombatManager.Instance.EndTurn(this));
             transform.DORotate(originalRotation.eulerAngles, 1);
         }
         else
-        {
             CombatManager.Instance.EndTurn(this);
-            attacking = false;
-        }
     }
 
     public virtual void TakeTurn()
     {
-        //Debug.Log(name + " taken turn");
-        isMoving = true;
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         
@@ -109,8 +94,23 @@ public class EntityBase : MonoBehaviour
         else
             animator.Play("Idle");
 
-        for (int i = 0; i < debuffList.Count; i++)
-            debuffList[i].ApplyEffect();
+        List<Debuff> tempList = new(debuffList);
+        foreach (Debuff debuff in tempList)
+            debuff.ApplyEffect();
+
+        StartCoroutine(StartingTurn());
+    }
+
+    protected IEnumerator StartingTurn()
+    {
+        yield return new WaitForSeconds(1f);
+
+        StartTurn();
+    }
+
+    protected virtual void StartTurn()
+    {
+        isMoving = true;
     }
 
     public virtual void Provoked(EntityBase provoker)

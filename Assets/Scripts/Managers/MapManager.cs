@@ -21,7 +21,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] List<GameObject> mapZones;
     public List<GameObject> map => mapZones;
     public int currentMapNum = 0;
-    GameObject currentMap;
+    public GameObject currentMap;
 
     private void Start()
     {
