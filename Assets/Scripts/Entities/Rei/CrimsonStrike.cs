@@ -14,7 +14,10 @@ public class CrimsonStrike : Skill
 
         CameraManager.Instance.MoveCamera(attackee.gameObject, CAMERA_POSITIONS.HIGH_FRONT_SELF, 0.1f);
 
-        Tween moveTween = attacker.transform.DOJump(attackee.transform.position, 0.5f, 1, 0.5f);
+        Vector3 targetPos = GetFrontPos(attacker.transform.position, attackee.transform.position, 1);
+        attacker.transform.DORotateQuaternion(GetQuaternionRotationToTarget(attacker.transform.position, attackee.transform.position), 0.5f);
+
+        Tween moveTween = attacker.transform.DOJump(targetPos, 0.5f, 1, 0.5f);
         moveTween.OnComplete(() =>
         {
             attacker.animator.Play("CrimsonStrikeAttack");

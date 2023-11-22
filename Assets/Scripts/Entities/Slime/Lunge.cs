@@ -11,7 +11,10 @@ public class Lunge : Skill
         attacker.originalPosition = attacker.transform.position;
         attacker.originalRotation = attacker.transform.rotation;
 
-        Tween moveTween = attacker.transform.DOJump(attackee.transform.position, 0.5f, 1, 1);
+        attacker.transform.DORotateQuaternion(GetQuaternionRotationToTarget(attacker.transform.position, attackee.transform.position), 0.5f);
+        Vector3 targetPos = GetFrontPos(attacker.transform.position, attackee.transform.position, 1);
+
+        Tween moveTween = attacker.transform.DOJump(targetPos, 0.5f, 1, 1);
         moveTween.OnComplete(() =>
         {
             attacker.animator.Play("LungeAttack");

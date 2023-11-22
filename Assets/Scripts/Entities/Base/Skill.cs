@@ -91,4 +91,28 @@ public class Skill : ScriptableObject
         yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length);
         attacker.PostSkill(stayOnAnimation);
     }
+
+    protected Vector3 GetFrontPos(Vector3 attackerPos, Vector3 attackeePos, float setDistance)
+    {
+        float distance = (attackerPos - attackeePos).magnitude;
+        Vector3 direction = (attackerPos - attackeePos).normalized;
+
+        if (distance > setDistance)
+        {
+            Vector3 targetPos = attackeePos + direction * setDistance;
+            return targetPos;
+        }
+        return attackeePos;
+    }
+
+    protected Quaternion GetQuaternionRotationToTarget(Vector3 attackerPos, Vector3 attackeePos)
+    {
+        // Calculate the direction vector towards the enemy
+        Vector3 directionToEnemy = (attackeePos - attackerPos).normalized;
+
+        // Calculate the rotation quaternion to look in that direction
+        Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy, Vector3.up);
+
+        return targetRotation;
+    }
 }
