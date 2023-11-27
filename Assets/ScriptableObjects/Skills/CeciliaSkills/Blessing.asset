@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ac313ad96c1ed478d8fd2797afde32, type: 3}
   m_Name: Blessing
   m_EditorClassIdentifier: 
+  targetTeam: 1
   targets: 0
-  _skillName: 
+  _skillName: Blessing
   _skillDesc: 
   _skillIcon: {fileID: 0}
+  _skillCost: 2
   _Cooldown: 0
   currentCooldown: 0
   _multiplier: 0

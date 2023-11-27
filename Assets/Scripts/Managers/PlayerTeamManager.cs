@@ -20,4 +20,8 @@ public class PlayerTeamManager : MonoBehaviour
     public List<GameObject> teamPrefabs;
 
     //To do reaaranging function for team setup
+
+    public int skillPoints = 10;
+
+    
 }

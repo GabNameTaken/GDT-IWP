@@ -43,7 +43,7 @@ public class PlayableCharacter : EntityBase
                     UseSkill(currentSkillCode);
 
                 if ((SKILL_CODE)keyIndex != SKILL_CODE.NONE)
-                    SelectTargets(skillSet.SkillDict[(SKILL_CODE)keyIndex].targets, false);
+                    SelectTargets(skillSet.SkillDict[(SKILL_CODE)keyIndex].targetTeam, skillSet.SkillDict[(SKILL_CODE)keyIndex].targets, false);
             }
         }
         if (currentSkillCode == SKILL_CODE.NONE)
@@ -57,28 +57,62 @@ public class PlayableCharacter : EntityBase
         }
     }
 
+    bool invertTargetting = false;
     void SelectTargetInput()
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (currentTargetNum > 0)
+            if (invertTargetting)
+            {
+                if (currentTargetNum < listOfTargets.Count - 1)
+                    currentTargetNum++;
+            }
+            else if (currentTargetNum > 0)
                 currentTargetNum--;
             if (currentSkillCode != SKILL_CODE.NONE)
-                SelectTargets(skillSet.SkillDict[currentSkillCode].targets,false);
+                SelectTargets(skillSet.SkillDict[currentSkillCode].targetTeam, skillSet.SkillDict[currentSkillCode].targets,false);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (currentTargetNum < listOfTargets.Count - 1)
+            if (invertTargetting)
+            {
+                if (currentTargetNum > 0)
+                    currentTargetNum--;
+            }
+            else if (currentTargetNum < listOfTargets.Count - 1)
                 currentTargetNum++;
             if (currentSkillCode != SKILL_CODE.NONE)
-                SelectTargets(skillSet.SkillDict[currentSkillCode].targets,false);
+                SelectTargets(skillSet.SkillDict[currentSkillCode].targetTeam, skillSet.SkillDict[currentSkillCode].targets,false);
         }
     }
 
-    void SelectTargets(Skill.SKILL_TARGETS targetType, bool turnOffHighlights)
+    void SelectTargets(Skill.SKILL_TARGET_TEAM targettedTeam, Skill.SKILL_TARGETS targetType, bool turnOffHighlights)
     {
         foreach (EntityBase entity in listOfTargets)
             entity.outline.eraseRenderer = true;
+        if (turnOffHighlights)
+            return;
+        List<Enemy> enemies = CombatManager.Instance.enemyParty.Where(enemy => !enemy.isDead).ToList();
+        List<PlayableCharacter> allies = CombatManager.Instance.playerParty.Where(player => !player.isDead).ToList();
+
+        listOfTargets.Clear();
+        invertTargetting = false;
+        if (targettedTeam == Skill.SKILL_TARGET_TEAM.ALLY)
+        {
+            listOfTargets.AddRange(allies);
+            CameraManager.Instance.MoveCamera(MapManager.Instance.currentMap.transform.Find("CombatSetup").gameObject, CAMERA_POSITIONS.PLAYER_TEAM_FRONT, 0.5f);
+            invertTargetting = true;
+        }
+        else if (targettedTeam == Skill.SKILL_TARGET_TEAM.ENEMY)
+        {
+            listOfTargets.AddRange(enemies);
+            CameraManager.Instance.MoveCamera(gameObject, CAMERA_POSITIONS.LOW_BACK, 0f);
+        }
+        else if (targettedTeam == Skill.SKILL_TARGET_TEAM.SELF)
+        { 
+            listOfTargets.Add(this);
+            CameraManager.Instance.MoveCamera(gameObject, CAMERA_POSITIONS.LOW_FRONT_SELF, 0f);
+        }
 
         switch (targetType)
         {
@@ -107,6 +141,11 @@ public class PlayableCharacter : EntityBase
 
     void UseSkill(SKILL_CODE skill)
     {
+        if (PlayerTeamManager.Instance.skillPoints < skillSet.SkillDict[skill].skillCost)
+        {
+            Debug.Log("Insufficient skill points");
+            return;
+        }
         attacking = true;
         Attack(skillSet.SkillDict[skill]);
     }
@@ -114,7 +153,7 @@ public class PlayableCharacter : EntityBase
     void Attack(Skill skill)
     {
         skill.Use(this, listOfTargets[currentTargetNum]);
-        SelectTargets(skill.targets, true);
+        SelectTargets(skill.targetTeam, skill.targets, true);
         currentTargetNum = 0;
         keyIndex = (int)SKILL_CODE.NONE;
         listOfTargets.Clear();

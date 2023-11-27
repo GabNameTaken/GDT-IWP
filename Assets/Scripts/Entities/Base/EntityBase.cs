@@ -9,6 +9,7 @@ using cakeslice;
 public class EntityBase : MonoBehaviour
 {
     public Animator animator;
+    public WeaponModel weaponModel;
 
     public Entity entity;
     [SerializeField] BaseStats baseStats;
@@ -39,6 +40,8 @@ public class EntityBase : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
+        if (damage > 0)
+            animator.Play("GetHit");
         trueStats.health -= damage;
         if (trueStats.health <= 0)
         {
@@ -71,7 +74,12 @@ public class EntityBase : MonoBehaviour
     public void PostSkill(bool remainInAnimation)
     {
         if (!remainInAnimation)
+        {
             animator.Play("Idle");
+            if (weaponModel)
+                weaponModel.RestWeapon();
+        }
+        
 
         attacking = false;
         if (transform.position != originalPosition)

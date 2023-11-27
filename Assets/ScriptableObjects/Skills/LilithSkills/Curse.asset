@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d2570f3f78889418067f93a68152f2, type: 3}
   m_Name: Curse
   m_EditorClassIdentifier: 
+  targetTeam: 0
   targets: 1
   _skillName: 
   _skillDesc: 
   _skillIcon: {fileID: 0}
+  _skillCost: 2
   _Cooldown: 0
   currentCooldown: 0
   _multiplier: 0.7

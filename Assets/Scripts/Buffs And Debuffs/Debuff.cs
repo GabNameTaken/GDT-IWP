@@ -26,6 +26,15 @@ public class Debuff
         remainingDuration = duration;
         this.debuffData = debuffData;
 
+        CombatManager.Instance.StartCoroutine(UpdateUI());
+    }
+
+    IEnumerator UpdateUI()
+    {
+        yield return null;
+
+        yield return new WaitForSeconds(giver.animator.GetCurrentAnimatorStateInfo(0).length * 0.3f);
+
         statusEffectUI = receiver.statusEffectUI;
         statusEffectUI.OnAddStatus(this, remainingDuration);
     }

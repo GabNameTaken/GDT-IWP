@@ -111,13 +111,6 @@ public class CombatManager : MonoBehaviour
             if (entity.GetComponent<PlayableCharacter>())
             {
                 CameraManager.Instance.MoveCamera(entity.gameObject, CAMERA_POSITIONS.LOW_BACK, 1f);
-
-                entity.listOfTargets.Clear();
-                foreach (Enemy enemy in enemyParty)
-                {
-                    if (!enemy.isDead)
-                        entity.listOfTargets.Add(enemy);
-                }
             }
             entity.TakeTurn();
         }

@@ -14,8 +14,7 @@ public class Curse : Skill
         base.Use(attacker, CombatManager.Instance.enemyParty.ConvertAll(entity => (EntityBase)entity));
         foreach(Enemy enemy in CombatManager.Instance.enemyParty)
         {
-            poisonDebuff = InitDebuff(attacker, enemy, 2, poisonDebuffData);
-            enemy.debuffList.Add(poisonDebuff);
+            enemy.debuffList.Add(InitDebuff(attacker, enemy, 2, poisonDebuffData));
         }
     }
 } 

@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c71467f41b33a64ca1fbae6a220a3d6, type: 3}
   m_Name: Erupt
   m_EditorClassIdentifier: 
+  targetTeam: 0
   targets: 0
   _skillName: 
   _skillDesc: 
   _skillIcon: {fileID: 0}
+  _skillCost: -1
   _Cooldown: 0
   currentCooldown: 0
   _multiplier: 1

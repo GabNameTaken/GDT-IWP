@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using DG.Tweening;
 
@@ -13,6 +14,14 @@ public enum SKILL_CODE
 
 public class Skill : ScriptableObject
 {
+    public enum SKILL_TARGET_TEAM
+    {
+        ENEMY,
+        ALLY,
+        SELF,
+        NONE
+    }
+
     public enum SKILL_TARGETS
     {
         SINGLE_TARGET,
@@ -22,6 +31,7 @@ public class Skill : ScriptableObject
         TOTAL
     }
 
+    public SKILL_TARGET_TEAM targetTeam;
     public SKILL_TARGETS targets;
 
     [SerializeField] protected string _skillName;
@@ -32,6 +42,9 @@ public class Skill : ScriptableObject
 
     [SerializeField] protected Sprite _skillIcon;
     public Sprite skillIcon => _skillIcon;
+
+    [SerializeField] int _skillCost;
+    public int skillCost => _skillCost;
 
     [SerializeField] protected int _Cooldown;
     public int cooldown => _Cooldown;
@@ -64,17 +77,25 @@ public class Skill : ScriptableObject
 
     public virtual void Use(EntityBase attacker, EntityBase attackee)
     {
-        attackee.TakeDamage(CalculateDamage(attacker, attackee));
+        if (attacker.weaponModel)
+            attacker.weaponModel.AttachWeapon();
 
-        CombatManager.Instance.StartCoroutine(SkillAnimationCoroutine(attacker));
+        List<EntityBase> attackeeList = new();
+        attackeeList.Add(attackee);
+
+        PlayerTeamManager.Instance.skillPoints -= skillCost;
+
+        CombatManager.Instance.StartCoroutine(SkillAnimationCoroutine(attacker, attackeeList));
     }
 
     public virtual void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
-        foreach(EntityBase attackee in attackeeList)
-            attackee.TakeDamage(CalculateDamage(attacker, attackee));
+        if (attacker.weaponModel)
+            attacker.weaponModel.AttachWeapon();
 
-        CombatManager.Instance.StartCoroutine(SkillAnimationCoroutine(attacker));
+        PlayerTeamManager.Instance.skillPoints -= skillCost;
+
+        CombatManager.Instance.StartCoroutine(SkillAnimationCoroutine(attacker, attackeeList));
     }
 
     protected virtual Debuff InitDebuff(EntityBase attacker, EntityBase attackee, int duration, DebuffData debuffData)
@@ -84,11 +105,17 @@ public class Skill : ScriptableObject
     }
 
     protected bool stayOnAnimation = false;
-    IEnumerator SkillAnimationCoroutine(EntityBase attacker)
+    IEnumerator SkillAnimationCoroutine(EntityBase attacker, List<EntityBase> attackeeList)
     {
         yield return null;
 
-        yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.3f);
+
+        foreach (EntityBase attackee in attackeeList)
+            attackee.TakeDamage(CalculateDamage(attacker, attackee));
+
+        yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.7f);
+
         attacker.PostSkill(stayOnAnimation);
     }
 

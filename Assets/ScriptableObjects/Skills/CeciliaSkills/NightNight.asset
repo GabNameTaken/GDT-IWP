@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b2283fd86e9ca545a361d2f56791509, type: 3}
   m_Name: NightNight
   m_EditorClassIdentifier: 
+  targetTeam: 0
   targets: 0
-  _skillName: 
+  _skillName: Night Night
   _skillDesc: 
   _skillIcon: {fileID: 0}
+  _skillCost: -1
   _Cooldown: 0
   currentCooldown: 0
   _multiplier: 0.7
