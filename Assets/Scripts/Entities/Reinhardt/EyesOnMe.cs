@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Skills/EyesOnMe")]
 public class EyesOnMe : Skill
 {
-    [SerializeField] DebuffData provokeDebuffData;
+    [SerializeField] StatusEffectData provokeDebuffData;
 
     public override void Use(EntityBase attacker, EntityBase attackee)
     {
@@ -13,7 +13,7 @@ public class EyesOnMe : Skill
         stayOnAnimation = true;
 
         foreach (Enemy enemy in CombatManager.Instance.enemyParty)
-            enemy.debuffList.Add(InitDebuff(attacker, enemy, 1, provokeDebuffData));
+            enemy.AddStatusEffect(new StatusEffect(attacker, enemy, 1, provokeDebuffData));
 
         base.Use(attacker, attackee);
     }

@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class DebuffData : ScriptableObject
 {
-    [SerializeField] string _name;
-    public string debuffName => _name;
+    //[SerializeField] string _name;
+    //public string debuffName => _name;
 
-    [SerializeField] string _desc;
-    public string desc => desc;
+    //[SerializeField] string _desc;
+    //public string desc => desc;
 
-    [SerializeField] Sprite _icon;
-    public Sprite icon => _icon;
+    //[SerializeField] Sprite _icon;
+    //public Sprite icon => _icon;
 
-    [SerializeField] float _multiplier;
-    public float multiplier => _multiplier;
+    //[SerializeField] float _multiplier;
+    //public float multiplier => _multiplier;
 
-    public virtual void ApplyEffect(EntityBase source, EntityBase dest)
-    {
+    //public virtual void ApplyEffect(EntityBase source, EntityBase dest)
+    //{
 
-    }
+    //}
 }
