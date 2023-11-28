@@ -41,20 +41,32 @@ public class SkillPointsUI : MonoBehaviour
     }
 
     List<Tween> loopTweens = new();
-    public void ConsumingSkillPoints(int num)
+    public void SelectingSkillPoints(int num)
     {
-        for (int i = 1; i <= num; i++)
+        if (num > 0)
         {
-            if (skillPoints[PlayerTeamManager.Instance.skillPoints - i])
+            for (int i = 1; i <= num; i++)
             {
-                //skillPoints[PlayerTeamManager.Instance.skillPoints - i].GetComponent<Image>().DOColor(consumeColor, 1f).OnComplete(() =>
-                //{
-                //    skillPoints[PlayerTeamManager.Instance.skillPoints - i].GetComponent<Image>().DOColor(Color.white, 1f);
-                //}
-                //).SetLoops(-1, LoopType.Yoyo);
-
-                Tween loop = skillPoints[PlayerTeamManager.Instance.skillPoints - i].GetComponent<Image>().DOColor(consumeColor, 1f).SetLoops(-1, LoopType.Yoyo);
-                loopTweens.Add(loop);
+                if (skillPoints[PlayerTeamManager.Instance.skillPoints - i])
+                {
+                    Tween loop = skillPoints[PlayerTeamManager.Instance.skillPoints - i].GetComponent<Image>().DOColor(consumeColor, 1f).SetLoops(-1, LoopType.Yoyo);
+                    loopTweens.Add(loop);
+                }
+            }
+        }
+        else
+        {
+            List<GameObject> selectedSkillPoints = skillPoints.Skip(PlayerTeamManager.Instance.skillPoints).ToList();
+            if (selectedSkillPoints.Count() > 0)
+            {
+                for (int i = 0; i < -num; i++)
+                {
+                    if (selectedSkillPoints[i])
+                    {
+                        Tween loop = selectedSkillPoints[i].GetComponent<Image>().DOColor(Color.white, 1f).SetLoops(-1, LoopType.Yoyo);
+                        loopTweens.Add(loop);
+                    }
+                }
             }
         }
     }
@@ -63,6 +75,7 @@ public class SkillPointsUI : MonoBehaviour
     {
         foreach (Tween loop in loopTweens)
         {
+            loop.Restart();
             loop.Kill();
         }
         loopTweens.Clear();

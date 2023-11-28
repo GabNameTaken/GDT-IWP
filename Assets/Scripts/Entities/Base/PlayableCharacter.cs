@@ -45,7 +45,8 @@ public class PlayableCharacter : EntityBase
                 if ((SKILL_CODE)keyIndex != SKILL_CODE.NONE)
                 {
                     SelectTargets(skillSet.SkillDict[(SKILL_CODE)keyIndex].targetTeam, skillSet.SkillDict[(SKILL_CODE)keyIndex].targets, false);
-                    PlayerTeamManager.Instance.HoverSkillPoints(true, skillSet.SkillDict[(SKILL_CODE)keyIndex].skillCost);
+                    PlayerTeamManager.Instance.StopHover();
+                    PlayerTeamManager.Instance.HoverSkillPoints(skillSet.SkillDict[(SKILL_CODE)keyIndex].skillCost);
                 }
             }
         }
@@ -158,7 +159,7 @@ public class PlayableCharacter : EntityBase
     {
         skill.Use(this, listOfTargets[currentTargetNum]);
         SelectTargets(skill.targetTeam, skill.targets, true);
-        PlayerTeamManager.Instance.HoverSkillPoints(false, skill.skillCost);
+        PlayerTeamManager.Instance.StopHover();
         currentTargetNum = 0;
         keyIndex = (int)SKILL_CODE.NONE;
         listOfTargets.Clear();

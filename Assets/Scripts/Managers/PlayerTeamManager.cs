@@ -53,11 +53,13 @@ public class PlayerTeamManager : MonoBehaviour
         }
     }
 
-    public void HoverSkillPoints(bool hover, int num)
+    public void HoverSkillPoints(int num)
     {
-        if (hover && num > 0)
-            skillPointsUI.ConsumingSkillPoints(num);
-        else
-            skillPointsUI.KillLoops();
+        skillPointsUI.SelectingSkillPoints(num);
+    }
+
+    public void StopHover()
+    {
+        skillPointsUI.KillLoops();
     }
 }
