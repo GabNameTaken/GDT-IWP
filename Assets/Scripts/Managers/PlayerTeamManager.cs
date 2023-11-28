@@ -21,7 +21,10 @@ public class PlayerTeamManager : MonoBehaviour
 
     //To do reaaranging function for team setup
 
-    public int skillPoints = 10;
-
-    
+    [SerializeField] Transform skillPointsUI;
+    public int skillPoints;
+    private void Start()
+    {
+        skillPoints = skillPointsUI.childCount;
+    }
 }
