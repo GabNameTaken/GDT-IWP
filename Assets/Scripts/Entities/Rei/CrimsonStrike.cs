@@ -7,6 +7,8 @@ using DG.Tweening;
 public class CrimsonStrike : Skill
 {
     [SerializeField] float speedScaling;
+
+    [SerializeField] StatusEffectData attackBuff;
     public override void Use(EntityBase attacker, EntityBase attackee)
     {
         attacker.originalPosition = attacker.transform.position;
@@ -23,6 +25,8 @@ public class CrimsonStrike : Skill
             attacker.animator.Play("CrimsonStrikeAttack");
             additionalScalings = attacker.trueStats.speed * speedScaling;
             base.Use(attacker, attackee);
+            attacker.AddStatusEffect(InitStatusEffect(attacker, attacker, 2, attackBuff));
+            Debug.Log(attacker.trueStats.attack);
         });
         
     }

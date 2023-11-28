@@ -21,52 +21,61 @@ public class SkillPointsUI : MonoBehaviour
         }
     }
 
-    public void AddSkillPoint(int num)
-    {
-        List<GameObject> selectedSkillPoints = skillPoints.Skip(PlayerTeamManager.Instance.skillPoints).ToList();
-        for (int i = 0; i < -num; i++)
-        {
-            if (selectedSkillPoints[i])
-                selectedSkillPoints[i].GetComponent<Image>().color = new Color(1, 1, 1, 1.0f);
-        }
-    }
-
-    public void ConsumeSkillPoints(int num)
-    {
-        for (int i = 1; i <= num; i++)
-        {
-            if (skillPoints[PlayerTeamManager.Instance.skillPoints - i])
-                skillPoints[PlayerTeamManager.Instance.skillPoints - i].GetComponent<Image>().color = consumeColor;
-        }
-    }
-
     List<Tween> loopTweens = new();
-    public void SelectingSkillPoints(int num)
+    public void AddSkillPoint(int num, bool add)
     {
-        if (num > 0)
+        List<GameObject> selectedPoints = new();
+        List<GameObject> currentPoints = skillPoints.Skip(PlayerTeamManager.Instance.skillPoints).ToList();
+        if (currentPoints.Count() > 0)
         {
-            for (int i = 1; i <= num; i++)
+            for (int i = 0; i < -num; i++)
             {
-                if (skillPoints[PlayerTeamManager.Instance.skillPoints - i])
+                if (currentPoints[i])
                 {
-                    Tween loop = skillPoints[PlayerTeamManager.Instance.skillPoints - i].GetComponent<Image>().DOColor(consumeColor, 1f).SetLoops(-1, LoopType.Yoyo);
-                    loopTweens.Add(loop);
+                    selectedPoints.Add(currentPoints[i]);
                 }
             }
         }
-        else
+
+        foreach (GameObject point in selectedPoints)
         {
-            List<GameObject> selectedSkillPoints = skillPoints.Skip(PlayerTeamManager.Instance.skillPoints).ToList();
-            if (selectedSkillPoints.Count() > 0)
+            Tween loop = point.GetComponent<Image>().DOColor(Color.white, 1f).SetLoops(-1, LoopType.Yoyo);
+            loopTweens.Add(loop);
+        }
+
+        if (add)
+        {
+            KillLoops();
+            foreach (GameObject point in selectedPoints)
             {
-                for (int i = 0; i < -num; i++)
-                {
-                    if (selectedSkillPoints[i])
-                    {
-                        Tween loop = selectedSkillPoints[i].GetComponent<Image>().DOColor(Color.white, 1f).SetLoops(-1, LoopType.Yoyo);
-                        loopTweens.Add(loop);
-                    }
-                }
+                point.GetComponent<Image>().color = new Color(1, 1, 1, 1.0f);
+            }
+        }
+    }
+
+    public void ConsumeSkillPoints(int num, bool consume)
+    {
+        List<GameObject> selectedPoints = new();
+        for (int i = 1; i <= num; i++)
+        {
+            if (skillPoints[PlayerTeamManager.Instance.skillPoints - i])
+            {
+                selectedPoints.Add(skillPoints[PlayerTeamManager.Instance.skillPoints - i]);
+            }
+        }
+
+        foreach (GameObject point in selectedPoints)
+        {
+            Tween loop = point.GetComponent<Image>().DOColor(consumeColor, 1f).SetLoops(-1, LoopType.Yoyo);
+            loopTweens.Add(loop);
+        }
+
+        if (consume)
+        {
+            KillLoops();
+            foreach (GameObject point in selectedPoints)
+            {
+                point.GetComponent<Image>().color = consumeColor;
             }
         }
     }

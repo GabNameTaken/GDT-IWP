@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
@@ -40,4 +41,6 @@ public class CombatUIManager : MonoBehaviour
             healthUI.UpdateHealthUI();
         }
     }
+
+    [SerializeField] Slider turnChargeSlider;
 }

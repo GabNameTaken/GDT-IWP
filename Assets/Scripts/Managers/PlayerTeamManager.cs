@@ -31,31 +31,32 @@ public class PlayerTeamManager : MonoBehaviour
         _skillPoints = totalSkillPoints;
     }
 
-    public void UpdateSkillPoints(int num)
+    public void UpdateSkillPoints(int num, bool change)
     {
         if (num < 0)
         {
-            skillPointsUI.AddSkillPoint(num);
+            skillPointsUI.AddSkillPoint(num,change);
 
-            if (_skillPoints - num <= totalSkillPoints)
-                _skillPoints -= num;
-            else
-                _skillPoints = totalSkillPoints;
+            if (change)
+            {
+                if (_skillPoints - num <= totalSkillPoints)
+                    _skillPoints -= num;
+                else
+                    _skillPoints = totalSkillPoints;
+            }
         }
         else
         {
-            skillPointsUI.ConsumeSkillPoints(num);
+            skillPointsUI.ConsumeSkillPoints(num, change);
 
-            if (_skillPoints - num > 0)
-                _skillPoints -= num;
-            else
-                _skillPoints = 0;
+            if (change)
+            {
+                if (_skillPoints - num > 0)
+                    _skillPoints -= num;
+                else
+                    _skillPoints = 0;
+            }
         }
-    }
-
-    public void HoverSkillPoints(int num)
-    {
-        skillPointsUI.SelectingSkillPoints(num);
     }
 
     public void StopHover()

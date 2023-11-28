@@ -20,4 +20,4 @@ MonoBehaviour:
   _skillCost: 2
   _Cooldown: 0
   currentCooldown: 0
-  _multiplier: 0
+  _multiplier: 0.2

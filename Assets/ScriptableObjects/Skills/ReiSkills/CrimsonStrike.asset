@@ -22,3 +22,4 @@ MonoBehaviour:
   currentCooldown: 0
   _multiplier: 1.2
   speedScaling: 0.0025
+  attackBuff: {fileID: 11400000, guid: 06ea24d9dec3f1e43b0f78fed23152a4, type: 2}

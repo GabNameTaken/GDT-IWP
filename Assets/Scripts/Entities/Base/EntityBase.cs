@@ -49,6 +49,9 @@ public class EntityBase : MonoBehaviour
             trueStats.health = 0;
             OnDeath();
         }
+        else if (trueStats.health > trueStats.maxHealth)
+            trueStats.health = trueStats.maxHealth;
+
         CombatUIManager.Instance.UpdateHealth(this);
     }
 

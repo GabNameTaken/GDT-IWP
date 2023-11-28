@@ -17,4 +17,4 @@ MonoBehaviour:
   _desc: 
   _icon: {fileID: 0}
   _multiplier: 0
-  attackBuffPercentage: 0
+  attackBuffPercentage: 150

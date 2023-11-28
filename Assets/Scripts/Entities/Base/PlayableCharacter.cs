@@ -46,7 +46,8 @@ public class PlayableCharacter : EntityBase
                 {
                     SelectTargets(skillSet.SkillDict[(SKILL_CODE)keyIndex].targetTeam, skillSet.SkillDict[(SKILL_CODE)keyIndex].targets, false);
                     PlayerTeamManager.Instance.StopHover();
-                    PlayerTeamManager.Instance.HoverSkillPoints(skillSet.SkillDict[(SKILL_CODE)keyIndex].skillCost);
+                    //PlayerTeamManager.Instance.HoverSkillPoints(skillSet.SkillDict[(SKILL_CODE)keyIndex].skillCost);
+                    PlayerTeamManager.Instance.UpdateSkillPoints(skillSet.SkillDict[(SKILL_CODE)keyIndex].skillCost, false);
                 }
             }
         }
