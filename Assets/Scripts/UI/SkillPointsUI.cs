@@ -8,45 +8,63 @@ using DG.Tweening;
 public class SkillPointsUI : MonoBehaviour
 {
     List<GameObject> skillPoints = new();
-
-    private void Awake()
+    [SerializeField] Color consumeColor;
+    private void Start()
     {
-        foreach (GameObject child in transform)
-            skillPoints.Add(child);
+        int childCount = transform.childCount;
+
+        for (int i = 0; i < childCount; i++)
+        {
+            Transform childTransform = transform.GetChild(i);
+            GameObject childObject = childTransform.gameObject;
+            skillPoints.Add(childObject);
+        }
     }
 
     public void AddSkillPoint(int num)
     {
         List<GameObject> selectedSkillPoints = skillPoints.Skip(PlayerTeamManager.Instance.skillPoints).ToList();
-        for (int i = 0; i < num; i++)
+        for (int i = 0; i < -num; i++)
         {
-            selectedSkillPoints[i].GetComponent<Image>().color = new Color(1, 1, 1, 1.0f);
+            if (selectedSkillPoints[i])
+                selectedSkillPoints[i].GetComponent<Image>().color = new Color(1, 1, 1, 1.0f);
         }
     }
 
     public void ConsumeSkillPoints(int num)
     {
-        List<GameObject> selectedSkillPoints = skillPoints.Skip(PlayerTeamManager.Instance.skillPoints).ToList();
-        for (int i = 0; i < num; i++)
+        for (int i = 1; i <= num; i++)
         {
-            selectedSkillPoints[i].GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+            if (skillPoints[PlayerTeamManager.Instance.skillPoints - i])
+                skillPoints[PlayerTeamManager.Instance.skillPoints - i].GetComponent<Image>().color = consumeColor;
         }
     }
 
+    List<Tween> loopTweens = new();
     public void ConsumingSkillPoints(int num)
     {
-        List<GameObject> selectedSkillPoints = skillPoints.Skip(PlayerTeamManager.Instance.skillPoints).ToList();
-        for (int i = 0; i < num; i++)
+        for (int i = 1; i <= num; i++)
         {
-            selectedSkillPoints[i].GetComponent<Image>().DOFade(0.5f, 1f).SetLoops(-1, LoopType.Yoyo);
+            if (skillPoints[PlayerTeamManager.Instance.skillPoints - i])
+            {
+                //skillPoints[PlayerTeamManager.Instance.skillPoints - i].GetComponent<Image>().DOColor(consumeColor, 1f).OnComplete(() =>
+                //{
+                //    skillPoints[PlayerTeamManager.Instance.skillPoints - i].GetComponent<Image>().DOColor(Color.white, 1f);
+                //}
+                //).SetLoops(-1, LoopType.Yoyo);
+
+                Tween loop = skillPoints[PlayerTeamManager.Instance.skillPoints - i].GetComponent<Image>().DOColor(consumeColor, 1f).SetLoops(-1, LoopType.Yoyo);
+                loopTweens.Add(loop);
+            }
         }
     }
 
-    public void KillTweens()
+    public void KillLoops()
     {
-        foreach (GameObject skillPoint in skillPoints)
+        foreach (Tween loop in loopTweens)
         {
-            skillPoint.transform.DOKill();
+            loop.Kill();
         }
+        loopTweens.Clear();
     }
 }

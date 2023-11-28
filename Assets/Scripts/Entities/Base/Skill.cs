@@ -83,7 +83,7 @@ public class Skill : ScriptableObject
         List<EntityBase> attackeeList = new();
         attackeeList.Add(attackee);
 
-        PlayerTeamManager.Instance.skillPoints -= skillCost;
+        PlayerTeamManager.Instance.UpdateSkillPoints(skillCost);
 
         CombatManager.Instance.StartCoroutine(SkillAnimationCoroutine(attacker, attackeeList));
     }
@@ -93,7 +93,7 @@ public class Skill : ScriptableObject
         if (attacker.weaponModel)
             attacker.weaponModel.AttachWeapon();
 
-        PlayerTeamManager.Instance.skillPoints -= skillCost;
+        PlayerTeamManager.Instance.UpdateSkillPoints(skillCost);
 
         CombatManager.Instance.StartCoroutine(SkillAnimationCoroutine(attacker, attackeeList));
     }
