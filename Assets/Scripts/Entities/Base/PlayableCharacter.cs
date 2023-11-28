@@ -43,7 +43,10 @@ public class PlayableCharacter : EntityBase
                     UseSkill(currentSkillCode);
 
                 if ((SKILL_CODE)keyIndex != SKILL_CODE.NONE)
+                {
                     SelectTargets(skillSet.SkillDict[(SKILL_CODE)keyIndex].targetTeam, skillSet.SkillDict[(SKILL_CODE)keyIndex].targets, false);
+                    PlayerTeamManager.Instance.HoverSkillPoints(true, skillSet.SkillDict[(SKILL_CODE)keyIndex].skillCost);
+                }
             }
         }
         if (currentSkillCode == SKILL_CODE.NONE)
@@ -92,6 +95,7 @@ public class PlayableCharacter : EntityBase
             entity.outline.eraseRenderer = true;
         if (turnOffHighlights)
             return;
+
         List<Enemy> enemies = CombatManager.Instance.enemyParty.Where(enemy => !enemy.isDead).ToList();
         List<PlayableCharacter> allies = CombatManager.Instance.playerParty.Where(player => !player.isDead).ToList();
 
@@ -154,6 +158,7 @@ public class PlayableCharacter : EntityBase
     {
         skill.Use(this, listOfTargets[currentTargetNum]);
         SelectTargets(skill.targetTeam, skill.targets, true);
+        PlayerTeamManager.Instance.HoverSkillPoints(false, skill.skillCost);
         currentTargetNum = 0;
         keyIndex = (int)SKILL_CODE.NONE;
         listOfTargets.Clear();

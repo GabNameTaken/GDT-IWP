@@ -669,6 +669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 183660140}
   - component: {fileID: 183660141}
+  - component: {fileID: 183660142}
   m_Layer: 5
   m_Name: SkillPoints
   m_TagString: Untagged
@@ -731,6 +732,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &183660142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183660139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36dc58dbaf816e44ab35ea70b8ceb70e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &260851986
 GameObject:
   m_ObjectHideFlags: 0
@@ -5445,8 +5458,7 @@ MonoBehaviour:
   - {fileID: 3135445076921900636, guid: 07f999dfdd4f2c445a622826369feed7, type: 3}
   - {fileID: 3135445076921900636, guid: d85b58e3534fe764db211266f5883552, type: 3}
   - {fileID: 3135445076921900636, guid: 5bdeb4372581988409eee54f033d3eba, type: 3}
-  skillPointsUI: {fileID: 183660140}
-  skillPoints: 9
+  skillPointsUI: {fileID: 183660142}
 --- !u!1 &2052019172
 GameObject:
   m_ObjectHideFlags: 0
