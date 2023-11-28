@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 using cakeslice;
+using System.Linq;
 
 public class EntityBase : MonoBehaviour
 {
@@ -12,12 +13,12 @@ public class EntityBase : MonoBehaviour
     public WeaponModel weaponModel;
 
     public Entity entity;
-    [SerializeField] BaseStats baseStats;
+    [SerializeField] public BaseStats baseStats { get; private set; }
     [HideInInspector] public Stats trueStats;
 
     [SerializeField] protected SkillSet skillSet;
 
-    public List<Debuff> debuffList = new();
+    protected List<StatusEffect> statusEffectList = new();
     public StatusEffectUI statusEffectUI;
 
     public float turnMeter;
@@ -102,11 +103,23 @@ public class EntityBase : MonoBehaviour
         else
             animator.Play("Idle");
 
-        List<Debuff> tempList = new(debuffList);
-        foreach (Debuff debuff in tempList)
-            debuff.ApplyEffect();
+        List<StatusEffect> debuffList = new(statusEffectList.Where((a)=>a.StatusEffectData.type == STATUS_EFFECT_TYPE.DEBUFF));
+        foreach (StatusEffect statusEffect in debuffList)
+            statusEffect.ApplyEffect();
 
         StartCoroutine(StartingTurn());
+    }
+
+    public void AddStatusEffect(StatusEffect statusEffect)
+    {
+        statusEffectList.Add(statusEffect);
+        statusEffect.StatusEffectData.OnStatusEffectAdd(statusEffect.giver, statusEffect.receiver);
+    }
+
+    public void RemoveStatusEffect(StatusEffect statusEffect)
+    {
+        statusEffect.StatusEffectData.OnStatusEffectRemove(statusEffect.giver, statusEffect.receiver);
+        statusEffectList.Remove(statusEffect);
     }
 
     protected IEnumerator StartingTurn()

@@ -98,10 +98,10 @@ public class Skill : ScriptableObject
         CombatManager.Instance.StartCoroutine(SkillAnimationCoroutine(attacker, attackeeList));
     }
 
-    protected virtual Debuff InitDebuff(EntityBase attacker, EntityBase attackee, int duration, DebuffData debuffData)
+    protected virtual StatusEffect InitStatusEffect(EntityBase attacker, EntityBase attackee, int duration, StatusEffectData statusEffectData)
     {
-        Debuff debuff = new Debuff(attacker, attackee, duration, debuffData);
-        return debuff;
+        StatusEffect statusEffect = new StatusEffect(attacker, attackee, duration, statusEffectData);
+        return statusEffect;
     }
 
     protected bool stayOnAnimation = false;

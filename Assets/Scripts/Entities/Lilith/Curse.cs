@@ -6,15 +6,15 @@ using UnityEngine;
 public class Curse : Skill
 {
     [SerializeField] PoisonDebuffData poisonDebuffData;
-    private Debuff poisonDebuff;
-    int poisonChance;
+    float poisonChance;
+
     public override void Use(EntityBase attacker, EntityBase attackee)
     {
         attacker.animator.Play("CurseAttack");
         base.Use(attacker, CombatManager.Instance.enemyParty.ConvertAll(entity => (EntityBase)entity));
         foreach(Enemy enemy in CombatManager.Instance.enemyParty)
         {
-            enemy.debuffList.Add(InitDebuff(attacker, enemy, 2, poisonDebuffData));
+            enemy.AddStatusEffect(InitStatusEffect(attacker, enemy, 2, poisonDebuffData));
         }
     }
 } 

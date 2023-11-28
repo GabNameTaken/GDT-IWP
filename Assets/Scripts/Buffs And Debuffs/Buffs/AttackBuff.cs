@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Debuffs/Provoke")]
-public class ProvokeDebuffData : StatusEffectData
+[CreateAssetMenu(menuName = "Buffs/Attack")]
+public class AttackBuff : StatusEffectData
 {
+    [SerializeField] float attackBuffPercentage;
+
     public override void OnStatusEffectAdd(EntityBase source, EntityBase dest)
-    { 
+    {
+        dest.trueStats.attack *= (attackBuffPercentage / 100f);
     }
 
     public override void ApplyEffect(EntityBase source, EntityBase dest)
     {
-        dest.Provoked(source);
     }
 
     public override void OnStatusEffectRemove(EntityBase source, EntityBase dest)
     {
+        dest.trueStats.attack /= (attackBuffPercentage / 100f);
     }
 }

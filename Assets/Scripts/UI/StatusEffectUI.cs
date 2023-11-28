@@ -8,11 +8,11 @@ public class StatusEffectUI : MonoBehaviour
 {
     [SerializeField] GameObject iconPrefab;
 
-    public void OnAddStatus(Debuff debuff, int duration)
+    public void OnAddStatus(StatusEffect statusEffect, int duration)
     {
         GameObject icon = Instantiate(iconPrefab, transform);
-        icon.GetComponent<Image>().sprite = debuff.data.icon;
-        debuff.icon = icon;
+        icon.GetComponent<Image>().sprite = statusEffect.StatusEffectData.icon;
+        statusEffect.icon = icon;
 
         TMP_Text durationText = icon.transform.GetChild(0).GetComponent<TMP_Text>();
         durationText.text = duration.ToString();
