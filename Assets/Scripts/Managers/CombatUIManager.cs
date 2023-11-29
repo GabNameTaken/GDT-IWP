@@ -23,12 +23,14 @@ public class CombatUIManager : MonoBehaviour
     [SerializeField] List<HealthUI> teamHealth;
     public List<HealthUI> listOfHealthUIs = new();
 
+    [SerializeField] List<StatusEffectUI> teamStatus;
     public void SetUpPlayerUI(List<PlayableCharacter> playerTeam)
     {
         for (int i = 0; i < playerTeam.Count; i++)
         {
             teamHealth[i].character = playerTeam[i];
             teamHealth[i].SetUpUI();
+            playerTeam[i].statusEffectUI = teamStatus[i];
         }
         listOfHealthUIs.AddRange(teamHealth);
     }
