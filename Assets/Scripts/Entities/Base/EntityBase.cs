@@ -47,7 +47,7 @@ public class EntityBase : MonoBehaviour
         if (trueStats.health <= 0)
         {
             trueStats.health = 0;
-            OnDeath();
+            isDead = true;
         }
         else if (trueStats.health > trueStats.maxHealth)
             trueStats.health = trueStats.maxHealth;
@@ -57,18 +57,23 @@ public class EntityBase : MonoBehaviour
 
     void OnDeath()
     {
-        isDead = true;
         animator.Play("Dead");
+        CombatManager.Instance.Pause(this, true);
         //StartCoroutine(DeathAnimationCoroutine());
         Death();
     }
 
-    //IEnumerator DeathAnimationCoroutine()
-    //{
-    //    yield return null;
+    IEnumerator DeathAnimationCoroutine()
+    {
+        yield return null;
 
-    //    yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-    //}
+        Camera.main.transform.DOKill();
+        CameraManager.Instance.MoveCamera(gameObject, CAMERA_POSITIONS.HIGH_FRONT_SELF, 0f);
+
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        CombatManager.Instance.Pause(this, false);
+        gameObject.SetActive(false);
+    }
 
     void Death()
     {
