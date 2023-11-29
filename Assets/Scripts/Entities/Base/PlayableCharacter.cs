@@ -164,6 +164,5 @@ public class PlayableCharacter : EntityBase
         currentTargetNum = 0;
         keyIndex = (int)SKILL_CODE.NONE;
         listOfTargets.Clear();
-        attacking = false;
     }
 }

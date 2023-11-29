@@ -131,6 +131,13 @@ public class CombatManager : MonoBehaviour
         IncreaseTurnMeter(CalculateNumberOfIncrease());
     }
 
+    bool pause = false;
+    public void PauseTurn(EntityBase currentTurn, bool pause)
+    {
+        this.pause = pause;
+
+    }
+
     void CheckForEndBattle()
     {
         foreach (PlayableCharacter player in playerParty)
