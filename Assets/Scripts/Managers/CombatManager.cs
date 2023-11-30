@@ -140,18 +140,26 @@ public class CombatManager : MonoBehaviour
         this.pause = pause;
     }
 
-    void CheckForDeath()
-    {
-        foreach (EntityBase entity in entitiesOnField)
-        {
-            if (entity.gameObject.activeSelf && entity.isDead)
-            {
+    //private IEnumerator CheckForDeath()
+    //{
+    //    foreach (EntityBase entity in entitiesOnField)
+    //    {
+    //        if (entity && entity.isDead)
+    //        {
+    //            // Start the coroutine for this entity
+    //            yield return StartCoroutine(PlayDeathAnimationCoroutine(entity));
+    //        }
+    //    }
+    //}
 
-            }
-        }
-    }
+    //private IEnumerator PlayDeathAnimationCoroutine(EntityBase entity)
+    //{
+    //    // Call the OnDeath method or any other death animation logic
+    //    entity.OnDeath();
 
-    
+    //    // Wait for a duration (e.g., 1 second) before moving to the next entity
+    //    yield return new WaitForSeconds(1f);
+    //}
 
     void CheckForEndBattle()
     {
