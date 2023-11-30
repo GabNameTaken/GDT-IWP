@@ -115,6 +115,9 @@ public class EntityBase : MonoBehaviour
 
     public void AddStatusEffect(StatusEffect statusEffect)
     {
+        if (!statusEffect.StatusEffectData.stackable)
+            statusEffectList.RemoveAll(existingStatus => existingStatus.StatusEffectData == statusEffect.StatusEffectData);
+
         statusEffectList.Add(statusEffect);
         statusEffect.StatusEffectData.OnStatusEffectAdd(statusEffect.giver, statusEffect.receiver);
     }

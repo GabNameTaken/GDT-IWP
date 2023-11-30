@@ -16,6 +16,9 @@ abstract public class StatusEffectData : ScriptableObject
     [SerializeField] Sprite _icon;
     public Sprite icon => _icon;
 
+    [SerializeField] bool _stackable;
+    public bool stackable => _stackable;
+
     [SerializeField] float _multiplier;
     public float multiplier => _multiplier;
 
