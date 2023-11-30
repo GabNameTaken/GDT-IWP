@@ -122,6 +122,9 @@ public class CombatManager : MonoBehaviour
         currentTurn.isMoving = false;
         currentTurn.turnMeter = 0;
 
+        if (pause)
+            return;
+
         CheckForEndBattle();
 
         if (hasWon)
@@ -132,11 +135,23 @@ public class CombatManager : MonoBehaviour
     }
 
     bool pause = false;
-    public void PauseTurn(EntityBase currentTurn, bool pause)
+    public void Pause(EntityBase currentTurn, bool pause)
     {
         this.pause = pause;
-
     }
+
+    void CheckForDeath()
+    {
+        foreach (EntityBase entity in entitiesOnField)
+        {
+            if (entity.gameObject.activeSelf && entity.isDead)
+            {
+
+            }
+        }
+    }
+
+    
 
     void CheckForEndBattle()
     {
