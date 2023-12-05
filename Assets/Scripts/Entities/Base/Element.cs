@@ -18,4 +18,7 @@ public class Element : ScriptableObject
 
     [SerializeField] Sprite _elementImage;
     public Sprite elementImage => _elementImage;
+
+    [SerializeField] Color _elementColor;
+    public Color elementColor => _elementColor;
 }

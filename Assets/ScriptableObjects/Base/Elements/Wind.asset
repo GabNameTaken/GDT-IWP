@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Wind
   m_EditorClassIdentifier: 
   _elementName: Wind
+  _elementImage: {fileID: 0}
+  _elementColor: {r: 0.30742505, g: 0.6509434, b: 0.2794144, a: 0}

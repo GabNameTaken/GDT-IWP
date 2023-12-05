@@ -28,6 +28,7 @@ public class EntityBase : MonoBehaviour
 
     public GameObject turnMeterUI;
 
+    public ParticleSystem hitParticleSystem;
     public cakeslice.Outline outline;
     public List<EntityBase> listOfTargets;
 

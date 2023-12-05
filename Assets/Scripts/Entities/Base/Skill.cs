@@ -101,6 +101,15 @@ public class Skill : ScriptableObject
         CombatManager.Instance.StartCoroutine(SkillAnimationCoroutine(attacker, attackeeList));
     }
 
+    void ApplyElement(EntityBase attacker, List<EntityBase> attackeeList)
+    {
+        foreach (EntityBase attackee in attackeeList)
+        {
+            attackee.hitParticleSystem.startColor = attacker.entity.element.elementColor;
+            attackee.hitParticleSystem.Play();
+        }
+    }
+
     protected virtual StatusEffect InitStatusEffect(EntityBase attacker, EntityBase attackee, int duration, StatusEffectData statusEffectData)
     {
         StatusEffect statusEffect = new StatusEffect(attacker, attackee, duration, statusEffectData);
@@ -119,6 +128,7 @@ public class Skill : ScriptableObject
 
         yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.7f);
 
+        ApplyElement(attacker, attackeeList);
         attacker.PostSkill(stayOnAnimation);
     }
 
