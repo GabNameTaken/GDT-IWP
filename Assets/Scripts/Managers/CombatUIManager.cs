@@ -43,8 +43,4 @@ public class CombatUIManager : MonoBehaviour
             healthUI.UpdateHealthUI();
         }
     }
-
-    [SerializeField] Slider turnChargeSlider;
-
-
 }

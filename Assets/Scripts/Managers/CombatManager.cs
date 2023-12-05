@@ -19,6 +19,7 @@ public class CombatManager : MonoBehaviour
     }
 
     [SerializeField] TurnOrderUI turnOrderUI;
+    public TurnCharge turnCharge;
 
     public List<EntityBase> entitiesOnField;
     public List<PlayableCharacter> playerParty = new();
@@ -122,9 +123,6 @@ public class CombatManager : MonoBehaviour
         currentTurn.isMoving = false;
         currentTurn.turnMeter = 0;
 
-        if (pause)
-            return;
-
         CheckForEndBattle();
 
         if (hasWon)
@@ -134,32 +132,12 @@ public class CombatManager : MonoBehaviour
         IncreaseTurnMeter(CalculateNumberOfIncrease());
     }
 
-    bool pause = false;
-    public void Pause(EntityBase currentTurn, bool pause)
+    void StealNextTurn(EntityBase entity)
     {
-        this.pause = pause;
+        entity.TakeTurn();
     }
 
-    //private IEnumerator CheckForDeath()
-    //{
-    //    foreach (EntityBase entity in entitiesOnField)
-    //    {
-    //        if (entity && entity.isDead)
-    //        {
-    //            // Start the coroutine for this entity
-    //            yield return StartCoroutine(PlayDeathAnimationCoroutine(entity));
-    //        }
-    //    }
-    //}
-
-    //private IEnumerator PlayDeathAnimationCoroutine(EntityBase entity)
-    //{
-    //    // Call the OnDeath method or any other death animation logic
-    //    entity.OnDeath();
-
-    //    // Wait for a duration (e.g., 1 second) before moving to the next entity
-    //    yield return new WaitForSeconds(1f);
-    //}
+    public bool stealTurn = false;
 
     void CheckForEndBattle()
     {

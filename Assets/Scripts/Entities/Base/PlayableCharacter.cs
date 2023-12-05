@@ -156,10 +156,14 @@ public class PlayableCharacter : EntityBase
         Attack(skillSet.SkillDict[skill]);
     }
 
+    public int etherCharge = 1;
+
     void Attack(Skill skill)
     {
         skill.Use(this, listOfTargets[currentTargetNum]);
         SelectTargets(skill.targetTeam, skill.targets, true);
+        CombatManager.Instance.turnCharge.AddEther(etherCharge);
+
         PlayerTeamManager.Instance.StopHover();
         currentTargetNum = 0;
         keyIndex = (int)SKILL_CODE.NONE;
