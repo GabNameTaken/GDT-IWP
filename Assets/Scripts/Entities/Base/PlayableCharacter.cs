@@ -45,8 +45,8 @@ public class PlayableCharacter : EntityBase
                 if ((SKILL_CODE)keyIndex != SKILL_CODE.NONE)
                 {
                     SelectTargets(skillSet.SkillDict[(SKILL_CODE)keyIndex].targetTeam, skillSet.SkillDict[(SKILL_CODE)keyIndex].targets, false);
+                    skillSet.SkillDict[(SKILL_CODE)keyIndex].PlayReadyAnimation(this);
                     PlayerTeamManager.Instance.StopHover();
-                    //PlayerTeamManager.Instance.HoverSkillPoints(skillSet.SkillDict[(SKILL_CODE)keyIndex].skillCost);
                     PlayerTeamManager.Instance.UpdateSkillPoints(skillSet.SkillDict[(SKILL_CODE)keyIndex].skillCost, false);
                 }
             }
@@ -65,7 +65,7 @@ public class PlayableCharacter : EntityBase
     bool invertTargetting = false;
     void SelectTargetInput()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             if (invertTargetting)
             {
@@ -77,7 +77,7 @@ public class PlayableCharacter : EntityBase
             if (currentSkillCode != SKILL_CODE.NONE)
                 SelectTargets(skillSet.SkillDict[currentSkillCode].targetTeam, skillSet.SkillDict[currentSkillCode].targets,false);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             if (invertTargetting)
             {

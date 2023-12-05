@@ -18,6 +18,7 @@ public class Lunge : Skill
         moveTween.OnComplete(() =>
         {
             attacker.animator.Play("LungeAttack");
+            CombatManager.Instance.turnCharge.AddEther(1);
             base.Use(attacker, attackee);
         });
         

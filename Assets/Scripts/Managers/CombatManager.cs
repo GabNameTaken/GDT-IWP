@@ -82,6 +82,8 @@ public class CombatManager : MonoBehaviour
 
     void IncreaseTurnMeter(float numberOfIncrease)
     {
+        if (stealTurn)
+            return;
         foreach (EntityBase entity in entitiesOnField)
         {
             entity.turnMeter += (float)(entity.trueStats.speed / 100f) * numberOfIncrease;
@@ -91,6 +93,7 @@ public class CombatManager : MonoBehaviour
         SetTurn();
     }
 
+    public bool isPlayerTurn = false;
     void SetTurn()
     {
         bool anyEntityMoving = false;
@@ -112,6 +115,7 @@ public class CombatManager : MonoBehaviour
             if (entity.GetComponent<PlayableCharacter>())
             {
                 CameraManager.Instance.MoveCamera(entity.gameObject, CAMERA_POSITIONS.LOW_BACK, 1f);
+                isPlayerTurn = true;
             }
             entity.TakeTurn();
         }
@@ -122,6 +126,7 @@ public class CombatManager : MonoBehaviour
     {
         currentTurn.isMoving = false;
         currentTurn.turnMeter = 0;
+        isPlayerTurn = false;
 
         CheckForEndBattle();
 
@@ -129,16 +134,24 @@ public class CombatManager : MonoBehaviour
         { 
             //end battle
         }
-        IncreaseTurnMeter(CalculateNumberOfIncrease());
-    }
-
-    void StealNextTurn(EntityBase entity)
-    {
-        entity.TakeTurn();
+        if (stealTurn)
+            turnCharge.turnStolen = true;
+        else
+            IncreaseTurnMeter(CalculateNumberOfIncrease());
     }
 
     public bool stealTurn = false;
+    public void StealNextTurn(EntityBase entity)
+    {
+        CameraManager.Instance.MoveCamera(entity.gameObject, CAMERA_POSITIONS.LOW_BACK, 1f);
+        entity.TakeTurn();
 
+        isPlayerTurn = true;
+        stealTurn = false;
+        turnCharge.turnStolen = false;
+    }
+
+    
     void CheckForEndBattle()
     {
         foreach (PlayableCharacter player in playerParty)

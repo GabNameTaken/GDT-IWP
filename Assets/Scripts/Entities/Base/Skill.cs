@@ -47,6 +47,8 @@ public class Skill : ScriptableObject
     [SerializeField] int _skillCost;
     public int skillCost => _skillCost;
 
+    [SerializeField] string readyAnimationString;
+
     [SerializeField] protected int _Cooldown;
     public int cooldown => _Cooldown;
 
@@ -142,5 +144,21 @@ public class Skill : ScriptableObject
         Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy, Vector3.up);
 
         return targetRotation;
+    }
+
+    public virtual void PlayReadyAnimation(EntityBase attacker)
+    {
+        if (attacker.animator.HasState(0, Animator.StringToHash(readyAnimationString)))
+        {
+            if (attacker.weaponModel)
+                attacker.weaponModel.AttachWeapon();
+            attacker.animator.Play(readyAnimationString);
+        }
+        else
+        {
+            if (attacker.weaponModel)
+                attacker.weaponModel.RestWeapon();
+            attacker.animator.Play("Idle");
+        }
     }
 }
