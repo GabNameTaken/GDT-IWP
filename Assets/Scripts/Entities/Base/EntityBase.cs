@@ -40,10 +40,18 @@ public class EntityBase : MonoBehaviour
         //animator = GetComponent<Animator>();
     }
 
-    public virtual void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage, Element element)
     {
         if (damage > 0)
+        {
             animator.Play("GetHit");
+            if (element)
+            {
+                hitParticleSystem.startColor = element.elementColor;
+                hitParticleSystem.Play();
+            }
+        }
+        
         trueStats.health -= damage;
         if (trueStats.health <= 0)
         {
@@ -54,6 +62,11 @@ public class EntityBase : MonoBehaviour
             trueStats.health = trueStats.maxHealth;
 
         CombatUIManager.Instance.UpdateHealth(this);
+    }
+
+    protected virtual void Attack(Skill skill)
+    {
+        skill.currentCooldown = skill.cooldown;
     }
 
     public void OnDeath()
@@ -106,6 +119,13 @@ public class EntityBase : MonoBehaviour
     {
         originalPosition = transform.position;
         originalRotation = transform.rotation;
+
+        for (int i = 0; i < skillSet.SkillDict.Count; i++)
+        {
+            if (skillSet.SkillDict[(SKILL_CODE)i].currentCooldown > 0)
+                skillSet.SkillDict[(SKILL_CODE)i].currentCooldown--;
+        }
+        CombatUIManager.Instance.DisplaySkillCooldown(skillSet);
         
         //play animation
         if (animator.HasState(0, Animator.StringToHash("Ready")))

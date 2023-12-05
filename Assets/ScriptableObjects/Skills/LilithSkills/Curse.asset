@@ -18,6 +18,8 @@ MonoBehaviour:
   _skillDesc: 
   _skillIcon: {fileID: 0}
   _skillCost: 2
+  readyAnimationString: 
+  skillParticle: {fileID: 3305666304986752812, guid: 343d6551aa23c5448901fca1159489f0, type: 3}
   _Cooldown: 0
   currentCooldown: 0
   _multiplier: 0.7

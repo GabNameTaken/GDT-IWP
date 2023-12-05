@@ -13,10 +13,10 @@ public class Enemy : EntityBase
         skillSet = new SkillSet(entity.baseSkillSet);
         trueStats = new Stats(entity.baseStats.Stats);
         worldSpaceCanvas.worldCamera = Camera.main;
-        if (skillSet.SkillDict.ContainsKey(SKILL_CODE.S2))
-            skillSet.SkillDict[SKILL_CODE.S2].currentCooldown = skillSet.SkillDict[SKILL_CODE.S2].cooldown;
-        if (skillSet.SkillDict.ContainsKey(SKILL_CODE.S3))
-            skillSet.SkillDict[SKILL_CODE.S3].currentCooldown = skillSet.SkillDict[SKILL_CODE.S3].cooldown;
+        for (int i = 0; i < skillSet.SkillDict.Count; i++)
+        {
+            skillSet.SkillDict[(SKILL_CODE)i].currentCooldown = skillSet.SkillDict[(SKILL_CODE)i].cooldown;
+        }
     }
 
     public override void TakeTurn()
@@ -47,8 +47,8 @@ public class Enemy : EntityBase
         }
         else if (skillSet.SkillDict.ContainsKey(SKILL_CODE.S1))
         {
-            PlayableCharacter target = SelectSingleTarget();
-            skillSet.SkillDict[SKILL_CODE.S1].Use(this, target);
+            SelectSingleTarget();
+            Attack(skillSet.SkillDict[SKILL_CODE.S1]);
         }
     }
 
@@ -83,5 +83,9 @@ public class Enemy : EntityBase
         return null;
     }
 
-
+    protected override void Attack(Skill skill)
+    {
+        skill.Use(this, listOfTargets[0]);
+        base.Attack(skill);
+    }
 }

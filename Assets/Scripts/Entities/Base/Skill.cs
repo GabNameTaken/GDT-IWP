@@ -47,7 +47,9 @@ public class Skill : ScriptableObject
     [SerializeField] int _skillCost;
     public int skillCost => _skillCost;
 
-    [SerializeField] string readyAnimationString;
+    [SerializeField] protected string readyAnimationString;
+
+    [SerializeField] protected SkillParticle skillParticle;
 
     [SerializeField] protected int _Cooldown;
     public int cooldown => _Cooldown;
@@ -106,6 +108,7 @@ public class Skill : ScriptableObject
         foreach (EntityBase attackee in attackeeList)
         {
             attackee.hitParticleSystem.startColor = attacker.entity.element.elementColor;
+            //attackee.hitParticleSystem.transform.GetChild(0).GetComponent<ParticleSystem>().startColor = attacker.entity.element.elementColor;
             attackee.hitParticleSystem.Play();
         }
     }
@@ -124,11 +127,10 @@ public class Skill : ScriptableObject
         yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.3f);
 
         foreach (EntityBase attackee in attackeeList)
-            attackee.TakeDamage(CalculateDamage(attacker, attackee));
+            attackee.TakeDamage(CalculateDamage(attacker, attackee), attacker.entity.element);
 
         yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.7f);
 
-        ApplyElement(attacker, attackeeList);
         attacker.PostSkill(stayOnAnimation);
     }
 

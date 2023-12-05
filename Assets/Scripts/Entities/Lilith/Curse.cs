@@ -14,6 +14,8 @@ public class Curse : Skill
         base.Use(attacker, CombatManager.Instance.enemyParty.ConvertAll(entity => (EntityBase)entity));
         foreach(Enemy enemy in CombatManager.Instance.enemyParty)
         {
+            SkillParticle particle = Instantiate(skillParticle, enemy.transform);
+            particle.Play();
             enemy.AddStatusEffect(InitStatusEffect(attacker, enemy, 2, poisonDebuffData));
         }
     }

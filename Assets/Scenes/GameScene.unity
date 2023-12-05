@@ -2474,6 +2474,7 @@ MonoBehaviour:
   - {fileID: 382772473}
   - {fileID: 2117031730}
   - {fileID: 1468238813}
+  skillSetUI: {fileID: 1746341471}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

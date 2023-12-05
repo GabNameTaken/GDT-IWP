@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _elementName: Water
   _elementImage: {fileID: 0}
-  _elementColor: {r: 0.09033466, g: 0.6112733, b: 0.6603774, a: 0}
+  _elementColor: {r: 0.09033466, g: 0.6112733, b: 0.6603774, a: 1}

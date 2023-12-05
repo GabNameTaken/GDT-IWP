@@ -17,9 +17,9 @@ MonoBehaviour:
   _skillName: Silent Assassination
   _skillDesc: 
   _skillIcon: {fileID: 0}
-  _skillCost: 0
+  _skillCost: 2
   readyAnimationString: PreS3
-  _Cooldown: 0
-  currentCooldown: 0
+  _Cooldown: 4
+  currentCooldown: 4
   _multiplier: 2
   speedScaling: 0.0025

@@ -43,4 +43,17 @@ public class CombatUIManager : MonoBehaviour
             healthUI.UpdateHealthUI();
         }
     }
+
+    [SerializeField] Transform skillSetUI;
+    string[] skillKeyBindTexts = { "S1", "S2", "S3" };
+    public void DisplaySkillCooldown(SkillSet skillSet)
+    {
+        for (int i = 0; i < skillSetUI.childCount; i++)
+        {
+            if (skillSet.SkillDict.ContainsKey((SKILL_CODE)i) && skillSet.SkillDict[(SKILL_CODE)i].currentCooldown > 0)
+                skillSetUI.GetChild(i).GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = skillSet.SkillDict[(SKILL_CODE)i].currentCooldown.ToString();
+            else
+                skillSetUI.GetChild(i).GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = skillKeyBindTexts[i];
+        }
+    }
 }

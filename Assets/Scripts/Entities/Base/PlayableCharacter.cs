@@ -11,6 +11,11 @@ public class PlayableCharacter : EntityBase
     {
         skillSet = new SkillSet(entity.baseSkillSet);
         trueStats = new Stats(entity.baseStats.Stats);
+
+        for (int i = 0; i < skillSet.SkillDict.Count; i++)
+        {
+            skillSet.SkillDict[(SKILL_CODE)i].currentCooldown = 0;
+        }
     }
 
     private void Update()
@@ -158,7 +163,7 @@ public class PlayableCharacter : EntityBase
 
     public int etherCharge = 1;
 
-    void Attack(Skill skill)
+    protected override void Attack(Skill skill)
     {
         skill.Use(this, listOfTargets[currentTargetNum]);
         SelectTargets(skill.targetTeam, skill.targets, true);
@@ -168,5 +173,7 @@ public class PlayableCharacter : EntityBase
         currentTargetNum = 0;
         keyIndex = (int)SKILL_CODE.NONE;
         listOfTargets.Clear();
+
+        base.Attack(skill);
     }
 }
