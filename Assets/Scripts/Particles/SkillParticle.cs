@@ -14,13 +14,19 @@ public class SkillParticle : MonoBehaviour
     public void Play()
     {
         particleSystem.Play();
-        StartCoroutine(Duration());
+        StartCoroutine(Duration(particleSystem.main.duration));
     }
 
-    IEnumerator Duration()
+    IEnumerator Duration(float duration)
     {
-        yield return new WaitForSeconds(particleSystem.main.duration);
+        yield return new WaitForSeconds(duration);
 
         Destroy(gameObject);
+    }
+
+    public void ManualPlay(float duration)
+    {
+        particleSystem.Play();
+        StartCoroutine(Duration(duration));
     }
 }

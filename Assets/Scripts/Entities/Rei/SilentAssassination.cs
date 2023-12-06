@@ -13,6 +13,9 @@ public class SilentAssassination : Skill
         attacker.originalPosition = attacker.transform.position;
         attacker.originalRotation = attacker.transform.rotation;
 
+        SkillParticle particle = Instantiate(skillParticle, attacker.transform);
+        particle.ManualPlay(0.5f);
+
         CameraManager.Instance.MoveCamera(attackee.gameObject, CAMERA_POSITIONS.HIGH_FRONT_SELF, 0.1f);
 
         Vector3 targetPos = GetFrontPos(attacker.transform.position, attackee.transform.position, -1);

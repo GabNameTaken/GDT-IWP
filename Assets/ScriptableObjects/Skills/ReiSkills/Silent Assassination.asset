@@ -19,6 +19,7 @@ MonoBehaviour:
   _skillIcon: {fileID: 0}
   _skillCost: 2
   readyAnimationString: PreS3
+  skillParticle: {fileID: 5276913188489973333, guid: 83309a9ff4035874caa3ac5303671bbf, type: 3}
   _Cooldown: 4
   currentCooldown: 4
   _multiplier: 2
