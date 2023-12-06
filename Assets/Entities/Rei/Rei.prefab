@@ -713,6 +713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1874787198069982829}
   weaponModel: {fileID: 1479457116431509250}
+  model: {fileID: 4930034437368129014}
   entity: {fileID: 11400000, guid: ec886acc9362fd64cb7eff1bc57f9910, type: 2}
   trueStats:
     maxHealth: 0

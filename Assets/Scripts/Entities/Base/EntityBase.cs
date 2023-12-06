@@ -11,6 +11,7 @@ public class EntityBase : MonoBehaviour
 {
     public Animator animator;
     public WeaponModel weaponModel;
+    public GameObject model;
 
     public Entity entity;
     [SerializeField] public BaseStats baseStats { get; private set; }

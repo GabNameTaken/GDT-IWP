@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 9119806972086972513}
   weaponModel: {fileID: 0}
+  model: {fileID: 2377765543927321594}
   entity: {fileID: 11400000, guid: 5c56aa025f849bb4fa755cd0acff6d20, type: 2}
   trueStats:
     maxHealth: 0
@@ -131,6 +132,11 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 26b1feb4f9d781840aba476650430243, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f0cc8797e746254a9d9967c4c18d4b0, type: 3}
+--- !u!1 &2377765543927321594 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1082271958561512970, guid: 0f0cc8797e746254a9d9967c4c18d4b0, type: 3}
+  m_PrefabInstance: {fileID: 3457222683721158128}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2913895804875975195 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0f0cc8797e746254a9d9967c4c18d4b0, type: 3}

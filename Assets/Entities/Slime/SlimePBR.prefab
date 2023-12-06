@@ -500,6 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 95457531584545886}
   weaponModel: {fileID: 0}
+  model: {fileID: 1218190636026622}
   entity: {fileID: 11400000, guid: a2fa46ce6bd3e7d41bc2d413c97352ce, type: 2}
   trueStats:
     maxHealth: 0

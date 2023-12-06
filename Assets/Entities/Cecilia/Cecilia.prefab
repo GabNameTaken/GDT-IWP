@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7424914041903816627}
   weaponModel: {fileID: 0}
+  model: {fileID: 4135714917415189544}
   entity: {fileID: 11400000, guid: c71ce0b5805fe134689c21156dc6cb8a, type: 2}
   trueStats:
     maxHealth: 0
@@ -215,6 +216,11 @@ MonoBehaviour:
 --- !u!4 &3596893067073897929 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53c7b91b50c3fdd4b9eaff9177eec936, type: 3}
+  m_PrefabInstance: {fileID: 3918134229316936226}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4135714917415189544 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1082271958561512970, guid: 53c7b91b50c3fdd4b9eaff9177eec936, type: 3}
   m_PrefabInstance: {fileID: 3918134229316936226}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &7424914041903816627 stripped
