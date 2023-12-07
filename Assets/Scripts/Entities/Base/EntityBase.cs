@@ -36,11 +36,6 @@ public class EntityBase : MonoBehaviour
     public Vector3 originalPosition;
     public Quaternion originalRotation;
 
-    private void Awake()
-    {
-        //animator = GetComponent<Animator>();
-    }
-
     public virtual void TakeDamage(float damage, Element element)
     {
         if (damage > 0)

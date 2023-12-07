@@ -110,7 +110,7 @@ public class Skill : ScriptableObject
     }
 
     protected bool stayOnAnimation = false;
-    IEnumerator SkillAnimationCoroutine(EntityBase attacker, List<EntityBase> attackeeList)
+    protected virtual IEnumerator SkillAnimationCoroutine(EntityBase attacker, List<EntityBase> attackeeList)
     {
         yield return null;
 
