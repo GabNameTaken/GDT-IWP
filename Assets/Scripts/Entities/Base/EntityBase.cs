@@ -99,16 +99,21 @@ public class EntityBase : MonoBehaviour
             if (weaponModel)
                 weaponModel.RestWeapon();
         }
-        
 
-        attacking = false;
         if (transform.position != originalPosition)
         {
-            transform.DOMove(originalPosition, 1, false).OnComplete(() => CombatManager.Instance.EndTurn(this));
+            transform.DOMove(originalPosition, 1, false).OnComplete(() =>
+            {
+                CombatManager.Instance.EndTurn(this);
+                attacking = false;
+            });
             transform.DORotate(originalRotation.eulerAngles, 1);
         }
         else
+        {
+            attacking = false;
             CombatManager.Instance.EndTurn(this);
+        }
     }
 
     public virtual void TakeTurn()
