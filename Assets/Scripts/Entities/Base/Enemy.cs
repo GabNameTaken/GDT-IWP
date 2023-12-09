@@ -7,6 +7,7 @@ using System.Linq;
 public class Enemy : EntityBase
 {
     [SerializeField] Canvas worldSpaceCanvas;
+    private Element lastHitElement;
 
     private void Awake()
     {
@@ -32,6 +33,12 @@ public class Enemy : EntityBase
             return;
         else
             SelectSkill();
+    }
+
+    public override void TakeDamage(float damage, Element element)
+    {
+        base.TakeDamage(damage, element);
+        if (damage > 0) SetLastHitElement(element);
     }
 
     void SelectSkill()
@@ -87,5 +94,13 @@ public class Enemy : EntityBase
     {
         skill.Use(this, listOfTargets[0]);
         base.Attack(skill);
+    }
+
+    private void SetLastHitElement(Element element)
+    {
+        if (lastHitElement && element && lastHitElement != element)
+            PlayerTeamManager.Instance.UpdateSkillPoints(-1, true);
+
+        lastHitElement = element;
     }
 }

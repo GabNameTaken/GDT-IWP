@@ -26,7 +26,6 @@ public class CrimsonStrike : Skill
             additionalScalings = attacker.trueStats.speed * speedScaling;
             base.Use(attacker, attackee);
             attacker.AddStatusEffect(InitStatusEffect(attacker, attacker, 2, attackBuff));
-            Debug.Log(attacker.trueStats.attack);
         });
         
     }
