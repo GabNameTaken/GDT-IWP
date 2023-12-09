@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using System.Linq;
 
 public class Enemy : EntityBase
 {
     [SerializeField] Canvas worldSpaceCanvas;
+    [SerializeField] Image lastHitElementUI;
     private Element lastHitElement;
 
     private void Awake()
@@ -102,5 +104,7 @@ public class Enemy : EntityBase
             PlayerTeamManager.Instance.UpdateSkillPoints(-1, true);
 
         lastHitElement = element;
+        lastHitElementUI.sprite = element.elementImage;
+        lastHitElementUI.color = new Color(1, 1, 1, 1);
     }
 }
