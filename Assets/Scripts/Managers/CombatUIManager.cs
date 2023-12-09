@@ -20,27 +20,25 @@ public class CombatUIManager : MonoBehaviour
         }
     }
 
-    [SerializeField] List<HealthUI> teamHealth;
-    public List<HealthUI> listOfHealthUIs = new();
+    public List<EntityInfoUI> teamInfoUIs;
 
     [SerializeField] List<StatusEffectUI> teamStatus;
     public void SetUpPlayerUI(List<PlayableCharacter> playerTeam)
     {
         for (int i = 0; i < playerTeam.Count; i++)
         {
-            teamHealth[i].character = playerTeam[i];
-            teamHealth[i].SetUpUI();
+            teamInfoUIs[i].character = playerTeam[i];
+            teamInfoUIs[i].SetUpUI();
             playerTeam[i].statusEffectUI = teamStatus[i];
         }
-        listOfHealthUIs.AddRange(teamHealth);
     }
 
     public void UpdateHealth(EntityBase entity)
     {
         if (CombatManager.Instance.entitiesOnField.Contains(entity))
         {
-            HealthUI healthUI = listOfHealthUIs.FirstOrDefault(health => health.character == entity);
-            healthUI.UpdateHealthUI();
+            EntityInfoUI infoUI = teamInfoUIs.FirstOrDefault(info => info.character == entity);
+            infoUI.UpdateHealthUI();
         }
     }
 

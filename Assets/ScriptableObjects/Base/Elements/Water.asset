@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   _elementName: Water
-  _elementImage: {fileID: 0}
+  _elementImage: {fileID: -2052924119, guid: a30fda3c6eac5784d8951a4ff1acd7e0, type: 3}
   _elementColor: {r: 0.09033466, g: 0.6112733, b: 0.6603774, a: 1}
