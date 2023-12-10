@@ -101,10 +101,16 @@ public class Enemy : EntityBase
     private void SetLastHitElement(Element element)
     {
         if (lastHitElement && element && lastHitElement != element)
+        {
             PlayerTeamManager.Instance.UpdateSkillPoints(-1, true);
-
-        lastHitElement = element;
-        lastHitElementUI.sprite = element.elementImage;
-        lastHitElementUI.color = new Color(1, 1, 1, 1);
+            lastHitElementUI.color = new Color(1, 1, 1, 0);
+            lastHitElement = null;
+        }
+        else if (element)
+        {
+            lastHitElement = element;
+            lastHitElementUI.sprite = element.elementImage;
+            lastHitElementUI.color = new Color(1, 1, 1, 1);
+        }
     }
 }
