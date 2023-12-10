@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class CombatManager : MonoBehaviour
 {
@@ -25,15 +26,16 @@ public class CombatManager : MonoBehaviour
     public List<PlayableCharacter> playerParty = new();
     public List<Enemy> enemyParty = new();
 
+    public event System.Action<EntityBase> EntityDeadEvent;
+    public void CallEntityDeadEvent(EntityBase entity) => EntityDeadEvent?.Invoke(entity);
+
     public void StartBattle(CombatZone combatZone)
     {
         playerParty.Clear();
         for (int i = 0; i < combatZone.teamSlots.Count; i++)
         {
             if (combatZone.teamSlots[i].childCount > 0)
-            {
                 playerParty.Add(combatZone.teamSlots[i].GetChild(0).GetComponent<PlayableCharacter>());
-            }
         }
 
         entitiesOnField.AddRange(playerParty);
@@ -41,6 +43,7 @@ public class CombatManager : MonoBehaviour
         foreach (EntityBase entity in entitiesOnField)
             entity.turnMeter = UnityEngine.Random.Range(0, 10);
 
+        OnBattleStart();
         
         CombatUIManager.Instance.SetUpPlayerUI(playerParty);
 
@@ -125,7 +128,8 @@ public class CombatManager : MonoBehaviour
     public void EndTurn(EntityBase currentTurn)
     {
         currentTurn.isMoving = false;
-        currentTurn.turnMeter = 0;
+        currentTurn.turnMeter = currentTurn.excessTurnMeter; currentTurn.excessTurnMeter = 0;
+
         isPlayerTurn = false;
 
         CheckForEndBattle();
@@ -154,11 +158,12 @@ public class CombatManager : MonoBehaviour
     
     void CheckForEndBattle()
     {
-        foreach (PlayableCharacter player in playerParty)
+        bool enemiesAlive = false, playersAlive = false;
+        foreach (var player in playerParty)
         {
             if (!player.isDead)
             {
-                hasWon = true;
+                playersAlive = true;
                 break;
             }
         }
@@ -167,8 +172,29 @@ public class CombatManager : MonoBehaviour
         {
             if (!enemy.isDead)
             {
-                hasWon = false;
+                enemiesAlive = true;
+                break;
             }
         }
+
+        if (!enemiesAlive || !playersAlive)
+            EndBattle(playersAlive);
+    }
+
+    void EndBattle(bool won)
+    {
+        OnBattleEnd();
+    }
+
+    void OnBattleStart()
+    {
+        foreach (EntityBase entity in entitiesOnField)
+            entity.OnBattleStart();
+    }
+
+    void OnBattleEnd()
+    {
+        foreach (EntityBase entity in entitiesOnField)
+            entity.OnBattleEnd();
     }
 }

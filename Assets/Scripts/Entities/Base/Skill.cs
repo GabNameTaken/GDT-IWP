@@ -62,31 +62,21 @@ public class Skill : ScriptableObject
     protected float additionalScalings = 0;
 
     protected int damage;
-    public virtual float CalculateDamage(EntityBase attacker, EntityBase attackee)
-    {
-        //check for crit
-        //(Attack - EnemyDef + scalingMultiplier) * cdmg (if it crits) * multiplier
-        if (IsCriticalHit(attacker.trueStats.critRate))
-            damage = (int)Mathf.Round((attacker.trueStats.attack - attackee.trueStats.defense) * (attacker.trueStats.critDMG / 100) * (multiplier + additionalScalings));
-        else
-            damage = (int)Mathf.Round((attacker.trueStats.attack - attackee.trueStats.defense) * (multiplier + additionalScalings));
 
-        return damage;
+    public virtual void OnBattleStart()
+    {
     }
 
-    protected bool IsCriticalHit(float criticalChancePercentage)
+    public virtual void OnBattleEnd()
     {
-        float randomValue = Random.Range(0f, 100f); // Generate a random value between 0 and 100
-        return randomValue <= criticalChancePercentage; // Check if the random value is less than or equal to the critical chance percentage
     }
 
     public virtual void Use(EntityBase attacker, EntityBase attackee)
     {
-        if (attacker.weaponModel)
+        if (attacker.weaponModel) 
             attacker.weaponModel.AttachWeapon();
 
-        List<EntityBase> attackeeList = new();
-        attackeeList.Add(attackee);
+        List<EntityBase> attackeeList = new() { attackee };
 
         PlayerTeamManager.Instance.UpdateSkillPoints(skillCost, true);
 
@@ -122,6 +112,24 @@ public class Skill : ScriptableObject
         yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.7f);
 
         attacker.PostSkill(stayOnAnimation);
+    }
+
+    public virtual float CalculateDamage(EntityBase attacker, EntityBase attackee)
+    {
+        //check for crit
+        //(Attack - EnemyDef + scalingMultiplier) * cdmg (if it crits) * multiplier
+        if (IsCriticalHit(attacker.trueStats.critRate))
+            damage = (int)Mathf.Round((attacker.trueStats.attack - attackee.trueStats.defense) * (attacker.trueStats.critDMG / 100) * (multiplier + additionalScalings));
+        else
+            damage = (int)Mathf.Round((attacker.trueStats.attack - attackee.trueStats.defense) * (multiplier + additionalScalings));
+
+        return damage;
+    }
+
+    protected bool IsCriticalHit(float criticalChancePercentage)
+    {
+        float randomValue = Random.Range(0f, 100f); // Generate a random value between 0 and 100
+        return randomValue <= criticalChancePercentage; // Check if the random value is less than or equal to the critical chance percentage
     }
 
     protected Vector3 GetFrontPos(Vector3 attackerPos, Vector3 attackeePos, float setDistance)

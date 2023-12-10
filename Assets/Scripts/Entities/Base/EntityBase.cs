@@ -23,6 +23,7 @@ public class EntityBase : MonoBehaviour
     public StatusEffectUI statusEffectUI;
 
     public float turnMeter;
+    public float excessTurnMeter;
     public bool isMoving = false;
     public bool isDead = false;
     protected bool attacking = false;
@@ -35,6 +36,18 @@ public class EntityBase : MonoBehaviour
 
     public Vector3 originalPosition;
     public Quaternion originalRotation;
+
+    public void OnBattleStart()
+    {
+        foreach (Skill skill in skillSet.SkillDict.Values)
+            skill.OnBattleStart();
+    }
+
+    public void OnBattleEnd()
+    {
+        foreach (Skill skill in skillSet.SkillDict.Values)
+            skill.OnBattleEnd();
+    }
 
     public virtual void TakeDamage(float damage, Element element)
     {
@@ -71,8 +84,10 @@ public class EntityBase : MonoBehaviour
         StartCoroutine(DeathAnimationCoroutine());
         Death();
 
+        CombatManager combatManager = CombatManager.Instance;
+        combatManager.CallEntityDeadEvent(this);
         if (isMoving)
-            CombatManager.Instance.EndTurn(this);
+            combatManager.EndTurn(this);
     }
 
     IEnumerator DeathAnimationCoroutine()
@@ -176,5 +191,10 @@ public class EntityBase : MonoBehaviour
         attacking = true;
         skillSet.SkillDict[SKILL_CODE.S1].Use(this, provoker);
         listOfTargets.Clear();
+    }
+
+    public bool ContainsSkill(Skill skill)
+    {
+        return skillSet.SkillDict.ContainsValue(skill);
     }
 }
