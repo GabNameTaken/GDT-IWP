@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class HealthUI : MonoBehaviour
+public class EntityInfoUI : MonoBehaviour
 {
     Slider healthSlider;
     TMP_Text healthText, nameText;
+    Image elementIcon;
 
     public EntityBase character;
 
@@ -19,13 +20,15 @@ public class HealthUI : MonoBehaviour
             healthText = transform.Find("HealthText").GetComponent<TMP_Text>();
         if (transform.Find("HealthBarSlider"))
             healthSlider = transform.Find("HealthBarSlider").GetComponent<Slider>();
+        if (transform.Find("ElementIcon"))
+            elementIcon = transform.Find("ElementIcon").GetComponent<Image>();
     }
 
     private void Start()
     {
         if (character != null)
         {
-            CombatUIManager.Instance.listOfHealthUIs.Add(this);
+            CombatUIManager.Instance.teamInfoUIs.Add(this);
             SetUpUI();
         }
     }
@@ -38,6 +41,8 @@ public class HealthUI : MonoBehaviour
         healthSlider.value = character.trueStats.health;    //Set current HP
         if (healthText)
             healthText.text = Mathf.RoundToInt(character.trueStats.health).ToString();
+        if (elementIcon)
+            elementIcon.sprite = character.entity.element.elementImage;
     }
     public void UpdateHealthUI()
     {

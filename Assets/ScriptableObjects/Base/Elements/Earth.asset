@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Earth
   m_EditorClassIdentifier: 
   _elementName: Earth
-  _elementImage: {fileID: 0}
+  _elementImage: {fileID: 84494683, guid: a30fda3c6eac5784d8951a4ff1acd7e0, type: 3}
   _elementColor: {r: 0.6415094, g: 0.3909198, b: 0, a: 1}
