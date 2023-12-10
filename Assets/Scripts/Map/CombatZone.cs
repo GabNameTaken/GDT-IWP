@@ -1,32 +1,116 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CombatZone : MonoBehaviour
 {
-    [Header("Wave 1")]
-    public List<Enemy> wave1Enemies;
+    [SerializeField] Transform playerTransform, enemyTransform;
 
-    [Header("Wave 2")]
-    public List<Enemy> wave2Enemies;
+    [Header("Waves")]
+    public List<Wave> enemyWaves;
+    private Wave currentWave = null;
 
-    [Header("Player team")]
-    public List<Transform> teamSlots;
+    List<PlayableCharacter> playableCharacters = null;
 
     private void Start()
     {
-        CombatManager.Instance.enemyParty = wave1Enemies;
-        for (int i = 0; i < PlayerTeamManager.Instance.teamPrefabs.Count; i++)
-        {
-            GameObject member = Instantiate(PlayerTeamManager.Instance.teamPrefabs[i], teamSlots[i]);
-            member.transform.position = teamSlots[i].position;
+        currentWave = enemyWaves[0];
 
-            // Calculate the rotation angle by adding 180 degrees to the Y-axis rotation of wave1Enemies
-            float newRotationY = wave1Enemies[0].transform.rotation.eulerAngles.y + 180f;
+        InstantiateWave();
 
-            // Apply the new rotation to the player team member
-            member.transform.rotation = Quaternion.Euler(0, newRotationY, 0);
-        }
-        CombatManager.Instance.StartBattle(this);
+        CombatManager combatManager = CombatManager.Instance;
+        combatManager.StartBattle(this);
+        combatManager.WaveClearedEvent += OnWaveCleared;
     }
+
+    private void InstantiateWave()
+    {
+        Vector3 playerToEnemyNormalized = (currentWave.EnemyPosition.position - currentWave.PlayerPosition.position).normalized;
+
+        if (playableCharacters == null) InstantiatePlayableCharacters(playerToEnemyNormalized);
+        else MovePlayableCharacters(playerToEnemyNormalized);
+        InstantiateEnemies(-playerToEnemyNormalized);
+    }
+
+    private void InstantiatePlayableCharacters(Vector3 direction)
+    {
+        playableCharacters = new List<PlayableCharacter>();
+
+        PlayerTeamManager playerTeamManager = PlayerTeamManager.Instance;
+        float xPosition = currentWave.XPositionSpacing * ((playerTeamManager.teamPrefabs.Count - 1) / 2);
+        foreach (GameObject characterPrefab in playerTeamManager.teamPrefabs)
+        {
+            GameObject playableCharacter = Instantiate(characterPrefab);
+            playableCharacter.transform.position = currentWave.PlayerPosition.position + playableCharacter.transform.TransformDirection(xPosition, 0f, 0f);
+            playableCharacter.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+
+            playableCharacter.transform.SetParent(playerTransform);
+
+            playableCharacters.Add(playableCharacter.GetComponent<PlayableCharacter>());
+
+            xPosition -= currentWave.XPositionSpacing;
+        }
+        CombatManager.Instance.playerParty = playableCharacters;
+    }
+
+    private void InstantiateEnemies(Vector3 direction)
+    {
+        List<Enemy> enemies = new List<Enemy>();
+
+        float xPosition = currentWave.XPositionSpacing * ((currentWave.EnemyPrefabs.Count - 1) / 2);
+        foreach (GameObject enemyPrefab in currentWave.EnemyPrefabs)
+        {
+            GameObject enemy = Instantiate(enemyPrefab);
+            enemy.transform.position += currentWave.EnemyPosition.position + enemy.transform.TransformDirection(xPosition, 0f, 0f);
+            enemy.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+
+            enemy.transform.SetParent(enemyTransform);
+
+            enemies.Add(enemy.GetComponent<Enemy>());
+
+            xPosition -= currentWave.XPositionSpacing;
+        }
+        CombatManager.Instance.enemyParty = enemies;
+    }
+
+    private void MovePlayableCharacters(Vector3 direction)
+    {
+        CombatManager combatManager = CombatManager.Instance;
+
+        float xPosition = currentWave.XPositionSpacing * ((combatManager.playerParty.Count - 1) / 2);
+        foreach (PlayableCharacter playableCharacter in combatManager.playerParty)
+        {
+            playableCharacter.transform.position = currentWave.PlayerPosition.position + playableCharacter.transform.TransformDirection(xPosition, 0f, 0f);
+            playableCharacter.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+
+            xPosition -= currentWave.XPositionSpacing;
+        }
+    }
+
+    private void OnWaveCleared()
+    {
+        int waveNumber = enemyWaves.IndexOf(currentWave);
+        if (waveNumber >= enemyWaves.Count - 1)
+        {
+            return;
+        }
+
+        currentWave = enemyWaves[++waveNumber];
+        InstantiateWave();
+    }
+}
+
+[System.Serializable]
+public class Wave
+{
+    [SerializeField] Transform playerPosition, enemyPosition;
+    public Transform PlayerPosition => playerPosition;
+    public Transform EnemyPosition => enemyPosition;
+
+    [SerializeField] float xPositionSpacing = 3f;
+    public float XPositionSpacing => xPositionSpacing;
+
+    [SerializeField] private List<GameObject> enemyPrefabs;
+    public List<GameObject> EnemyPrefabs => enemyPrefabs;
 }

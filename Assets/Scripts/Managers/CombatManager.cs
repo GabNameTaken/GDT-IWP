@@ -2,23 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Unity.VisualScripting;
+using Common.DesignPatterns;
 
-public class CombatManager : MonoBehaviour
+public class CombatManager : Singleton<CombatManager>
 {
-    public static CombatManager Instance { get; private set; }
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
-
     [SerializeField] TurnOrderUI turnOrderUI;
     public TurnCharge turnCharge;
 
@@ -29,15 +16,10 @@ public class CombatManager : MonoBehaviour
     public event System.Action<EntityBase> EntityDeadEvent;
     public void CallEntityDeadEvent(EntityBase entity) => EntityDeadEvent?.Invoke(entity);
 
+    public event System.Action WaveClearedEvent;
+
     public void StartBattle(CombatZone combatZone)
     {
-        playerParty.Clear();
-        for (int i = 0; i < combatZone.teamSlots.Count; i++)
-        {
-            if (combatZone.teamSlots[i].childCount > 0)
-                playerParty.Add(combatZone.teamSlots[i].GetChild(0).GetComponent<PlayableCharacter>());
-        }
-
         entitiesOnField.AddRange(playerParty);
         entitiesOnField.AddRange(enemyParty);
         foreach (EntityBase entity in entitiesOnField)
@@ -181,9 +163,11 @@ public class CombatManager : MonoBehaviour
             EndBattle(playersAlive);
     }
 
-    void EndBattle(bool won)
+    void EndBattle(bool cleared)
     {
         OnBattleEnd();
+
+        if (cleared) WaveClearedEvent?.Invoke();
     }
 
     void OnBattleStart()
