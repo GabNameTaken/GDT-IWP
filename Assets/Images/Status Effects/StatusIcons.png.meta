@@ -137,6 +137,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -403,18 +415,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bleeding: 374495580
-      Bless: -214298916
-      Curse: -606357570
-      Fire: 695775810
-      Freezing: 1401011104
       Healing: -651057808
+      Speed: 485823971
+      Thunder: 2062015785
+      Bleeding: 374495580
+      Freezing: 1401011104
+      Bless: -214298916
       Poison: 2047992146
       Sleep: 1812906440
+      Fire: 695775810
       Slowdown: 1019859777
-      Speed: 485823971
       Stun: -1611920951
-      Thunder: 2062015785
+      Curse: -606357570
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

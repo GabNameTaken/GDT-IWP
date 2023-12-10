@@ -121,13 +121,13 @@ AnimatorStateMachine:
     m_Position: {x: 30, y: 320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3050045797516750668}
-    m_Position: {x: 424.3865, y: 149.40048, z: 0}
+    m_Position: {x: 280, y: 490, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5782232019064360023}
     m_Position: {x: 280, y: 390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1702469491146893175}
-    m_Position: {x: 290, y: 240, z: 0}
+    m_Position: {x: 280, y: 300, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -145,7 +145,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SilenceAttack
+  m_Name: EtherOverflow
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

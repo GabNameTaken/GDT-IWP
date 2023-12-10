@@ -99,7 +99,6 @@ public class Skill : ScriptableObject
         return statusEffect;
     }
 
-    protected bool stayOnAnimation = false;
     protected virtual IEnumerator SkillAnimationCoroutine(EntityBase attacker, List<EntityBase> attackeeList)
     {
         yield return null;
@@ -111,7 +110,7 @@ public class Skill : ScriptableObject
 
         yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.7f);
 
-        attacker.PostSkill(stayOnAnimation);
+        attacker.PostSkill();
     }
 
     public virtual float CalculateDamage(EntityBase attacker, EntityBase attackee)

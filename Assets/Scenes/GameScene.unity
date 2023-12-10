@@ -1073,9 +1073,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307669477}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0039999997, y: 0.007999999, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1283353011}
@@ -1116,11 +1116,11 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 6
-  m_StartCorner: 2
+  m_ChildAlignment: 0
+  m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 150, y: 70}
-  m_Spacing: {x: 5, y: 0}
+  m_CellSize: {x: 50, y: 40}
+  m_Spacing: {x: 1, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!222 &307669481
@@ -1396,9 +1396,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408822864}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0039999997, y: 0.007999999, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2059501339}
@@ -1439,11 +1439,11 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 6
-  m_StartCorner: 2
+  m_ChildAlignment: 0
+  m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 150, y: 70}
-  m_Spacing: {x: 5, y: 0}
+  m_CellSize: {x: 50, y: 40}
+  m_Spacing: {x: 1, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!222 &408822868
@@ -2760,9 +2760,9 @@ MonoBehaviour:
   - {fileID: 1744442522}
   teamStatus:
   - {fileID: 408822866}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1654012146}
+  - {fileID: 307669479}
+  - {fileID: 1218700863}
   skillSetUI: {fileID: 1746341471}
 --- !u!1 &705507993
 GameObject:
@@ -4399,9 +4399,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218700861}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0039999997, y: 0.007999999, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1327678456}
@@ -4442,11 +4442,11 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 6
-  m_StartCorner: 2
+  m_ChildAlignment: 0
+  m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 150, y: 70}
-  m_Spacing: {x: 5, y: 0}
+  m_CellSize: {x: 50, y: 40}
+  m_Spacing: {x: 1, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!222 &1218700865
@@ -6091,9 +6091,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654012144}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0039999997, y: 0.007999999, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1216753065}
@@ -6134,10 +6134,10 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 6
-  m_StartCorner: 2
+  m_ChildAlignment: 0
+  m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 150, y: 70}
+  m_CellSize: {x: 50, y: 40}
   m_Spacing: {x: 5, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2

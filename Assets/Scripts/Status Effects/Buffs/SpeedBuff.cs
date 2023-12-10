@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Buffs/Attack")]
-public class AttackBuff : StatusEffectData
+[CreateAssetMenu(menuName = "Buffs/Speed")]
+public class SpeedBuff : StatusEffectData
 {
-    [SerializeField] float attackBuffMultiplier;
+    [SerializeField] float speedBuffMultiplier;
 
     public override void OnStatusEffectAdd(EntityBase source, EntityBase dest)
     {
-        dest.trueStats.attack *= (attackBuffMultiplier / 100f);
+        dest.trueStats.speed *= Mathf.RoundToInt(speedBuffMultiplier / 100f);
     }
 
     public override void ApplyEffect(EntityBase source, EntityBase dest)
@@ -18,6 +18,6 @@ public class AttackBuff : StatusEffectData
 
     public override void OnStatusEffectRemove(EntityBase source, EntityBase dest)
     {
-        dest.trueStats.attack /= (attackBuffMultiplier / 100f);
+        dest.trueStats.speed /= Mathf.RoundToInt(speedBuffMultiplier / 100f);
     }
 }

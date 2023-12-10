@@ -106,14 +106,15 @@ public class EntityBase : MonoBehaviour
         //delink everything
     }
 
-    public void PostSkill(bool remainInAnimation)
+    public void PostSkill()
     {
-        if (!remainInAnimation)
-        {
-            animator.Play("Idle");
-            if (weaponModel)
-                weaponModel.RestWeapon();
-        }
+        animator.Play("Idle");
+        if (weaponModel)
+            weaponModel.RestWeapon();
+
+        List<StatusEffect> buffList = new(statusEffectList.Where((a) => a.StatusEffectData.type == STATUS_EFFECT_TYPE.BUFF));
+        foreach (StatusEffect statusEffect in buffList)
+            statusEffect.ApplyEffect();
 
         if (transform.position != originalPosition)
         {

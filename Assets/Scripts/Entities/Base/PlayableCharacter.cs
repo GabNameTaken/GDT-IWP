@@ -142,7 +142,7 @@ public class PlayableCharacter : EntityBase
 
             case Skill.SKILL_TARGETS.ALL:
                 foreach (EntityBase entity in listOfTargets)
-                    entity.GetComponent<Enemy>().outline.eraseRenderer = turnOffHighlights;
+                    entity.outline.eraseRenderer = turnOffHighlights;
                 break;
 
             case Skill.SKILL_TARGETS.NONE:

@@ -22,3 +22,5 @@ MonoBehaviour:
       skill: {fileID: 11400000, guid: 1d159c13da9d9f44d9ddba1e700360a3, type: 2}
     - skillCode: 1
       skill: {fileID: 11400000, guid: 7db179b330d993c48b16db788c313e57, type: 2}
+    - skillCode: 2
+      skill: {fileID: 11400000, guid: abb4913a1f190ca44add265ec7043d6a, type: 2}
