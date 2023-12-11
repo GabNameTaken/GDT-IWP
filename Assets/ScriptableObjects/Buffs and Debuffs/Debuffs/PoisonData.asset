@@ -16,4 +16,5 @@ MonoBehaviour:
   _type: 1
   _desc: Take damage proportional to 10% of max HP
   _icon: {fileID: 2047992146, guid: 080cb6d98b00c2645b2c41df5f69bc78, type: 3}
+  _stackable: 0
   _multiplier: 10

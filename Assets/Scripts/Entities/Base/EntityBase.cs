@@ -150,9 +150,7 @@ public class EntityBase : MonoBehaviour
         else
             animator.Play("Idle");
 
-        List<StatusEffect> debuffList = new(statusEffectList.Where((a)=>a.StatusEffectData.type == STATUS_EFFECT_TYPE.DEBUFF));
-        foreach (StatusEffect statusEffect in debuffList)
-            statusEffect.ApplyEffect();
+        
 
         StartCoroutine(StartingTurn());
     }
@@ -177,6 +175,10 @@ public class EntityBase : MonoBehaviour
 
     protected IEnumerator StartingTurn()
     {
+        List<StatusEffect> debuffList = new(statusEffectList.Where((a) => a.StatusEffectData.type == STATUS_EFFECT_TYPE.DEBUFF));
+        foreach (StatusEffect statusEffect in debuffList)
+            statusEffect.ApplyEffect();
+
         yield return new WaitForSeconds(1f);
 
         StartTurn();

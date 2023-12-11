@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec7bf6a3155865a42bdcabb75978624b, type: 3}
-  m_Name: SpeedBuff
+  m_Script: {fileID: 11500000, guid: 5ff7c3fff7169f940a15e04868f24bf7, type: 3}
+  m_Name: DefenseBuff
   m_EditorClassIdentifier: 
-  _name: Speed Buff
+  _name: Defense Buff
   _type: 0
-  _desc: Increases speed by 20%
-  _icon: {fileID: 485823971, guid: 080cb6d98b00c2645b2c41df5f69bc78, type: 3}
+  _desc: Increase defense by 50%
+  _icon: {fileID: 21300000, guid: 8583a5efeb7622644aa85c052f20b3e5, type: 3}
   _stackable: 0
   _multiplier: 0
-  speedBuffMultiplier: 120
+  defenseBuffMultiplier: 150
