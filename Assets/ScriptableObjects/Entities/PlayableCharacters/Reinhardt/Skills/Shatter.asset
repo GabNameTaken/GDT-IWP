@@ -19,7 +19,7 @@ MonoBehaviour:
   _skillIcon: {fileID: 0}
   _skillCost: 0
   readyAnimationString: PowerUp
-  skillParticle: {fileID: 0}
+  skillParticle: {fileID: 6141921158452122041, guid: 2929cc9659dac3b478f84fb49cd50951, type: 3}
   _Cooldown: 4
   currentCooldown: 4
   _multiplier: 1

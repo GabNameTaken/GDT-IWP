@@ -61,6 +61,7 @@ MonoBehaviour:
     skillList: []
   statusEffectUI: {fileID: 0}
   turnMeter: 0
+  excessTurnMeter: 0
   isMoving: 0
   isDead: 0
   turnMeterUI: {fileID: 0}

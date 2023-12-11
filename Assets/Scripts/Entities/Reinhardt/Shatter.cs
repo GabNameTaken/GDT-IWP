@@ -31,12 +31,12 @@ public class Shatter : Skill
 
     protected override IEnumerator SkillAnimationCoroutine(EntityBase attacker, List<EntityBase> attackeeList)
     {
-        base.SkillAnimationCoroutine(attacker, attackeeList);
+        yield return null;
 
-        yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.7f);
+        yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.5f);
 
-        //SkillParticle particle = Instantiate(skillParticle, attacker.transform);
-        //particle.Play();
+        SkillParticle particle = Instantiate(skillParticle, attacker.model.transform);
+        particle.Play();
 
         foreach (PlayableCharacter playable in CombatManager.Instance.playerParty)
         {
@@ -48,7 +48,15 @@ public class Shatter : Skill
                 }
             }
         }
+
+        yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.7f);
+
+        foreach (EntityBase attackee in attackeeList)
+            attackee.TakeDamage(CalculateDamage(attacker, attackee), attacker.entity.element);
+
+        
         attacker.TakeDamage(-attacker.trueStats.maxHealth * 0.04f, null);
-        yield return base.SkillAnimationCoroutine(attacker, attackeeList);
+
+        attacker.PostSkill();
     }
 }
