@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5ccb93469e83245ac55000a0a9403d, type: 3}
   m_Name: Lunge
   m_EditorClassIdentifier: 
+  targetTeam: 0
+  targets: 0
   _skillName: Lunge
   _skillDesc: bonk
   _skillIcon: {fileID: 0}
+  _skillCost: 0
+  readyAnimationString: 
+  skillParticle: {fileID: 0}
   _Cooldown: 0
+  currentCooldown: 0
   _multiplier: 1
-  _listOfTargets: []
