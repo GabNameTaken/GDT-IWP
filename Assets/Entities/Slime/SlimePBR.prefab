@@ -514,6 +514,7 @@ MonoBehaviour:
     skillList: []
   statusEffectUI: {fileID: 155535063555956509}
   turnMeter: 0
+  excessTurnMeter: 0
   isMoving: 0
   isDead: 0
   turnMeterUI: {fileID: 0}
@@ -522,6 +523,9 @@ MonoBehaviour:
   listOfTargets: []
   originalPosition: {x: 0, y: 0, z: 0}
   originalRotation: {x: 0, y: 0, z: 0, w: 0}
+  terrainLayer:
+    serializedVersion: 2
+    m_Bits: 64
   worldSpaceCanvas: {fileID: 6764494093564987888}
   lastHitElementUI: {fileID: 18078654694809062}
 --- !u!1 &229886242302636556

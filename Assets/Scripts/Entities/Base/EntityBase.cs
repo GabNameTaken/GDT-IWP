@@ -37,6 +37,13 @@ public class EntityBase : MonoBehaviour
     public Vector3 originalPosition;
     public Quaternion originalRotation;
 
+    [SerializeField] LayerMask terrainLayer = 6;
+
+    private void FixedUpdate()
+    {
+        StickYToTerrain();
+    }
+
     public void OnBattleStart()
     {
         foreach (Skill skill in skillSet.SkillDict.Values)
@@ -199,5 +206,32 @@ public class EntityBase : MonoBehaviour
     public bool ContainsSkill(Skill skill)
     {
         return skillSet.SkillDict.ContainsValue(skill);
+    }
+
+    float raycastHeight = 3f;
+    private void StickYToTerrain()
+    {
+        RaycastHit hit;
+        Vector3 raycastOrigin = transform.position + Vector3.up * raycastHeight * 2f;
+
+        if (Physics.Raycast(raycastOrigin, Vector3.down, out hit, raycastHeight * 10f, terrainLayer))
+        {
+            Debug.DrawLine(raycastOrigin, hit.point, Color.green, 2f);
+
+            // Calculate the new position with the detected terrain height.
+            Vector3 newPos = transform.position;
+            newPos.y = hit.point.y;
+
+            // Limit the Y position to prevent the player from falling through the terrain.
+            float minHeight = Mathf.Min(hit.point.y + 0.0001f, 3.5f);
+            newPos.y = Mathf.Clamp(newPos.y, minHeight, Mathf.Infinity);
+
+            // Apply the new position to the player.
+            transform.position = newPos;
+        }
+        else
+        {
+            Debug.Log("Raycast did not hit terrain.");
+        }
     }
 }

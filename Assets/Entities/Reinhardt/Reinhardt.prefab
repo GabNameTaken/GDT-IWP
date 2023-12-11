@@ -61,6 +61,7 @@ MonoBehaviour:
     skillList: []
   statusEffectUI: {fileID: 0}
   turnMeter: 0
+  excessTurnMeter: 0
   isMoving: 0
   isDead: 0
   turnMeterUI: {fileID: 0}
@@ -69,6 +70,9 @@ MonoBehaviour:
   listOfTargets: []
   originalPosition: {x: 0, y: 0, z: 0}
   originalRotation: {x: 0, y: 0, z: 0, w: 0}
+  terrainLayer:
+    serializedVersion: 2
+    m_Bits: 64
   currentTargetNum: 0
   etherCharge: 1
 --- !u!1001 &2987217156524402566
