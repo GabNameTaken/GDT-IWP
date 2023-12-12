@@ -26,6 +26,7 @@ public class EntityBase : MonoBehaviour
     public float excessTurnMeter;
     public bool isMoving = false;
     public bool isDead = false;
+
     protected bool attacking = false;
 
     public GameObject turnMeterUI;
@@ -149,9 +150,9 @@ public class EntityBase : MonoBehaviour
         if (weaponModel)
             weaponModel.RestWeapon();
 
-        List<StatusEffect> buffList = new(statusEffectList.Where((a) => a.StatusEffectData.type == STATUS_EFFECT_TYPE.BUFF));
-        foreach (StatusEffect statusEffect in buffList)
-            statusEffect.ApplyEffect();
+        //List<StatusEffect> buffList = new(statusEffectList.Where((a) => a.StatusEffectData.type == STATUS_EFFECT_TYPE.BUFF));
+        //foreach (StatusEffect statusEffect in buffList)
+        //    statusEffect.ApplyEffect();
 
         if (transform.position != originalPosition)
         {
@@ -187,8 +188,6 @@ public class EntityBase : MonoBehaviour
         else
             animator.Play("Idle");
 
-        
-
         StartCoroutine(StartingTurn());
     }
 
@@ -213,8 +212,9 @@ public class EntityBase : MonoBehaviour
 
     protected IEnumerator StartingTurn()
     {
-        List<StatusEffect> debuffList = new(statusEffectList.Where((a) => a.StatusEffectData.type == STATUS_EFFECT_TYPE.DEBUFF));
-        foreach (StatusEffect statusEffect in debuffList)
+        //List<StatusEffect> debuffList = new(statusEffectList.Where((a) => a.StatusEffectData.type == STATUS_EFFECT_TYPE.DEBUFF));
+        List<StatusEffect> tempStatusEffectList = new(statusEffectList);
+        foreach (StatusEffect statusEffect in tempStatusEffectList)
             statusEffect.ApplyEffect();
 
         yield return new WaitForSeconds(1f);

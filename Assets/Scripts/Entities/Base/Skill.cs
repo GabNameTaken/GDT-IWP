@@ -99,6 +99,21 @@ public class Skill : ScriptableObject
         return statusEffect;
     }
 
+    private System.Random random = new System.Random();
+    protected virtual bool RunProbability(float probability)
+    {
+        // Generate a random value between 0 and 1
+        float randomValue = (float)random.NextDouble();
+
+        // Check if the random value is less than or equal to the probability
+        if (randomValue <= probability)
+        {
+            // If the condition is met, then execute the line
+            return true;
+        }
+        return false;
+    }
+
     protected virtual IEnumerator SkillAnimationCoroutine(EntityBase attacker, List<EntityBase> attackeeList)
     {
         yield return null;

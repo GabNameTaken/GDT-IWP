@@ -6,20 +6,33 @@ using UnityEngine;
 public class Curse : Skill
 {
     [SerializeField] PoisonDebuffData poisonDebuffData;
-    float poisonChance;
+    public float poisonChance = 0.75f;
 
     public override void Use(EntityBase attacker, EntityBase attackee)
     {
         attacker.animator.Play("CurseAttack");
         base.Use(attacker, CombatManager.Instance.EnemyParty.ConvertAll(entity => (EntityBase)entity));
-        foreach(Enemy enemy in CombatManager.Instance.EnemyParty)
-        {
-            if (!enemy.isDead)
+    }
+
+    protected override IEnumerator SkillAnimationCoroutine(EntityBase attacker, List<EntityBase> attackeeList)
+    {
+        yield return null;
+
+        yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.3f);
+
+
+        foreach (EntityBase attackee in attackeeList)
+            if (!attackee.isDead)
             {
-                SkillParticle particle = Instantiate(skillParticle, enemy.transform);
+                SkillParticle particle = Instantiate(skillParticle, attackee.transform);
                 particle.Play();
-                enemy.AddStatusEffect(InitStatusEffect(attacker, enemy, 2, poisonDebuffData));
+                attackee.TakeDamage(CalculateDamage(attacker, attackee), attacker.entity.element);
+                if (RunProbability(poisonChance))
+                    attackee.AddStatusEffect(InitStatusEffect(attacker, attackee, 2, poisonDebuffData));
             }
-        }
+
+        yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.7f);
+
+        attacker.PostSkill();
     }
 } 

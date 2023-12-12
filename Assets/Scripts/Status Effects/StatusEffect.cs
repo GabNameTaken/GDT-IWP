@@ -26,16 +26,6 @@ public class StatusEffect
         remainingDuration = duration;
         this.statusEffectData = statusEffectData;
 
-        CombatManager.Instance.StartCoroutine(UpdateUI());
-    }
-
-
-    protected IEnumerator UpdateUI()
-    {
-        yield return null;
-
-        yield return new WaitForSeconds(giver.animator.GetCurrentAnimatorStateInfo(0).length * 0.3f);
-
         statusEffectUI = receiver.statusEffectUI;
         statusEffectUI.OnAddStatus(this, remainingDuration);
     }

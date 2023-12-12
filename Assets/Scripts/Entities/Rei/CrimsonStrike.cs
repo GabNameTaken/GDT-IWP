@@ -27,6 +27,5 @@ public class CrimsonStrike : Skill
             base.Use(attacker, attackee);
             attacker.AddStatusEffect(InitStatusEffect(attacker, attacker, 2, attackBuff));
         });
-        
     }
 }

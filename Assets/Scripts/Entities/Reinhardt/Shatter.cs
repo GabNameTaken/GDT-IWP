@@ -49,7 +49,7 @@ public class Shatter : Skill
             }
         }
 
-        yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.7f);
+        yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.6f);
 
         foreach (EntityBase attackee in attackeeList)
             attackee.TakeDamage(CalculateDamage(attacker, attackee), attacker.entity.element);
