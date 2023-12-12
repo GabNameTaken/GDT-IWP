@@ -3900,8 +3900,8 @@ MonoBehaviour:
   lineThickness: 1.25
   lineIntensity: 0.5
   fillAmount: 0.2
-  lineColor0: {r: 1, g: 0, b: 0, a: 1}
-  lineColor1: {r: 0, g: 1, b: 1, a: 1}
+  lineColor0: {r: 1, g: 0, b: 0, a: 0.7058824}
+  lineColor1: {r: 0, g: 1, b: 1, a: 0.7058824}
   lineColor2: {r: 0, g: 0, b: 1, a: 1}
   additiveRendering: 0
   backfaceCulling: 1
@@ -3970,7 +3970,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEther: 30
   slider: {fileID: 2136520239}
-  turnStolen: 0
 --- !u!1 &1212912787
 GameObject:
   m_ObjectHideFlags: 0

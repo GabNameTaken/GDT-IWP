@@ -183,5 +183,6 @@ public class PlayableCharacter : EntityBase
 
         base.Attack(skill);
         CombatUIManager.Instance.DisplaySkillCooldown(skillSet);
+        CombatUIManager.Instance.DeselectSkills();
     }
 }
