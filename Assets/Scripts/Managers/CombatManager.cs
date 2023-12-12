@@ -10,27 +10,52 @@ public class CombatManager : Singleton<CombatManager>
     public TurnCharge turnCharge;
 
     public List<EntityBase> entitiesOnField;
-    public List<PlayableCharacter> playerParty = new();
-    public List<Enemy> enemyParty = new();
+
+    private List<PlayableCharacter> playerParty = new();
+    public List<PlayableCharacter> PlayerParty
+    {
+        get { return playerParty; }
+        set { playerParty = value; AssignEntitiesOnField(); }
+    }
+    private List<Enemy> enemyParty = new();
+    public List<Enemy> EnemyParty
+    {
+        get { return enemyParty; }
+        set { enemyParty = value; AssignEntitiesOnField(); }
+    }
 
     public event System.Action<EntityBase> EntityDeadEvent;
     public void CallEntityDeadEvent(EntityBase entity) => EntityDeadEvent?.Invoke(entity);
 
     public event System.Action WaveClearedEvent;
+    private event System.Action<bool> battleEndedEvent;
 
     public void StartBattle(CombatZone combatZone)
     {
-        entitiesOnField.AddRange(playerParty);
-        entitiesOnField.AddRange(enemyParty);
         foreach (EntityBase entity in entitiesOnField)
             entity.turnMeter = UnityEngine.Random.Range(0, 10);
 
         OnBattleStart();
-        
         CombatUIManager.Instance.SetUpPlayerUI(playerParty);
+        IncreaseTurnMeter(CalculateNumberOfIncrease());
+    }
+
+    void AssignEntitiesOnField()
+    {
+        List<EntityBase> newEntitiesOnField = new List<EntityBase>();
+        newEntitiesOnField.AddRange(playerParty);
+        newEntitiesOnField.AddRange(enemyParty);
+
+        var entitiesToAdd = newEntitiesOnField.Except(entitiesOnField);
+        var entitiesToRemove = entitiesOnField.Except(newEntitiesOnField);
+
+        // Remove entities not present in newEntitiesOnField
+        entitiesOnField.RemoveAll(entity => entitiesToRemove.Contains(entity));
+
+        // Add new entities not present in entitiesOnField
+        entitiesOnField.AddRange(entitiesToAdd);
 
         turnOrderUI.AddFighters(entitiesOnField);
-        IncreaseTurnMeter(CalculateNumberOfIncrease());
     }
 
     float CalculateNextTurn(EntityBase entity)
@@ -159,25 +184,48 @@ public class CombatManager : Singleton<CombatManager>
         }
 
         if (!enemiesAlive || !playersAlive)
-            EndBattle(playersAlive);
+            WaveEnded(playersAlive);
     }
 
-    void EndBattle(bool cleared)
+    void WaveEnded(bool cleared)
+    {
+        if (cleared) WaveClearedEvent?.Invoke(); // If wave successfully cleared
+        else battleEndedEvent?.Invoke(false); // If wave failed
+    }
+
+    public void CallBattleWon()
+    {
+        battleEndedEvent?.Invoke(true);
+    }
+
+    void OnEndBattle(bool won)
     {
         OnBattleEnd();
 
-        if (cleared) WaveClearedEvent?.Invoke();
+        UIManager uiManager = UIManager.Instance;
+        if (won) // Win condition
+        {
+            uiManager.SetWinScreenActive(true);
+        }
+        else // Lose condition
+        {
+            uiManager.SetLoseScreenActive(true);
+        }
     }
 
     void OnBattleStart()
     {
         foreach (EntityBase entity in entitiesOnField)
             entity.OnBattleStart();
+
+        battleEndedEvent += OnEndBattle;
     }
 
     void OnBattleEnd()
     {
         foreach (EntityBase entity in entitiesOnField)
             entity.OnBattleEnd();
+
+        battleEndedEvent -= OnEndBattle;
     }
 }
