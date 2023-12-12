@@ -12,7 +12,6 @@ public class TurnCharge : MonoBehaviour
     [SerializeField] Slider slider;
 
     bool isSelectingTurn = false;
-    public bool turnStolen = false;
 
     List<PlayableCharacter> playerList = new();
     private void Awake()
@@ -28,13 +27,7 @@ public class TurnCharge : MonoBehaviour
 
         //take turn
         CombatManager.Instance.stealTurn = true;
-        isSelectingTurn = true;
-        playerList.Clear();
-        foreach (PlayableCharacter survivor in CombatManager.Instance.playerParty)
-        {
-            playerList.Add(survivor);
-        }
-        CameraManager.Instance.MoveCamera(MapManager.Instance.currentMap.transform.Find("CombatSetup").gameObject, CAMERA_POSITIONS.PLAYER_TEAM_FRONT, 0.5f);
+       
     }
 
     public void AddEther(int amount)
@@ -53,6 +46,17 @@ public class TurnCharge : MonoBehaviour
             ether = 0;
         turnCharge = ether / 10;
         slider.value = ether;
+    }
+
+    public void SelectTurn()
+    {
+        isSelectingTurn = true;
+        playerList.Clear();
+        foreach (PlayableCharacter survivor in CombatManager.Instance.playerParty)
+        {
+            playerList.Add(survivor);
+        }
+        CameraManager.Instance.MoveCamera(MapManager.Instance.currentMap.transform.Find("CombatSetup").gameObject, CAMERA_POSITIONS.PLAYER_TEAM_FRONT, 0.5f);
     }
 
     int currentTargetNum = 0;
@@ -85,13 +89,13 @@ public class TurnCharge : MonoBehaviour
 
     private void Update()
     {
-        if (CombatManager.Instance.isPlayerTurn)
-            return;
-        if (!isSelectingTurn && Input.GetKeyDown(KeyCode.Space))
+        //if (CombatManager.Instance.isPlayerTurn)
+        //    return;
+        if (!isSelectingTurn && Input.GetKeyDown(KeyCode.Tab))
         {
             ConsumeCharge(10);
         }
-        if (turnStolen && isSelectingTurn)
+        if (isSelectingTurn)
         {
             SelectTargetInput();
             if (Input.GetKeyDown(KeyCode.Space))

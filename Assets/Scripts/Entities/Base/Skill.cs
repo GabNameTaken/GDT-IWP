@@ -106,7 +106,8 @@ public class Skill : ScriptableObject
         yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.3f);
 
         foreach (EntityBase attackee in attackeeList)
-            attackee.TakeDamage(CalculateDamage(attacker, attackee), attacker.entity.element);
+            if (!attackee.isDead)
+                attackee.TakeDamage(CalculateDamage(attacker, attackee), attacker.entity.element);
 
         yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.7f);
 

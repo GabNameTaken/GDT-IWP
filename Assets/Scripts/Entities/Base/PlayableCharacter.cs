@@ -41,9 +41,11 @@ public class PlayableCharacter : EntityBase
 
         for (int i = 0; i < skillKeys.Length; i++)
         {
-            if (Input.GetKeyDown(skillKeys[i]))
+            if (Input.GetKeyDown(skillKeys[i]) && skillSet.SkillDict[(SKILL_CODE)i].currentCooldown <= 0)
             {
                 keyIndex = i;
+                CombatUIManager.Instance.DisplaySelectedSkill((SKILL_CODE)keyIndex);
+
                 if (currentSkillCode == (SKILL_CODE)keyIndex)
                     UseSkill(currentSkillCode);
 
@@ -157,6 +159,11 @@ public class PlayableCharacter : EntityBase
             Debug.Log("Insufficient skill points");
             return;
         }
+        if (skillSet.SkillDict[skill].currentCooldown > 0)
+        {
+            Debug.Log("Skill on cooldown");
+            return;
+        }
         attacking = true;
         Attack(skillSet.SkillDict[skill]);
     }
@@ -175,5 +182,6 @@ public class PlayableCharacter : EntityBase
         listOfTargets.Clear();
 
         base.Attack(skill);
+        CombatUIManager.Instance.DisplaySkillCooldown(skillSet);
     }
 }

@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: Purification
   m_EditorClassIdentifier: 
   targetTeam: 1
-  targets: 0
+  targets: 1
   _skillName: Purification
   _skillDesc: 
   _skillIcon: {fileID: 0}
-  _skillCost: 0
-  _Cooldown: 0
-  currentCooldown: 0
-  _multiplier: 0
+  _skillCost: 2
+  readyAnimationString: 
+  skillParticle: {fileID: 1988028456624135357, guid: 2d3b5f758ccc8f347bafc1290035e19e, type: 3}
+  _Cooldown: 5
+  currentCooldown: 5
+  _multiplier: 0.2
+  statusEffectDatas:
+  - {fileID: 11400000, guid: cac3bda8decab66448b4e0b387be4cb5, type: 2}

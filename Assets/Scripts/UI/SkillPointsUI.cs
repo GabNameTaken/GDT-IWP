@@ -55,6 +55,9 @@ public class SkillPointsUI : MonoBehaviour
 
     public void ConsumeSkillPoints(int num, bool consume)
     {
+        if (PlayerTeamManager.Instance.skillPoints < num)
+            return;
+
         List<GameObject> selectedPoints = new();
         for (int i = 1; i <= num; i++)
         {

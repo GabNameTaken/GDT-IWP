@@ -19,7 +19,7 @@ public class EntityBase : MonoBehaviour
 
     [SerializeField] protected SkillSet skillSet;
 
-    protected List<StatusEffect> statusEffectList = new();
+    public List<StatusEffect> statusEffectList = new();
     public StatusEffectUI statusEffectUI;
 
     public float turnMeter;
@@ -105,6 +105,8 @@ public class EntityBase : MonoBehaviour
 
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
+        if (transform.Find("Main Camera"))
+            CameraManager.Instance.MoveCamera(MapManager.Instance.currentMap.transform.Find("CombatSetup").gameObject, CAMERA_POSITIONS.PLAYER_TEAM_BACK, 1f);
         gameObject.SetActive(false);
     }
 
@@ -178,6 +180,7 @@ public class EntityBase : MonoBehaviour
     {
         statusEffect.StatusEffectData.OnStatusEffectRemove(statusEffect.giver, statusEffect.receiver);
         statusEffectList.Remove(statusEffect);
+        statusEffectUI.RemoveStatus(statusEffect.icon);
     }
 
     protected IEnumerator StartingTurn()

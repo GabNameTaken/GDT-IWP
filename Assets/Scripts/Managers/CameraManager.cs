@@ -25,6 +25,7 @@ public class CameraManager : MonoBehaviour
     
 
     [SerializeField] List<CameraTransform> transformList;
+
     private Dictionary<CAMERA_POSITIONS, CameraTransformData> cameraDict;
     public Dictionary<CAMERA_POSITIONS, CameraTransformData> CameraDict { get { return cameraDict ?? (cameraDict = transformList.ToDictionary(camera => camera.pos, camera => camera.data)); } }
 

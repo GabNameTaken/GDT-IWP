@@ -121,7 +121,7 @@ public class CombatManager : Singleton<CombatManager>
             //end battle
         }
         if (stealTurn)
-            turnCharge.turnStolen = true;
+            turnCharge.SelectTurn();
         else
             IncreaseTurnMeter(CalculateNumberOfIncrease());
     }
@@ -134,7 +134,6 @@ public class CombatManager : Singleton<CombatManager>
 
         isPlayerTurn = true;
         stealTurn = false;
-        turnCharge.turnStolen = false;
     }
 
     
