@@ -66,6 +66,7 @@ MonoBehaviour:
   isDead: 0
   turnMeterUI: {fileID: 0}
   hitParticleSystem: {fileID: 1120176939024611271}
+  healingParticlePrefab: {fileID: -3410829410577542485, guid: 66ad8dcaafb163549891d191556b9755, type: 3}
   outline: {fileID: 5856533109533353065}
   listOfTargets: []
   originalPosition: {x: 0, y: 0, z: 0}

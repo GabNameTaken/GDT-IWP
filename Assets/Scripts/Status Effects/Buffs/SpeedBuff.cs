@@ -10,6 +10,8 @@ public class SpeedBuff : StatusEffectData
     public override void OnStatusEffectAdd(EntityBase source, EntityBase dest)
     {
         dest.trueStats.speed *= Mathf.RoundToInt(speedBuffMultiplier / 100f);
+        SkillParticle particle = Instantiate(particlePrefab, dest.transform);
+        particle.Play();
     }
 
     public override void ApplyEffect(EntityBase source, EntityBase dest)

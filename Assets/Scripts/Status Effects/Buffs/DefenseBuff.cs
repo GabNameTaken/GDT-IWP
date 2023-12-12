@@ -10,6 +10,8 @@ public class DefenseBuff : StatusEffectData
     public override void OnStatusEffectAdd(EntityBase source, EntityBase dest)
     {
         dest.trueStats.defense *= (defenseBuffMultiplier / 100f);
+        SkillParticle particle = Instantiate(particlePrefab, dest.transform);
+        particle.Play();
     }
 
     public override void ApplyEffect(EntityBase source, EntityBase dest)

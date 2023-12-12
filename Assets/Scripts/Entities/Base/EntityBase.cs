@@ -31,6 +31,8 @@ public class EntityBase : MonoBehaviour
     public GameObject turnMeterUI;
 
     public ParticleSystem hitParticleSystem;
+    public SkillParticle healingParticlePrefab;
+
     public cakeslice.Outline outline;
     public List<EntityBase> listOfTargets;
 
@@ -67,6 +69,11 @@ public class EntityBase : MonoBehaviour
                 hitParticleSystem.Play();
             }
         }
+        else if (damage < 0)
+        {
+            SkillParticle healingParticle = Instantiate(healingParticlePrefab, transform);
+            healingParticle.Play();
+        }
         
         trueStats.health -= damage;
         if (trueStats.health <= 0)
@@ -92,6 +99,23 @@ public class EntityBase : MonoBehaviour
         Death();
 
         CombatManager combatManager = CombatManager.Instance;
+
+        //List<EntityBase> provokedEntities = combatManager.entitiesOnField
+        //    .Where(entity => entity.statusEffectList
+        //        .Any(debuff => debuff.StatusEffectData.statusEffectName == "Provoke" && debuff.giver == this))
+        //    .ToList();
+
+        //foreach (EntityBase provokedEntity in provokedEntities)
+        //{
+        //    foreach (StatusEffect statusEffect in provokedEntity.statusEffectList)
+        //    {
+        //        if (statusEffect.StatusEffectData.statusEffectName == "Provoke" && statusEffect.giver == this)
+        //        {
+        //            provokedEntity.RemoveStatusEffect(statusEffect);
+        //        }
+        //    }
+        //}
+
         combatManager.CallEntityDeadEvent(this);
         if (isMoving)
             combatManager.EndTurn(this);

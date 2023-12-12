@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ public class StatusEffect
 
     public EntityBase giver;
     public EntityBase receiver;
+
     public StatusEffect(EntityBase _giver, EntityBase _receiver, int _duration, StatusEffectData statusEffectData)
     {
         giver = _giver;

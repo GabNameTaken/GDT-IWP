@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Defense Buff
   _type: 0
+  particlePrefab: {fileID: 4165091564336777282, guid: 73c790b542b44184198a98d9ae37f4ef, type: 3}
   _desc: Increase defense by 50%
   _icon: {fileID: 21300000, guid: 8583a5efeb7622644aa85c052f20b3e5, type: 3}
   _stackable: 0

@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6c8e84a9491a04b8ee95cf85f916ff, type: 3}
-  m_Name: EyesOnMe
+  m_Script: {fileID: 11500000, guid: 6bee976f8dae31f4b9e2efe30c47da36, type: 3}
+  m_Name: NotToday
   m_EditorClassIdentifier: 
-  targetTeam: 0
-  targets: 1
-  _skillName: Eyes On Me
-  _skillDesc: Provokes all enemies on the field for 1 turn.
+  targetTeam: 2
+  targets: 3
+  _skillName: Not Today
+  _skillDesc: If the caster were to die, do not die. This can only activate once
+    per battle.
   _skillIcon: {fileID: 0}
-  _skillCost: 2
+  _skillCost: 0
   readyAnimationString: 
   skillParticle: {fileID: 0}
   _Cooldown: 0
   currentCooldown: 0
   _multiplier: 0
-  provokeDebuffData: {fileID: 11400000, guid: a63574eef4615144fb2693de45574b67, type: 2}

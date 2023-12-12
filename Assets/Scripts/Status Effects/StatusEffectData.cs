@@ -10,6 +10,8 @@ abstract public class StatusEffectData : ScriptableObject
     [SerializeField] STATUS_EFFECT_TYPE _type;
     public STATUS_EFFECT_TYPE type => _type;
 
+    [SerializeField] protected SkillParticle particlePrefab;
+
     [SerializeField] string _desc;
     public string desc => _desc;
 

@@ -38,4 +38,10 @@ public class EtherOverflow : Skill
 
         yield return base.SkillAnimationCoroutine(attacker, attackeeList);
     }
+
+    public override float CalculateDamage(EntityBase attacker, EntityBase attackee)
+    {
+        damage = 0;
+        return damage;
+    }
 }

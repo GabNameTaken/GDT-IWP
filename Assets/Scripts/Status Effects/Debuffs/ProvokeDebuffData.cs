@@ -6,7 +6,9 @@ using UnityEngine;
 public class ProvokeDebuffData : StatusEffectData
 {
     public override void OnStatusEffectAdd(EntityBase source, EntityBase dest)
-    { 
+    {
+        SkillParticle particle = Instantiate(particlePrefab, dest.transform);
+        particle.Play();
     }
 
     public override void ApplyEffect(EntityBase source, EntityBase dest)

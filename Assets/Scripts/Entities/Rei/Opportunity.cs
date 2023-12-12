@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skills/Opportunity")]
+[CreateAssetMenu(menuName = "PassiveSkills/Opportunity")]
 public class Opportunity : Skill
 {
     public override void OnBattleStart()
