@@ -39,6 +39,7 @@ public class NightNight : Skill
             damage = (int)Mathf.Round((attacker.trueStats.maxHealth  * (multiplier + additionalScalings) - attackee.trueStats.defense / 2) * (attacker.trueStats.critDMG / 100));
         else
             damage = (int)Mathf.Round(attacker.trueStats.maxHealth * (multiplier + additionalScalings) - attackee.trueStats.defense / 2);
+
         return damage;
     }
 }

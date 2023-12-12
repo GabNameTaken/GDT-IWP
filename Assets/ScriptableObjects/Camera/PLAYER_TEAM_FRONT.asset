@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd42006dac4dae4e857e5374398cfc6, type: 3}
   m_Name: PLAYER_TEAM_FRONT
   m_EditorClassIdentifier: 
-  _position: {x: -4.45, y: 3.24, z: 2.48}
+  _position: {x: -5.58, y: 3.24, z: 2.48}
   _rotation: {x: 0.25881904, y: 0, z: 0, w: 0.9659258}
   _fovAngle: 90
