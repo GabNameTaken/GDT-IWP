@@ -11,7 +11,7 @@ public class Shatter : Skill
         attacker.animator.Play("Shatter");
         CameraManager.Instance.MoveCamera(MapManager.Instance.currentMap.transform.Find("CombatSetup").gameObject, CAMERA_POSITIONS.PLAYER_TEAM_BACK, 0.8f);
         List<EntityBase> alive = new();
-        foreach (Enemy enemy in CombatManager.Instance.enemyParty)
+        foreach (Enemy enemy in CombatManager.Instance.EnemyParty)
         {
             if (!enemy.isDead)
                 alive.Add(enemy);
@@ -38,7 +38,7 @@ public class Shatter : Skill
         SkillParticle particle = Instantiate(skillParticle, attacker.model.transform);
         particle.Play();
 
-        foreach (PlayableCharacter playable in CombatManager.Instance.playerParty)
+        foreach (PlayableCharacter playable in CombatManager.Instance.PlayerParty)
         {
             if (!playable.isDead)
             {

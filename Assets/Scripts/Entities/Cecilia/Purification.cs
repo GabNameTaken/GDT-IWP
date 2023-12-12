@@ -11,7 +11,7 @@ public class Purification : Skill
     {
         attacker.animator.Play("Purification");
         List<EntityBase> alive = new();
-        foreach (PlayableCharacter playable in CombatManager.Instance.playerParty)
+        foreach (PlayableCharacter playable in CombatManager.Instance.PlayerParty)
         {
             if (!playable.isDead)
                 alive.Add(playable);

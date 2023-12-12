@@ -9,8 +9,6 @@ public class BattleSpeedManager : Singleton<BattleSpeedManager>
     BATTLE_SPEED battleSpeed = BATTLE_SPEED.SPEED_1X;
     bool paused;
 
-    [SerializeField] GameObject pauseBG;
-
     public void SetBattleSpeed()
     {
         Time.timeScale = paused ? 0f : BattleSpeedToTimeScale(battleSpeed);
@@ -28,7 +26,7 @@ public class BattleSpeedManager : Singleton<BattleSpeedManager>
     {
         paused = !paused;
 
-        pauseBG.SetActive(paused);
+        UIManager.Instance.SetPauseScreenActive(paused);
         SetBattleSpeed();
     }
 

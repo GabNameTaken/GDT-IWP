@@ -11,7 +11,7 @@ public class EtherOverflow : Skill
         attacker.animator.Play("EtherOverflow");
 
         List<EntityBase> alive = new();
-        foreach (PlayableCharacter playable in CombatManager.Instance.playerParty)
+        foreach (PlayableCharacter playable in CombatManager.Instance.PlayerParty)
         {
             if (!playable.isDead)
                 alive.Add(playable);

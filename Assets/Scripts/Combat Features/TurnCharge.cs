@@ -52,7 +52,7 @@ public class TurnCharge : MonoBehaviour
     {
         isSelectingTurn = true;
         playerList.Clear();
-        foreach (PlayableCharacter survivor in CombatManager.Instance.playerParty)
+        foreach (PlayableCharacter survivor in CombatManager.Instance.PlayerParty)
         {
             playerList.Add(survivor);
         }

@@ -51,7 +51,7 @@ public class CombatZone : MonoBehaviour
 
             xPosition -= currentWave.XPositionSpacing;
         }
-        CombatManager.Instance.playerParty = playableCharacters;
+        CombatManager.Instance.PlayerParty = playableCharacters;
     }
 
     private void InstantiateEnemies(Vector3 direction)
@@ -71,15 +71,15 @@ public class CombatZone : MonoBehaviour
 
             xPosition -= currentWave.XPositionSpacing;
         }
-        CombatManager.Instance.enemyParty = enemies;
+        CombatManager.Instance.EnemyParty = enemies;
     }
 
     private void MovePlayableCharacters(Vector3 direction)
     {
         CombatManager combatManager = CombatManager.Instance;
 
-        float xPosition = currentWave.XPositionSpacing * ((combatManager.playerParty.Count - 1) / 2);
-        foreach (PlayableCharacter playableCharacter in combatManager.playerParty)
+        float xPosition = currentWave.XPositionSpacing * ((combatManager.PlayerParty.Count - 1) / 2);
+        foreach (PlayableCharacter playableCharacter in combatManager.PlayerParty)
         {
             playableCharacter.transform.position = currentWave.PlayerPosition.position + playableCharacter.transform.TransformDirection(xPosition, 0f, 0f);
             playableCharacter.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
@@ -91,8 +91,9 @@ public class CombatZone : MonoBehaviour
     private void OnWaveCleared()
     {
         int waveNumber = enemyWaves.IndexOf(currentWave);
-        if (waveNumber >= enemyWaves.Count - 1)
+        if (waveNumber >= enemyWaves.Count - 1) // If waves finished, call battle ended (won)
         {
+            CombatManager.Instance.CallBattleWon();
             return;
         }
 

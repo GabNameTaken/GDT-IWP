@@ -11,8 +11,8 @@ public class Curse : Skill
     public override void Use(EntityBase attacker, EntityBase attackee)
     {
         attacker.animator.Play("CurseAttack");
-        base.Use(attacker, CombatManager.Instance.enemyParty.ConvertAll(entity => (EntityBase)entity));
-        foreach(Enemy enemy in CombatManager.Instance.enemyParty)
+        base.Use(attacker, CombatManager.Instance.EnemyParty.ConvertAll(entity => (EntityBase)entity));
+        foreach(Enemy enemy in CombatManager.Instance.EnemyParty)
         {
             if (!enemy.isDead)
             {
