@@ -16,6 +16,6 @@ MonoBehaviour:
   _type: 1
   particlePrefab: {fileID: 7927903351660056106, guid: d1939249353e702478502eb089afb892, type: 3}
   _desc: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 1812906440, guid: 080cb6d98b00c2645b2c41df5f69bc78, type: 3}
   _stackable: 0
   _multiplier: 0
