@@ -67,7 +67,7 @@ public class Enemy : EntityBase
         listOfTargets.Clear();
         foreach (PlayableCharacter playableCharacter in CombatManager.Instance.PlayerParty)
         {
-            if (!playableCharacter.isDead)
+            if (!playableCharacter.IsDead)
                 listOfTargetable.Add(playableCharacter);
         }
 

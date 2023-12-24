@@ -22,7 +22,7 @@ public class Curse : Skill
 
 
         foreach (EntityBase attackee in attackeeList)
-            if (!attackee.isDead)
+            if (!attackee.IsDead)
             {
                 SkillParticle particle = Instantiate(skillParticle, attackee.transform);
                 particle.Play();

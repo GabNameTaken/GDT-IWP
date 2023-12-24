@@ -105,8 +105,8 @@ public class PlayableCharacter : EntityBase
         if (turnOffHighlights)
             return;
 
-        List<Enemy> enemies = CombatManager.Instance.EnemyParty.Where(enemy => !enemy.isDead).ToList();
-        List<PlayableCharacter> allies = CombatManager.Instance.PlayerParty.Where(player => !player.isDead).ToList();
+        List<Enemy> enemies = CombatManager.Instance.EnemyParty.Where(enemy => !enemy.IsDead).ToList();
+        List<PlayableCharacter> allies = CombatManager.Instance.PlayerParty.Where(player => !player.IsDead).ToList();
 
         listOfTargets.Clear();
         invertTargetting = false;

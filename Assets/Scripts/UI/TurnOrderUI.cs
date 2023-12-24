@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using System.Linq;
 
 public class TurnOrderUI : MonoBehaviour
 {
@@ -11,32 +12,24 @@ public class TurnOrderUI : MonoBehaviour
     [SerializeField] GameObject turnMeterPrefab;
 
     List<EntityBase> unitsOnField = new();
-    public void AddFighters(List<EntityBase> listOfFighters)
+    public void AssignFighters(List<EntityBase> listOfFighters)
     {
-        EmptyTurnOrder();
-
         foreach (EntityBase entity in listOfFighters)
         {
+            if (unitsOnField.Contains(entity)) continue;
+
             GameObject turnMeterUI = Instantiate(turnMeterPrefab, transform);
-            turnSlider.value = entity.turnMeter;
-            TrackSlider(turnMeterUI);
-            turnMeterUI.transform.GetChild(0).GetComponent<TMP_Text>().text = entity.entity.entityName;
-            turnMeterUI.transform.GetChild(1).GetComponent<TMP_Text>().text = turnSlider.value.ToString() + "%";
+            turnMeterUI.GetComponent<TurnMeter>().AssignEntity(entity);
             entity.turnMeterUI = turnMeterUI;
         }
-        unitsOnField = listOfFighters;
+        unitsOnField = new List<EntityBase>(listOfFighters);
     }
 
-    void EmptyTurnOrder()
+    public void EmptyTurnOrder()
     {
-        List<Transform> destroys = new();
         if (transform.childCount > 0)
-        {
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                Destroy(transform.GetChild(0).gameObject);
-            }
-        }
+            transform.Cast<Transform>().ToList().ForEach(child => Destroy(child.gameObject));
+        unitsOnField = new();
     }
 
     void TrackSlider(GameObject go)
@@ -53,13 +46,11 @@ public class TurnOrderUI : MonoBehaviour
 
     public void UpdateTurnOrder()
     {
-        foreach(EntityBase entity in unitsOnField)
+        foreach (EntityBase entity in unitsOnField)
         {
             if (entity.turnMeterUI != null)
             {
-                turnSlider.value = Mathf.RoundToInt(entity.turnMeter);
-                TrackSlider(entity.turnMeterUI);
-                entity.turnMeterUI.transform.GetChild(1).GetComponent<TMP_Text>().text = turnSlider.value.ToString() + "%";
+                turnSlider.value = Mathf.RoundToInt(entity.TurnMeter);
             }
         }
     }

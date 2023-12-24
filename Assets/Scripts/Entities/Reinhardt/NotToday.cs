@@ -23,9 +23,9 @@ public class NotToday : Skill
             return;
         CombatManager.Instance.entitiesOnField.ForEach(entity =>
         {
-            if (entity.ContainsSkill(this) && entity.isDead)
+            if (entity.ContainsSkill(this) && entity.IsDead)
             {
-                entityBase.isDead = false;
+                entityBase.IsDead = false;
                 entityBase.TakeDamage(-(entityBase.trueStats.maxHealth * 0.25f), null);
                 entityBase.animator.Play("Idle");
                 reviveNum--;

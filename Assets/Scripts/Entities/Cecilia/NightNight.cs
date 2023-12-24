@@ -22,7 +22,7 @@ public class NightNight : Skill
         yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.3f);
 
         foreach (EntityBase attackee in attackeeList)
-            if (!attackee.isDead)
+            if (!attackee.IsDead)
             {
                 attackee.TakeDamage(CalculateDamage(attacker, attackee), attacker.entity.element);
                 attackee.AddStatusEffect(new StatusEffect(attacker, attackee, 1, statusEffectData));

@@ -5,25 +5,16 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using UnityEngine.EventSystems;
+using Common.DesignPatterns;
 
-public class CombatUIManager : MonoBehaviour
+public class CombatUIManager : Singleton<CombatUIManager>
 {
-    public static CombatUIManager Instance { get; private set; }
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
-
     public List<EntityInfoUI> teamInfoUIs;
 
     [SerializeField] List<StatusEffectUI> teamStatus;
+    [SerializeField] Slider turnSlider;
+    [SerializeField] RectTransform turnSliderHandle;
+
     public void SetUpPlayerUI(List<PlayableCharacter> playerTeam)
     {
         for (int i = 0; i < playerTeam.Count; i++)
@@ -65,5 +56,11 @@ public class CombatUIManager : MonoBehaviour
     public void DeselectSkills()
     {
         EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    public Vector2 GetSliderButtonPosition(float turnMeter)
+    {
+        turnSlider.value = turnMeter;
+        return turnSliderHandle.transform.position;
     }
 }

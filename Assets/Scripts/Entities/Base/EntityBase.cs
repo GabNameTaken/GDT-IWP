@@ -22,10 +22,24 @@ public class EntityBase : MonoBehaviour
     public List<StatusEffect> statusEffectList = new();
     public StatusEffectUI statusEffectUI;
 
-    public float turnMeter;
+    public System.Action<float> TurnMeterChangedEvent;
+    private float turnMeter;
+    public float TurnMeter 
+    { 
+        get { return turnMeter; } 
+        set { turnMeter = value; TurnMeterChangedEvent?.Invoke(turnMeter); } 
+    }
+
     public float excessTurnMeter;
     public bool isMoving = false;
-    public bool isDead = false;
+
+    public event System.Action<bool> IsDeadChangedEvent;
+    private bool isDead = false;
+    public bool IsDead
+    {
+        get { return isDead; }
+        set { isDead = value; IsDeadChangedEvent?.Invoke(isDead); }
+    }
 
     protected bool attacking = false;
 
@@ -134,7 +148,6 @@ public class EntityBase : MonoBehaviour
         {
             if (transform.Find("Main Camera"))
                 CameraManager.Instance.MoveCamera(MapManager.Instance.currentMap.transform.Find("CombatSetup").gameObject, CAMERA_POSITIONS.PLAYER_TEAM_BACK, 1f);
-            turnMeterUI.SetActive(false);
             gameObject.SetActive(false);
         }
     }

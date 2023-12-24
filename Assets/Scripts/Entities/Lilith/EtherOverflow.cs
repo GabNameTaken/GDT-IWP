@@ -13,7 +13,7 @@ public class EtherOverflow : Skill
         List<EntityBase> alive = new();
         foreach (PlayableCharacter playable in CombatManager.Instance.PlayerParty)
         {
-            if (!playable.isDead)
+            if (!playable.IsDead)
                 alive.Add(playable);
         }
         base.Use(attacker, alive);

@@ -13,7 +13,7 @@ public class Shatter : Skill
         List<EntityBase> alive = new();
         foreach (Enemy enemy in CombatManager.Instance.EnemyParty)
         {
-            if (!enemy.isDead)
+            if (!enemy.IsDead)
                 alive.Add(enemy);
         }
         base.Use(attacker, alive);
@@ -40,7 +40,7 @@ public class Shatter : Skill
 
         foreach (PlayableCharacter playable in CombatManager.Instance.PlayerParty)
         {
-            if (!playable.isDead)
+            if (!playable.IsDead)
             {
                 foreach (StatusEffectData data in statusEffectDatas)
                 {

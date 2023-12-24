@@ -33,7 +33,7 @@ public class CombatManager : Singleton<CombatManager>
     public void StartBattle(CombatZone combatZone)
     {
         foreach (EntityBase entity in entitiesOnField)
-            entity.turnMeter = UnityEngine.Random.Range(0, 10);
+            entity.TurnMeter = UnityEngine.Random.Range(0, 10);
 
         OnBattleStart();
         CombatUIManager.Instance.SetUpPlayerUI(playerParty);
@@ -55,13 +55,13 @@ public class CombatManager : Singleton<CombatManager>
         // Add new entities not present in entitiesOnField
         entitiesOnField.AddRange(entitiesToAdd);
 
-        turnOrderUI.AddFighters(entitiesOnField);
+        turnOrderUI.AssignFighters(entitiesOnField);
     }
 
     float CalculateNextTurn(EntityBase entity)
     {
         float turnMeterRate = (float)entity.trueStats.speed / 100f;
-        float numberOfIncrease = (100f - entity.turnMeter) / turnMeterRate;
+        float numberOfIncrease = (100f - entity.TurnMeter) / turnMeterRate;
         //Debug.Log(entity.name + ": " + numberOfIncrease);
 
         return numberOfIncrease;
@@ -73,7 +73,7 @@ public class CombatManager : Singleton<CombatManager>
         foreach (EntityBase entity in entitiesOnField)
         {
             entity.isMoving = false;
-            if (entity.isDead)
+            if (entity.IsDead)
                 continue;
 
             if (numberOfIncrease == -1)
@@ -96,8 +96,8 @@ public class CombatManager : Singleton<CombatManager>
             return;
         foreach (EntityBase entity in entitiesOnField)
         {
-            entity.turnMeter += (float)(entity.trueStats.speed / 100f) * numberOfIncrease;
-            //Debug.Log(entity.name + ": " + entity.turnMeter);
+            if (entity.IsDead) continue;
+            entity.TurnMeter += (float)(entity.trueStats.speed / 100f) * numberOfIncrease;
         }
         turnOrderUI.UpdateTurnOrder();
         SetTurn();
@@ -111,7 +111,7 @@ public class CombatManager : Singleton<CombatManager>
         // Check if any entity has isMoving set to true
         foreach (EntityBase entity in entitiesOnField)
         {
-            if (entity.isMoving && !entity.isDead)
+            if (entity.isMoving && !entity.IsDead)
             {
                 anyEntityMoving = true;
                 break; // Exit the loop early since we found one entity with isMoving = true
@@ -120,7 +120,7 @@ public class CombatManager : Singleton<CombatManager>
 
         if (!anyEntityMoving)
         {
-            EntityBase entity = entitiesOnField.Where(entity => !entity.isDead).OrderByDescending(entity => entity.turnMeter).FirstOrDefault();
+            EntityBase entity = entitiesOnField.Where(entity => !entity.IsDead).OrderByDescending(entity => entity.TurnMeter).FirstOrDefault();
 
             if (entity.GetComponent<PlayableCharacter>())
             {
@@ -135,7 +135,7 @@ public class CombatManager : Singleton<CombatManager>
     public void EndTurn(EntityBase currentTurn)
     {
         currentTurn.isMoving = false;
-        currentTurn.turnMeter = currentTurn.excessTurnMeter; currentTurn.excessTurnMeter = 0;
+        currentTurn.TurnMeter = currentTurn.excessTurnMeter; currentTurn.excessTurnMeter = 0;
 
         isPlayerTurn = false;
 
@@ -167,7 +167,7 @@ public class CombatManager : Singleton<CombatManager>
         bool enemiesAlive = false, playersAlive = false;
         foreach (var player in playerParty)
         {
-            if (!player.isDead)
+            if (!player.IsDead)
             {
                 playersAlive = true;
                 break;
@@ -176,7 +176,7 @@ public class CombatManager : Singleton<CombatManager>
 
         foreach (EntityBase enemy in enemyParty)
         {
-            if (!enemy.isDead)
+            if (!enemy.IsDead)
             {
                 enemiesAlive = true;
                 break;
@@ -189,7 +189,12 @@ public class CombatManager : Singleton<CombatManager>
 
     void WaveEnded(bool cleared)
     {
-        if (cleared) WaveClearedEvent?.Invoke(); // If wave successfully cleared
+        turnOrderUI.EmptyTurnOrder();
+        if (cleared)
+        {
+            enemyParty.ForEach(enemy => Destroy(enemy.gameObject)); enemyParty.Clear();
+            WaveClearedEvent?.Invoke(); // If wave successfully cleared
+        }
         else battleEndedEvent?.Invoke(false); // If wave failed
     }
 
