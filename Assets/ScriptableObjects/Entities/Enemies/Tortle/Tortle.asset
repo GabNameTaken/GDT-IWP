@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051ef955da516d4478c35927aa5a4b3f, type: 3}
+  m_Name: Tortle
+  m_EditorClassIdentifier: 
+  _entityName: Tortle
+  _classType: {fileID: 11400000, guid: 2382ac6684b2f6943b2fbb36c016c1f2, type: 2}
+  _element: {fileID: 11400000, guid: 2be60afccdb5d5b4291d7c346e133d6a, type: 2}
+  _baseStats: {fileID: 11400000, guid: 808a9f04bb240a743bfc8c8b461aea85, type: 2}
+  _baseSkillSet:
+    skillList:
+    - skillCode: 0
+      skill: {fileID: 11400000, guid: 7403bae36edfd1d4a9db2804172a375a, type: 2}
+    - skillCode: 1
+      skill: {fileID: 11400000, guid: d46cfa7537947e141b19cca13172ee63, type: 2}
