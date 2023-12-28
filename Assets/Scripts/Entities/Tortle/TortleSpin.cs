@@ -6,20 +6,20 @@ using DG.Tweening;
 [CreateAssetMenu(menuName = "Skills/TortleSpin")]
 public class TortleSpin : Skill
 {
-    public override void Use(EntityBase attacker, EntityBase attackee)
+    public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
         attacker.originalPosition = attacker.transform.position;
         attacker.originalRotation = attacker.transform.rotation;
 
-        attacker.transform.DORotateQuaternion(GetQuaternionRotationToTarget(attacker.transform.position, attackee.transform.position), 0.5f);
-        Vector3 targetPos = GetFrontPos(attacker.transform.position, attackee.transform.position, 1);
+        attacker.transform.DORotateQuaternion(GetQuaternionRotationToTarget(attacker.transform.position, attackeeList[0].transform.position), 0.5f);
+        Vector3 targetPos = GetFrontPos(attacker.transform.position, attackeeList[0].transform.position, 1);
 
         Tween moveTween = attacker.transform.DOJump(targetPos, 0.5f, 1, 1);
         moveTween.OnComplete(() =>
         {
             attacker.animator.Play("TortleSpinAttack");
             CombatManager.Instance.turnCharge.AddEther(1);
-            base.Use(attacker, attackee);
+            base.Use(attacker, attackeeList[0]);
         });
     }
 }

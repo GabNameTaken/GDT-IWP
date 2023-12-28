@@ -47,54 +47,89 @@ public class Enemy : EntityBase
     {
         if (skillSet.SkillDict.ContainsKey(SKILL_CODE.S3) && skillSet.SkillDict[SKILL_CODE.S3].currentCooldown <= 0)
         {
-            //target
-            //use skill
+            Attack(skillSet.SkillDict[SKILL_CODE.S3]);
         }
         else if (skillSet.SkillDict.ContainsKey(SKILL_CODE.S2) && skillSet.SkillDict[SKILL_CODE.S2].currentCooldown <= 0)
         {
-
+            Attack(skillSet.SkillDict[SKILL_CODE.S2]);
         }
         else if (skillSet.SkillDict.ContainsKey(SKILL_CODE.S1))
         {
-            SelectSingleTarget();
             Attack(skillSet.SkillDict[SKILL_CODE.S1]);
         }
     }
 
-    PlayableCharacter SelectSingleTarget()
+    void SelectTargetTeam(Skill skill)
     {
-        List<PlayableCharacter> listOfTargetable = new();
+        List<EntityBase> targets = new();
+        switch(skill.targetTeam)
+        {
+            case Skill.SKILL_TARGET_TEAM.ENEMY:
+                foreach (EntityBase playableCharacter in CombatManager.Instance.PlayerParty)
+                {
+                    if (!playableCharacter.IsDead)
+                        targets.Add(playableCharacter);
+                }
+                break;
+            case Skill.SKILL_TARGET_TEAM.ALLY:
+                foreach (EntityBase enemy in CombatManager.Instance.EnemyParty)
+                {
+                    if (!enemy.IsDead)
+                        targets.Add(enemy);
+                }
+                break;
+            case Skill.SKILL_TARGET_TEAM.SELF:
+                targets.Add(this);
+                break;
+        }
+        SelectTarget(skill, targets);
+    }
+
+    void SelectTarget(Skill skill, List<EntityBase> targets)
+    {
         listOfTargets.Clear();
-        foreach (PlayableCharacter playableCharacter in CombatManager.Instance.PlayerParty)
+        if (targets.Count < 0)
         {
-            if (!playableCharacter.IsDead)
-                listOfTargetable.Add(playableCharacter);
-        }
-
-        // Check if there are valid targets in the list
-        if (listOfTargetable.Count > 0)
-        {
-            // Generate a random index within the range of valid indices
-            int randomIndex = UnityEngine.Random.Range(0, listOfTargetable.Count);
-
-            // Select the random PlayableCharacter
-            PlayableCharacter randomTarget = listOfTargetable[randomIndex];
-
-            // Now 'randomTarget' contains the randomly selected PlayableCharacter
-            listOfTargets.Add(randomTarget);
-            return randomTarget;
-        }
-        else
-        {
-            // Handle the case when there are no valid targets
             Debug.Log("No target for enemy");
+            return;
         }
-        return null;
+        switch (skill.targets)
+        {
+            case Skill.SKILL_TARGETS.SINGLE_TARGET:
+                listOfTargets.Add(SelectRandomTarget(targets));
+                break;
+            case Skill.SKILL_TARGETS.ADJACENT:
+                EntityBase selectedTarget = SelectRandomTarget(targets);
+                int index = targets.IndexOf(selectedTarget);
+                if (index - 1 >= 0)
+                    listOfTargets.Add(targets[index - 1]);
+
+                listOfTargets.Add(selectedTarget);
+
+                if (index + 1 < targets.Count)
+                    listOfTargets.Add(targets[index + 1]);
+                break;
+            case Skill.SKILL_TARGETS.ALL:
+                listOfTargets.AddRange(targets);
+                break;
+        }
+    }
+
+    EntityBase SelectRandomTarget(List<EntityBase> targets)
+    {
+        // Generate a random index within the range of valid indices
+        int randomIndex = UnityEngine.Random.Range(0, targets.Count);
+
+        // Select the random Entity
+        EntityBase randomTarget = targets[randomIndex];
+
+        return randomTarget;
     }
 
     protected override void Attack(Skill skill)
     {
-        skill.Use(this, listOfTargets[0]);
+        SelectTargetTeam(skill);
+        skill.Use(this, listOfTargets);
         base.Attack(skill);
     }
 
