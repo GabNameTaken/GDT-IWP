@@ -147,7 +147,7 @@ public class EntityBase : MonoBehaviour
         if (isDead)
         {
             if (transform.Find("Main Camera"))
-                CameraManager.Instance.MoveCamera(MapManager.Instance.currentMap.transform.Find("CombatSetup").gameObject, CAMERA_POSITIONS.PLAYER_TEAM_BACK, 1f);
+                Camera.main.transform.SetParent(MapManager.Instance.currentMap.transform.Find("CombatSetup").transform);
             gameObject.SetActive(false);
         }
     }

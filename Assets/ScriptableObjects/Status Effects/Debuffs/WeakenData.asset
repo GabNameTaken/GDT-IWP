@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24f032a2590b47649baa4591414ab708, type: 3}
-  m_Name: SleepData
+  m_Script: {fileID: 11500000, guid: f088f1cbb4ee32e429a13c9b5ce21976, type: 3}
+  m_Name: WeakenData
   m_EditorClassIdentifier: 
-  _name: 
+  _name: Weaken
   _type: 1
   particlePrefab: {fileID: 7927903351660056106, guid: d1939249353e702478502eb089afb892, type: 3}
-  _desc: 
-  _icon: {fileID: 1812906440, guid: 080cb6d98b00c2645b2c41df5f69bc78, type: 3}
+  _desc: Decrease attack by 50%.
+  _icon: {fileID: 21300000, guid: 5ffba1e073f6a7247a3481263b5cfcdd, type: 3}
   _stackable: 0
   _multiplier: 0
+  weakenAttackMultiplier: 150

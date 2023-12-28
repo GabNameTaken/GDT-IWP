@@ -6,6 +6,8 @@ using DG.Tweening;
 [CreateAssetMenu(menuName = "Skills/TortleSpin")]
 public class TortleSpin : Skill
 {
+    [SerializeField] StatusEffectData statusEffectData;
+    public float statusEffectChance = 0.75f;
     public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
         attacker.originalPosition = attacker.transform.position;
@@ -20,6 +22,8 @@ public class TortleSpin : Skill
             attacker.animator.Play("TortleSpinAttack");
             CombatManager.Instance.turnCharge.AddEther(1);
             base.Use(attacker, attackeeList[0]);
+            if (RunProbability(statusEffectChance))
+                attackeeList[0].AddStatusEffect(InitStatusEffect(attacker, attackeeList[0], 2, statusEffectData));
         });
     }
 }
