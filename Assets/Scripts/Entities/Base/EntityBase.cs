@@ -78,7 +78,7 @@ public class EntityBase : MonoBehaviour
         if (damage > 0)
         {
             animator.Play("GetHit");
-            if (element)
+            if (element && hitParticleSystem)
             {
                 hitParticleSystem.startColor = element.elementColor;
                 hitParticleSystem.Play();

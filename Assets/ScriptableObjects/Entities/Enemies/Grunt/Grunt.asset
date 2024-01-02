@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051ef955da516d4478c35927aa5a4b3f, type: 3}
+  m_Name: Grunt
+  m_EditorClassIdentifier: 
+  _entityName: Grunt
+  _classType: {fileID: 11400000, guid: 2382ac6684b2f6943b2fbb36c016c1f2, type: 2}
+  _element: {fileID: 11400000, guid: 5f7c5c6e3c8f99649aac3baef2874f2f, type: 2}
+  _baseStats: {fileID: 11400000, guid: ac6d49854a73f4f42afec88ccc4c3ae5, type: 2}
+  _baseSkillSet:
+    skillList:
+    - skillCode: 0
+      skill: {fileID: 11400000, guid: cda08f93a91a7c0478d3b03edaf02003, type: 2}
+    - skillCode: 1
+      skill: {fileID: 11400000, guid: 870cf3237096cd34499bd58ec81aad41, type: 2}
+    - skillCode: 2
+      skill: {fileID: 11400000, guid: c8d5a871846d55d46a38bbbd850fa824, type: 2}
