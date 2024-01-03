@@ -9,9 +9,15 @@ using Common.DesignPatterns;
 
 public class CombatUIManager : Singleton<CombatUIManager>
 {
+    [Header("Team Info UI")]
     public List<EntityInfoUI> teamInfoUIs;
-
     [SerializeField] List<StatusEffectUI> teamStatus;
+
+    [Header("Boss UI")]
+    public EntityInfoUI bossInfoUI;
+    [SerializeField] StatusEffectUI bossStatusUI;
+
+    [Header("Turn Order UI")]
     [SerializeField] Slider turnSlider;
     [SerializeField] RectTransform turnSliderHandle;
 
@@ -34,6 +40,7 @@ public class CombatUIManager : Singleton<CombatUIManager>
         }
     }
 
+    [Header("Player's Turn UI")]
     [SerializeField] List<Transform> skillSetUI;
     string[] skillKeyBindTexts = { "S1", "S2", "S3" };
     public void DisplaySkillCooldown(SkillSet skillSet)

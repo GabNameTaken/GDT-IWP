@@ -68,6 +68,12 @@ public class CombatZone : MonoBehaviour
             enemy.transform.SetParent(enemyTransform);
 
             enemies.Add(enemy.GetComponent<Enemy>());
+            if (enemy.GetComponent<Enemy>().isBoss)
+            {
+                CombatUIManager.Instance.bossInfoUI.gameObject.SetActive(true);
+                CombatUIManager.Instance.bossInfoUI.character = enemy.GetComponent<Enemy>();
+                enemy.GetComponent<Enemy>().statusEffectUI = CombatUIManager.Instance.bossInfoUI.statusEffectUI;
+            }
 
             xPosition -= currentWave.XPositionSpacing;
         }
@@ -97,6 +103,7 @@ public class CombatZone : MonoBehaviour
             return;
         }
 
+        CombatUIManager.Instance.bossInfoUI.gameObject.SetActive(false);
         currentWave = enemyWaves[++waveNumber];
         InstantiateWave();
     }

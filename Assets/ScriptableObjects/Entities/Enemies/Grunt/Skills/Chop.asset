@@ -22,6 +22,6 @@ MonoBehaviour:
   skillParticle: {fileID: 0}
   _Cooldown: 0
   currentCooldown: 0
-  _multiplier: 0
+  _multiplier: 1
   statusEffectData: {fileID: 11400000, guid: 625349f43f3093345a460d9c9012b925, type: 2}
   statusEffectChance: 0.75

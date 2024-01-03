@@ -6,22 +6,38 @@ using TMPro;
 
 public class EntityInfoUI : MonoBehaviour
 {
-    Slider healthSlider;
-    TMP_Text healthText, nameText;
-    Image elementIcon;
-
     public EntityBase character;
+    
+    [Header("Manual SetUp")]
+    [SerializeField] Slider healthSlider;
+    [SerializeField] TMP_Text healthText, nameText;
+    [SerializeField] Image elementIcon;
+
+    [SerializeField] StatusEffectUI _statusEffectUI;
+    public StatusEffectUI statusEffectUI => _statusEffectUI;
 
     private void Awake()
     {
-        if (transform.Find("Name"))
-            nameText = transform.Find("Name").GetComponent<TMP_Text>();
-        if (transform.Find("HealthText"))
-            healthText = transform.Find("HealthText").GetComponent<TMP_Text>();
-        if (transform.Find("HealthBarSlider"))
-            healthSlider = transform.Find("HealthBarSlider").GetComponent<Slider>();
-        if (transform.Find("ElementIcon"))
-            elementIcon = transform.Find("ElementIcon").GetComponent<Image>();
+        if (!nameText)
+        {
+            if (transform.Find("Name"))
+                nameText = transform.Find("Name").GetComponent<TMP_Text>();
+        }
+        if (!healthText)
+        {
+            if (transform.Find("HealthText"))
+                healthText = transform.Find("HealthText").GetComponent<TMP_Text>();
+        }
+        if (!healthSlider)
+        {
+            if (transform.Find("HealthBarSlider"))
+                healthSlider = transform.Find("HealthBarSlider").GetComponent<Slider>();
+        }
+        if (!elementIcon)
+        {
+            if (transform.Find("ElementIcon"))
+                elementIcon = transform.Find("ElementIcon").GetComponent<Image>();
+        }
     }
 
     private void Start()

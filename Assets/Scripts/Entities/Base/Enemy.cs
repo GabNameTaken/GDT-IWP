@@ -7,6 +7,10 @@ using System.Linq;
 
 public class Enemy : EntityBase
 {
+    [Header("Boss Settings")]
+    public bool isBoss = false;
+
+    [Header("Enemy UI Setup")]
     [SerializeField] Canvas worldSpaceCanvas;
     [SerializeField] Image lastHitElementUI;
     private Element lastHitElement;

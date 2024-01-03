@@ -432,6 +432,7 @@ MonoBehaviour:
   terrainLayer:
     serializedVersion: 2
     m_Bits: 64
+  isBoss: 1
   worldSpaceCanvas: {fileID: 5967810353539339625}
   lastHitElementUI: {fileID: 138248859677063330}
 --- !u!1 &3312486801664689943
