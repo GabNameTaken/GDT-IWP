@@ -10,6 +10,7 @@ public enum SKILL_CODE
     S2,
     S3,
     PASSIVE,
+    PASSIVE2,
     NONE,
 }
 

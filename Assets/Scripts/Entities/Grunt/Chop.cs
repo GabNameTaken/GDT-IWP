@@ -7,7 +7,7 @@ using DG.Tweening;
 public class Chop : Skill
 {
     [SerializeField] StatusEffectData statusEffectData;
-    public float statusEffectChance = 0.75f;
+    public float statusEffectChance = 0.50f;
     public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
         attacker.originalPosition = attacker.transform.position;

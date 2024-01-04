@@ -24,6 +24,12 @@ public class CombatManager : Singleton<CombatManager>
         set { enemyParty = value; AssignEntitiesOnField(); }
     }
 
+    public event System.Action<EntityBase> EntityStartTurnEvent;
+    public void CallEntityStartTurnEvent(EntityBase entity) => EntityStartTurnEvent?.Invoke(entity);
+
+    public event System.Action<EntityBase> EntityEndTurnEvent;
+    public void CallEntityEndTurnEvent(EntityBase entity) => EntityEndTurnEvent?.Invoke(entity);
+
     public event System.Action<EntityBase> EntityDeadEvent;
     public void CallEntityDeadEvent(EntityBase entity) => EntityDeadEvent?.Invoke(entity);
 
@@ -99,8 +105,13 @@ public class CombatManager : Singleton<CombatManager>
             if (entity.IsDead) continue;
             entity.TurnMeter += (float)(entity.trueStats.speed / 100f) * numberOfIncrease;
         }
-        turnOrderUI.UpdateTurnOrder();
+        UpdateTurnOrderUI();
         SetTurn();
+    }
+
+    public void UpdateTurnOrderUI()
+    {
+        turnOrderUI.UpdateTurnOrder();
     }
 
     public bool isPlayerTurn = false;
@@ -139,6 +150,7 @@ public class CombatManager : Singleton<CombatManager>
 
         isPlayerTurn = false;
 
+        CallEntityEndTurnEvent(currentTurn);
         CheckForEndBattle();
 
         if (hasWon)

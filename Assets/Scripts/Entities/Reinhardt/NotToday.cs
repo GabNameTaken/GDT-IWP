@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PassiveSkills/NotToday")]
+[CreateAssetMenu(menuName = "PassiveSkills/Not Today")]
 public class NotToday : Skill
 {
     int reviveNum = 1;

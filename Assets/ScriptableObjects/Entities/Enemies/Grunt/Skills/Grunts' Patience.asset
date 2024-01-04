@@ -9,19 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9662e4e4a94921946a03d1893644a256, type: 3}
-  m_Name: Chop
+  m_Script: {fileID: 11500000, guid: c5d9603d666268e47b903bb66677d857, type: 3}
+  m_Name: Grunts' Patience
   m_EditorClassIdentifier: 
-  targetTeam: 0
-  targets: 0
-  _skillName: Chop!
-  _skillDesc: 
+  targetTeam: 2
+  targets: 3
+  _skillName: Grunts' Patience
+  _skillDesc: When an ally ends their turn, increases turn meter by 20%.
   _skillIcon: {fileID: 0}
   _skillCost: 0
   readyAnimationString: 
   skillParticle: {fileID: 0}
   _Cooldown: 0
   currentCooldown: 0
-  _multiplier: 1
-  statusEffectData: {fileID: 11400000, guid: 625349f43f3093345a460d9c9012b925, type: 2}
-  statusEffectChance: 0.5
+  _multiplier: 0

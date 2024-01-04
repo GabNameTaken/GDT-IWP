@@ -14,7 +14,6 @@ public class EntityBase : MonoBehaviour
     public GameObject model;
 
     public Entity entity;
-    [SerializeField] public BaseStats baseStats { get; private set; }
     [HideInInspector] public Stats trueStats;
 
     [SerializeField] protected SkillSet skillSet;
@@ -185,6 +184,8 @@ public class EntityBase : MonoBehaviour
 
     public virtual void TakeTurn()
     {
+        CombatManager.Instance.CallEntityStartTurnEvent(this);
+
         originalPosition = transform.position;
         originalRotation = transform.rotation;
 
