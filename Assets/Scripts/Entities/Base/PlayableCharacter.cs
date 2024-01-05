@@ -108,7 +108,6 @@ public class PlayableCharacter : EntityBase
 
         List<Enemy> enemies = CombatManager.Instance.EnemyParty.Where(enemy => !enemy.IsDead).ToList();
         List<PlayableCharacter> allies = CombatManager.Instance.PlayerParty.Where(player => !player.IsDead).ToList();
-        List<EntityBase> targets = new();
 
         listOfTargets.Clear();
         invertTargetting = false;
