@@ -5,10 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Skills/Blessing")]
 public class Blessing : Skill
 {
-    public override void Use(EntityBase attacker, EntityBase attackee)
+    public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
         attacker.animator.Play("Blessing");
-        base.Use(attacker, attackee);
+        base.Use(attacker, attackeeList);
     }
 
     public override float CalculateDamage(EntityBase attacker, EntityBase attackee)

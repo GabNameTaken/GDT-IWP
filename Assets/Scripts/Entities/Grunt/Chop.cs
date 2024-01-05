@@ -21,7 +21,7 @@ public class Chop : Skill
         {
             attacker.animator.Play("ChopAttack");
             CombatManager.Instance.turnCharge.AddEther(1);
-            base.Use(attacker, attackeeList[0]);
+            base.Use(attacker, attackeeList);
             if (RunProbability(statusEffectChance))
                 attackeeList[0].AddStatusEffect(InitStatusEffect(attacker, attackeeList[0], 2, statusEffectData));
         });

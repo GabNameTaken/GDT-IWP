@@ -6,17 +6,11 @@ using UnityEngine;
 public class Shatter : Skill
 {
     [SerializeField] List<StatusEffectData> statusEffectDatas;
-    public override void Use(EntityBase attacker, EntityBase attackee)
+    public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
         attacker.animator.Play("Shatter");
         CameraManager.Instance.MoveCamera(MapManager.Instance.currentMap.transform.Find("CombatSetup").gameObject, CAMERA_POSITIONS.PLAYER_TEAM_BACK, 0.8f);
-        List<EntityBase> alive = new();
-        foreach (Enemy enemy in CombatManager.Instance.EnemyParty)
-        {
-            if (!enemy.IsDead)
-                alive.Add(enemy);
-        }
-        base.Use(attacker, alive);
+        base.Use(attacker, attackeeList);
     }
 
     public override float CalculateDamage(EntityBase attacker, EntityBase attackee)

@@ -5,11 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Skills/Erupt")]
 public class Erupt : Skill
 {
-    public override void Use(EntityBase attacker, EntityBase attackee)
+    public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
         attacker.animator.Play("EruptAttack");
-        
-        base.Use(attacker, attackee);
+        base.Use(attacker, attackeeList);
     }
 
     protected override IEnumerator SkillAnimationCoroutine(EntityBase attacker, List<EntityBase> attackeeList)

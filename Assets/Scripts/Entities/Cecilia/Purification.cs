@@ -7,16 +7,11 @@ using UnityEngine;
 public class Purification : Skill
 {
     [SerializeField] List<StatusEffectData> statusEffectDatas;
-    public override void Use(EntityBase attacker, EntityBase attackee)
+
+    public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
         attacker.animator.Play("Purification");
-        List<EntityBase> alive = new();
-        foreach (PlayableCharacter playable in CombatManager.Instance.PlayerParty)
-        {
-            if (!playable.IsDead)
-                alive.Add(playable);
-        }
-        base.Use(attacker, alive);
+        base.Use(attacker, attackeeList);
     }
 
     public override float CalculateDamage(EntityBase attacker, EntityBase attackee)

@@ -8,10 +8,10 @@ public class Curse : Skill
     [SerializeField] PoisonDebuffData poisonDebuffData;
     public float poisonChance = 0.75f;
 
-    public override void Use(EntityBase attacker, EntityBase attackee)
+    public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
         attacker.animator.Play("CurseAttack");
-        base.Use(attacker, CombatManager.Instance.EnemyParty.ConvertAll(entity => (EntityBase)entity));
+        base.Use(attacker, attackeeList);
     }
 
     protected override IEnumerator SkillAnimationCoroutine(EntityBase attacker, List<EntityBase> attackeeList)
@@ -19,7 +19,6 @@ public class Curse : Skill
         yield return null;
 
         yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.3f);
-
 
         foreach (EntityBase attackee in attackeeList)
             if (!attackee.IsDead)

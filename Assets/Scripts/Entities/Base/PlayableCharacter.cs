@@ -7,6 +7,7 @@ using System.Linq;
 public class PlayableCharacter : EntityBase
 {
     public int currentTargetNum = 0;
+    List<EntityBase> targets = new();
     private void Awake()
     {
         skillSet = new SkillSet(entity.baseSkillSet);
@@ -107,6 +108,7 @@ public class PlayableCharacter : EntityBase
 
         List<Enemy> enemies = CombatManager.Instance.EnemyParty.Where(enemy => !enemy.IsDead).ToList();
         List<PlayableCharacter> allies = CombatManager.Instance.PlayerParty.Where(player => !player.IsDead).ToList();
+        List<EntityBase> targets = new();
 
         listOfTargets.Clear();
         invertTargetting = false;
@@ -127,29 +129,41 @@ public class PlayableCharacter : EntityBase
             CameraManager.Instance.MoveCamera(gameObject, CAMERA_POSITIONS.LOW_FRONT_SELF, 0f);
         }
 
+        targets.Clear();
         switch (targetType)
         {
             case Skill.SKILL_TARGETS.SINGLE_TARGET:
                 listOfTargets[currentTargetNum].outline.eraseRenderer = turnOffHighlights;
+                targets.Add(listOfTargets[currentTargetNum]);
                 break;
 
             case Skill.SKILL_TARGETS.ADJACENT:
                 listOfTargets[currentTargetNum].outline.eraseRenderer = turnOffHighlights;
+                targets.Add(listOfTargets[currentTargetNum]);
 
                 if (currentTargetNum - 1 >= 0)
+                {
                     listOfTargets[currentTargetNum - 1].outline.eraseRenderer = turnOffHighlights;
+                    targets.Add(listOfTargets[currentTargetNum - 1]);
+                }
                 if (currentTargetNum + 1 < listOfTargets.Count)
+                {
                     listOfTargets[currentTargetNum + 1].outline.eraseRenderer = turnOffHighlights;
+                    targets.Add(listOfTargets[currentTargetNum + 1]);
+                }
                 break;
 
             case Skill.SKILL_TARGETS.ALL:
                 foreach (EntityBase entity in listOfTargets)
                     entity.outline.eraseRenderer = turnOffHighlights;
+                targets.AddRange(listOfTargets);
                 break;
 
             case Skill.SKILL_TARGETS.NONE:
                 break;
         }
+        foreach (EntityBase entity in targets)
+            Debug.Log(entity.name);
     }
 
     void UseSkill(SKILL_CODE skill)
@@ -172,7 +186,7 @@ public class PlayableCharacter : EntityBase
 
     protected override void Attack(Skill skill)
     {
-        skill.Use(this, listOfTargets[currentTargetNum]);
+        skill.Use(this, targets);
         SelectTargets(skill.targetTeam, skill.targets, true);
         CombatManager.Instance.turnCharge.AddEther(etherCharge);
 

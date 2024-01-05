@@ -6,13 +6,14 @@ using UnityEngine;
 public class NightNight : Skill
 {
     [SerializeField] StatusEffectData statusEffectData;
-    public override void Use(EntityBase attacker, EntityBase attackee)
+
+    public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
         attacker.animator.Play("NightNightAttack");
 
-        CameraManager.Instance.MoveCamera(attackee.gameObject, CAMERA_POSITIONS.HIGH_FRONT_SELF, 0.1f);
+        CameraManager.Instance.MoveCamera(attackeeList[0].gameObject, CAMERA_POSITIONS.HIGH_FRONT_SELF, 0.1f);
 
-        base.Use(attacker, attackee);
+        base.Use(attacker, attackeeList);
     }
 
     protected override IEnumerator SkillAnimationCoroutine(EntityBase attacker, List<EntityBase> attackeeList)

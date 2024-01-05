@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Curse
   m_EditorClassIdentifier: 
   targetTeam: 0
-  targets: 1
+  targets: 2
   _skillName: 
   _skillDesc: 
   _skillIcon: {fileID: 0}
@@ -24,3 +24,4 @@ MonoBehaviour:
   currentCooldown: 0
   _multiplier: 0.7
   poisonDebuffData: {fileID: 11400000, guid: f60bc414d34d87047bea164eda5736f3, type: 2}
+  poisonChance: 0.75

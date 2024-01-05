@@ -19,7 +19,7 @@ public class Lunge : Skill
         {
             attacker.animator.Play("LungeAttack");
             CombatManager.Instance.turnCharge.AddEther(1);
-            base.Use(attacker, attackeeList[0]);
+            base.Use(attacker, attackeeList);
         });
         
     }

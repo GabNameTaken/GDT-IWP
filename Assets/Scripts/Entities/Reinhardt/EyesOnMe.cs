@@ -7,13 +7,13 @@ public class EyesOnMe : Skill
 {
     [SerializeField] StatusEffectData provokeDebuffData;
 
-    public override void Use(EntityBase attacker, EntityBase attackee)
+    public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
         attacker.animator.Play("EyesOnMe");
 
-        foreach (Enemy enemy in CombatManager.Instance.EnemyParty)
-            enemy.AddStatusEffect(new StatusEffect(attacker, enemy, 1, provokeDebuffData));
+        foreach (EntityBase attackee in attackeeList)
+            attackee.AddStatusEffect(new StatusEffect(attacker, attackee, 1, provokeDebuffData));
 
-        base.Use(attacker, attackee);
+        base.Use(attacker, attackeeList);
     }
 }

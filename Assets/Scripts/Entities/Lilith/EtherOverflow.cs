@@ -6,17 +6,11 @@ using UnityEngine;
 public class EtherOverflow : Skill
 {
     [SerializeField] List<StatusEffectData> statusEffectDatas;
-    public override void Use(EntityBase attacker, EntityBase attackee)
+    public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
         attacker.animator.Play("EtherOverflow");
 
-        List<EntityBase> alive = new();
-        foreach (PlayableCharacter playable in CombatManager.Instance.PlayerParty)
-        {
-            if (!playable.IsDead)
-                alive.Add(playable);
-        }
-        base.Use(attacker, alive);
+        base.Use(attacker, attackeeList);
     }
 
     protected override IEnumerator SkillAnimationCoroutine(EntityBase attacker, List<EntityBase> attackeeList)

@@ -19,7 +19,7 @@ public class Knock : Skill
         {
             attacker.animator.Play("KnockAttack");
             CombatManager.Instance.turnCharge.AddEther(1);
-            base.Use(attacker, attackeeList[0]);
+            base.Use(attacker, attackeeList);
         });
 
     }

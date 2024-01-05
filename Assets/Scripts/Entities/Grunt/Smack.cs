@@ -21,7 +21,7 @@ public class Smack : Skill
         {
             attacker.animator.Play("SmackAttack");
             CombatManager.Instance.turnCharge.AddEther(1);
-            base.Use(attacker, attackeeList[0]);
+            base.Use(attacker, attackeeList);
             foreach (StatusEffectData data in debuffs)
             {
                 if (RunProbability(statusEffectChance))

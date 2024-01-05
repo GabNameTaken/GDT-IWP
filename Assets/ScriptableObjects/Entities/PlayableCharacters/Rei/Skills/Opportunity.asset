@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5244ee52cd05441a745d5b9546707c, type: 3}
   m_Name: Opportunity
   m_EditorClassIdentifier: 
-  targetTeam: 0
-  targets: 0
+  targetTeam: 2
+  targets: 3
   _skillName: 
   _skillDesc: 
   _skillIcon: {fileID: 0}
