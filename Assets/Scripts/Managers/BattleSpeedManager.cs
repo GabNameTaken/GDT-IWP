@@ -20,6 +20,7 @@ public class BattleSpeedManager : Singleton<BattleSpeedManager>
         if (battleSpeed >= BATTLE_SPEED.BATTLE_SPEED_COUNT) battleSpeed = 0;
 
         SetBattleSpeed();
+        UIManager.Instance.SetBattleSpeedBtnSprite(battleSpeed);
     }
 
     public void TogglePause()
