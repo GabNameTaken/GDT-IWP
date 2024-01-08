@@ -161,8 +161,6 @@ public class PlayableCharacter : EntityBase
             case Skill.SKILL_TARGETS.NONE:
                 break;
         }
-        foreach (EntityBase entity in targets)
-            Debug.Log(entity.name);
     }
 
     void UseSkill(SKILL_CODE skill)
