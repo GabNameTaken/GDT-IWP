@@ -21,6 +21,5 @@ public class Lunge : Skill
             CombatManager.Instance.turnCharge.AddEther(1);
             base.Use(attacker, attackeeList);
         });
-        
     }
 }

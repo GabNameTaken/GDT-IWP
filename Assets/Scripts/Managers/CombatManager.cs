@@ -142,7 +142,6 @@ public class CombatManager : Singleton<CombatManager>
         }
     }
 
-    bool hasWon = false;
     public void EndTurn(EntityBase currentTurn)
     {
         currentTurn.isMoving = false;
@@ -153,10 +152,6 @@ public class CombatManager : Singleton<CombatManager>
         CallEntityEndTurnEvent(currentTurn);
         CheckForEndBattle();
 
-        if (hasWon)
-        { 
-            //end battle
-        }
         if (stealTurn)
             turnCharge.SelectTurn();
         else

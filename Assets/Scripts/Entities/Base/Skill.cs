@@ -72,18 +72,6 @@ public class Skill : ScriptableObject
     {
     }
 
-    //public virtual void Use(EntityBase attacker, EntityBase attackee)
-    //{
-    //    if (attacker.weaponModel) 
-    //        attacker.weaponModel.AttachWeapon();
-
-    //    List<EntityBase> attackeeList = new() { attackee };
-
-    //    PlayerTeamManager.Instance.UpdateSkillPoints(skillCost, true);
-
-    //    CombatManager.Instance.StartCoroutine(SkillAnimationCoroutine(attacker, attackeeList));
-    //}
-
     public virtual void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
         if (attacker.weaponModel)

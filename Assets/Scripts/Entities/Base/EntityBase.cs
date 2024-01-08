@@ -130,7 +130,6 @@ public class EntityBase : MonoBehaviour
         //    }
         //}
 
-        combatManager.CallEntityDeadEvent(this);
         if (isMoving)
             combatManager.EndTurn(this);
     }
@@ -143,11 +142,15 @@ public class EntityBase : MonoBehaviour
 
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
+        CombatManager combatManager = CombatManager.Instance;
+        combatManager.CallEntityDeadEvent(this);
+
         if (isDead)
         {
             if (transform.Find("Main Camera"))
                 Camera.main.transform.SetParent(MapManager.Instance.currentMap.transform.Find("CombatSetup").transform);
             gameObject.SetActive(false);
+            turnMeterUI.SetActive(false);
         }
     }
 
@@ -244,9 +247,9 @@ public class EntityBase : MonoBehaviour
     public virtual void Provoked(EntityBase provoker)
     {
         attacking = true;
+        listOfTargets.Clear();
         listOfTargets.Add(provoker);
         skillSet.SkillDict[SKILL_CODE.S1].Use(this, listOfTargets);
-        listOfTargets.Clear();
     }
 
     public bool ContainsSkill(Skill skill)

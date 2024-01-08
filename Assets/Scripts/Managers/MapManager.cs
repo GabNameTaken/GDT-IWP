@@ -27,4 +27,14 @@ public class MapManager : MonoBehaviour
     {
         currentMap = Instantiate(map[currentMapNum]);
     }
+
+    public void NextMap()
+    {
+        Destroy(currentMap);
+        if (currentMapNum + 1 < mapZones.Count)
+        {
+            currentMapNum += 1;
+            currentMap = Instantiate(map[currentMapNum]);
+        }
+    }
 }
