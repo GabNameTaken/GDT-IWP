@@ -58,6 +58,7 @@ public class PlayableCharacter : EntityBase
                     PlayerTeamManager.Instance.UpdateSkillPoints(skillSet.SkillDict[(SKILL_CODE)keyIndex].skillCost, false);
                 }
             }
+            else if (Input.GetKeyDown(skillKeys[i]) && skillSet.SkillDict[(SKILL_CODE)i].currentCooldown > 0) PopupMessage.Instance.PopMessage("Skill on cooldown");
         }
         if (currentSkillCode == SKILL_CODE.NONE)
         {
@@ -167,11 +168,13 @@ public class PlayableCharacter : EntityBase
     {
         if (PlayerTeamManager.Instance.skillPoints < skillSet.SkillDict[skill].skillCost)
         {
+            PopupMessage.Instance.PopMessage("Insufficient skill points");
             Debug.Log("Insufficient skill points");
             return;
         }
         if (skillSet.SkillDict[skill].currentCooldown > 0)
         {
+            PopupMessage.Instance.PopMessage("Skill on cooldown");
             Debug.Log("Skill on cooldown");
             return;
         }
