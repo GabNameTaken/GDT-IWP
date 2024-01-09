@@ -19,8 +19,9 @@ public class CombatZone : MonoBehaviour
 
         InstantiateWave();
 
+        CameraManager.Instance.MoveCamera(transform.Find("CombatSetup").gameObject, CAMERA_POSITIONS.PLAYER_TEAM_BACK, 0f);
         CombatManager combatManager = CombatManager.Instance;
-        combatManager.StartBattle(this);
+        //combatManager.StartBattle(this);
         combatManager.WaveClearedEvent += OnWaveCleared;
     }
 

@@ -196,7 +196,16 @@ public class CombatManager : Singleton<CombatManager>
 
     void WaveEnded(bool cleared)
     {
+        foreach (EntityBase entity in entitiesOnField)
+        {
+            if (entity.isMoving && !entity.IsDead)
+            {
+                entity.StopAllCoroutines();
+                EndTurn(entity);
+            }
+        }
         turnOrderUI.EmptyTurnOrder();
+        CameraManager.Instance.MoveCamera(MapManager.Instance.currentMap.transform.Find("CombatSetup").gameObject, CAMERA_POSITIONS.PLAYER_TEAM_BACK, 1f);
         if (cleared)
         {
             enemyParty.ForEach(enemy => Destroy(enemy.gameObject)); enemyParty.Clear();

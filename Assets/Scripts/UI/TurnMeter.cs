@@ -35,7 +35,23 @@ public class TurnMeter : MonoBehaviour
     void OnOwnerTurnMeterChanged(float turnMeter)
     {
         meterText.text = ToPercentage(owner.TurnMeter);
-        if (gameObject.activeInHierarchy) transform.DOMove(CombatUIManager.Instance.GetSliderButtonPosition(turnMeter), 1, false);
+        if (gameObject && gameObject.activeInHierarchy) transform.DOMove(CombatUIManager.Instance.GetSliderButtonPosition(turnMeter), 1, false);
+    }
+
+    private void OnEnable()
+    {
+        if (!owner)
+            return;
+        owner.IsDeadChangedEvent += OnOwnerStatusChanged;
+        owner.TurnMeterChangedEvent += OnOwnerTurnMeterChanged;
+    }
+
+    private void OnDestroy()
+    {
+        if (!owner)
+            return;
+        owner.IsDeadChangedEvent -= OnOwnerStatusChanged;
+        owner.TurnMeterChangedEvent -= OnOwnerTurnMeterChanged;
     }
 
     string ToPercentage(float turnMeter)

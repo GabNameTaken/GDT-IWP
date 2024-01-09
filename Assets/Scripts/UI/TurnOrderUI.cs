@@ -27,8 +27,13 @@ public class TurnOrderUI : MonoBehaviour
 
     public void EmptyTurnOrder()
     {
-        if (transform.childCount > 0)
-            transform.Cast<Transform>().ToList().ForEach(child => Destroy(child.gameObject));
+        transform.Cast<Transform>().ToList().ForEach(child =>
+        {
+            if (child != null)
+            {
+                Destroy(child.gameObject);
+            }
+        });
         unitsOnField = new();
     }
 

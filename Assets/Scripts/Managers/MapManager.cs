@@ -25,7 +25,7 @@ public class MapManager : MonoBehaviour
 
     private void Start()
     {
-        currentMap = Instantiate(map[currentMapNum]);
+        SetMap();
     }
 
     public void NextMap()
@@ -34,7 +34,13 @@ public class MapManager : MonoBehaviour
         if (currentMapNum + 1 < mapZones.Count)
         {
             currentMapNum += 1;
-            currentMap = Instantiate(map[currentMapNum]);
+            SetMap();
         }
+    }
+
+    void SetMap()
+    {
+        currentMap = Instantiate(map[currentMapNum]);
+        GameController.Instance.CombatSetup(currentMap.GetComponent<CombatZone>());
     }
 }
