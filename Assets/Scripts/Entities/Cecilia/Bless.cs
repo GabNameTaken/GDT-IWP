@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skills/Blessing")]
-public class Blessing : Skill
+[CreateAssetMenu(menuName = "Skills/Bless")]
+public class Bless : Skill
 {
     public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
@@ -13,7 +13,7 @@ public class Blessing : Skill
 
     public override float CalculateDamage(EntityBase attacker, EntityBase attackee)
     {
-        damage = Mathf.RoundToInt(attacker.trueStats.health * multiplier);
+        damage = Mathf.RoundToInt(attacker.trueStats.maxHealth * multiplier);
         
         return -damage;
     }

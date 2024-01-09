@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3ac313ad96c1ed478d8fd2797afde32, type: 3}
-  m_Name: Blessing
+  m_Name: Bless
   m_EditorClassIdentifier: 
   targetTeam: 1
   targets: 0
-  _skillName: Blessing
-  _skillDesc: 
+  _skillName: Bless
+  _skillDesc: Heals the target proportional to the caster's max Health.
   _skillIcon: {fileID: 0}
   _skillCost: 2
   readyAnimationString: 
   skillParticle: {fileID: 1988028456624135357, guid: c5f9b050f61e82d42a6fe88fa75de091, type: 3}
   _Cooldown: 0
   currentCooldown: 0
-  _multiplier: 0.2
+  _multiplier: 0.15
