@@ -15,11 +15,14 @@ MonoBehaviour:
   targetTeam: 0
   targets: 0
   _skillName: Crimson Strike
-  _skillDesc: Deals damage proportional to caster's speed
+  _skillDesc: Increases speed of the caster for 1 turn. Deals damage proportional
+    to caster's speed
   _skillIcon: {fileID: 0}
   _skillCost: 2
+  readyAnimationString: 
+  skillParticle: {fileID: 0}
   _Cooldown: 0
   currentCooldown: 0
   _multiplier: 1.2
   speedScaling: 0.0025
-  attackBuff: {fileID: 11400000, guid: 06ea24d9dec3f1e43b0f78fed23152a4, type: 2}
+  attackBuff: {fileID: 11400000, guid: ac3cdc7b2ace71044b1ee4d3cc54b0a9, type: 2}

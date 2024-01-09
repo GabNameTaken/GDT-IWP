@@ -113,9 +113,16 @@ public class Skill : ScriptableObject
             if (!attackee.IsDead)
                 attackee.TakeDamage(CalculateDamage(attacker, attackee), attacker.entity.element);
 
+        ApplyStatusEffects(attacker, attackeeList);
+
         yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.7f);
 
         attacker.PostSkill();
+    }
+
+    protected virtual void ApplyStatusEffects(EntityBase attacker, List<EntityBase> attackeeList)
+    {
+
     }
 
     public virtual float CalculateDamage(EntityBase attacker, EntityBase attackee)

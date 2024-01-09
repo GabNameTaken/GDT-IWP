@@ -8,7 +8,7 @@ public class GuardDownDebuffData : StatusEffectData
     [SerializeField] float defDecreaseMultiplier;
     public override void OnStatusEffectAdd(EntityBase source, EntityBase dest)
     {
-        dest.trueStats.attack /= (defDecreaseMultiplier / 100f);
+        dest.trueStats.defense /= (defDecreaseMultiplier / 100f);
 
         SkillParticle particle = Instantiate(particlePrefab, dest.transform);
         particle.Play();
@@ -20,6 +20,6 @@ public class GuardDownDebuffData : StatusEffectData
 
     public override void OnStatusEffectRemove(EntityBase source, EntityBase dest)
     {
-        dest.trueStats.attack *= (defDecreaseMultiplier / 100f);
+        dest.trueStats.defense *= (defDecreaseMultiplier / 100f);
     }
 }

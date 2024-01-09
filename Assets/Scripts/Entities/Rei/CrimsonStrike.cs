@@ -26,7 +26,7 @@ public class CrimsonStrike : Skill
             attacker.animator.Play("CrimsonStrikeAttack");
             additionalScalings = attacker.trueStats.speed * speedScaling;
             base.Use(attacker, attackeeList);
-            attacker.AddStatusEffect(InitStatusEffect(attacker, attacker, 2, attackBuff));
+            attacker.AddStatusEffect(InitStatusEffect(attacker, attacker, 1, attackBuff));
         });
     }
 }

@@ -19,6 +19,7 @@ public class Cut : Skill
         moveTween.OnComplete(() =>
         {
             attacker.animator.Play("CutAttack");
+            attacker.excessTurnMeter += 25;
             base.Use(attacker, attackeeList);
         });
     }

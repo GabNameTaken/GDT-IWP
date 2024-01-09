@@ -6,6 +6,9 @@ using DG.Tweening;
 [CreateAssetMenu(menuName = "Skills/SilentAssassination")]
 public class SilentAssassination : Skill
 {
+    [SerializeField] StatusEffectData statusEffectData;
+    public float statusEffectChance = 1f;
+
     [SerializeField] float speedScaling;
 
     public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
@@ -28,5 +31,11 @@ public class SilentAssassination : Skill
             additionalScalings = attacker.trueStats.speed * speedScaling;
             base.Use(attacker, attackeeList);
         });
+    }
+
+    protected override void ApplyStatusEffects(EntityBase attacker, List<EntityBase> attackeeList)
+    {
+        if (RunProbability(statusEffectChance))
+            attackeeList[0].AddStatusEffect(InitStatusEffect(attacker, attackeeList[0], 2, statusEffectData));
     }
 }
