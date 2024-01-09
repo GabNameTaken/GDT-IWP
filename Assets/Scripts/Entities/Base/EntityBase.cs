@@ -129,9 +129,6 @@ public class EntityBase : MonoBehaviour
         //        }
         //    }
         //}
-
-        if (isMoving)
-            combatManager.EndTurn(this);
     }
 
     IEnumerator DeathAnimationCoroutine()
@@ -145,12 +142,14 @@ public class EntityBase : MonoBehaviour
         CombatManager combatManager = CombatManager.Instance;
         combatManager.CallEntityDeadEvent(this);
 
-        if (isDead)
+        if (this && isDead)
         {
             if (transform.Find("Main Camera"))
                 Camera.main.transform.SetParent(MapManager.Instance.currentMap.transform.Find("CombatSetup").transform);
             gameObject.SetActive(false);
             turnMeterUI.SetActive(false);
+            if (isMoving)
+                combatManager.EndTurn(this);
         }
     }
 
@@ -205,7 +204,8 @@ public class EntityBase : MonoBehaviour
         else
             animator.Play("Idle");
 
-        StartCoroutine(StartingTurn());
+        if (!isDead)
+            StartCoroutine(StartingTurn());
     }
 
     public void AddStatusEffect(StatusEffect statusEffect)

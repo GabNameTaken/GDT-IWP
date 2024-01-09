@@ -32,4 +32,9 @@ public class GatherUp : Skill
 
         attacker.PostSkill();
     }
+
+    public override float CalculateDamage(EntityBase attacker, EntityBase attackee)
+    {
+        return 0;
+    }
 }

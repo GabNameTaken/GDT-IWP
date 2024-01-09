@@ -16,4 +16,9 @@ public class EyesOnMe : Skill
 
         base.Use(attacker, attackeeList);
     }
+
+    public override float CalculateDamage(EntityBase attacker, EntityBase attackee)
+    {
+        return 0;
+    }
 }
