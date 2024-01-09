@@ -154,7 +154,7 @@ public class CombatManager : Singleton<CombatManager>
 
         if (stealTurn)
             turnCharge.SelectTurn();
-        else if (!waveCleared)
+        else
             IncreaseTurnMeter(CalculateNumberOfIncrease());
     }
 
@@ -194,11 +194,9 @@ public class CombatManager : Singleton<CombatManager>
             WaveEnded(playersAlive);
     }
 
-    bool waveCleared = false;
     void WaveEnded(bool cleared)
     {
         turnOrderUI.EmptyTurnOrder();
-        waveCleared = true;
         if (cleared)
         {
             enemyParty.ForEach(enemy => Destroy(enemy.gameObject)); enemyParty.Clear();

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTeam: 2
   targets: 3
-  _skillName: 
-  _skillDesc: 
+  _skillName: Opportunity
+  _skillDesc: After killing an enemy, increases Turn Meter of the caster by 50%.
   _skillIcon: {fileID: 0}
   _skillCost: 0
   readyAnimationString: 
