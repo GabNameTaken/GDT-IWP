@@ -30,6 +30,9 @@ public class EntityBase : MonoBehaviour
     }
 
     public float excessTurnMeter;
+
+    public bool asleep = false;
+    public bool unableToAct = false;
     public bool isMoving = false;
 
     public event System.Action<bool> IsDeadChangedEvent;
@@ -81,6 +84,11 @@ public class EntityBase : MonoBehaviour
             {
                 hitParticleSystem.startColor = element.elementColor;
                 hitParticleSystem.Play();
+            }
+            if (asleep)
+            {
+                StatusEffect sleep = statusEffectList.FirstOrDefault(effect => effect.StatusEffectData.statusEffectName == "Sleep");
+                RemoveStatusEffect(sleep);
             }
         }
         else if (damage < 0)
@@ -168,6 +176,8 @@ public class EntityBase : MonoBehaviour
         //foreach (StatusEffect statusEffect in buffList)
         //    statusEffect.ApplyEffect();
 
+        unableToAct = false;
+
         if (transform.position != originalPosition)
         {
             transform.DOMove(originalPosition, 1, false).OnComplete(() =>
@@ -236,7 +246,10 @@ public class EntityBase : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        StartTurn();
+        if (!unableToAct)
+            StartTurn();
+        else if (!attacking)
+            PostSkill();
     }
 
     protected virtual void StartTurn()
@@ -247,6 +260,7 @@ public class EntityBase : MonoBehaviour
     public virtual void Provoked(EntityBase provoker)
     {
         attacking = true;
+        unableToAct = true;
         listOfTargets.Clear();
         listOfTargets.Add(provoker);
         skillSet.SkillDict[SKILL_CODE.S1].Use(this, listOfTargets);

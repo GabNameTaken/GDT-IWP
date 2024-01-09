@@ -13,7 +13,8 @@ public class ProvokeDebuffData : StatusEffectData
 
     public override void ApplyEffect(EntityBase source, EntityBase dest)
     {
-        dest.Provoked(source);
+        if (!dest.asleep && !dest.unableToAct)
+            dest.Provoked(source);
     }
 
     public override void OnStatusEffectRemove(EntityBase source, EntityBase dest)
