@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Thief
   m_EditorClassIdentifier: 
   _className: Thief
+  _classImage: {fileID: 21300000, guid: dc0aec411c229df42b360b4e34d76ef4, type: 3}

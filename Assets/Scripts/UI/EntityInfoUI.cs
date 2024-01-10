@@ -12,6 +12,7 @@ public class EntityInfoUI : MonoBehaviour
     [SerializeField] Slider healthSlider;
     [SerializeField] TMP_Text healthText, nameText;
     [SerializeField] Image elementIcon;
+    [SerializeField] Image classIcon;
 
     [SerializeField] StatusEffectUI _statusEffectUI;
     public StatusEffectUI statusEffectUI => _statusEffectUI;
@@ -59,6 +60,8 @@ public class EntityInfoUI : MonoBehaviour
             healthText.text = Mathf.RoundToInt(character.trueStats.health).ToString();
         if (elementIcon)
             elementIcon.sprite = character.entity.element.elementImage;
+        if (classIcon)
+            classIcon.sprite = character.entity.classType.classImage;
     }
     public void UpdateHealthUI()
     {

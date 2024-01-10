@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Knight
   m_EditorClassIdentifier: 
   _className: Knight
+  _classImage: {fileID: 21300000, guid: d0bd6979dbc69854a9ddae46ddc71508, type: 3}

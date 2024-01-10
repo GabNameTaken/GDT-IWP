@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Mage
   m_EditorClassIdentifier: 
   _className: Mage
+  _classImage: {fileID: 21300000, guid: 47876dcc9508c574a8227069b5eba7bb, type: 3}
