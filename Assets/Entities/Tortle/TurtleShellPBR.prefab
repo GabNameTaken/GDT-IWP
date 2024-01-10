@@ -605,6 +605,8 @@ MonoBehaviour:
     skillList: []
   statusEffectUI: {fileID: 7900140583727592630}
   excessTurnMeter: 0
+  asleep: 0
+  unableToAct: 0
   isMoving: 0
   turnMeterUI: {fileID: 0}
   hitParticleSystem: {fileID: 1669019477887716007}
@@ -616,6 +618,7 @@ MonoBehaviour:
   terrainLayer:
     serializedVersion: 2
     m_Bits: 64
+  isBoss: 0
   worldSpaceCanvas: {fileID: 6333979167737971855}
   lastHitElementUI: {fileID: 6967957319168965880}
 --- !u!1 &1532652994627396
@@ -1240,6 +1243,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 3688226212572474575}
+  healthSlider: {fileID: 0}
+  healthText: {fileID: 0}
+  nameText: {fileID: 0}
+  elementIcon: {fileID: 0}
+  _statusEffectUI: {fileID: 0}
 --- !u!1 &2864775791630602787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1396,7 +1404,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9e1f36a2b01c53a41be7b755751d463d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d5d3ded2e2c8c8458fa9cb7ff2c7d29, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1669,7 +1677,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9e1f36a2b01c53a41be7b755751d463d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d5d3ded2e2c8c8458fa9cb7ff2c7d29, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -513,10 +513,10 @@ MonoBehaviour:
   skillSet:
     skillList: []
   statusEffectUI: {fileID: 155535063555956509}
-  turnMeter: 0
   excessTurnMeter: 0
+  asleep: 0
+  unableToAct: 0
   isMoving: 0
-  isDead: 0
   turnMeterUI: {fileID: 0}
   hitParticleSystem: {fileID: 4064255114900132885}
   healingParticlePrefab: {fileID: -3410829410577542485, guid: 66ad8dcaafb163549891d191556b9755, type: 3}
@@ -527,6 +527,7 @@ MonoBehaviour:
   terrainLayer:
     serializedVersion: 2
     m_Bits: 64
+  isBoss: 0
   worldSpaceCanvas: {fileID: 6764494093564987888}
   lastHitElementUI: {fileID: 18078654694809062}
 --- !u!1 &229886242302636556
@@ -756,6 +757,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 1267792866353673907}
+  healthSlider: {fileID: 0}
+  healthText: {fileID: 0}
+  nameText: {fileID: 0}
+  elementIcon: {fileID: 0}
+  _statusEffectUI: {fileID: 0}
 --- !u!1 &2698673302483949314
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,7 +1005,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9e1f36a2b01c53a41be7b755751d463d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d5d3ded2e2c8c8458fa9cb7ff2c7d29, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1075,7 +1081,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9e1f36a2b01c53a41be7b755751d463d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d5d3ded2e2c8c8458fa9cb7ff2c7d29, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
