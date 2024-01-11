@@ -15,7 +15,7 @@ public class Enemy : EntityBase
     [SerializeField] Image lastHitElementUI;
     private Element lastHitElement;
 
-    private void Awake()
+    override protected void Awake()
     {
         skillSet = new SkillSet(entity.baseSkillSet);
         trueStats = new Stats(entity.baseStats.Stats);
@@ -24,6 +24,7 @@ public class Enemy : EntityBase
         {
             skillSet.SkillDict[(SKILL_CODE)i].currentCooldown = skillSet.SkillDict[(SKILL_CODE)i].cooldown;
         }
+        base.Awake();
     }
 
     public override void TakeTurn()

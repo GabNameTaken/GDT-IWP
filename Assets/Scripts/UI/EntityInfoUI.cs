@@ -45,7 +45,7 @@ public class EntityInfoUI : MonoBehaviour
     {
         if (character != null)
         {
-            CombatUIManager.Instance.teamInfoUIs.Add(this);
+            CombatUIManager.Instance.infoUIs.Add(this);
             SetUpUI();
         }
     }

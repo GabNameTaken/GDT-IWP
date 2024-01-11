@@ -8,7 +8,7 @@ public class PlayableCharacter : EntityBase
 {
     public int currentTargetNum = 0;
     List<EntityBase> targets = new();
-    private void Awake()
+    override protected void Awake()
     {
         skillSet = new SkillSet(entity.baseSkillSet);
         trueStats = new Stats(entity.baseStats.Stats);
@@ -17,6 +17,7 @@ public class PlayableCharacter : EntityBase
         {
             skillSet.SkillDict[(SKILL_CODE)i].currentCooldown = 0;
         }
+        base.Awake();
     }
 
     private void Update()

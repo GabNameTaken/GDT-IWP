@@ -26,7 +26,7 @@ public class StatusEffect
         remainingDuration = duration;
         this.statusEffectData = statusEffectData;
 
-        statusEffectUI = receiver.statusEffectUI;
+        statusEffectUI = receiver.entityInfoUI.statusEffectUI;
         statusEffectUI.OnAddStatus(this, remainingDuration);
     }
 

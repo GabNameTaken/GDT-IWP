@@ -19,7 +19,8 @@ public class EntityBase : MonoBehaviour
     [SerializeField] protected SkillSet skillSet;
 
     public List<StatusEffect> statusEffectList = new();
-    public StatusEffectUI statusEffectUI;
+    StatusEffectUI statusEffectUI;
+    public EntityInfoUI entityInfoUI;
 
     public System.Action<float> TurnMeterChangedEvent;
     private float turnMeter;
@@ -73,6 +74,12 @@ public class EntityBase : MonoBehaviour
     {
         foreach (Skill skill in skillSet.SkillDict.Values)
             skill.OnBattleEnd();
+    }
+
+    protected virtual void Awake()
+    {
+        if (entityInfoUI)
+            statusEffectUI = entityInfoUI.statusEffectUI;
     }
 
     public virtual void TakeDamage(float damage, Element element)

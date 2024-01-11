@@ -73,7 +73,7 @@ public class CombatZone : MonoBehaviour
             {
                 CombatUIManager.Instance.bossInfoUI.gameObject.SetActive(true);
                 CombatUIManager.Instance.bossInfoUI.character = enemy.GetComponent<Enemy>();
-                enemy.GetComponent<Enemy>().statusEffectUI = CombatUIManager.Instance.bossInfoUI.statusEffectUI;
+                enemy.GetComponent<Enemy>().entityInfoUI = CombatUIManager.Instance.bossInfoUI;
             }
 
             xPosition -= currentWave.XPositionSpacing;

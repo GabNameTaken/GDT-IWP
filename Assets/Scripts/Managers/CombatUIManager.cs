@@ -10,8 +10,7 @@ using Common.DesignPatterns;
 public class CombatUIManager : Singleton<CombatUIManager>
 {
     [Header("Team Info UI")]
-    public List<EntityInfoUI> teamInfoUIs;
-    [SerializeField] List<StatusEffectUI> teamStatus;
+    public List<EntityInfoUI> infoUIs;
 
     [Header("Boss UI")]
     public EntityInfoUI bossInfoUI;
@@ -25,9 +24,9 @@ public class CombatUIManager : Singleton<CombatUIManager>
     {
         for (int i = 0; i < playerTeam.Count; i++)
         {
-            teamInfoUIs[i].character = playerTeam[i];
-            teamInfoUIs[i].SetUpUI();
-            playerTeam[i].statusEffectUI = teamStatus[i];
+            infoUIs[i].character = playerTeam[i];
+            infoUIs[i].SetUpUI();
+            playerTeam[i].entityInfoUI = infoUIs[i];
         }
     }
 
@@ -35,7 +34,7 @@ public class CombatUIManager : Singleton<CombatUIManager>
     {
         if (CombatManager.Instance.entitiesOnField.Contains(entity))
         {
-            EntityInfoUI infoUI = teamInfoUIs.FirstOrDefault(info => info.character == entity);
+            EntityInfoUI infoUI = infoUIs.FirstOrDefault(info => info.character == entity);
             infoUI.UpdateHealthUI();
         }
     }

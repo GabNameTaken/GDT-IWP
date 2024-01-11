@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18387018, g: 0.22872686, b: 0.30142498, a: 1}
+  m_IndirectSpecularColor: {r: 0.17949152, g: 0.22474773, b: 0.3063711, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2988,8 +2988,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapZones:
-  - {fileID: 3559274696785205842, guid: e1ad7a73b7b7665498d771a6d9efb9f9, type: 3}
   - {fileID: 3559274696785205842, guid: dc2696d7722d98a47af6f384b72f8e3f, type: 3}
+  - {fileID: 3559274696785205842, guid: e1ad7a73b7b7665498d771a6d9efb9f9, type: 3}
   - {fileID: 3559274696785205842, guid: 490df030d8275b14194ca212d9386056, type: 3}
   currentMapNum: 0
   currentMap: {fileID: 0}
@@ -3369,16 +3369,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8734d639a1e2ad54c94e69b010e129d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamInfoUIs:
+  infoUIs:
   - {fileID: 1896052520}
   - {fileID: 1883655554}
   - {fileID: 2108466009}
   - {fileID: 1744442522}
-  teamStatus:
-  - {fileID: 408822866}
-  - {fileID: 1654012146}
-  - {fileID: 307669479}
-  - {fileID: 1218700863}
   bossInfoUI: {fileID: 785099788}
   bossStatusUI: {fileID: 1642967426}
   turnSlider: {fileID: 535285099}
@@ -3473,7 +3468,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.26207006, y: -0.3867278, z: 0.007730797, w: 0.88413864}
+  m_LocalRotation: {x: 0.83605736, y: -0.25029406, z: 0.29490855, w: 0.3890886}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7865,7 +7860,7 @@ MonoBehaviour:
   nameText: {fileID: 0}
   elementIcon: {fileID: 0}
   classIcon: {fileID: 1557102742}
-  _statusEffectUI: {fileID: 0}
+  _statusEffectUI: {fileID: 1218700863}
 --- !u!1 &1746341470
 GameObject:
   m_ObjectHideFlags: 0
@@ -8419,7 +8414,7 @@ MonoBehaviour:
   nameText: {fileID: 0}
   elementIcon: {fileID: 0}
   classIcon: {fileID: 348207103}
-  _statusEffectUI: {fileID: 0}
+  _statusEffectUI: {fileID: 1654012146}
 --- !u!1 &1896052518
 GameObject:
   m_ObjectHideFlags: 0
@@ -8480,7 +8475,7 @@ MonoBehaviour:
   nameText: {fileID: 0}
   elementIcon: {fileID: 0}
   classIcon: {fileID: 1960646259}
-  _statusEffectUI: {fileID: 0}
+  _statusEffectUI: {fileID: 408822866}
 --- !u!1 &1899164286
 GameObject:
   m_ObjectHideFlags: 0
@@ -9639,7 +9634,7 @@ MonoBehaviour:
   nameText: {fileID: 0}
   elementIcon: {fileID: 0}
   classIcon: {fileID: 1998891444}
-  _statusEffectUI: {fileID: 0}
+  _statusEffectUI: {fileID: 307669479}
 --- !u!1 &2136520237
 GameObject:
   m_ObjectHideFlags: 0
