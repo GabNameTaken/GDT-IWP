@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff7c3fff7169f940a15e04868f24bf7, type: 3}
   m_Name: GuardUpBuff
   m_EditorClassIdentifier: 
-  _name: Defense Buff
+  _name: Guard Up
   _type: 0
   particlePrefab: {fileID: 4165091564336777282, guid: 73c790b542b44184198a98d9ae37f4ef, type: 3}
   _desc: Increase defense by 50%

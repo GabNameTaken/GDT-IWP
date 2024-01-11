@@ -21,5 +21,7 @@ MonoBehaviour:
   readyAnimationString: 
   skillParticle: {fileID: 0}
   _Cooldown: 2
-  currentCooldown: 0
+  currentCooldown: 1
   _multiplier: 1.4
+  statusEffectData: {fileID: 11400000, guid: 2096c419d83490749a97e83c09e41db3, type: 2}
+  statusEffectChance: 0.75
