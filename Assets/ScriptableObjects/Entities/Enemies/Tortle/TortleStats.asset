@@ -15,7 +15,7 @@ MonoBehaviour:
   stats:
     maxHealth: 5884
     health: 5884
-    defense: 583
+    defense: 300
     attack: 1153
     speed: 90
     critRate: 15

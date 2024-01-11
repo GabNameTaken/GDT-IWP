@@ -234,7 +234,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Attack02
+  m_Name: LightSlashAttack
   m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions: []
@@ -319,10 +319,10 @@ AnimatorStateMachine:
     m_Position: {x: 216, y: -72, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102597142297889830}
-    m_Position: {x: 456, y: -72, z: 0}
+    m_Position: {x: 450, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102841285716856984}
-    m_Position: {x: 456, y: 0, z: 0}
+    m_Position: {x: 450, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102978981160464930}
     m_Position: {x: 456, y: 72, z: 0}

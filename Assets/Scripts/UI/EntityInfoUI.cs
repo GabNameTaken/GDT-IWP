@@ -7,39 +7,40 @@ using TMPro;
 public class EntityInfoUI : MonoBehaviour
 {
     public EntityBase character;
-    
+
     [Header("Manual SetUp")]
-    [SerializeField] Slider healthSlider;
-    [SerializeField] TMP_Text healthText, nameText;
+    [SerializeField] Image sprite;
     [SerializeField] Image elementIcon;
     [SerializeField] Image classIcon;
-
+    [SerializeField] Slider healthSlider;
+    [SerializeField] TMP_Text healthText, nameText;
+    
     [SerializeField] StatusEffectUI _statusEffectUI;
     public StatusEffectUI statusEffectUI => _statusEffectUI;
 
-    private void Awake()
-    {
-        if (!nameText)
-        {
-            if (transform.Find("Name"))
-                nameText = transform.Find("Name").GetComponent<TMP_Text>();
-        }
-        if (!healthText)
-        {
-            if (transform.Find("HealthText"))
-                healthText = transform.Find("HealthText").GetComponent<TMP_Text>();
-        }
-        if (!healthSlider)
-        {
-            if (transform.Find("HealthBarSlider"))
-                healthSlider = transform.Find("HealthBarSlider").GetComponent<Slider>();
-        }
-        if (!elementIcon)
-        {
-            if (transform.Find("ElementIcon"))
-                elementIcon = transform.Find("ElementIcon").GetComponent<Image>();
-        }
-    }
+    //private void Awake()
+    //{
+    //    if (!nameText)
+    //    {
+    //        if (transform.Find("Name"))
+    //            nameText = transform.Find("Name").GetComponent<TMP_Text>();
+    //    }
+    //    if (!healthText)
+    //    {
+    //        if (transform.Find("HealthText"))
+    //            healthText = transform.Find("HealthText").GetComponent<TMP_Text>();
+    //    }
+    //    if (!healthSlider)
+    //    {
+    //        if (transform.Find("HealthBarSlider"))
+    //            healthSlider = transform.Find("HealthBarSlider").GetComponent<Slider>();
+    //    }
+    //    if (!elementIcon)
+    //    {
+    //        if (transform.Find("ElementIcon"))
+    //            elementIcon = transform.Find("ElementIcon").GetComponent<Image>();
+    //    }
+    //}
 
     private void Start()
     {
@@ -58,6 +59,8 @@ public class EntityInfoUI : MonoBehaviour
         healthSlider.value = character.trueStats.health;    //Set current HP
         if (healthText)
             healthText.text = Mathf.RoundToInt(character.trueStats.health).ToString();
+        if (sprite)
+            sprite.sprite = character.entity.sprite;
         if (elementIcon)
             elementIcon.sprite = character.entity.element.elementImage;
         if (classIcon)

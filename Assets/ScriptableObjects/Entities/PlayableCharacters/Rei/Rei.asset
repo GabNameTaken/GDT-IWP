@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 051ef955da516d4478c35927aa5a4b3f, type: 3}
   m_Name: Rei
   m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: 0221ddcb0bcb5414989d60fea2409780, type: 3}
   _entityName: Rei
   _classType: {fileID: 11400000, guid: 8767eb3d8348bd142a5a5bb48a9d3b15, type: 2}
   _element: {fileID: 11400000, guid: f3ae20cabd8ad7445ba5f1274ab38d55, type: 2}

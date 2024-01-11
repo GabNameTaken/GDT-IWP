@@ -130,9 +130,12 @@ public class Skill : ScriptableObject
         //check for crit
         //(Attack - EnemyDef + scalingMultiplier) * cdmg (if it crits) * multiplier
         if (IsCriticalHit(attacker.trueStats.critRate))
-            damage = (int)Mathf.Round((attacker.trueStats.attack * (multiplier + additionalScalings) - attackee.trueStats.defense/2) * (attacker.trueStats.critDMG / 100));
+            damage = (int)Mathf.Round((attacker.trueStats.attack * (multiplier + additionalScalings) - attackee.trueStats.defense) * (attacker.trueStats.critDMG / 100));
         else
-            damage = (int)Mathf.Round((attacker.trueStats.attack * (multiplier + additionalScalings) - attackee.trueStats.defense/2));
+            damage = (int)Mathf.Round((attacker.trueStats.attack * (multiplier + additionalScalings) - attackee.trueStats.defense));
+
+        if (damage <= 0)
+            damage = 10;
 
         return damage;
     }

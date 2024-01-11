@@ -101,6 +101,17 @@ public class PlayableCharacter : EntityBase
         }
     }
 
+    void RotateToTarget()
+    {
+        // Calculate the direction vector towards the enemy
+        Vector3 directionToEnemy = (listOfTargets[currentTargetNum].transform.position - transform.position).normalized;
+
+        // Calculate the rotation quaternion to look in that direction
+        Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy, Vector3.up);
+
+        transform.DORotateQuaternion(targetRotation, 0.2f);
+    }
+
     void SelectTargets(Skill.SKILL_TARGET_TEAM targettedTeam, Skill.SKILL_TARGETS targetType, bool turnOffHighlights)
     {
         foreach (EntityBase entity in listOfTargets)
@@ -134,13 +145,21 @@ public class PlayableCharacter : EntityBase
         switch (targetType)
         {
             case Skill.SKILL_TARGETS.SINGLE_TARGET:
+                if (currentTargetNum >= listOfTargets.Count)
+                    currentTargetNum = 0;
                 listOfTargets[currentTargetNum].outline.eraseRenderer = turnOffHighlights;
                 targets.Add(listOfTargets[currentTargetNum]);
+                if (targettedTeam == Skill.SKILL_TARGET_TEAM.ENEMY)
+                    RotateToTarget();
                 break;
 
             case Skill.SKILL_TARGETS.ADJACENT:
+                if (currentTargetNum >= listOfTargets.Count)
+                    currentTargetNum = 0;
                 listOfTargets[currentTargetNum].outline.eraseRenderer = turnOffHighlights;
                 targets.Add(listOfTargets[currentTargetNum]);
+                if (targettedTeam == Skill.SKILL_TARGET_TEAM.ENEMY)
+                    RotateToTarget();
 
                 if (currentTargetNum - 1 >= 0)
                 {
@@ -158,6 +177,7 @@ public class PlayableCharacter : EntityBase
                 foreach (EntityBase entity in listOfTargets)
                     entity.outline.eraseRenderer = turnOffHighlights;
                 targets.AddRange(listOfTargets);
+
                 break;
 
             case Skill.SKILL_TARGETS.NONE:

@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Base/Entity")]
 public class Entity : ScriptableObject
 {
+    [SerializeField] Sprite _sprite;
+    public Sprite sprite => _sprite;
+
     [SerializeField] string _entityName;
     public string entityName => _entityName;
 

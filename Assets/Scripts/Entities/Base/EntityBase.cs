@@ -19,7 +19,6 @@ public class EntityBase : MonoBehaviour
     [SerializeField] protected SkillSet skillSet;
 
     public List<StatusEffect> statusEffectList = new();
-    StatusEffectUI statusEffectUI;
     public EntityInfoUI entityInfoUI;
 
     public System.Action<float> TurnMeterChangedEvent;
@@ -78,8 +77,7 @@ public class EntityBase : MonoBehaviour
 
     protected virtual void Awake()
     {
-        if (entityInfoUI)
-            statusEffectUI = entityInfoUI.statusEffectUI;
+
     }
 
     public virtual void TakeDamage(float damage, Element element)
@@ -241,7 +239,7 @@ public class EntityBase : MonoBehaviour
     {
         statusEffect.StatusEffectData.OnStatusEffectRemove(statusEffect.giver, statusEffect.receiver);
         statusEffectList.Remove(statusEffect);
-        statusEffectUI.RemoveStatus(statusEffect.icon);
+        entityInfoUI.statusEffectUI.RemoveStatus(statusEffect.icon);
     }
 
     protected IEnumerator StartingTurn()
