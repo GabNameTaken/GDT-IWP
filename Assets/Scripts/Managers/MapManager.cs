@@ -23,6 +23,8 @@ public class MapManager : MonoBehaviour
     public int currentMapNum = 0;
     public GameObject currentMap;
 
+    public GameObject battleground { get; private set; }
+
     private void Start()
     {
         SetMap();
@@ -42,5 +44,6 @@ public class MapManager : MonoBehaviour
     {
         currentMap = Instantiate(map[currentMapNum]);
         GameController.Instance.CombatSetup(currentMap.GetComponent<CombatZone>());
+        battleground = currentMap.GetComponent<CombatZone>().battleground;
     }
 }

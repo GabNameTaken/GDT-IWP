@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Linq;
 
-[CreateAssetMenu(menuName = "Skills/Single Target Debuff Attack")]
-public class SingleTargetDebuffAttack : Skill
+[CreateAssetMenu(menuName ="Skills/Single Target Heal Attack")]
+public class SingleTargetHealAttack : Skill
 {
     [SerializeField] string animationStr;
-    [SerializeField] List<StatusEffectData> debuffs;
-    public float statusEffectChance = 0.50f;
-    public int debuffTurns = 2;
+    [SerializeField] float healMultiplier;
     public float excessTurnMeter = 0;
     public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
@@ -31,11 +30,10 @@ public class SingleTargetDebuffAttack : Skill
 
     protected override void ApplyEffects(EntityBase attacker, List<EntityBase> attackeeList)
     {
-        foreach (StatusEffectData debuff in debuffs)
-        {
-            if (RunProbability(statusEffectChance))
-                attackeeList[0].AddStatusEffect(InitStatusEffect(attacker, attackeeList[0], debuffTurns, debuff));
-        }
+        EntityBase enemyWithLowestPercentageHP = CombatManager.Instance.EnemyParty
+            .OrderBy(enemy => enemy.trueStats.health / enemy.trueStats.maxHealth)
+            .FirstOrDefault();
+        enemyWithLowestPercentageHP.TakeDamage(-(enemyWithLowestPercentageHP.trueStats.maxHealth * healMultiplier), null);
         attacker.excessTurnMeter += excessTurnMeter;
     }
 }

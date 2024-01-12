@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-[CreateAssetMenu(menuName = "Skills/Single Target Debuff Attack")]
-public class SingleTargetDebuffAttack : Skill
+[CreateAssetMenu(menuName = "Skills/Adjacent Debuff Attack")]
+public class AdjacentDebuffAttack : Skill
 {
     [SerializeField] string animationStr;
     [SerializeField] List<StatusEffectData> debuffs;
@@ -24,7 +24,7 @@ public class SingleTargetDebuffAttack : Skill
         {
             attacker.animator.Play(animationStr);
             CombatManager.Instance.turnCharge.AddEther(1);
-            CameraManager.Instance.MoveCamera(attackeeList[0].gameObject, CAMERA_POSITIONS.HIGH_FRONT_SELF, 0f);
+            CameraManager.Instance.MoveCamera(MapManager.Instance.battleground, CAMERA_POSITIONS.PLAYER_TEAM_FRONT, 0f);
             base.Use(attacker, attackeeList);
         });
     }
@@ -33,8 +33,11 @@ public class SingleTargetDebuffAttack : Skill
     {
         foreach (StatusEffectData debuff in debuffs)
         {
-            if (RunProbability(statusEffectChance))
-                attackeeList[0].AddStatusEffect(InitStatusEffect(attacker, attackeeList[0], debuffTurns, debuff));
+            foreach (EntityBase attackee in attackeeList)
+            {
+                if (RunProbability(statusEffectChance))
+                    attackee.AddStatusEffect(InitStatusEffect(attacker, attackee, debuffTurns, debuff));
+            }
         }
         attacker.excessTurnMeter += excessTurnMeter;
     }

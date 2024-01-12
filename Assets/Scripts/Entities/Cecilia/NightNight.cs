@@ -16,7 +16,7 @@ public class NightNight : Skill
         base.Use(attacker, attackeeList);
     }
 
-    protected override void ApplyStatusEffects(EntityBase attacker, List<EntityBase> attackeeList)
+    protected override void ApplyEffects(EntityBase attacker, List<EntityBase> attackeeList)
     {
         if(RunProbability(debuffChance))
             attackeeList[0].AddStatusEffect(new StatusEffect(attacker, attackeeList[0], 1, statusEffectData));

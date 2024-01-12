@@ -29,7 +29,7 @@ public class Enemy : EntityBase
 
     public override void TakeTurn()
     {
-        CameraManager.Instance.MoveCamera(MapManager.Instance.currentMap.transform.Find("CombatSetup").gameObject, CAMERA_POSITIONS.PLAYER_TEAM_BACK, 1f);
+        CameraManager.Instance.MoveCamera(MapManager.Instance.battleground, CAMERA_POSITIONS.PLAYER_TEAM_BACK, 1f);
         base.TakeTurn();
     }
 

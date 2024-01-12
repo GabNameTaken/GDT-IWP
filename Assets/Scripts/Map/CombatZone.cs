@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CombatZone : MonoBehaviour
 {
+    public GameObject battleground;
     [SerializeField] Transform playerTransform, enemyTransform;
 
     [Header("Waves")]
@@ -19,9 +20,8 @@ public class CombatZone : MonoBehaviour
 
         InstantiateWave();
 
-        CameraManager.Instance.MoveCamera(transform.Find("CombatSetup").gameObject, CAMERA_POSITIONS.PLAYER_TEAM_BACK, 0f);
+        CameraManager.Instance.MoveCamera(battleground, CAMERA_POSITIONS.PLAYER_TEAM_BACK, 0f);
         CombatManager combatManager = CombatManager.Instance;
-        //combatManager.StartBattle(this);
         combatManager.WaveClearedEvent += OnWaveCleared;
     }
 

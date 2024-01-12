@@ -127,7 +127,7 @@ public class PlayableCharacter : EntityBase
         if (targettedTeam == Skill.SKILL_TARGET_TEAM.ALLY)
         {
             listOfTargets.AddRange(allies);
-            CameraManager.Instance.MoveCamera(MapManager.Instance.currentMap.transform.Find("CombatSetup").gameObject, CAMERA_POSITIONS.PLAYER_TEAM_FRONT, 0.5f);
+            CameraManager.Instance.MoveCamera(MapManager.Instance.battleground, CAMERA_POSITIONS.PLAYER_TEAM_FRONT, 0.5f);
             invertTargetting = true;
         }
         else if (targettedTeam == Skill.SKILL_TARGET_TEAM.ENEMY)

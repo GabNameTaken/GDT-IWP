@@ -6,6 +6,7 @@ using DG.Tweening;
 [CreateAssetMenu(menuName = "Skills/Light Slash")]
 public class LightSlash : Skill
 {
+    [SerializeField] float pushBackTurnMeter = 15f;
     public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
         attacker.originalPosition = attacker.transform.position;
@@ -25,8 +26,8 @@ public class LightSlash : Skill
         });
     }
 
-    protected override void ApplyStatusEffects(EntityBase attacker, List<EntityBase> attackeeList)
+    protected override void ApplyEffects(EntityBase attacker, List<EntityBase> attackeeList)
     {
-        attackeeList[0].TurnMeter -= 20;
+        attackeeList[0].TurnMeter -= pushBackTurnMeter;
     }
 }

@@ -31,14 +31,14 @@ public class SingleTargetDetonationAttack : Skill
         });
     }
 
-    protected override void ApplyStatusEffects(EntityBase attacker, List<EntityBase> attackeeList)
+    protected override void ApplyEffects(EntityBase attacker, List<EntityBase> attackeeList)
     {
         foreach (StatusEffectData debuff in debuffs)
         {
             if (RunProbability(statusEffectChance))
                 attackeeList[0].AddStatusEffect(InitStatusEffect(attacker, attackeeList[0], debuffTurns, debuff));
         }
-        attacker.excessTurnMeter = excessTurnMeter;
+        attacker.excessTurnMeter += excessTurnMeter;
         Detonate(attacker, attackeeList);
     }
 

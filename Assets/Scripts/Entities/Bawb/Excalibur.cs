@@ -29,7 +29,7 @@ public class Excalibur : Skill
         });
     }
 
-    protected override void ApplyStatusEffects(EntityBase attacker, List<EntityBase> attackeeList)
+    protected override void ApplyEffects(EntityBase attacker, List<EntityBase> attackeeList)
     {
         foreach (StatusEffectData data in buffs)
         {
