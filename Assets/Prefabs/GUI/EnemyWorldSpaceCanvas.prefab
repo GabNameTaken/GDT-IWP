@@ -63,6 +63,8 @@ MonoBehaviour:
   healthText: {fileID: 0}
   nameText: {fileID: 0}
   _statusEffectUI: {fileID: 3134197777135300153}
+  skillSetUI: {fileID: 3363079293246091784}
+  skillUIPrefab: {fileID: 7616499359163045801, guid: 9b9a06e289cfbb84f89a18281d2ed66c, type: 3}
 --- !u!1 &875359720847435302
 GameObject:
   m_ObjectHideFlags: 0

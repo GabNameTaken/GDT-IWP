@@ -8,7 +8,7 @@ public class WeakenDebuffData : StatusEffectData
     [SerializeField] float weakenAttackMultiplier;
     public override void OnStatusEffectAdd(EntityBase source, EntityBase dest)
     {
-        dest.trueStats.attack /= (weakenAttackMultiplier / 100f);
+        dest.trueStats.attack *= weakenAttackMultiplier;
 
         SkillParticle particle = Instantiate(particlePrefab, dest.transform);
         particle.Play();
@@ -20,6 +20,6 @@ public class WeakenDebuffData : StatusEffectData
 
     public override void OnStatusEffectRemove(EntityBase source, EntityBase dest)
     {
-        dest.trueStats.attack *= (weakenAttackMultiplier / 100f);
+        dest.trueStats.attack /= weakenAttackMultiplier;
     }
 }

@@ -601,7 +601,7 @@ MonoBehaviour:
     speed: 0
     critRate: 0
     critDMG: 0
-  skillSet:
+  _skillSet:
     skillList: []
   entityInfoUI: {fileID: 6748069907415753213}
   excessTurnMeter: 0
@@ -1367,6 +1367,10 @@ PrefabInstance:
     - target: {fileID: 1737188067897959288, guid: a0a23d607af9cc048afd1c7670a12a37, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7781237006330505307, guid: a0a23d607af9cc048afd1c7670a12a37, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0a23d607af9cc048afd1c7670a12a37, type: 3}

@@ -9,7 +9,7 @@ public class SleepDebuffData : StatusEffectData
     {
         SkillParticle particle = Instantiate(particlePrefab, dest.transform);
         particle.Play();
-        dest.asleep = true;
+        dest.Sleep(true);
     }
 
     public override void ApplyEffect(EntityBase source, EntityBase dest)
@@ -19,6 +19,6 @@ public class SleepDebuffData : StatusEffectData
 
     public override void OnStatusEffectRemove(EntityBase source, EntityBase dest)
     {
-        dest.asleep = false;
+        dest.Sleep(false);
     }
 }

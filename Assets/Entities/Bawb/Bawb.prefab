@@ -1346,7 +1346,7 @@ MonoBehaviour:
     speed: 0
     critRate: 0
     critDMG: 0
-  skillSet:
+  _skillSet:
     skillList: []
   entityInfoUI: {fileID: 7749969028556945820}
   excessTurnMeter: 0
@@ -2656,6 +2656,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2066896392038131574}
     m_Modifications:
+    - target: {fileID: 806649272955456491, guid: a0a23d607af9cc048afd1c7670a12a37, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 875359720847435302, guid: a0a23d607af9cc048afd1c7670a12a37, type: 3}
       propertyPath: m_Name
       value: EnemyWorldSpaceCanvas
@@ -2664,6 +2668,14 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 3324462712704553807}
+    - target: {fileID: 1157542801122700668, guid: a0a23d607af9cc048afd1c7670a12a37, type: 3}
+      propertyPath: skillSetUI
+      value: 
+      objectReference: {fileID: 6138703172177716968}
+    - target: {fileID: 1157542801122700668, guid: a0a23d607af9cc048afd1c7670a12a37, type: 3}
+      propertyPath: skillUIPrefab
+      value: 
+      objectReference: {fileID: 7616499359163045801, guid: 9b9a06e289cfbb84f89a18281d2ed66c, type: 3}
     - target: {fileID: 1327657040732742698, guid: a0a23d607af9cc048afd1c7670a12a37, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2752,6 +2764,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7781237006330505307, guid: a0a23d607af9cc048afd1c7670a12a37, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0a23d607af9cc048afd1c7670a12a37, type: 3}
 --- !u!223 &1093025963938327604 stripped
@@ -2770,6 +2786,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6138703172177716968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3363079293246091784, guid: a0a23d607af9cc048afd1c7670a12a37, type: 3}
+  m_PrefabInstance: {fileID: 8907276523951674592}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7634104691822637258 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1327657040732742698, guid: a0a23d607af9cc048afd1c7670a12a37, type: 3}

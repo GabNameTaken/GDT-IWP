@@ -47,6 +47,8 @@ public class EntityInfoUI : MonoBehaviour
             elementIcon.sprite = character.entity.element.elementImage;
         if (classIcon)
             classIcon.sprite = character.entity.classType.classImage;
+        if (skillSetUI)
+            SetUpSkillUI();
     }
 
     public void UpdateHealthUI()
@@ -68,13 +70,16 @@ public class EntityInfoUI : MonoBehaviour
             UI.GetComponent<Slider>().maxValue = character.skillSet.SkillDict[code].cooldown;
             skillUIs.Add(code, UI);
         }
+        UpdateSkillUI();
     }
 
     public void UpdateSkillUI()
     {
+        if (!skillSetUI)
+            return;
         foreach (SKILL_CODE code in skillUIs.Keys)
         {
-            skillUIs[code].GetComponent<Slider>().value = character.skillSet.SkillDict[code].currentCooldown;
+            skillUIs[code].GetComponent<Slider>().value = character.skillSet.SkillDict[code].cooldown - character.skillSet.SkillDict[code].currentCooldown;
         }
     }
 }

@@ -32,7 +32,7 @@ public class EntityBase : MonoBehaviour
 
     public float excessTurnMeter;
 
-    public bool asleep = false;
+    public bool asleep { get; private set; } = false;
     public bool unableToAct = false;
     public bool isMoving = false;
 
@@ -85,16 +85,16 @@ public class EntityBase : MonoBehaviour
     {
         if (damage > 0)
         {
+            if (asleep)
+            {
+                StatusEffect sleep = statusEffectList.FirstOrDefault(effect => effect.StatusEffectData.statusEffectName == "Sleep");
+                RemoveStatusEffect(sleep);
+            }
             animator.Play("GetHit");
             if (element && hitParticleSystem)
             {
                 hitParticleSystem.startColor = element.elementColor;
                 hitParticleSystem.Play();
-            }
-            if (asleep)
-            {
-                StatusEffect sleep = statusEffectList.FirstOrDefault(effect => effect.StatusEffectData.statusEffectName == "Sleep");
-                RemoveStatusEffect(sleep);
             }
         }
         else if (damage < 0)
@@ -118,6 +118,7 @@ public class EntityBase : MonoBehaviour
     protected virtual void Attack(Skill skill)
     {
         skill.currentCooldown = skill.cooldown;
+        entityInfoUI.UpdateSkillUI();
     }
 
     public void OnDeath()
@@ -213,6 +214,7 @@ public class EntityBase : MonoBehaviour
                 skillSet.SkillDict[(SKILL_CODE)i].currentCooldown--;
         }
         CombatUIManager.Instance.DisplaySkillCooldown(skillSet);
+        entityInfoUI.UpdateSkillUI();
         
         //play animation
         if (animator.HasState(0, Animator.StringToHash("Ready")))
@@ -270,6 +272,20 @@ public class EntityBase : MonoBehaviour
         listOfTargets.Clear();
         listOfTargets.Add(provoker);
         skillSet.SkillDict[SKILL_CODE.S1].Use(this, listOfTargets);
+    }
+
+    public void Sleep(bool sleep)
+    {
+        if (sleep)
+        {
+            asleep = sleep;
+            animator.Play("Dizzy");
+        }
+        else
+        {
+            asleep = sleep;
+            animator.Play("Idle");
+        }
     }
 
     public bool ContainsSkill(Skill skill)

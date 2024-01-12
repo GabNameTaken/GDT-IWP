@@ -19,4 +19,4 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: 8583a5efeb7622644aa85c052f20b3e5, type: 3}
   _stackable: 0
   _multiplier: 0
-  defenseBuffMultiplier: 150
+  defenseBuffMultiplier: 1.5

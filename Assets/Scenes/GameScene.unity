@@ -3140,10 +3140,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapZones:
-  - {fileID: 3559274696785205842, guid: 871b7fb815abe934e8d4f4bec249803a, type: 3}
+  - {fileID: 3559274696785205842, guid: 4b7411b495c32a142945f5c8435f4653, type: 3}
   - {fileID: 3559274696785205842, guid: e1ad7a73b7b7665498d771a6d9efb9f9, type: 3}
   - {fileID: 3559274696785205842, guid: dc2696d7722d98a47af6f384b72f8e3f, type: 3}
   - {fileID: 3559274696785205842, guid: 490df030d8275b14194ca212d9386056, type: 3}
+  - {fileID: 3559274696785205842, guid: 871b7fb815abe934e8d4f4bec249803a, type: 3}
   currentMapNum: 0
   currentMap: {fileID: 0}
 --- !u!1 &662274888
@@ -3855,6 +3856,8 @@ MonoBehaviour:
   healthText: {fileID: 1150429466}
   nameText: {fileID: 1520902368}
   _statusEffectUI: {fileID: 1642967426}
+  skillSetUI: {fileID: 0}
+  skillUIPrefab: {fileID: 0}
 --- !u!1 &787486403
 GameObject:
   m_ObjectHideFlags: 0
@@ -8157,6 +8160,8 @@ MonoBehaviour:
   healthText: {fileID: 1734992685}
   nameText: {fileID: 486025790}
   _statusEffectUI: {fileID: 1218700863}
+  skillSetUI: {fileID: 0}
+  skillUIPrefab: {fileID: 0}
 --- !u!1 &1746341470
 GameObject:
   m_ObjectHideFlags: 0
@@ -8789,6 +8794,8 @@ MonoBehaviour:
   healthText: {fileID: 1372399288}
   nameText: {fileID: 885022849}
   _statusEffectUI: {fileID: 1654012146}
+  skillSetUI: {fileID: 0}
+  skillUIPrefab: {fileID: 0}
 --- !u!1 &1896052518
 GameObject:
   m_ObjectHideFlags: 0
@@ -8852,6 +8859,8 @@ MonoBehaviour:
   healthText: {fileID: 663830169}
   nameText: {fileID: 887040424}
   _statusEffectUI: {fileID: 408822866}
+  skillSetUI: {fileID: 0}
+  skillUIPrefab: {fileID: 0}
 --- !u!1 &1899164286
 GameObject:
   m_ObjectHideFlags: 0
@@ -10013,6 +10022,8 @@ MonoBehaviour:
   healthText: {fileID: 835716712}
   nameText: {fileID: 787486405}
   _statusEffectUI: {fileID: 307669479}
+  skillSetUI: {fileID: 0}
+  skillUIPrefab: {fileID: 0}
 --- !u!1 &2136520237
 GameObject:
   m_ObjectHideFlags: 0

@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 183174845570571689}
   - component: {fileID: 6809732204073232736}
   m_Layer: 0
-  m_Name: Area3
+  m_Name: Area4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,14 +122,13 @@ MonoBehaviour:
     xPositionSpacing: 3
     enemyPrefabs:
     - {fileID: 2066896392038628118, guid: 6d218609a4228c443a672270f2989f31, type: 3}
-    - {fileID: 1524411113276028, guid: a091f8dfb057503499c7d4c5252304dc, type: 3}
+    - {fileID: 875073071404757921, guid: c9fcf61291fe96a43af0c83a537f05b9, type: 3}
   - playerPosition: {fileID: 5240759327829530664}
     enemyPosition: {fileID: 8698283673993743571}
     xPositionSpacing: 3
     enemyPrefabs:
-    - {fileID: 1524411113276028, guid: a091f8dfb057503499c7d4c5252304dc, type: 3}
-    - {fileID: 1931298151966786, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
-    - {fileID: 1524411113276028, guid: a091f8dfb057503499c7d4c5252304dc, type: 3}
+    - {fileID: 875073071404757921, guid: c9fcf61291fe96a43af0c83a537f05b9, type: 3}
+    - {fileID: 875073071404757921, guid: c9fcf61291fe96a43af0c83a537f05b9, type: 3}
 --- !u!1 &4342402656155778763
 GameObject:
   m_ObjectHideFlags: 0

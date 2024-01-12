@@ -115,7 +115,7 @@ public class Skill : ScriptableObject
 
         ApplyStatusEffects(attacker, attackeeList);
 
-        yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.7f);
+        yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.8f);
 
         attacker.PostSkill();
     }

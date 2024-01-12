@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051ef955da516d4478c35927aa5a4b3f, type: 3}
+  m_Name: Madshroom
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: 0}
+  _entityName: Madshroom
+  _classType: {fileID: 11400000, guid: a7ba9619f0396aa40aca467f974627d3, type: 2}
+  _element: {fileID: 11400000, guid: 5f7c5c6e3c8f99649aac3baef2874f2f, type: 2}
+  _baseStats: {fileID: 11400000, guid: 27a66d467e83d6846a629587d164dbd9, type: 2}
+  _baseSkillSet:
+    skillList:
+    - skillCode: 0
+      skill: {fileID: 11400000, guid: ab92c15e3a727d043aa9d1b9f41f00f8, type: 2}
+    - skillCode: 1
+      skill: {fileID: 11400000, guid: a966781a9ee626548bb3c9f4f6963c6b, type: 2}
+    - skillCode: 2
+      skill: {fileID: 11400000, guid: 200951e567d09bc468a512916e8d87b3, type: 2}

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 758a44e7913dd30439ea74d128f1c91c, type: 3}
-  m_Name: BawbStats
+  m_Name: MadshroomStats
   m_EditorClassIdentifier: 
   stats:
-    maxHealth: 8600
-    health: 8600
-    defense: 850
-    attack: 1153
-    speed: 105
-    critRate: 100
+    maxHealth: 5883
+    health: 5883
+    defense: 258
+    attack: 1127
+    speed: 107
+    critRate: 15
     critDMG: 150

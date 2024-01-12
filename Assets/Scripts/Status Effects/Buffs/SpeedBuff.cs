@@ -9,7 +9,7 @@ public class SpeedBuff : StatusEffectData
 
     public override void OnStatusEffectAdd(EntityBase source, EntityBase dest)
     {
-        dest.trueStats.speed *= Mathf.RoundToInt(speedBuffMultiplier / 100f);
+        dest.trueStats.speed *= Mathf.RoundToInt(speedBuffMultiplier);
         SkillParticle particle = Instantiate(particlePrefab, dest.transform);
         particle.Play();
     }
@@ -20,6 +20,6 @@ public class SpeedBuff : StatusEffectData
 
     public override void OnStatusEffectRemove(EntityBase source, EntityBase dest)
     {
-        dest.trueStats.speed /= Mathf.RoundToInt(speedBuffMultiplier / 100f);
+        dest.trueStats.speed /= Mathf.RoundToInt(speedBuffMultiplier);
     }
 }

@@ -19,6 +19,7 @@ public class Lunge : Skill
         {
             attacker.animator.Play("LungeAttack");
             CombatManager.Instance.turnCharge.AddEther(1);
+            CameraManager.Instance.MoveCamera(attackeeList[0].gameObject, CAMERA_POSITIONS.HIGH_FRONT_SELF, 0f);
             base.Use(attacker, attackeeList);
         });
     }
