@@ -10,6 +10,8 @@ public class SingleTargetHealAttack : Skill
     [SerializeField] string animationStr;
     [SerializeField] float healMultiplier;
     public float excessTurnMeter = 0;
+
+    EntityBase healedEntity = null;
     public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
         attacker.originalPosition = attacker.transform.position;
@@ -30,10 +32,35 @@ public class SingleTargetHealAttack : Skill
 
     protected override void ApplyEffects(EntityBase attacker, List<EntityBase> attackeeList)
     {
-        EntityBase enemyWithLowestPercentageHP = CombatManager.Instance.EnemyParty
+        attacker.excessTurnMeter += excessTurnMeter;
+    }
+
+    protected override IEnumerator SkillAnimationCoroutine(EntityBase attacker, List<EntityBase> attackeeList)
+    {
+        yield return null;
+
+        yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.3f);
+
+        foreach (EntityBase attackee in attackeeList)
+            if (!attackee.IsDead)
+                attackee.TakeDamage(CalculateDamage(attacker, attackee), attacker.entity.element);
+
+        ApplyEffects(attacker, attackeeList);
+
+        yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.8f);
+
+        healedEntity = CombatManager.Instance.EnemyParty
             .OrderBy(enemy => enemy.trueStats.health / enemy.trueStats.maxHealth)
             .FirstOrDefault();
-        enemyWithLowestPercentageHP.TakeDamage(-(enemyWithLowestPercentageHP.trueStats.maxHealth * healMultiplier), null);
-        attacker.excessTurnMeter += excessTurnMeter;
+
+        CameraManager.Instance.MoveCamera(healedEntity.gameObject, CAMERA_POSITIONS.HIGH_FRONT_SELF, 1f);
+
+        yield return new WaitForSeconds(1.2f);
+
+        healedEntity.TakeDamage(-(healedEntity.trueStats.maxHealth * healMultiplier), null);
+
+        yield return new WaitForSeconds(1.2f);
+
+        attacker.PostSkill();
     }
 }

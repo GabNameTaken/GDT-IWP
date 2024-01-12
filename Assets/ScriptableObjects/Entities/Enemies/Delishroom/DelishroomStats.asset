@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: DelishroomStats
   m_EditorClassIdentifier: 
   stats:
-    maxHealth: 0
-    health: 0
-    defense: 0
-    attack: 0
-    speed: 0
-    critRate: 0
-    critDMG: 0
+    maxHealth: 6694
+    health: 6694
+    defense: 894
+    attack: 1183
+    speed: 99
+    critRate: 15
+    critDMG: 150

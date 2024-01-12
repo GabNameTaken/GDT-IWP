@@ -124,6 +124,7 @@ MonoBehaviour:
     enemyPrefabs:
     - {fileID: 2066896392038628118, guid: 6d218609a4228c443a672270f2989f31, type: 3}
     - {fileID: 875073071404757921, guid: c9fcf61291fe96a43af0c83a537f05b9, type: 3}
+    - {fileID: 1997902569578628670, guid: 459722ec8139cef4391a6fd262587346, type: 3}
   - playerPosition: {fileID: 5240759327829530664}
     enemyPosition: {fileID: 8698283673993743571}
     xPositionSpacing: 3

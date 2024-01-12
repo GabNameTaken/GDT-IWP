@@ -16,7 +16,7 @@ MonoBehaviour:
   targets: 0
   _skillName: Delicious
   _skillDesc: Attacks the target and heals the ally with the lowest HP proportional
-    to their max HP.
+    to 8% of their max HP.
   _skillIcon: {fileID: 0}
   _skillCost: 0
   readyAnimationString: 
@@ -25,5 +25,5 @@ MonoBehaviour:
   currentCooldown: 0
   _multiplier: 1.3
   animationStr: DeliciousAttack
-  healMultiplier: 0.04
+  healMultiplier: 0.08
   excessTurnMeter: 0

@@ -213,7 +213,8 @@ public class EntityBase : MonoBehaviour
             if (skillSet.SkillDict[(SKILL_CODE)i].currentCooldown > 0)
                 skillSet.SkillDict[(SKILL_CODE)i].currentCooldown--;
         }
-        CombatUIManager.Instance.DisplaySkillCooldown(skillSet);
+        if (GetComponent<PlayableCharacter>())
+            CombatUIManager.Instance.DisplaySkillCooldown(skillSet);
         entityInfoUI.UpdateSkillUI();
         
         //play animation
