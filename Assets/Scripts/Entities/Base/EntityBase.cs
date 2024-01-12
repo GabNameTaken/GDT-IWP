@@ -16,7 +16,8 @@ public class EntityBase : MonoBehaviour
     public Entity entity;
     [HideInInspector] public Stats trueStats;
 
-    [SerializeField] protected SkillSet skillSet;
+    [SerializeField] protected SkillSet _skillSet;
+    public SkillSet skillSet => _skillSet;
 
     public List<StatusEffect> statusEffectList = new();
     public EntityInfoUI entityInfoUI;

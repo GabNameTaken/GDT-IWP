@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class EntityInfoUI : MonoBehaviour
 {
@@ -18,29 +19,10 @@ public class EntityInfoUI : MonoBehaviour
     [SerializeField] StatusEffectUI _statusEffectUI;
     public StatusEffectUI statusEffectUI => _statusEffectUI;
 
-    //private void Awake()
-    //{
-    //    if (!nameText)
-    //    {
-    //        if (transform.Find("Name"))
-    //            nameText = transform.Find("Name").GetComponent<TMP_Text>();
-    //    }
-    //    if (!healthText)
-    //    {
-    //        if (transform.Find("HealthText"))
-    //            healthText = transform.Find("HealthText").GetComponent<TMP_Text>();
-    //    }
-    //    if (!healthSlider)
-    //    {
-    //        if (transform.Find("HealthBarSlider"))
-    //            healthSlider = transform.Find("HealthBarSlider").GetComponent<Slider>();
-    //    }
-    //    if (!elementIcon)
-    //    {
-    //        if (transform.Find("ElementIcon"))
-    //            elementIcon = transform.Find("ElementIcon").GetComponent<Image>();
-    //    }
-    //}
+    [Header("Enemy UI")]
+    Dictionary<SKILL_CODE, GameObject> skillUIs = new();
+    [SerializeField] GameObject skillSetUI;
+    [SerializeField] GameObject skillUIPrefab;
 
     private void Start()
     {
@@ -66,11 +48,33 @@ public class EntityInfoUI : MonoBehaviour
         if (classIcon)
             classIcon.sprite = character.entity.classType.classImage;
     }
+
     public void UpdateHealthUI()
     {
         healthSlider.maxValue = character.trueStats.maxHealth;  //Update Max HP
         healthSlider.value = character.trueStats.health;    //Set current HP
         if (healthText)
             healthText.text = Mathf.RoundToInt(character.trueStats.health).ToString();
+    }
+
+    void SetUpSkillUI()
+    {
+        foreach (Skill skill in character.skillSet.SkillDict.Values)
+        {
+            if (character.skillSet.SkillDict[SKILL_CODE.S1] == skill)
+                continue;
+            SKILL_CODE code = character.skillSet.SkillDict.FirstOrDefault(x => x.Value == skill).Key;
+            GameObject UI = Instantiate(skillUIPrefab, skillSetUI.transform);
+            UI.GetComponent<Slider>().maxValue = character.skillSet.SkillDict[code].cooldown;
+            skillUIs.Add(code, UI);
+        }
+    }
+
+    public void UpdateSkillUI()
+    {
+        foreach (SKILL_CODE code in skillUIs.Keys)
+        {
+            skillUIs[code].GetComponent<Slider>().value = character.skillSet.SkillDict[code].currentCooldown;
+        }
     }
 }

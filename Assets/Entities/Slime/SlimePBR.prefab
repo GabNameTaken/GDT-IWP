@@ -512,7 +512,6 @@ MonoBehaviour:
     critDMG: 0
   skillSet:
     skillList: []
-  statusEffectUI: {fileID: 155535063555956509}
   entityInfoUI: {fileID: 4127004930379848792}
   excessTurnMeter: 0
   asleep: 0
@@ -609,6 +608,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4047972025199878}
     m_Modifications:
+    - target: {fileID: 806649272955456491, guid: a0a23d607af9cc048afd1c7670a12a37, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 875359720847435302, guid: a0a23d607af9cc048afd1c7670a12a37, type: 3}
       propertyPath: m_Name
       value: WorldSpaceCanvas
@@ -716,17 +719,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &155535063555956509 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3134197777135300153, guid: a0a23d607af9cc048afd1c7670a12a37, type: 3}
-  m_PrefabInstance: {fileID: 2978702435182784804}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d5f1cabffdd7d9439ea56abaa65bf5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &4127004930379848792 stripped

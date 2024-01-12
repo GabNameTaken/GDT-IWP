@@ -17,7 +17,7 @@ public class Enemy : EntityBase
 
     override protected void Awake()
     {
-        skillSet = new SkillSet(entity.baseSkillSet);
+        _skillSet = new SkillSet(entity.baseSkillSet);
         trueStats = new Stats(entity.baseStats.Stats);
         worldSpaceCanvas.worldCamera = Camera.main;
         for (int i = 0; i < skillSet.SkillDict.Count; i++)
