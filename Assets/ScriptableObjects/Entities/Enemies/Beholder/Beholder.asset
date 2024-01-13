@@ -18,4 +18,12 @@ MonoBehaviour:
   _element: {fileID: 11400000, guid: 8f1783046292f954abb811a4a6668d55, type: 2}
   _baseStats: {fileID: 11400000, guid: 94e6917eda463dd48a06a65c1e18ffaa, type: 2}
   _baseSkillSet:
-    skillList: []
+    skillList:
+    - skillCode: 0
+      skill: {fileID: 0}
+    - skillCode: 0
+      skill: {fileID: 0}
+    - skillCode: 0
+      skill: {fileID: 0}
+    - skillCode: 3
+      skill: {fileID: 11400000, guid: 7137711356b99fb4d9204b45055cb070, type: 2}

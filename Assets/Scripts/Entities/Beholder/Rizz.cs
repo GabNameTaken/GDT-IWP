@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PassiveSkills/AOE DMG Reducation")]
-public class AOEDamageReductionPassive : Skill
+[CreateAssetMenu(menuName = "PassiveSkills/Rizz")]
+public class Rizz : Skill
 {
     public override void OnBattleStart()
     {
@@ -17,7 +17,7 @@ public class AOEDamageReductionPassive : Skill
 
     public void Activate(EntityBase entityBase)
     {
-        if (!entityBase.ContainsSkill(this))
+        if (entityBase.ContainsSkill(this) || entityBase.GetComponent<PlayableCharacter>())
             return;
 
         entityBase.damageTaken *= multiplier;
