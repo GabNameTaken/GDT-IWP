@@ -29,5 +29,7 @@ public class LightSlash : Skill
     protected override void ApplyEffects(EntityBase attacker, List<EntityBase> attackeeList)
     {
         attackeeList[0].TurnMeter -= pushBackTurnMeter;
+        if (attackeeList[0].TurnMeter < 0)
+            attackeeList[0].TurnMeter = 0;
     }
 }

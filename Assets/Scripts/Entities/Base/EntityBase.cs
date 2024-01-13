@@ -36,6 +36,7 @@ public class EntityBase : MonoBehaviour
     public bool unableToAct = false;
     public bool isMoving = false;
 
+    [HideInInspector] public float damageTaken;
     public event System.Action<bool> IsDeadChangedEvent;
     private bool isDead = false;
     public bool IsDead
@@ -83,8 +84,10 @@ public class EntityBase : MonoBehaviour
 
     public virtual void TakeDamage(float damage, Element element)
     {
-        if (damage > 0)
+        damageTaken = damage;
+        if (damageTaken > 0)
         {
+            CombatManager.Instance.CallEntityTakeDamageEvent(this);
             if (asleep)
             {
                 StatusEffect sleep = statusEffectList.FirstOrDefault(effect => effect.StatusEffectData.statusEffectName == "Sleep");
@@ -97,13 +100,13 @@ public class EntityBase : MonoBehaviour
                 hitParticleSystem.Play();
             }
         }
-        else if (damage < 0)
+        else if (damageTaken < 0)
         {
             SkillParticle healingParticle = Instantiate(healingParticlePrefab, transform);
             healingParticle.Play();
         }
         
-        trueStats.health -= damage;
+        trueStats.health -= damageTaken;
         if (trueStats.health <= 0)
         {
             trueStats.health = 0;
