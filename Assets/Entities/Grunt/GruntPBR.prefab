@@ -333,10 +333,11 @@ MonoBehaviour:
     speed: 0
     critRate: 0
     critDMG: 0
-  skillSet:
+  _skillSet:
     skillList: []
-  statusEffectUI: {fileID: 0}
+  entityInfoUI: {fileID: 0}
   excessTurnMeter: 0
+  unableToAct: 0
   isMoving: 0
   turnMeterUI: {fileID: 0}
   hitParticleSystem: {fileID: 0}

@@ -510,11 +510,10 @@ MonoBehaviour:
     speed: 0
     critRate: 0
     critDMG: 0
-  skillSet:
+  _skillSet:
     skillList: []
   entityInfoUI: {fileID: 4127004930379848792}
   excessTurnMeter: 0
-  asleep: 0
   unableToAct: 0
   isMoving: 0
   turnMeterUI: {fileID: 0}

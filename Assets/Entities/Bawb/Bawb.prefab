@@ -1350,7 +1350,6 @@ MonoBehaviour:
     skillList: []
   entityInfoUI: {fileID: 7749969028556945820}
   excessTurnMeter: 0
-  asleep: 0
   unableToAct: 0
   isMoving: 0
   turnMeterUI: {fileID: 0}
