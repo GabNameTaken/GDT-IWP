@@ -112,7 +112,6 @@ public class PlayableCharacter : EntityBase
         transform.DORotateQuaternion(targetRotation, 0.2f);
     }
 
-    float selectTargetsDelay = 0.2f;
     void SelectTargets(Skill.SKILL_TARGET_TEAM targettedTeam, Skill.SKILL_TARGETS targetType, bool turnOffHighlights)
     {
         List<EntityBase> primaryTargets = new List<EntityBase>(), secondaryTargets = new List<EntityBase>();
@@ -189,7 +188,7 @@ public class PlayableCharacter : EntityBase
             case Skill.SKILL_TARGETS.NONE:
                 break;
         }
-        TargetingUIManager.Instance.RegisterTargets(targettedTeam, primaryTargets, secondaryTargets, selectTargetsDelay);
+        TargetingUIManager.Instance.RegisterTargets(targettedTeam, primaryTargets, secondaryTargets, CameraManager.Instance.cameraDelay);
     }
 
     void UseSkill(SKILL_CODE skill)

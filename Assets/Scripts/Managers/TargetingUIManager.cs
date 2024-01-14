@@ -8,7 +8,7 @@ public class TargetingUIManager : Singleton<TargetingUIManager>
     List<GameObject> targetUIList = new List<GameObject>();
     [SerializeField] GameObject enemyTargetPrefab, allyTargetPrefab;
 
-    [SerializeField] float secondaryTargetScale, yScaleOffset;
+    [SerializeField] float secondaryTargetScale, yScaleOffset, minCameraDelay;
     [SerializeField] Transform targetParent;
 
     Coroutine registerTargetsCoroutine;
@@ -17,6 +17,8 @@ public class TargetingUIManager : Singleton<TargetingUIManager>
     {
         ClearTargets();
         if (registerTargetsCoroutine != null) StopCoroutine(registerTargetsCoroutine);
+
+        if (delay < minCameraDelay) delay = minCameraDelay;
         registerTargetsCoroutine = StartCoroutine(RegisterTargetsCoroutine(targetTeam, mainTargets, secondaryTargets, delay));
     }
 
@@ -35,7 +37,7 @@ public class TargetingUIManager : Singleton<TargetingUIManager>
             GameObject newTargetUI = GameObject.Instantiate(targetTeam == Skill.SKILL_TARGET_TEAM.ENEMY ? enemyTargetPrefab : allyTargetPrefab, targetParent);
             RectTransform targetRectTransform = newTargetUI.GetComponent<RectTransform>();
 
-            targetRectTransform.anchoredPosition = Camera.main.WorldToScreenPoint(target.transform.position);
+            targetRectTransform.anchoredPosition = Camera.main.WorldToScreenPoint(target.GetComponent<EntityBase>().model.transform.position);
             targetRectTransform.anchoredPosition = new Vector2(targetRectTransform.anchoredPosition.x, targetRectTransform.anchoredPosition.y + targetRectTransform.rect.height * yScaleOffset);
 
             if (secondaryTargets.Contains(target))

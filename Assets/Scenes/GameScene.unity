@@ -8599,7 +8599,8 @@ MonoBehaviour:
   enemyTargetPrefab: {fileID: 1048201813200490646, guid: 1c7068f6b33d2bf4ab13c8816b46e0a6, type: 3}
   allyTargetPrefab: {fileID: 1048201813200490646, guid: 92bf4c5ba7ccb604ab510fa82dd21b79, type: 3}
   secondaryTargetScale: 0.6
-  yScaleOffset: 0.3
+  yScaleOffset: 0
+  minCameraDelay: 0.2
   targetParent: {fileID: 1447663421}
 --- !u!1 &1820334915
 GameObject:

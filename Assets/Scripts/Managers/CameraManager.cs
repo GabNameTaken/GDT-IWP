@@ -3,28 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using DG.Tweening;
+using Common.DesignPatterns;
 
-public class CameraManager : MonoBehaviour
+public class CameraManager : Singleton<CameraManager>
 {
     Camera mainCamera;
-    public static CameraManager Instance { get; private set; }
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
-
+        base.Awake();
         mainCamera = Camera.main;
     }
 
-    
-
     [SerializeField] List<CameraTransform> transformList;
+    public float cameraDelay { get; private set; }
 
     private Dictionary<CAMERA_POSITIONS, CameraTransformData> cameraDict;
     public Dictionary<CAMERA_POSITIONS, CameraTransformData> CameraDict { get { return cameraDict ?? (cameraDict = transformList.ToDictionary(camera => camera.pos, camera => camera.data)); } }
@@ -36,5 +27,7 @@ public class CameraManager : MonoBehaviour
         mainCamera.transform.DOLocalMove(transformData.position, speed, false);
         mainCamera.transform.DOLocalRotateQuaternion(transformData.rotation, speed);
         mainCamera.DOFieldOfView(transformData.fovAngle, speed);
+
+        cameraDelay = speed;
     }
 }
