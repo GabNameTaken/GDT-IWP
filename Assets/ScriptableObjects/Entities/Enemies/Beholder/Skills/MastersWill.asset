@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e754df1f02d4c944bafe81bc8c878229, type: 3}
+  m_Name: MastersWill
+  m_EditorClassIdentifier: 
+  targetTeam: 1
+  targets: 0
+  _skillName: Master's Will
+  _skillDesc: Increase the TurnMeter of the ally with the highest Attack by 35%.
+  _skillIcon: {fileID: 0}
+  _skillCost: 0
+  readyAnimationString: 
+  skillParticle: {fileID: 0}
+  _Cooldown: 2
+  currentCooldown: 0
+  _multiplier: 0
+  animationStr: MastersWill
+  amount: 35

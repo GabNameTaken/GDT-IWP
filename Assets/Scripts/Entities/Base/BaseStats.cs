@@ -12,8 +12,8 @@ public class BaseStats : ScriptableObject
 [System.Serializable]
 public class Stats
 {
-    public float maxHealth, health, defense, attack;
-    public int speed, critRate = 15, critDMG = 150;
+    public float maxHealth, health, defense, attack, speed;
+    public float critRate = 15, critDMG = 150;
 
     public Stats(Stats stats) 
     {

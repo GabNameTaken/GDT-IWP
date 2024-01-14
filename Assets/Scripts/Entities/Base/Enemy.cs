@@ -7,6 +7,8 @@ using System.Linq;
 
 public class Enemy : EntityBase
 {
+    [HideInInspector] public EntityBase lockedOnTarget = null;
+
     [Header("Boss Settings")]
     public bool isBoss = false;
 
@@ -101,10 +103,18 @@ public class Enemy : EntityBase
         switch (skill.targets)
         {
             case Skill.SKILL_TARGETS.SINGLE_TARGET:
-                listOfTargets.Add(SelectRandomTarget(targets));
+                if (lockedOnTarget && skill.targetTeam == Skill.SKILL_TARGET_TEAM.ENEMY)
+                    listOfTargets.Add(lockedOnTarget);
+                else
+                    listOfTargets.Add(SelectRandomTarget(targets));
                 break;
             case Skill.SKILL_TARGETS.ADJACENT:
-                EntityBase selectedTarget = SelectRandomTarget(targets);
+                EntityBase selectedTarget;
+                if (lockedOnTarget && skill.targetTeam == Skill.SKILL_TARGET_TEAM.ENEMY)
+                    selectedTarget = lockedOnTarget;
+                else
+                    selectedTarget = SelectRandomTarget(targets);
+
                 int index = targets.IndexOf(selectedTarget);
                 if (index - 1 >= 0)
                     listOfTargets.Add(targets[index - 1]);

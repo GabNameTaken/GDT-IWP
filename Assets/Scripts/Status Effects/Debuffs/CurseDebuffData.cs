@@ -2,24 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Buffs/Speed")]
-public class SpeedBuff : StatusEffectData
+[CreateAssetMenu(menuName ="Debuffs/Curse")]
+public class CurseDebuffData : StatusEffectData
 {
-    [SerializeField] float speedBuffMultiplier;
-
     public override void OnStatusEffectAdd(EntityBase source, EntityBase dest)
     {
-        dest.trueStats.speed *= speedBuffMultiplier;
         SkillParticle particle = Instantiate(particlePrefab, dest.transform);
         particle.Play();
+        foreach (Enemy enemy in CombatManager.Instance.EnemyParty)
+        {
+            enemy.lockedOnTarget = dest;
+        }
     }
 
     public override void ApplyEffect(EntityBase source, EntityBase dest)
     {
+        
     }
 
     public override void OnStatusEffectRemove(EntityBase source, EntityBase dest)
     {
-        dest.trueStats.speed /= speedBuffMultiplier;
+        foreach (Enemy enemy in CombatManager.Instance.EnemyParty)
+        {
+            if (enemy.lockedOnTarget == dest)
+                enemy.lockedOnTarget = null;
+        }
     }
 }
