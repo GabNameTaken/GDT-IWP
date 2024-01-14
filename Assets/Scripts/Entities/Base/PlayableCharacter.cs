@@ -112,8 +112,10 @@ public class PlayableCharacter : EntityBase
         transform.DORotateQuaternion(targetRotation, 0.2f);
     }
 
+    float selectTargetsDelay = 0.2f;
     void SelectTargets(Skill.SKILL_TARGET_TEAM targettedTeam, Skill.SKILL_TARGETS targetType, bool turnOffHighlights)
     {
+        List<EntityBase> primaryTargets = new List<EntityBase>(), secondaryTargets = new List<EntityBase>();
         foreach (EntityBase entity in listOfTargets)
             entity.outline.eraseRenderer = true;
         if (turnOffHighlights)
@@ -149,6 +151,7 @@ public class PlayableCharacter : EntityBase
                     currentTargetNum = 0;
                 listOfTargets[currentTargetNum].outline.eraseRenderer = turnOffHighlights;
                 targets.Add(listOfTargets[currentTargetNum]);
+                primaryTargets.Add(listOfTargets[currentTargetNum]);
                 if (targettedTeam == Skill.SKILL_TARGET_TEAM.ENEMY)
                     RotateToTarget();
                 break;
@@ -158,6 +161,7 @@ public class PlayableCharacter : EntityBase
                     currentTargetNum = 0;
                 listOfTargets[currentTargetNum].outline.eraseRenderer = turnOffHighlights;
                 targets.Add(listOfTargets[currentTargetNum]);
+                primaryTargets.Add(listOfTargets[currentTargetNum]);
                 if (targettedTeam == Skill.SKILL_TARGET_TEAM.ENEMY)
                     RotateToTarget();
 
@@ -165,11 +169,13 @@ public class PlayableCharacter : EntityBase
                 {
                     listOfTargets[currentTargetNum - 1].outline.eraseRenderer = turnOffHighlights;
                     targets.Add(listOfTargets[currentTargetNum - 1]);
+                    secondaryTargets.Add(listOfTargets[currentTargetNum - 1]);
                 }
                 if (currentTargetNum + 1 < listOfTargets.Count)
                 {
                     listOfTargets[currentTargetNum + 1].outline.eraseRenderer = turnOffHighlights;
                     targets.Add(listOfTargets[currentTargetNum + 1]);
+                    secondaryTargets.Add(listOfTargets[currentTargetNum + 1]);
                 }
                 break;
 
@@ -177,12 +183,13 @@ public class PlayableCharacter : EntityBase
                 foreach (EntityBase entity in listOfTargets)
                     entity.outline.eraseRenderer = turnOffHighlights;
                 targets.AddRange(listOfTargets);
-
+                primaryTargets.AddRange(listOfTargets);
                 break;
 
             case Skill.SKILL_TARGETS.NONE:
                 break;
         }
+        TargetingUIManager.Instance.RegisterTargets(targettedTeam, primaryTargets, secondaryTargets, selectTargetsDelay);
     }
 
     void UseSkill(SKILL_CODE skill)
@@ -199,8 +206,10 @@ public class PlayableCharacter : EntityBase
             Debug.Log("Skill on cooldown");
             return;
         }
+
         attacking = true;
         Attack(skillSet.SkillDict[skill]);
+        TargetingUIManager.Instance.SkillUsed();
     }
 
     public int etherCharge = 1;

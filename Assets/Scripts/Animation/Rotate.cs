@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class Rotate : MonoBehaviour
 {
-    [SerializeField] bool onAwake, affectedByTime = true, UI;
+    [SerializeField] bool onStart, affectedByTime = true, UI;
     [SerializeField] Vector3 rotation;
     [SerializeField] float rotateDuration;
     [SerializeField] int loops;
@@ -13,15 +13,20 @@ public class Rotate : MonoBehaviour
     [SerializeField] Ease ease;
     RectTransform rectTransform;
 
-    private void Awake()
+    private void Start()
     {
         if (UI) rectTransform = GetComponent<RectTransform>();
-        if (onAwake) StartRotation();
+        if (onStart) StartRotation();
     }
 
     void StartRotation()
     {
         if (UI) rectTransform.DORotate(rotation, rotateDuration, rotateMode).SetEase(ease).SetLoops(loops, LoopType.Restart).SetUpdate(UpdateType.Normal, !affectedByTime);
         else transform.DORotate(rotation, rotateDuration, rotateMode).SetEase(ease).SetLoops(loops, LoopType.Restart).SetUpdate(UpdateType.Normal, !affectedByTime);
+    }
+
+    private void OnDestroy()
+    {
+        DOTween.Kill(rectTransform);
     }
 }
