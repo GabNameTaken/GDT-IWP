@@ -207,8 +207,8 @@ public class PlayableCharacter : EntityBase
         }
 
         attacking = true;
-        Attack(skillSet.SkillDict[skill]);
         TargetingUIManager.Instance.SkillUsed();
+        Attack(skillSet.SkillDict[skill]);
     }
 
     public int etherCharge = 1;
