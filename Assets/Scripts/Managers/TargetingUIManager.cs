@@ -34,7 +34,7 @@ public class TargetingUIManager : Singleton<TargetingUIManager>
 
         foreach (EntityBase target in targets)
         {
-            GameObject newTargetUI = GameObject.Instantiate(targetTeam == Skill.SKILL_TARGET_TEAM.ENEMY ? enemyTargetPrefab : allyTargetPrefab, targetParent);
+            GameObject newTargetUI = Instantiate(targetTeam == Skill.SKILL_TARGET_TEAM.ENEMY ? enemyTargetPrefab : allyTargetPrefab, targetParent);
             RectTransform targetRectTransform = newTargetUI.GetComponent<RectTransform>();
 
             targetRectTransform.anchoredPosition = Camera.main.WorldToScreenPoint(target.GetComponent<EntityBase>().model.transform.position);

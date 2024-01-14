@@ -54,9 +54,11 @@ public class TurnCharge : MonoBehaviour
         playerList.Clear();
         foreach (PlayableCharacter survivor in CombatManager.Instance.PlayerParty)
         {
-            playerList.Add(survivor);
+            if (!survivor.IsDead)
+                playerList.Add(survivor);
         }
         CameraManager.Instance.MoveCamera(MapManager.Instance.currentMap.transform.Find("CombatSetup").gameObject, CAMERA_POSITIONS.PLAYER_TEAM_FRONT, 0.5f);
+        SelectTarget(playerList[currentTargetNum], 0.5f);
     }
 
     int currentTargetNum = 0;
@@ -64,27 +66,23 @@ public class TurnCharge : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
-            
             if (currentTargetNum < playerList.Count - 1)
                 currentTargetNum++;
-            SelectTarget(playerList[currentTargetNum], false);
+            SelectTarget(playerList[currentTargetNum], 0f);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             if (currentTargetNum > 0)
                 currentTargetNum--;
-            SelectTarget(playerList[currentTargetNum], false);
+            SelectTarget(playerList[currentTargetNum], 0f);
         }
     }
 
-    void SelectTarget(PlayableCharacter selected, bool turnOffHighlights)
+    void SelectTarget(PlayableCharacter selected, float delay)
     {
-        foreach (EntityBase entity in playerList)
-            entity.outline.eraseRenderer = true;
-        if (turnOffHighlights)
-            return;
-
-        selected.outline.eraseRenderer = turnOffHighlights;
+        List<EntityBase> targets = new();
+        targets.Add(selected);
+        TargetingUIManager.Instance.RegisterTargets(Skill.SKILL_TARGET_TEAM.ALLY, targets, null, delay);
     }
 
     private void Update()
@@ -101,7 +99,6 @@ public class TurnCharge : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 CombatManager.Instance.StealNextTurn(playerList[currentTargetNum]);
-                playerList[currentTargetNum].outline.eraseRenderer = true;
                 isSelectingTurn = false;
                 CombatManager.Instance.isPlayerTurn = true;
             }
