@@ -24,6 +24,9 @@ abstract public class StatusEffectData : ScriptableObject
     [SerializeField] float _multiplier;
     public float multiplier => _multiplier;
 
+    [SerializeField] bool _bossImmune;
+    public bool bossImmune => _bossImmune;
+
     public abstract void OnStatusEffectAdd(EntityBase source, EntityBase dest);
     public abstract void ApplyEffect(EntityBase source, EntityBase dest);
     public abstract void OnStatusEffectRemove(EntityBase source, EntityBase dest);

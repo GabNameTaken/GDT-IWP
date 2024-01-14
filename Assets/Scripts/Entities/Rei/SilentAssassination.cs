@@ -13,9 +13,6 @@ public class SilentAssassination : Skill
 
     public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
-        attacker.originalPosition = attacker.transform.position;
-        attacker.originalRotation = attacker.transform.rotation;
-
         SkillParticle particle = Instantiate(skillParticle, attacker.transform);
         particle.ManualPlay(0.25f);
 

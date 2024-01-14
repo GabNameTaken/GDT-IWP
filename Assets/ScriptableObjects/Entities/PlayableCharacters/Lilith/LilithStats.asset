@@ -17,6 +17,6 @@ MonoBehaviour:
     health: 4895
     defense: 326
     attack: 1359
-    speed: 110
+    speed: 97
     critRate: 15
     critDMG: 150

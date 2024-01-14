@@ -9,9 +9,6 @@ public class GatherUp : Skill
     [SerializeField] StatusEffectData statusEffectData;
     public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
-        attacker.originalPosition = attacker.transform.position;
-        attacker.originalRotation = attacker.transform.rotation;
-
         attacker.animator.Play("ChopAttack");
         base.Use(attacker, attackeeList);
     }

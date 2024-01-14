@@ -22,9 +22,9 @@ public class Enemy : EntityBase
         _skillSet = new SkillSet(entity.baseSkillSet);
         trueStats = new Stats(entity.baseStats.Stats);
         worldSpaceCanvas.worldCamera = Camera.main;
-        for (int i = 0; i < skillSet.SkillDict.Count; i++)
+        foreach (Skill skill in skillSet.SkillDict.Values)
         {
-            skillSet.SkillDict[(SKILL_CODE)i].currentCooldown = skillSet.SkillDict[(SKILL_CODE)i].cooldown;
+            skill.currentCooldown = skill.cooldown;
         }
         base.Awake();
     }
