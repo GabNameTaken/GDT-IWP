@@ -20,6 +20,11 @@ public class StatusEffect
 
     public StatusEffect(EntityBase _giver, EntityBase _receiver, int _duration, StatusEffectData statusEffectData)
     {
+        if (_receiver.GetComponent<Enemy>() && _receiver.GetComponent<Enemy>().isBoss && statusEffectData.bossImmune)
+        {
+            //show some resist text or something
+            return;
+        }
         giver = _giver;
         receiver = _receiver;
         duration = _duration;

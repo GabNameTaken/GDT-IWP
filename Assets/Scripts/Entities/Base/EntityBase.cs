@@ -211,10 +211,10 @@ public class EntityBase : MonoBehaviour
         originalPosition = transform.position;
         originalRotation = transform.rotation;
 
-        for (int i = 0; i < skillSet.SkillDict.Count; i++)
+        foreach (Skill skill in skillSet.SkillDict.Values)
         {
-            if (skillSet.SkillDict[(SKILL_CODE)i].currentCooldown > 0)
-                skillSet.SkillDict[(SKILL_CODE)i].currentCooldown--;
+            if (skill.currentCooldown > 0)
+                skill.currentCooldown--;
         }
         if (GetComponent<PlayableCharacter>())
             CombatUIManager.Instance.DisplaySkillCooldown(skillSet);
@@ -232,6 +232,10 @@ public class EntityBase : MonoBehaviour
 
     public void AddStatusEffect(StatusEffect statusEffect)
     {
+        if (!statusEffect.StatusEffectData)
+        {
+            return;
+        }
         if (!statusEffect.StatusEffectData.stackable)
             statusEffectList
                 .Where(existingStatus => existingStatus.StatusEffectData.Equals(statusEffect.StatusEffectData))

@@ -24,3 +24,4 @@ MonoBehaviour:
   currentCooldown: 0
   _multiplier: 0.2
   statusEffectData: {fileID: 11400000, guid: 8d8c22143eda0044ca1ee53e1804e3cb, type: 2}
+  debuffChance: 0.3

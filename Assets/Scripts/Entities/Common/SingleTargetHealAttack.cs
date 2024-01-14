@@ -14,9 +14,6 @@ public class SingleTargetHealAttack : Skill
     EntityBase healedEntity = null;
     public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
-        attacker.originalPosition = attacker.transform.position;
-        attacker.originalRotation = attacker.transform.rotation;
-
         attacker.transform.DORotateQuaternion(GetQuaternionRotationToTarget(attacker.transform.position, attackeeList[0].transform.position), 0.5f);
         Vector3 targetPos = GetFrontPos(attacker.transform.position, attackeeList[0].transform.position, 1.5f);
 

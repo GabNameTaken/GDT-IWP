@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Common.DesignPatterns;
+using System;
 
 public class CombatManager : Singleton<CombatManager>
 {
@@ -73,7 +74,7 @@ public class CombatManager : Singleton<CombatManager>
         float numberOfIncrease = (100f - entity.TurnMeter) / turnMeterRate;
         //Debug.Log(entity.name + ": " + numberOfIncrease);
 
-        return numberOfIncrease;
+        return Math.Max(numberOfIncrease, 0);
     }
 
     float CalculateNumberOfIncrease()

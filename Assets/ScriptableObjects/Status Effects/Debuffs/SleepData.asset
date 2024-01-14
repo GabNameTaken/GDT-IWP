@@ -19,3 +19,4 @@ MonoBehaviour:
   _icon: {fileID: 1812906440, guid: 080cb6d98b00c2645b2c41df5f69bc78, type: 3}
   _stackable: 0
   _multiplier: 0
+  _bossImmune: 1

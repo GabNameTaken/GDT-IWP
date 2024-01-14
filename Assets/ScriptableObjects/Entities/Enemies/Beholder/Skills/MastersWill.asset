@@ -21,7 +21,7 @@ MonoBehaviour:
   readyAnimationString: 
   skillParticle: {fileID: 0}
   _Cooldown: 2
-  currentCooldown: 0
+  currentCooldown: 2
   _multiplier: 0
   animationStr: MastersWill
   amount: 35

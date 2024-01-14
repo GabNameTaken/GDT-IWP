@@ -19,9 +19,6 @@ public class BeholderAttack : Skill
 
     public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
-        attacker.originalPosition = attacker.transform.position;
-        attacker.originalRotation = attacker.transform.rotation;
-
         CameraManager.Instance.MoveCamera(attackeeList[0].gameObject, CAMERA_POSITIONS.LOW_BACK, 1f);
 
         Vector3 targetPos = GetFrontPos(attacker.transform.position, attackeeList[0].transform.position, 1.5f);

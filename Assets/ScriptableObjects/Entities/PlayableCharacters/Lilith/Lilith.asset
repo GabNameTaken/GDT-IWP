@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 051ef955da516d4478c35927aa5a4b3f, type: 3}
   m_Name: Lilith
   m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: d42b769f3b7d9a44da5f0f192e445cca, type: 3}
   _entityName: Lilith
   _classType: {fileID: 11400000, guid: a7ba9619f0396aa40aca467f974627d3, type: 2}
   _element: {fileID: 11400000, guid: 8f1783046292f954abb811a4a6668d55, type: 2}
