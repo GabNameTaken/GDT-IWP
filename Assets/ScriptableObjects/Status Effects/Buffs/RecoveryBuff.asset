@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Recovery
   _type: 0
   particlePrefab: {fileID: 4165091564336777282, guid: 73c790b542b44184198a98d9ae37f4ef, type: 3}
-  _desc: Recovers 5% of max health
+  _desc: Recovers 10% of max health
   _icon: {fileID: -651057808, guid: 080cb6d98b00c2645b2c41df5f69bc78, type: 3}
   _stackable: 1
-  _multiplier: 5
+  _multiplier: 0.1

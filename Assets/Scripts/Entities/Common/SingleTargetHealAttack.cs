@@ -50,6 +50,7 @@ public class SingleTargetHealAttack : Skill
         yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.8f);
 
         healedEntity = CombatManager.Instance.EnemyParty
+            .Where(enemy => !enemy.IsDead)
             .OrderBy(enemy => enemy.trueStats.health / enemy.trueStats.maxHealth)
             .FirstOrDefault();
 

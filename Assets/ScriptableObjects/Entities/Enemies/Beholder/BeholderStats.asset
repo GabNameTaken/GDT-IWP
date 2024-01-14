@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BeholderStats
   m_EditorClassIdentifier: 
   stats:
-    maxHealth: 0
-    health: 0
-    defense: 0
-    attack: 0
-    speed: 0
-    critRate: 0
-    critDMG: 0
+    maxHealth: 7890
+    health: 7890
+    defense: 760
+    attack: 800
+    speed: 110
+    critRate: 15
+    critDMG: 150

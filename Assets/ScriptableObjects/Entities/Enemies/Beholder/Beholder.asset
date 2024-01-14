@@ -20,10 +20,8 @@ MonoBehaviour:
   _baseSkillSet:
     skillList:
     - skillCode: 0
-      skill: {fileID: 0}
-    - skillCode: 0
-      skill: {fileID: 0}
-    - skillCode: 0
-      skill: {fileID: 0}
+      skill: {fileID: 11400000, guid: fe38c79dedb261843aa891f8c7caf80b, type: 2}
+    - skillCode: 1
+      skill: {fileID: 11400000, guid: 271d0fd102aa96c4a91e02d80a1faf64, type: 2}
     - skillCode: 3
       skill: {fileID: 11400000, guid: 7137711356b99fb4d9204b45055cb070, type: 2}

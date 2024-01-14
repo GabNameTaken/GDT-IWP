@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Linq;
 
-[CreateAssetMenu(menuName ="Skills/Single Target TurnMeter Push")]
-public class SingleTargetTurnMeterPush : Skill
+[CreateAssetMenu(menuName ="Skills/Highest ATK Enemy TurnMeter Push")]
+public class HighestATKEnemyTurnMeterPush : Skill
 {
     [SerializeField] string animationStr;
     public float amount;
@@ -16,7 +17,11 @@ public class SingleTargetTurnMeterPush : Skill
 
     protected override void ApplyEffects(EntityBase attacker, List<EntityBase> attackeeList)
     {
-        attackeeList[0].TurnMeter += amount;
+        Enemy highestATK = CombatManager.Instance.EnemyParty
+                            .Where(enemy => !enemy.IsDead)
+                            .OrderByDescending(enemy => enemy.trueStats.attack)
+                            .FirstOrDefault();
+        highestATK.TurnMeter += amount;
     }
 
     public override float CalculateDamage(EntityBase attacker, EntityBase attackee)
