@@ -11,7 +11,7 @@ public class TurnOrderUI : MonoBehaviour
     [SerializeField] Slider turnSlider;
     [SerializeField] GameObject turnMeterPrefab;
 
-    List<EntityBase> unitsOnField = new();
+    public List<EntityBase> unitsOnField = new();
     public void AssignFighters(List<EntityBase> listOfFighters)
     {
         foreach (EntityBase entity in listOfFighters)
