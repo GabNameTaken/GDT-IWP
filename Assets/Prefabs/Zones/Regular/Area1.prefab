@@ -123,17 +123,15 @@ MonoBehaviour:
     xPositionSpacing: 3
     enemyPrefabs:
     - {fileID: 1931298151966786, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
-    - {fileID: 1931298151966786, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
-    - {fileID: 1931298151966786, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
+    - {fileID: 1524411113276028, guid: a091f8dfb057503499c7d4c5252304dc, type: 3}
     - {fileID: 1931298151966786, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
   - playerPosition: {fileID: 5240759327829530664}
     enemyPosition: {fileID: 8698283673993743571}
     xPositionSpacing: 3
     enemyPrefabs:
+    - {fileID: 1524411113276028, guid: a091f8dfb057503499c7d4c5252304dc, type: 3}
     - {fileID: 1931298151966786, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
-    - {fileID: 1931298151966786, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
-    - {fileID: 1931298151966786, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
-    - {fileID: 1931298151966786, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
+    - {fileID: 1524411113276028, guid: a091f8dfb057503499c7d4c5252304dc, type: 3}
 --- !u!1 &4342402656155778763
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +249,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6849242233715892658}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.44, y: 0, z: 28.17}
+  m_LocalPosition: {x: -4.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -282,7 +280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7056233696994869620}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.46, y: 0, z: 36.02}
+  m_LocalPosition: {x: -4.5, y: 0, z: 7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

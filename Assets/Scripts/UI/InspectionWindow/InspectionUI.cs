@@ -89,9 +89,9 @@ public class InspectionUI : MonoBehaviour
 
     [Header("Description Settings")]
     [SerializeField] TMP_Text hptext;
-    [SerializeField] TMP_Text defText, atkText, spdText, critText, cdmgText;
+    [SerializeField] TMP_Text defText, atkText, spdText, critText, cdmgText, turnMeterText;
     [SerializeField] GameObject statusEffectsUI;
-    [SerializeField] TMP_Text skillNameText, skillDescText;
+    [SerializeField] TMP_Text skillNameText, skillDescText, skillCostText;
 
     public void DisplayStats(EntityBase inspectEntity)
     {
@@ -101,6 +101,7 @@ public class InspectionUI : MonoBehaviour
         spdText.text = "Speed: " + inspectEntity.trueStats.speed;
         critText.text = "Critical Rate: " + inspectEntity.trueStats.critRate + "%";
         cdmgText.text = "Critical Hit Damage: " + inspectEntity.trueStats.critDMG + "%";
+        turnMeterText.text = "Turn Meter: " + Mathf.Round(inspectEntity.TurnMeter) + "%";
 
         DisplayStatus(inspectEntity);
 
@@ -136,7 +137,7 @@ public class InspectionUI : MonoBehaviour
         Skill skill = inspectEntity.skillSet.SkillDict[code];
         skillNameText.text = skill.skillName;
         skillDescText.text = skill.skillDesc;
-
+        skillCostText.text = "Skill Points: " + skill.skillCost;
         statsDesc.SetActive(false);
         skillDesc.SetActive(true);
     }

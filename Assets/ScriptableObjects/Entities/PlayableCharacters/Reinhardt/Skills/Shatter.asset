@@ -16,7 +16,8 @@ MonoBehaviour:
   targets: 1
   _skillName: Shatter
   _skillDesc: Shatter all enemies in front, granting all allies increased defense
-    and recover the caster's health. Damage is proportional to caster's max health.
+    for 2 turns and recover the caster's health. Damage is proportional to caster's
+    max health.
   _skillIcon: {fileID: 0}
   _skillCost: 2
   readyAnimationString: PowerUp

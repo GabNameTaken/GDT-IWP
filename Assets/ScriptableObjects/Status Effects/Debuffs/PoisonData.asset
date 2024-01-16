@@ -15,7 +15,8 @@ MonoBehaviour:
   _name: Poison
   _type: 1
   particlePrefab: {fileID: 7927903351660056106, guid: d1939249353e702478502eb089afb892, type: 3}
-  _desc: Take damage proportional to 10% of max HP
+  _desc: Take damage proportional to 5% of max HP
   _icon: {fileID: 2047992146, guid: 080cb6d98b00c2645b2c41df5f69bc78, type: 3}
   _stackable: 1
-  _multiplier: 10
+  _multiplier: 5
+  _bossImmune: 0

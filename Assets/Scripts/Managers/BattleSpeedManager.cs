@@ -27,7 +27,7 @@ public class BattleSpeedManager : Singleton<BattleSpeedManager>
     {
         paused = !paused;
 
-        UIManager.Instance.SetPauseScreenActive(paused);
+        //UIManager.Instance.SetPauseScreenActive(paused);
         SetBattleSpeed();
     }
 

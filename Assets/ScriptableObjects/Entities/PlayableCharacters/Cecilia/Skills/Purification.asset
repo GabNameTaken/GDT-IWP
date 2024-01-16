@@ -15,13 +15,14 @@ MonoBehaviour:
   targetTeam: 1
   targets: 1
   _skillName: Purification
-  _skillDesc: 
+  _skillDesc: Cleanse 1 debuff from all allies and heal them proportional to the
+    caster's max Health before granting them Recovery for 1 turn.
   _skillIcon: {fileID: 0}
   _skillCost: 2
   readyAnimationString: 
   skillParticle: {fileID: 1988028456624135357, guid: 2d3b5f758ccc8f347bafc1290035e19e, type: 3}
   _Cooldown: 5
-  currentCooldown: 5
+  currentCooldown: 0
   _multiplier: 0.2
   statusEffectDatas:
   - {fileID: 11400000, guid: cac3bda8decab66448b4e0b387be4cb5, type: 2}

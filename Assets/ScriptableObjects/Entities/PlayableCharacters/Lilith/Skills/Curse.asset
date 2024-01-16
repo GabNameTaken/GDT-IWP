@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTeam: 0
   targets: 2
-  _skillName: 
-  _skillDesc: 
+  _skillName: Curse
+  _skillDesc: Attacks the target and those around them with a 75% chance of poisoning
+    them for 2 turns.
   _skillIcon: {fileID: 0}
   _skillCost: 2
   readyAnimationString: 

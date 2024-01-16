@@ -15,6 +15,11 @@ public class CombatInfoUI : MonoBehaviour
     [Header("Inspection UI")]
     [SerializeField] InspectionUI inspectionUI;
 
+    public void Toggle()
+    {
+        gameObject.SetActive(!gameObject.activeSelf);
+    }
+
     private void OnEnable()
     {
         InitButtons();
@@ -49,6 +54,7 @@ public class CombatInfoUI : MonoBehaviour
     void SetUpButton(Button button, EntityBase entity)
     {
         button.transform.GetChild(0).GetComponent<TMP_Text>().text = entity.entity.name;
+        button.transform.GetChild(1).GetComponent<TMP_Text>().text = Mathf.Round(entity.TurnMeter) + "%";
         button.onClick.AddListener(delegate { inspectionUI.InitTabs(entity); });
     }
 }

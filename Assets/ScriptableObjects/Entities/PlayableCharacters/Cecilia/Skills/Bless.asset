@@ -22,4 +22,4 @@ MonoBehaviour:
   skillParticle: {fileID: 1988028456624135357, guid: c5f9b050f61e82d42a6fe88fa75de091, type: 3}
   _Cooldown: 0
   currentCooldown: 0
-  _multiplier: 0.15
+  _multiplier: 0.3
