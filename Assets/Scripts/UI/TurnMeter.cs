@@ -48,8 +48,6 @@ public class TurnMeter : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (!owner)
-            return;
         owner.IsDeadChangedEvent -= OnOwnerStatusChanged;
         owner.TurnMeterChangedEvent -= OnOwnerTurnMeterChanged;
     }

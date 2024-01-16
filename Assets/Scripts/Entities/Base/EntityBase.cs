@@ -262,7 +262,7 @@ public class EntityBase : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        if (!unableToAct)
+        if (!unableToAct && !isDead)
             StartTurn();
         else if (!attacking)
             PostSkill();

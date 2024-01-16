@@ -23,6 +23,6 @@ MonoBehaviour:
   skillParticle: {fileID: 0}
   _Cooldown: 0
   currentCooldown: 0
-  _multiplier: 1.2
+  _multiplier: 1.3
   speedScaling: 0.0025
   attackBuff: {fileID: 11400000, guid: ac3cdc7b2ace71044b1ee4d3cc54b0a9, type: 2}

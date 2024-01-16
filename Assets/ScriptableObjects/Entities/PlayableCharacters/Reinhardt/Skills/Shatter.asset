@@ -24,6 +24,6 @@ MonoBehaviour:
   skillParticle: {fileID: 6141921158452122041, guid: 2929cc9659dac3b478f84fb49cd50951, type: 3}
   _Cooldown: 4
   currentCooldown: 0
-  _multiplier: 1
+  _multiplier: 1.5
   statusEffectDatas:
   - {fileID: 11400000, guid: fabf077766017364999fbf83d173d1ae, type: 2}

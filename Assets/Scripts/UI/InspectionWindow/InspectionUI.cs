@@ -91,7 +91,7 @@ public class InspectionUI : MonoBehaviour
     [SerializeField] TMP_Text hptext;
     [SerializeField] TMP_Text defText, atkText, spdText, critText, cdmgText, turnMeterText;
     [SerializeField] GameObject statusEffectsUI;
-    [SerializeField] TMP_Text skillNameText, skillDescText, skillCostText;
+    [SerializeField] TMP_Text skillNameText, skillDescText, skillCooldownText, skillCostText;
 
     public void DisplayStats(EntityBase inspectEntity)
     {
@@ -137,6 +137,7 @@ public class InspectionUI : MonoBehaviour
         Skill skill = inspectEntity.skillSet.SkillDict[code];
         skillNameText.text = skill.skillName;
         skillDescText.text = skill.skillDesc;
+        skillCooldownText.text = "Cooldown: " + skill.currentCooldown;
         skillCostText.text = "Skill Points: " + skill.skillCost;
         statsDesc.SetActive(false);
         skillDesc.SetActive(true);

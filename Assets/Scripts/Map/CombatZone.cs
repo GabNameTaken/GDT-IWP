@@ -83,16 +83,16 @@ public class CombatZone : MonoBehaviour
 
     private void MovePlayableCharacters(Vector3 direction)
     {
-        CombatManager combatManager = CombatManager.Instance;
+        //CombatManager combatManager = CombatManager.Instance;
 
-        float xPosition = currentWave.XPositionSpacing * ((combatManager.PlayerParty.Count - 1) / 2);
-        foreach (PlayableCharacter playableCharacter in combatManager.PlayerParty)
-        {
-            playableCharacter.transform.position = currentWave.PlayerPosition.position + playableCharacter.transform.TransformDirection(xPosition, 0f, 0f);
-            playableCharacter.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+        //float xPosition = currentWave.XPositionSpacing * ((combatManager.PlayerParty.Count - 1) / 2);
+        //foreach (PlayableCharacter playableCharacter in combatManager.PlayerParty)
+        //{
+        //    playableCharacter.transform.position = currentWave.PlayerPosition.position + playableCharacter.transform.TransformDirection(xPosition, 0f, 0f);
+        //    playableCharacter.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
 
-            xPosition -= currentWave.XPositionSpacing;
-        }
+        //    xPosition -= currentWave.XPositionSpacing;
+        //}
     }
 
     private void OnWaveCleared()

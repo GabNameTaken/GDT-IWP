@@ -31,6 +31,9 @@ public class StatusEffect
         remainingDuration = duration;
         this.statusEffectData = statusEffectData;
 
+        if (statusEffectData.linkedToSource)
+            CombatManager.Instance.EntityDeadEvent += CheckSource;
+
         statusEffectUI = receiver.entityInfoUI.statusEffectUI;
         statusEffectUI.OnAddStatus(this, remainingDuration);
     }
@@ -47,6 +50,18 @@ public class StatusEffect
         remainingDuration--;
         statusEffectUI.UpdateStatus(icon, remainingDuration);
         if (remainingDuration <= 0)
+        {
+            if (statusEffectData.linkedToSource)
+                CombatManager.Instance.EntityDeadEvent -= CheckSource;
             receiver.RemoveStatusEffect(this);
+        }
+    }
+
+    void CheckSource(EntityBase entity)
+    {
+        if (entity != giver && !entity.IsDead)
+            return;
+        CombatManager.Instance.EntityDeadEvent -= CheckSource;
+        receiver.RemoveStatusEffect(this);
     }
 }
