@@ -17,6 +17,8 @@ public class Purification : Skill
     public override float CalculateDamage(EntityBase attacker, EntityBase attackee)
     {
         damage = Mathf.RoundToInt(attacker.trueStats.maxHealth * multiplier);
+
+        CombatUIManager.Instance.ShowDMGNumbers(damage, false);
         return -damage;
     }
     protected override IEnumerator SkillAnimationCoroutine(EntityBase attacker, List<EntityBase> attackeeList)

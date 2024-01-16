@@ -128,15 +128,20 @@ public class Skill : ScriptableObject
     public virtual float CalculateDamage(EntityBase attacker, EntityBase attackee)
     {
         //check for crit
+        bool crit = false;
         //(Attack - EnemyDef + scalingMultiplier) * cdmg (if it crits) * multiplier
         if (IsCriticalHit(attacker.trueStats.critRate))
+        {
             damage = (int)Mathf.Round((attacker.trueStats.attack * (multiplier + additionalScalings) - attackee.trueStats.defense) * (attacker.trueStats.critDMG / 100));
+            crit = true;
+        }
         else
             damage = (int)Mathf.Round((attacker.trueStats.attack * (multiplier + additionalScalings) - attackee.trueStats.defense));
 
         if (damage <= 0)
             damage = 10;
 
+        CombatUIManager.Instance.ShowDMGNumbers(damage, crit);
         return damage;
     }
 

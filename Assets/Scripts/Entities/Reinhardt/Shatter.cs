@@ -15,14 +15,19 @@ public class Shatter : Skill
 
     public override float CalculateDamage(EntityBase attacker, EntityBase attackee)
     {
+        bool crit = false;
         if (IsCriticalHit(attacker.trueStats.critRate))
-            damage = (int)Mathf.Round(((attacker.trueStats.attack * 0.9f + attacker.trueStats.maxHealth * 0.04f) * (multiplier + additionalScalings) - attackee.trueStats.defense) * (attacker.trueStats.critDMG / 100) );
+        {
+            damage = (int)Mathf.Round(((attacker.trueStats.attack * 0.9f + attacker.trueStats.maxHealth * 0.04f) * (multiplier + additionalScalings) - attackee.trueStats.defense) * (attacker.trueStats.critDMG / 100));
+            crit = true;
+        }
         else
             damage = (int)Mathf.Round((attacker.trueStats.attack * 0.9f + attacker.trueStats.maxHealth * 0.04f) * (multiplier + additionalScalings) - attackee.trueStats.defense);
 
         if (damage <= 0)
             damage = 10;
 
+        CombatUIManager.Instance.ShowDMGNumbers(damage, crit);
         return damage;
     }
 

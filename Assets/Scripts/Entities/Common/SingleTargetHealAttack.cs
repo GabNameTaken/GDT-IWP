@@ -55,7 +55,9 @@ public class SingleTargetHealAttack : Skill
 
         yield return new WaitForSeconds(1.2f);
 
-        healedEntity.TakeDamage(-(healedEntity.trueStats.maxHealth * healMultiplier), null);
+        float heal = healedEntity.trueStats.maxHealth * healMultiplier;
+        healedEntity.TakeDamage(-heal, null);
+        CombatUIManager.Instance.ShowDMGNumbers(heal, false);
 
         yield return new WaitForSeconds(1.2f);
 

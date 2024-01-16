@@ -31,6 +31,9 @@ public class CombatManager : Singleton<CombatManager>
     public event System.Action<EntityBase> EntityEndTurnEvent;
     public void CallEntityEndTurnEvent(EntityBase entity) => EntityEndTurnEvent?.Invoke(entity);
 
+    public event System.Action<Skill> SkillUsedEvent;
+    public void CallSkillUsedEvent(Skill skill) => SkillUsedEvent?.Invoke(skill);
+
     public event System.Action<EntityBase> EntityTakeDamageEvent;
     public void CallEntityTakeDamageEvent(EntityBase entity) => EntityTakeDamageEvent?.Invoke(entity);
 

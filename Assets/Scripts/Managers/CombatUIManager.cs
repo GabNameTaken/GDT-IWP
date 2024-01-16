@@ -69,4 +69,17 @@ public class CombatUIManager : Singleton<CombatUIManager>
         turnSlider.value = turnMeter;
         return turnSliderHandle.transform.position;
     }
+
+    [Header("Damage numbers")]
+    [SerializeField] NumberCounter damageNumber;
+    [SerializeField] Color normalDMGColor;
+    [SerializeField] Color critDMGColor;
+
+    public void ShowDMGNumbers(float damage, bool crit)
+    {
+        if (crit)
+            damageNumber.StartCount(Mathf.RoundToInt(damage), critDMGColor);
+        else
+            damageNumber.StartCount(Mathf.RoundToInt(damage), normalDMGColor);
+    }
 }
