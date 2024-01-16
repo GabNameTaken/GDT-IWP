@@ -27,9 +27,10 @@ public class Condition : ScriptableObject
         return true;
     }
 }
+
 public abstract class EventCondition<T> : Condition
 {
-    protected EventEffect<T> Effect;
+    [SerializeField] protected EventEffect<T> Effect;
 
     protected abstract void OnGameEvent(T eventData);
 
@@ -47,42 +48,4 @@ public abstract class EventCondition<T> : Condition
 
     abstract public void AttachEvent();
     abstract public void DetachEvent();
-}
-
-[CreateAssetMenu(fileName = "SkillCondition", menuName = "Conditions/SkillCondition")]
-public class SkillCondition : EventCondition<Skill>
-{
-    public override void AttachEvent()
-    {
-    }
-
-    public override void DetachEvent()
-    {
-    }
-
-    protected override void OnGameEvent(Skill skill)
-    {
-        if (!Check()) return;
-        Effect.RegisterEffect(skill);
-    }
-}
-
-[CreateAssetMenu(fileName = "KillCondition", menuName = "Conditions/KillCondition")]
-public class KillCondition : EventCondition<EntityBase>
-{
-    public override void AttachEvent()
-    {
-        CombatManager.Instance.EntityDeadEvent += OnGameEvent;
-    }
-
-    public override void DetachEvent()
-    {
-        CombatManager.Instance.EntityDeadEvent -= OnGameEvent;
-    }
-
-    protected override void OnGameEvent(EntityBase deadEntity)
-    {
-        if (!Check()) return;
-        Effect.RegisterEffect(deadEntity);
-    }
 }

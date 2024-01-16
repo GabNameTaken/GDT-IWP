@@ -20,16 +20,16 @@ public class AugmentPool : MonoBehaviour
         Augment randomAugment = null;
 
         float randomFloat = Random.Range(0f, augmentRarityChanceDictionary.Values.Sum()); // Sum up all the chances
-
+        
         float totalChance = 0f;
+        List<Augment> augmentsOfRarity = new List<Augment>(augmentPool); // Make new list to contain only augments of rarity
         foreach (AugmentRarity.RARITY rarity in augmentRarityChanceDictionary.Keys)
         {
             totalChance += augmentRarityChanceDictionary[rarity]; // Add chance
             if (randomFloat < totalChance) // If chance hit
             {
-                List<Augment> augmentsOfRarity = new List<Augment>(augmentPool); // Make new list with only augments of rarity
                 augmentsOfRarity.RemoveAll(augment => augment.AugmentRarity.Rarity != rarity); // Remove augments that are not of rarity
-                while (!randomAugment && augmentExceptions.Contains(randomAugment)) // If augment not acceptable, reroll
+                while (randomAugment == null || (augmentExceptions != null && augmentExceptions.Contains(randomAugment))) // If augment not acceptable, reroll
                     randomAugment = augmentsOfRarity[Random.Range(0, augmentsOfRarity.Count)]; // Randomise augment
             }
         }

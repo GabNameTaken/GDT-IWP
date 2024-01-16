@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 abstract public class Effect : ScriptableObject
@@ -20,14 +19,15 @@ abstract public class EventEffect<T> : Effect
 
 abstract public class SkillEffect : EventEffect<Skill>
 {
-    public override void RegisterEffect(Skill skill)
-    {
-    }
+    public abstract override void RegisterEffect(Skill skill);
+}
+
+abstract public class HitEffect : EventEffect<EntityBase>
+{
+    public abstract override void RegisterEffect(EntityBase hitEntity);
 }
 
 abstract public class KillEffect : EventEffect<EntityBase>
 {
-    public override void RegisterEffect(EntityBase deadEntity)
-    {
-    }
+    public abstract override void RegisterEffect(EntityBase deadEntity);
 }

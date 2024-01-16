@@ -6,7 +6,7 @@ using System.Linq;
 
 public class AugmentManager : Singleton<AugmentManager>
 {
-    List<Augment> ownedAugments = new List<Augment>(), activeAugments = new List<Augment>();
+    [SerializeField] List<Augment> ownedAugments = new List<Augment>(), activeAugments = new List<Augment>();
 
     AugmentPool augmentPool;
 
@@ -17,7 +17,19 @@ public class AugmentManager : Singleton<AugmentManager>
         augmentPool = GetComponent<AugmentPool>();
     }
 
-    void ActivateAugments()
+    public void AddAugment(Augment augment)
+    {
+        ownedAugments.Add(augment);
+        RefreshAugments();
+    }
+
+    public void RemoveAugment(Augment augment)
+    {
+        ownedAugments.Remove(augment);
+        RefreshAugments();
+    }
+
+    public void ActivateAugments()
     {
         ownedAugments.ForEach(augment =>
         {
@@ -29,7 +41,7 @@ public class AugmentManager : Singleton<AugmentManager>
         });
     }
 
-    void DeactivateAugments()
+    public void DeactivateAugments()
     {
         activeAugments.ForEach(activeAugment => activeAugment.Deactivate());
         activeAugments.Clear();
@@ -47,5 +59,10 @@ public class AugmentManager : Singleton<AugmentManager>
             Debug.Log("AugmentPool is null."); return null; 
         }
         return augmentPool.augmentRarityDictionary[rarity];
+    }
+
+    public Augment GetRandomAugment()
+    {
+        return augmentPool.GenerateRandomAugment(null);
     }
 }
