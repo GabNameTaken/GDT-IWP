@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 624d298b010ccba4b8265e78a5e9cb3c, type: 3}
-  m_Name: Augment
+  m_Script: {fileID: 11500000, guid: 511502d0bce1c5e46a540a758a79c5d3, type: 3}
+  m_Name: MageHit1StackPoisonCondition
   m_EditorClassIdentifier: 
-  label: 
-  description: 
-  rarity: 0
+  stateChecks:
+  - {fileID: 11400000, guid: ff294a7bbd9b7b54bbd0109cf1c4185f, type: 2}
+  Effect: {fileID: 11400000, guid: ff5ede5020d92064bae582dac37a7f56, type: 2}

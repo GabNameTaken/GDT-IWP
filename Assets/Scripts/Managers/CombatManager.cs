@@ -51,6 +51,8 @@ public class CombatManager : Singleton<CombatManager>
         OnBattleStart();
         CombatUIManager.Instance.SetUpPlayerUI(playerParty);
         IncreaseTurnMeter(CalculateNumberOfIncrease());
+
+        AugmentManager.Instance.ActivateAugments();
     }
 
     void AssignEntitiesOnField()
@@ -228,6 +230,7 @@ public class CombatManager : Singleton<CombatManager>
 
     void OnEndBattle(bool won)
     {
+        AugmentManager.Instance.DeactivateAugments();
         OnBattleEnd();
 
         UIManager uiManager = UIManager.Instance;
@@ -255,5 +258,10 @@ public class CombatManager : Singleton<CombatManager>
             entity.OnBattleEnd();
 
         battleEndedEvent -= OnEndBattle;
+    }
+
+    public EntityBase GetEntityTakingTurn()
+    {
+        return entitiesOnField.Where(entity => entity.isMoving).FirstOrDefault();
     }
 }

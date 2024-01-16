@@ -93,7 +93,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54.35
+  m_fontSize: 18
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 3171337182660136564}
   - component: {fileID: 3171337182660136555}
   - component: {fileID: 3171337182660136554}
+  - component: {fileID: 7708338737413889295}
   m_Layer: 5
   m_Name: BlessingButton
   m_TagString: Untagged
@@ -392,4 +393,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3171337182660136555}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7708338737413889295}
+        m_TargetAssemblyTypeName: AugmentCard, Assembly-CSharp
+        m_MethodName: OnCardClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7708338737413889295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3171337182660136552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4534d346f4e735e49b4f10d6d3587215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardBackground: {fileID: 3171337182660136555}
+  labelText: {fileID: 3171337180949655205}
+  descriptionText: {fileID: 3171337181519688018}
