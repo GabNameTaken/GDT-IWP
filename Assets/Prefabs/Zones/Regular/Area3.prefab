@@ -128,9 +128,10 @@ MonoBehaviour:
     enemyPosition: {fileID: 8698283673993743571}
     xPositionSpacing: 3
     enemyPrefabs:
-    - {fileID: 1524411113276028, guid: a091f8dfb057503499c7d4c5252304dc, type: 3}
-    - {fileID: 1931298151966786, guid: 65ece6c46159c16409497eb561cecb66, type: 3}
-    - {fileID: 1524411113276028, guid: a091f8dfb057503499c7d4c5252304dc, type: 3}
+    - {fileID: 1997902569578628670, guid: 459722ec8139cef4391a6fd262587346, type: 3}
+    - {fileID: 875073071404757921, guid: c9fcf61291fe96a43af0c83a537f05b9, type: 3}
+    - {fileID: 1997902569578628670, guid: 459722ec8139cef4391a6fd262587346, type: 3}
+    - {fileID: 875073071404757921, guid: c9fcf61291fe96a43af0c83a537f05b9, type: 3}
 --- !u!1 &4342402656155778763
 GameObject:
   m_ObjectHideFlags: 0

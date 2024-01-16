@@ -29,6 +29,14 @@ public class AugmentManager : Singleton<AugmentManager>
         RefreshAugments();
     }
 
+    public void ClearAugments()
+    {
+        for (int i = ownedAugments.Count - 1; i >= 0; i--)
+        {
+            RemoveAugment(ownedAugments[i]);
+        }
+    }
+
     public void ActivateAugments()
     {
         ownedAugments.ForEach(augment =>

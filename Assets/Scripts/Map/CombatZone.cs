@@ -101,6 +101,7 @@ public class CombatZone : MonoBehaviour
         if (waveNumber >= enemyWaves.Count - 1) // If waves finished, call battle ended (won)
         {
             CombatManager.Instance.CallBattleWon();
+            CombatManager.Instance.WaveClearedEvent -= OnWaveCleared;
             return;
         }
 

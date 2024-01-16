@@ -253,6 +253,14 @@ public class EntityBase : MonoBehaviour
         entityInfoUI.statusEffectUI.RemoveStatus(statusEffect.icon);
     }
 
+    public void ClearStatusEffects()
+    {
+        for (int i = statusEffectList.Count - 1; i >= 0; i--)
+        {
+            RemoveStatusEffect(statusEffectList[i]);
+        }
+    }
+
     protected IEnumerator StartingTurn()
     {
         //List<StatusEffect> debuffList = new(statusEffectList.Where((a) => a.StatusEffectData.type == STATUS_EFFECT_TYPE.DEBUFF));

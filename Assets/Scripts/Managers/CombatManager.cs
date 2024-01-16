@@ -225,12 +225,17 @@ public class CombatManager : Singleton<CombatManager>
 
     public void CallBattleWon()
     {
+        foreach (EntityBase entity in entitiesOnField)
+            entity.ClearStatusEffects();
+
         battleEndedEvent?.Invoke(true);
     }
 
     void OnEndBattle(bool won)
     {
         AugmentManager.Instance.DeactivateAugments();
+        turnCharge.ConsumeEther(turnCharge.ether);
+
         OnBattleEnd();
 
         UIManager uiManager = UIManager.Instance;

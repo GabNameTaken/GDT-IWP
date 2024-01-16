@@ -16,6 +16,13 @@ public class GameController : Singleton<GameController>
         CombatManager.Instance.StartBattle(currentZone);
     }
 
+    public void Restart()
+    {
+        AugmentManager.Instance.ClearAugments();
+        MapManager.Instance.currentMapNum = 0;
+        MapManager.Instance.SetMap();
+    }
+
     public void Victory(bool win)
     {
         if (win)

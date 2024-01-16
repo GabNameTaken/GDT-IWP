@@ -19,10 +19,10 @@ public class Augment : ScriptableObject
 
     public void Activate()
     {
-        if (conditions.Count < 1) return;
-
         foreach (Condition condition in conditions) condition?.Init();
         OnActivate();
+
+        if (conditions.Count < 1) return;
     }
 
     public void OnActivate()

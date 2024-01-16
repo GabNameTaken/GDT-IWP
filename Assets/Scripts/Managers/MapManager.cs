@@ -40,7 +40,7 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    void SetMap()
+    public void SetMap()
     {
         currentMap = Instantiate(map[currentMapNum]);
         GameController.Instance.CombatSetup(currentMap.GetComponent<CombatZone>());

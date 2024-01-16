@@ -7,7 +7,7 @@ public class TurnCharge : MonoBehaviour
 {
     [SerializeField] int maxEther = 30;
     int turnCharge;
-    int ether;
+    public int ether { get; private set; }
 
     [SerializeField] Slider slider;
 
