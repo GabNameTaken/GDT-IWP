@@ -67,7 +67,7 @@ public class EntityInfoUI : MonoBehaviour
                 continue;
             SKILL_CODE code = character.skillSet.SkillDict.FirstOrDefault(x => x.Value == skill).Key;
             GameObject UI = Instantiate(skillUIPrefab, skillSetUI.transform);
-            UI.GetComponent<Slider>().maxValue = character.skillSet.SkillDict[code].cooldown;
+            UI.GetComponent<Slider>().maxValue = character.skillSet.SkillDict[code].cooldown - 1;
             skillUIs.Add(code, UI);
         }
         UpdateSkillUI();

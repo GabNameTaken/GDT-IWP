@@ -26,7 +26,7 @@ public class NotToday : Skill
             if (entity.ContainsSkill(this) && entity.IsDead)
             {
                 entityBase.IsDead = false;
-                entityBase.TakeDamage(-(entityBase.trueStats.maxHealth * 0.25f), null);
+                entityBase.TakeDamage(-(entityBase.trueStats.maxHealth * 0.25f), false, null, false);
                 entityBase.animator.Play("Idle");
                 reviveNum--;
             }

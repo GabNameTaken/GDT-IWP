@@ -15,13 +15,13 @@ MonoBehaviour:
   targetTeam: 0
   targets: 0
   _skillName: Tortle Spin
-  _skillDesc: 
+  _skillDesc: Attack with a 75% chance to decrease Defense of the target for 2 turns.
   _skillIcon: {fileID: 0}
   _skillCost: 0
   readyAnimationString: 
   skillParticle: {fileID: 0}
   _Cooldown: 2
-  currentCooldown: 1
+  currentCooldown: 2
   _multiplier: 1.4
   statusEffectData: {fileID: 11400000, guid: 2096c419d83490749a97e83c09e41db3, type: 2}
   statusEffectChance: 0.75

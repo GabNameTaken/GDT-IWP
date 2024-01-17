@@ -15,12 +15,13 @@ MonoBehaviour:
   targetTeam: 1
   targets: 1
   _skillName: Gather Up!
-  _skillDesc: 
+  _skillDesc: Grants all allies increased attack for 3 turns.
   _skillIcon: {fileID: 0}
   _skillCost: 0
   readyAnimationString: 
   skillParticle: {fileID: 0}
   _Cooldown: 5
-  currentCooldown: 0
+  currentCooldown: 3
   _multiplier: 0
   statusEffectData: {fileID: 11400000, guid: 06ea24d9dec3f1e43b0f78fed23152a4, type: 2}
+  buffDuration: 3

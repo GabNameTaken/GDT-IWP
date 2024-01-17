@@ -15,15 +15,17 @@ MonoBehaviour:
   targetTeam: 0
   targets: 0
   _skillName: Smack!
-  _skillDesc: 
+  _skillDesc: Smacks the target with a 100% chance to decrease their Defense and
+    Poison them for 2 turns.
   _skillIcon: {fileID: 0}
   _skillCost: 0
   readyAnimationString: 
   skillParticle: {fileID: 0}
-  _Cooldown: 6
-  currentCooldown: 0
+  _Cooldown: 5
+  currentCooldown: 5
   _multiplier: 2
   debuffs:
   - {fileID: 11400000, guid: 2096c419d83490749a97e83c09e41db3, type: 2}
   - {fileID: 11400000, guid: f60bc414d34d87047bea164eda5736f3, type: 2}
+  debuffDuration: 2
   statusEffectChance: 1

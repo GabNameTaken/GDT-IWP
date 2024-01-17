@@ -22,17 +22,8 @@ public class StatusEffectUI : MonoBehaviour
     public void UpdateStatus(StatusIcon icon, int duration)
     {
         icon.durationText.text = duration.ToString();
-
-        if (duration <= 0)
-            StartCoroutine(RemoveCoroutine(icon));
     }
 
-    IEnumerator RemoveCoroutine(StatusIcon icon)
-    {
-        yield return new WaitForSeconds(3f);
-
-        RemoveStatus(icon);
-    }
     public void RemoveStatus(StatusIcon icon)
     {
         Destroy(icon.gameObject);

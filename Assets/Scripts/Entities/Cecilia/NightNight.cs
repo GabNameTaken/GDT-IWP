@@ -24,16 +24,19 @@ public class NightNight : Skill
 
     public override float CalculateDamage(EntityBase attacker, EntityBase attackee)
     {
-        bool crit = false;
         if (IsCriticalHit(attacker.trueStats.critRate))
         {
             crit = true;
             damage = (int)Mathf.Round((attacker.trueStats.maxHealth * (multiplier + additionalScalings) - attackee.trueStats.defense) * (attacker.trueStats.critDMG / 100));
         }
         else
+        {
             damage = (int)Mathf.Round(attacker.trueStats.maxHealth * (multiplier + additionalScalings) - attackee.trueStats.defense);
+        }
 
-        CombatUIManager.Instance.ShowDMGNumbers(damage, crit);
+        if (damage <= 10)
+            damage = 10;
+
         return damage;
     }
 }

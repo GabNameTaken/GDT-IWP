@@ -15,7 +15,8 @@ MonoBehaviour:
   targetTeam: 0
   targets: 0
   _skillName: Toxic Punch
-  _skillDesc: Attacks with a 70% chance to poison the target for 1 turn.
+  _skillDesc: Attacks with a 70% chance to poison the target for 1 turn. Gain 20%
+    TurnMeter after attacking.
   _skillIcon: {fileID: 0}
   _skillCost: 0
   readyAnimationString: 

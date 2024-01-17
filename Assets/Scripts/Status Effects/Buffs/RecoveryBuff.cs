@@ -13,7 +13,7 @@ public class RecoveryBuff : StatusEffectData
 
     public override void ApplyEffect(EntityBase source, EntityBase dest)
     {
-        dest.TakeDamage(-(dest.trueStats.maxHealth * multiplier), null);
+        dest.TakeDamage(-(dest.trueStats.maxHealth * multiplier), false, null, false);
     }
 
     public override void OnStatusEffectRemove(EntityBase source, EntityBase dest)

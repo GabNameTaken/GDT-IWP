@@ -21,8 +21,9 @@ public class TurnCharge : MonoBehaviour
 
     void ConsumeCharge(int charge)
     {
-        if (ether < 10)
+        if (ether < 10 || isSelectingTurn)
             return;
+
         ConsumeEther(charge);
 
         //take turn

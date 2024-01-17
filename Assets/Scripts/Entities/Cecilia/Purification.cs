@@ -18,7 +18,6 @@ public class Purification : Skill
     {
         damage = Mathf.RoundToInt(attacker.trueStats.maxHealth * multiplier);
 
-        CombatUIManager.Instance.ShowDMGNumbers(damage, false);
         return -damage;
     }
     protected override IEnumerator SkillAnimationCoroutine(EntityBase attacker, List<EntityBase> attackeeList)
@@ -32,7 +31,7 @@ public class Purification : Skill
 
         foreach (EntityBase attackee in attackeeList)
         {
-            attackee.TakeDamage(CalculateDamage(attacker, attackee), attacker.entity.element);
+            attackee.TakeDamage(CalculateDamage(attacker, attackee), crit, attacker.entity.element);
 
             foreach (StatusEffectData data in statusEffectDatas)
             {

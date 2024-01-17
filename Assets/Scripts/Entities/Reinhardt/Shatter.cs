@@ -51,13 +51,12 @@ public class Shatter : Skill
             }
         }
 
+        foreach (EntityBase attackee in attackeeList)
+            attackee.TakeDamage(CalculateDamage(attacker, attackee), crit, attacker.entity.element);
+
         yield return new WaitForSeconds(attacker.animator.GetCurrentAnimatorStateInfo(0).length * 0.6f);
 
-        foreach (EntityBase attackee in attackeeList)
-            attackee.TakeDamage(CalculateDamage(attacker, attackee), attacker.entity.element);
-
-        
-        attacker.TakeDamage(-attacker.trueStats.maxHealth * 0.04f, null);
+        attacker.TakeDamage(-attacker.trueStats.maxHealth * 0.04f, false, null, false);
 
         attacker.PostSkill();
     }

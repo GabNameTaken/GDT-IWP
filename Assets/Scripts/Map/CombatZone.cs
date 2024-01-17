@@ -97,6 +97,8 @@ public class CombatZone : MonoBehaviour
 
     private void OnWaveCleared()
     {
+        CombatUIManager.Instance.bossInfoUI.gameObject.SetActive(false);
+
         int waveNumber = enemyWaves.IndexOf(currentWave);
         if (waveNumber >= enemyWaves.Count - 1) // If waves finished, call battle ended (won)
         {
@@ -105,7 +107,6 @@ public class CombatZone : MonoBehaviour
             return;
         }
 
-        CombatUIManager.Instance.bossInfoUI.gameObject.SetActive(false);
         currentWave = enemyWaves[++waveNumber];
         InstantiateWave();
     }

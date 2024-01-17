@@ -44,9 +44,9 @@ public class Enemy : EntityBase
             SelectSkill();
     }
 
-    public override void TakeDamage(float damage, Element element)
+    public override void TakeDamage(float damage, bool crit, Element element, bool showDMG = false)
     {
-        base.TakeDamage(damage, element);
+        base.TakeDamage(damage, crit, element, showDMG);
         if (damage > 0) SetLastHitElement(element);
     }
 

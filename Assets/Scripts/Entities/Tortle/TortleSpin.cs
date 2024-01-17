@@ -19,8 +19,12 @@ public class TortleSpin : Skill
             attacker.animator.Play("TortleSpinAttack");
             CombatManager.Instance.turnCharge.AddEther(1);
             base.Use(attacker, attackeeList);
-            if (RunProbability(statusEffectChance))
-                attackeeList[0].AddStatusEffect(InitStatusEffect(attacker, attackeeList[0], 2, statusEffectData));
         });
+    }
+
+    protected override void ApplyEffects(EntityBase attacker, List<EntityBase> attackeeList)
+    {
+        if (RunProbability(statusEffectChance))
+            attackeeList[0].AddStatusEffect(InitStatusEffect(attacker, attackeeList[0], 2, statusEffectData));
     }
 }

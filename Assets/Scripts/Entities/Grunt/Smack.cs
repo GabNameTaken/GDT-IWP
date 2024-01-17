@@ -7,6 +7,7 @@ using DG.Tweening;
 public class Smack : Skill
 {
     [SerializeField] List<StatusEffectData> debuffs;
+    [SerializeField] int debuffDuration;
     public float statusEffectChance = 1.00f;
     public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
@@ -19,11 +20,15 @@ public class Smack : Skill
             attacker.animator.Play("SmackAttack");
             CombatManager.Instance.turnCharge.AddEther(1);
             base.Use(attacker, attackeeList);
-            foreach (StatusEffectData data in debuffs)
-            {
-                if (RunProbability(statusEffectChance))
-                    attackeeList[0].AddStatusEffect(InitStatusEffect(attacker, attackeeList[0], 2, data));
-            }
         });
+    }
+
+    protected override void ApplyEffects(EntityBase attacker, List<EntityBase> attackeeList)
+    {
+        foreach (StatusEffectData data in debuffs)
+        {
+            if (RunProbability(statusEffectChance))
+                attackeeList[0].AddStatusEffect(InitStatusEffect(attacker, attackeeList[0], debuffDuration, data));
+        }
     }
 }

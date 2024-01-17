@@ -25,7 +25,7 @@ public class Curse : Skill
             {
                 SkillParticle particle = Instantiate(skillParticle, attackee.transform);
                 particle.Play();
-                attackee.TakeDamage(CalculateDamage(attacker, attackee), attacker.entity.element);
+                attackee.TakeDamage(CalculateDamage(attacker, attackee), crit, attacker.entity.element);
                 if (RunProbability(poisonChance))
                     attackee.AddStatusEffect(InitStatusEffect(attacker, attackee, 2, poisonDebuffData));
             }

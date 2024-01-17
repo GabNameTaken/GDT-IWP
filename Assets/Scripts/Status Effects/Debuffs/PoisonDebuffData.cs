@@ -13,7 +13,7 @@ public class PoisonDebuffData : StatusEffectData
 
     public override void ApplyEffect(EntityBase source, EntityBase dest)
     {
-        dest.TakeDamage(dest.trueStats.maxHealth * (multiplier / 100), null);
+        dest.TakeDamage(dest.trueStats.maxHealth * (multiplier / 100), false, null, false);
     }
 
     public override void OnStatusEffectRemove(EntityBase source, EntityBase dest)

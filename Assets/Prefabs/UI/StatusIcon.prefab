@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e670f7f19dd8254a8cc2189518e0edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  durationText: {fileID: 6165153331687586287}
   inspectDisplayPrefab: {fileID: 1110512941881227504, guid: 9382376b55833204eb480137d0d993e6, type: 3}
 --- !u!1 &6162790506646682085
 GameObject:

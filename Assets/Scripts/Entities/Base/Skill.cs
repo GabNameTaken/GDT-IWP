@@ -111,7 +111,7 @@ public class Skill : ScriptableObject
 
         foreach (EntityBase attackee in attackeeList)
             if (!attackee.IsDead)
-                attackee.TakeDamage(CalculateDamage(attacker, attackee), attacker.entity.element);
+                attackee.TakeDamage(CalculateDamage(attacker, attackee), crit, attacker.entity.element);
 
         ApplyEffects(attacker, attackeeList);
 
@@ -125,10 +125,10 @@ public class Skill : ScriptableObject
 
     }
 
+    protected bool crit = false;
     public virtual float CalculateDamage(EntityBase attacker, EntityBase attackee)
     {
         //check for crit
-        bool crit = false;
         //(Attack - EnemyDef + scalingMultiplier) * cdmg (if it crits) * multiplier
         if (IsCriticalHit(attacker.trueStats.critRate))
         {
@@ -136,12 +136,15 @@ public class Skill : ScriptableObject
             crit = true;
         }
         else
+        {
             damage = (int)Mathf.Round((attacker.trueStats.attack * (multiplier + additionalScalings) - attackee.trueStats.defense));
+            crit = false;
+        }
 
         if (damage <= 0)
             damage = 10;
 
-        CombatUIManager.Instance.ShowDMGNumbers(damage, crit);
+        
         return damage;
     }
 

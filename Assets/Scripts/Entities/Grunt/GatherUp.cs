@@ -7,6 +7,7 @@ using DG.Tweening;
 public class GatherUp : Skill
 {
     [SerializeField] StatusEffectData statusEffectData;
+    [SerializeField] int buffDuration;
     public override void Use(EntityBase attacker, List<EntityBase> attackeeList)
     {
         attacker.animator.Play("ChopAttack");
@@ -24,7 +25,7 @@ public class GatherUp : Skill
             {
                 //SkillParticle particle = Instantiate(skillParticle, attackee.transform);
                 //particle.Play();
-                attackee.AddStatusEffect(InitStatusEffect(attacker, attackee, 3, statusEffectData));
+                attackee.AddStatusEffect(InitStatusEffect(attacker, attackee, buffDuration, statusEffectData));
             }
 
         attacker.PostSkill();

@@ -82,12 +82,14 @@ public class EntityBase : MonoBehaviour
 
     }
 
-    public virtual void TakeDamage(float damage, Element element)
+    public virtual void TakeDamage(float damage, bool crit, Element element, bool showDMG = true)
     {
         damageTaken = damage;
         if (damageTaken > 0)
         {
             CombatManager.Instance.CallEntityTakeDamageEvent(this);
+            if (showDMG)
+                CombatUIManager.Instance.ShowDMGNumbers(damageTaken, crit);
             if (asleep)
             {
                 StatusEffect sleep = statusEffectList.FirstOrDefault(effect => effect.StatusEffectData.statusEffectName == "Sleep");

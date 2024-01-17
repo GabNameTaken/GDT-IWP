@@ -40,7 +40,7 @@ public class SingleTargetHealAttack : Skill
 
         foreach (EntityBase attackee in attackeeList)
             if (!attackee.IsDead)
-                attackee.TakeDamage(CalculateDamage(attacker, attackee), attacker.entity.element);
+                attackee.TakeDamage(CalculateDamage(attacker, attackee), crit, attacker.entity.element);
 
         ApplyEffects(attacker, attackeeList);
 
@@ -56,8 +56,7 @@ public class SingleTargetHealAttack : Skill
         yield return new WaitForSeconds(1.2f);
 
         float heal = healedEntity.trueStats.maxHealth * healMultiplier;
-        healedEntity.TakeDamage(-heal, null);
-        CombatUIManager.Instance.ShowDMGNumbers(heal, false);
+        healedEntity.TakeDamage(-heal, false, null);
 
         yield return new WaitForSeconds(1.2f);
 

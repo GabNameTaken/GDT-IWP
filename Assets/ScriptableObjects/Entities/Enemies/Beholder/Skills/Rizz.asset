@@ -15,11 +15,11 @@ MonoBehaviour:
   targetTeam: 1
   targets: 1
   _skillName: Rizz
-  _skillDesc: 'So much rizz... Allies take '
+  _skillDesc: So much rizz... Allies take reduced damage.
   _skillIcon: {fileID: 0}
   _skillCost: 0
   readyAnimationString: 
   skillParticle: {fileID: 0}
   _Cooldown: 0
   currentCooldown: 0
-  _multiplier: 0.8
+  _multiplier: 0.5
