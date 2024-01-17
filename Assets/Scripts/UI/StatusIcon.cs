@@ -6,6 +6,7 @@ using TMPro;
 
 public class StatusIcon : MonoBehaviour
 {
+    public TMP_Text durationText;
     [SerializeField] GameObject inspectDisplayPrefab;
 
     GameObject inspectDisplay;

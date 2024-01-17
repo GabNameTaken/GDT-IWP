@@ -15,7 +15,7 @@ public class InspectionUI : MonoBehaviour
     [SerializeField] GameObject statsDesc, skillDesc;
 
     [Header("Status Effects")]
-    [SerializeField] GameObject statusIconPrefab;
+    [SerializeField] StatusIcon statusIconPrefab;
     [SerializeField] GameObject statusContent;
 
     public void InitTabs(EntityBase inspectEntity)
@@ -122,13 +122,12 @@ public class InspectionUI : MonoBehaviour
 
         foreach (StatusEffect status in inspectEntity.statusEffectList)
         {
-            GameObject icon = Instantiate(statusIconPrefab, statusContent.transform);
+            StatusIcon icon = Instantiate(statusIconPrefab, statusContent.transform);
             icon.GetComponent<Image>().sprite = status.StatusEffectData.icon;
             status.icon = icon;
             icon.GetComponent<StatusIcon>().InitIcon(status);
 
-            TMP_Text durationText = icon.transform.GetChild(0).GetComponent<TMP_Text>();
-            durationText.text = status.remainingDuration.ToString();
+            icon.durationText.text = status.remainingDuration.ToString();
         }
     }
 

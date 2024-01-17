@@ -10,7 +10,7 @@ public class StatusEffect
     public StatusEffectData StatusEffectData => statusEffectData;
 
     protected StatusEffectUI statusEffectUI;
-    public GameObject icon;
+    public StatusIcon icon;
 
     public int duration;
     public int remainingDuration;

@@ -6,11 +6,11 @@ using TMPro;
 
 public class StatusEffectUI : MonoBehaviour
 {
-    [SerializeField] GameObject iconPrefab;
+    [SerializeField] StatusIcon iconPrefab;
 
     public void OnAddStatus(StatusEffect statusEffect, int duration)
     {
-        GameObject icon = Instantiate(iconPrefab, transform);
+        StatusIcon icon = Instantiate(iconPrefab, transform);
         icon.GetComponent<Image>().sprite = statusEffect.StatusEffectData.icon;
         statusEffect.icon = icon;
         icon.GetComponent<StatusIcon>().InitIcon(statusEffect);
@@ -19,23 +19,22 @@ public class StatusEffectUI : MonoBehaviour
         durationText.text = duration.ToString();
     }
 
-    public void UpdateStatus(GameObject icon, int duration)
+    public void UpdateStatus(StatusIcon icon, int duration)
     {
-        TMP_Text durationText = icon.transform.GetChild(0).GetComponent<TMP_Text>();
-        durationText.text = duration.ToString();
+        icon.durationText.text = duration.ToString();
 
         if (duration <= 0)
             StartCoroutine(RemoveCoroutine(icon));
     }
 
-    IEnumerator RemoveCoroutine(GameObject icon)
+    IEnumerator RemoveCoroutine(StatusIcon icon)
     {
         yield return new WaitForSeconds(3f);
 
         RemoveStatus(icon);
     }
-    public void RemoveStatus(GameObject icon)
+    public void RemoveStatus(StatusIcon icon)
     {
-        Destroy(icon);
+        Destroy(icon.gameObject);
     }
 }

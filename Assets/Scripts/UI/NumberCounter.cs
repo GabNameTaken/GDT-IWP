@@ -7,8 +7,7 @@ using TMPro;
 public class NumberCounter : MonoBehaviour
 {
     [SerializeField] TMP_Text numberText;
-    [SerializeField] Color normalColor;
-    [SerializeField] Color bigNumberColor;
+
     //private int _value;
     //public int value
     //{

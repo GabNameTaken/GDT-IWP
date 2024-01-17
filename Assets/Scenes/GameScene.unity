@@ -4714,9 +4714,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapZones:
+  - {fileID: 3559274696785205842, guid: 490df030d8275b14194ca212d9386056, type: 3}
   - {fileID: 3559274696785205842, guid: e1ad7a73b7b7665498d771a6d9efb9f9, type: 3}
   - {fileID: 3559274696785205842, guid: dc2696d7722d98a47af6f384b72f8e3f, type: 3}
-  - {fileID: 3559274696785205842, guid: 490df030d8275b14194ca212d9386056, type: 3}
   - {fileID: 3559274696785205842, guid: 871b7fb815abe934e8d4f4bec249803a, type: 3}
   - {fileID: 3559274696785205842, guid: 4b7411b495c32a142945f5c8435f4653, type: 3}
   currentMapNum: 0
@@ -11064,8 +11064,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberText: {fileID: 296795390}
-  normalColor: {r: 0, g: 0, b: 0, a: 0}
-  bigNumberColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!224 &1772327165
 RectTransform:
   m_ObjectHideFlags: 0
