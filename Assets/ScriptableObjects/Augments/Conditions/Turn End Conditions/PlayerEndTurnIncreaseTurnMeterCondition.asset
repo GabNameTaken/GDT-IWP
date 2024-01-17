@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 543b614f3c4d25a4f89516524cdd4033, type: 3}
-  m_Name: Epic
+  m_Script: {fileID: 11500000, guid: 110b570c1542d9a4bb1830cfbdbcde23, type: 3}
+  m_Name: PlayerEndTurnIncreaseTurnMeterCondition
   m_EditorClassIdentifier: 
-  label: Epic
-  rarity: 2
-  cardBackground: {fileID: 0}
+  stateChecks:
+  - {fileID: 11400000, guid: 5b965747cc93bde4b8241cb698b25b00, type: 2}
+  Effect: {fileID: 11400000, guid: 05dcc4f951419154b9b2f6a425a1dc77, type: 2}

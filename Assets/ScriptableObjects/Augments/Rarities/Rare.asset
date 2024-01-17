@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Rare
   m_EditorClassIdentifier: 
   label: Rare
-  rarity: 0
+  rarity: 1
   cardBackground: {fileID: 0}

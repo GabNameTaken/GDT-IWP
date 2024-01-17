@@ -31,3 +31,8 @@ abstract public class KillEffect : EventEffect<EntityBase>
 {
     public abstract override void RegisterEffect(EntityBase deadEntity);
 }
+
+abstract public class TurnEndEffect : EventEffect<EntityBase>
+{
+    public abstract override void RegisterEffect(EntityBase turnEndedEntity);
+}

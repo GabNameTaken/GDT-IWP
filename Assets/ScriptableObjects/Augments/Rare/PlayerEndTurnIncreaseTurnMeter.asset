@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 624d298b010ccba4b8265e78a5e9cb3c, type: 3}
-  m_Name: ThiefKillGainTurnMeter
+  m_Name: PlayerEndTurnIncreaseTurnMeter
   m_EditorClassIdentifier: 
-  label: Stealing Turns
-  description: Thieves gain 50% TurnMeter upon killing an enemy
-  rarity: 0
+  label: 
+  description: 
+  rarity: 1
   conditions:
-  - {fileID: 11400000, guid: dfba35229160775429ff4ed4aa18e902, type: 2}
+  - {fileID: 11400000, guid: fffd3c33172925641bc120ea1d5e6c3c, type: 2}
   lastingEffects: []

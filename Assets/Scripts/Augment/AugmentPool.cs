@@ -29,8 +29,13 @@ public class AugmentPool : MonoBehaviour
             if (randomFloat < totalChance) // If chance hit
             {
                 augmentsOfRarity.RemoveAll(augment => augment.AugmentRarity.Rarity != rarity); // Remove augments that are not of rarity
-                while (randomAugment == null || (augmentExceptions != null && augmentExceptions.Contains(randomAugment))) // If augment not acceptable, reroll
-                    randomAugment = augmentsOfRarity[Random.Range(0, augmentsOfRarity.Count)]; // Randomise augment
+                if (augmentsOfRarity.Count > 0) // Check if there are augments in the list
+                {
+                    do
+                    {
+                        randomAugment = augmentsOfRarity[Random.Range(0, augmentsOfRarity.Count)]; // Randomise augment
+                    } while (randomAugment == null || (augmentExceptions != null && augmentExceptions.Contains(randomAugment))); // If augment not acceptable, reroll
+                }
             }
         }
         return randomAugment;

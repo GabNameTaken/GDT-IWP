@@ -12641,20 +12641,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6dc97184a41ab5f4e8add041cae57c49, type: 2}
   - {fileID: 11400000, guid: 5f03bcd21faadfe449f91f54617b7030, type: 2}
   - {fileID: 11400000, guid: febe0535ca459974c8ab675d20249420, type: 2}
+  - {fileID: 11400000, guid: 332580fb38a70fe4d80c482b3e698df8, type: 2}
   augmentRarityPairList:
   - rarity: 0
     augmentRarity: {fileID: 11400000, guid: 94d272a8426aa4f42912347af3922526, type: 2}
   - rarity: 1
-    augmentRarity: {fileID: 11400000, guid: 0ae3af4e39adf234db0a47b4ee712cd2, type: 2}
-  - rarity: 2
     augmentRarity: {fileID: 11400000, guid: 8188987a4b23cb24da33b92334de98c0, type: 2}
+  - rarity: 2
+    augmentRarity: {fileID: 11400000, guid: 0ae3af4e39adf234db0a47b4ee712cd2, type: 2}
   augmentRarityChancePairList:
   - rarity: 0
-    chance: 100
+    chance: 30
   - rarity: 1
-    chance: 0
+    chance: 20
   - rarity: 2
-    chance: 0
+    chance: 15
 --- !u!114 &1952819360
 MonoBehaviour:
   m_ObjectHideFlags: 0

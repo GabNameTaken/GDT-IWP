@@ -151,9 +151,11 @@ public class CombatManager : Singleton<CombatManager>
         }
     }
 
+    EntityBase endedTurn = null;
     public void EndTurn(EntityBase currentTurn)
     {
         currentTurn.isMoving = false;
+        endedTurn = currentTurn;
         currentTurn.TurnMeter = currentTurn.excessTurnMeter; currentTurn.excessTurnMeter = 0;
 
         isPlayerTurn = false;
@@ -268,5 +270,10 @@ public class CombatManager : Singleton<CombatManager>
     public EntityBase GetEntityTakingTurn()
     {
         return entitiesOnField.Where(entity => entity.isMoving).FirstOrDefault();
+    }
+
+    public EntityBase GetEntityEndedTurn()
+    {
+        return endedTurn;
     }
 }

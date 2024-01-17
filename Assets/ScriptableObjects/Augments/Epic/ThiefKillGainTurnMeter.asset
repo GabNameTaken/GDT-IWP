@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 543b614f3c4d25a4f89516524cdd4033, type: 3}
-  m_Name: Epic
+  m_Script: {fileID: 11500000, guid: 624d298b010ccba4b8265e78a5e9cb3c, type: 3}
+  m_Name: ThiefKillGainTurnMeter
   m_EditorClassIdentifier: 
-  label: Epic
+  label: Stealing Turns
+  description: Thieves gain 50% TurnMeter upon killing an enemy
   rarity: 2
-  cardBackground: {fileID: 0}
+  conditions:
+  - {fileID: 11400000, guid: dfba35229160775429ff4ed4aa18e902, type: 2}
+  lastingEffects: []

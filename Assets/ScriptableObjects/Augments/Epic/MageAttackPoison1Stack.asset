@@ -15,7 +15,7 @@ MonoBehaviour:
   label: Mage - Venomous
   description: When a mage ally attacks, applies 1 stack of poison to enemies hit
     for 1 turn
-  rarity: 0
+  rarity: 2
   conditions:
   - {fileID: 11400000, guid: d741cf5e7ec75b044966b851168fa0ec, type: 2}
   lastingEffects: []
