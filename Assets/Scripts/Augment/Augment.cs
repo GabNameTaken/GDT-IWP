@@ -17,12 +17,12 @@ public class Augment : ScriptableObject
     [SerializeField] List<Condition> conditions;
     [SerializeField] List<LastingEffect> lastingEffects;
 
+    [SerializeField] bool stackable;
+
     public void Activate()
     {
-        foreach (Condition condition in conditions) condition?.Init();
+        foreach (Condition condition in conditions) condition?.Init(stackable);
         OnActivate();
-
-        if (conditions.Count < 1) return;
     }
 
     public void OnActivate()
@@ -32,9 +32,7 @@ public class Augment : ScriptableObject
 
     public void Deactivate()
     {
-        if (conditions.Count < 1) return;
-
-        foreach (Condition condition in conditions) condition?.Cleanup();
+        foreach (Condition condition in conditions) condition?.Cleanup(stackable);
         OnDeactivate();
     }
 

@@ -9,16 +9,22 @@ public class Condition : ScriptableObject
     [SerializeField] List<StateCheck> stateChecks = new List<StateCheck>(); // Additional on-going game requirements
 
     bool hasInit = false;
-    public virtual void Init()
+    public virtual void Init(bool stackable)
     {
-        if (hasInit) return;
-        hasInit = true;
+        if (!stackable)
+        {
+            if (hasInit) return;
+            hasInit = true;
+        }
     }
 
-    public virtual void Cleanup()
+    public virtual void Cleanup(bool stackable)
     {
-        if (!hasInit) return;
-        hasInit = false;
+        if (!stackable)
+        {
+            if (!hasInit) return;
+            hasInit = false;
+        }
     }
 
     protected bool Check()
@@ -34,15 +40,15 @@ public abstract class EventCondition<T> : Condition
 
     protected abstract void OnGameEvent(T eventData);
 
-    public override void Init()
+    public override void Init(bool stackable)
     {
-        base.Init();
+        base.Init(stackable);
         AttachEvent();
     }
 
-    public override void Cleanup()
+    public override void Cleanup(bool stackable)
     {
-        base.Cleanup();
+        base.Cleanup(stackable);
         DetachEvent();
     }
 
