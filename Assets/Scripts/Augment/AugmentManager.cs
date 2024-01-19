@@ -37,11 +37,11 @@ public class AugmentManager : Singleton<AugmentManager>
         }
     }
 
-    public void ActivateAugments()
+    void ActivateAugments()
     {
         ownedAugments.ForEach(augment =>
         {
-            if (!activeAugments.Contains(augment))
+            //if (!activeAugments.Contains(augment)) // <-- Uncommenting this disables stackable augments
             {
                 augment.Activate();
                 activeAugments.Add(augment);
@@ -55,7 +55,7 @@ public class AugmentManager : Singleton<AugmentManager>
         activeAugments.Clear();
     }
 
-    void RefreshAugments() // Deactivate active augments and activate augment effects in ownedAugments
+    public void RefreshAugments() // Deactivate active augments and activate augment effects in ownedAugments
     {
         DeactivateAugments(); ActivateAugments();
     }

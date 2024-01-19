@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 051ef955da516d4478c35927aa5a4b3f, type: 3}
   m_Name: Cecilia
   m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: 30275d2f04565f549b66cc0d8f451a55, type: 3}
   _entityName: Cecilia
   _classType: {fileID: 11400000, guid: 049fb1adbe9cc544abe89b70b0ba7517, type: 2}
   _element: {fileID: 11400000, guid: 2be60afccdb5d5b4291d7c346e133d6a, type: 2}

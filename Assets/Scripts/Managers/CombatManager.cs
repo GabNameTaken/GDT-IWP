@@ -52,7 +52,7 @@ public class CombatManager : Singleton<CombatManager>
         CombatUIManager.Instance.SetUpPlayerUI(playerParty);
         IncreaseTurnMeter(CalculateNumberOfIncrease());
 
-        AugmentManager.Instance.ActivateAugments();
+        AugmentManager.Instance.RefreshAugments();
     }
 
     void AssignEntitiesOnField()
