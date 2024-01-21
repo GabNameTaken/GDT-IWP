@@ -162,7 +162,7 @@ public class EntityBase : MonoBehaviour
         CombatManager combatManager = CombatManager.Instance;
         combatManager.CallEntityDeadEvent(this);
 
-        if (this && isDead)
+        if (gameObject.activeSelf && isDead)
         {
             if (transform.Find("Main Camera"))
                 Camera.main.transform.SetParent(MapManager.Instance.currentMap.transform.Find("CombatSetup").transform);
@@ -231,7 +231,10 @@ public class EntityBase : MonoBehaviour
             animator.Play("Idle");
 
         if (!isDead)
+        {
+            isMoving = true; attacking = true;
             StartCoroutine(StartingTurn());
+        }
     }
 
     public void AddStatusEffect(StatusEffect statusEffect)
@@ -282,7 +285,7 @@ public class EntityBase : MonoBehaviour
 
     protected virtual void StartTurn()
     {
-        isMoving = true;
+        attacking = false;
     }
 
     public virtual void Provoked(EntityBase provoker)
