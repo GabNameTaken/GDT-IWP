@@ -35,6 +35,15 @@ public class EntityInfoUI : MonoBehaviour
 
     public void SetUpUI()
     {
+        if (statusEffectUI.transform.childCount > 0)
+        {
+            for (int i = statusEffectUI.transform.childCount - 1; i >= 0; i--)
+            {
+                Transform child = statusEffectUI.transform.GetChild(i);
+                Destroy(child.gameObject);
+            }
+        }
+
         if (nameText)
             nameText.text = character.entity.entityName;
         healthSlider.maxValue = character.trueStats.maxHealth;  //Update Max HP
@@ -61,6 +70,18 @@ public class EntityInfoUI : MonoBehaviour
 
     void SetUpSkillUI()
     {
+        if (skillUIs.Count > 0)
+        {
+            skillUIs.Clear();
+            if (skillSetUI.transform.childCount > 0)
+            {
+                for (int i = skillSetUI.transform.childCount - 1; i >= 0; i--)
+                {
+                    Transform child = skillSetUI.transform.GetChild(i);
+                    Destroy(child.gameObject);
+                }
+            }
+        }
         foreach (Skill skill in character.skillSet.SkillDict.Values)
         {
             if (character.skillSet.SkillDict[SKILL_CODE.S1] == skill)
