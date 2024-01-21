@@ -27,7 +27,7 @@ public class GameController : Singleton<GameController>
     {
         if (win)
         {
-            UIManager.Instance.SetWinScreenActive(true);
+            UIManager.Instance.SetBattleWinScreenActive(true);
         }
         else
         {
@@ -35,4 +35,8 @@ public class GameController : Singleton<GameController>
         }
     }
 
+    public void GameCleared()
+    {
+        UIManager.Instance.SetGameCompletedScreenActive(true);
+    }
 }

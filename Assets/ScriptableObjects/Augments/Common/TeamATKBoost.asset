@@ -18,3 +18,4 @@ MonoBehaviour:
   conditions: []
   lastingEffects:
   - {fileID: 11400000, guid: c5394ace7d083b749ad5069c77357766, type: 2}
+  stackable: 1

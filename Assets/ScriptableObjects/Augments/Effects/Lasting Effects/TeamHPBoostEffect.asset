@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cff019027bdc2e4fb10f1835163ada0, type: 3}
   m_Name: TeamHPBoostEffect
   m_EditorClassIdentifier: 
-  HPBoostPercentage: 20
+  HPBoostPercentage: 10

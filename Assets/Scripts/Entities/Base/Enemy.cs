@@ -38,7 +38,7 @@ public class Enemy : EntityBase
     protected override void StartTurn()
     {
         base.StartTurn();
-        if (attacking)
+        if (attacking || IsDead)
             return;
         else
             SelectSkill();

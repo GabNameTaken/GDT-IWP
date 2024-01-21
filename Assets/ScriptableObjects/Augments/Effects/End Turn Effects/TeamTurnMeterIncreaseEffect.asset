@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e024d346df12ae74f8f8b34d94ee214f, type: 3}
   m_Name: TeamTurnMeterIncreaseEffect
   m_EditorClassIdentifier: 
-  turnMeterIncrease: 10
+  turnMeterIncrease: 5

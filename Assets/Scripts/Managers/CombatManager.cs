@@ -240,15 +240,7 @@ public class CombatManager : Singleton<CombatManager>
 
         OnBattleEnd();
 
-        UIManager uiManager = UIManager.Instance;
-        if (won) // Win condition
-        {
-            uiManager.SetWinScreenActive(true);
-        }
-        else // Lose condition
-        {
-            uiManager.SetLoseScreenActive(true);
-        }
+        GameController.Instance.Victory(won);
     }
 
     void OnBattleStart()

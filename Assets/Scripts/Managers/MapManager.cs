@@ -38,6 +38,10 @@ public class MapManager : MonoBehaviour
             currentMapNum += 1;
             SetMap();
         }
+        else
+        {
+            GameController.Instance.GameCleared();
+        }
     }
 
     public void SetMap()

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   label: Zooming
   description: At the end of an enemy's turn, increase TurnMeter of all allies by
-    10%.
+    5%.
   rarity: 1
   conditions:
   - {fileID: 11400000, guid: 63952733079ff5942947f140f832e8e6, type: 2}
   lastingEffects: []
+  stackable: 1

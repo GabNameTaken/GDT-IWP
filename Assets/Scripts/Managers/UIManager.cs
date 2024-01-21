@@ -6,20 +6,25 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
-    [SerializeField] GameObject pauseScreen, winScreen, loseScreen, combatUIPage;
+    [SerializeField] GameObject pauseScreen, battleWinScreen, loseScreen, gameCompletedScreen, combatUIPage;
     [SerializeField] Button toggleBattleSpeedBtn;
     [SerializeField] Sprite battleSpeed1xImg, battleSpeed2xImg;
 
     public void SetPauseScreenActive(bool active) => pauseScreen.SetActive(active);
-    public void SetWinScreenActive(bool active) 
+    public void SetBattleWinScreenActive(bool active) 
     {
-        winScreen.SetActive(active);
+        battleWinScreen.SetActive(active);
         combatUIPage.SetActive(active);
     }
     public void SetLoseScreenActive(bool active) 
     {
         loseScreen.SetActive(active);
         combatUIPage.SetActive(active);
+    }
+    public void SetGameCompletedScreenActive(bool active)
+    {
+        battleWinScreen.SetActive(!active);
+        gameCompletedScreen.SetActive(active);
     }
 
     public void SetBattleSpeedBtnSprite(BATTLE_SPEED battleSpeed)

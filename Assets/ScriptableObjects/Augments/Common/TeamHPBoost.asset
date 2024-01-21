@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: TeamHPBoost
   m_EditorClassIdentifier: 
   label: Nutrients
-  description: +20% max HP to all allies
+  description: +10% max HP to all allies
   rarity: 0
   conditions: []
   lastingEffects:
   - {fileID: 11400000, guid: 46e4fc05cbf477c46a90e95f4f79444a, type: 2}
+  stackable: 1

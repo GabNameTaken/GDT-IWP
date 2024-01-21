@@ -202,6 +202,7 @@ public class EntityBase : MonoBehaviour
         else
         {
             attacking = false;
+            transform.DORotate(originalRotation.eulerAngles, 1);
             CombatManager.Instance.EndTurn(this);
         }
     }
@@ -272,7 +273,7 @@ public class EntityBase : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        if (!unableToAct && !isDead)
+        if (!unableToAct)
             StartTurn();
         else if (!attacking)
             PostSkill();

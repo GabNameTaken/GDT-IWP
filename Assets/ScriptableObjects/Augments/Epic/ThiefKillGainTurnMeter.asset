@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: ThiefKillGainTurnMeter
   m_EditorClassIdentifier: 
   label: Stealing Turns
-  description: Thieves gain 50% TurnMeter upon killing an enemy
+  description: Thieves gain 50% TurnMeter upon killing an enemy. (This effect does
+    not stack)
   rarity: 2
   conditions:
   - {fileID: 11400000, guid: dfba35229160775429ff4ed4aa18e902, type: 2}
   lastingEffects: []
+  stackable: 0
