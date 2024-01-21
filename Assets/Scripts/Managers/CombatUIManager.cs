@@ -41,9 +41,11 @@ public class CombatUIManager : Singleton<CombatUIManager>
 
     [Header("Player's Turn UI")]
     [SerializeField] List<Transform> skillSetUI;
+    [SerializeField] TMP_Text controlsText;
     string[] skillKeyBindTexts = { "S1", "S2", "S3" };
     public void DisplaySkillCooldown(SkillSet skillSet)
     {
+        displayTurnControls();
         for (int i = 0; i < skillSetUI.Count; i++)
         {
             if (skillSet.SkillDict.ContainsKey((SKILL_CODE)i) && skillSet.SkillDict[(SKILL_CODE)i].currentCooldown > 0)
@@ -56,12 +58,25 @@ public class CombatUIManager : Singleton<CombatUIManager>
     public void DisplaySelectedSkill(SKILL_CODE code)
     {
         DeselectSkills();
+        displayTargetControls();
         EventSystem.current.SetSelectedGameObject(skillSetUI[(int)code].GetChild(0).gameObject);
     }
 
     public void DeselectSkills()
     {
         EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    void displayTargetControls()
+    {
+        controlsText.fontSize = 18;
+        controlsText.text = "ARROW KEYS|A D : Target SPACE : Confirm";
+    }
+
+    void displayTurnControls()
+    {
+        controlsText.fontSize = 24;
+        controlsText.text = "TAB : Consume Ether SPACE : Confirm";
     }
 
     public Vector2 GetSliderButtonPosition(float turnMeter)
