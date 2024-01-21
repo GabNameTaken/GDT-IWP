@@ -166,10 +166,11 @@ public class EntityBase : MonoBehaviour
         {
             if (transform.Find("Main Camera"))
                 Camera.main.transform.SetParent(MapManager.Instance.currentMap.transform.Find("CombatSetup").transform);
-            gameObject.SetActive(false);
-            turnMeterUI.SetActive(false);
             if (isMoving)
                 combatManager.EndTurn(this);
+
+            gameObject.SetActive(false);
+            turnMeterUI.SetActive(false);
         }
     }
 
