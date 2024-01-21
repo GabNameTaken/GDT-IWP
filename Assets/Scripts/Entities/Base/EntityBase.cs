@@ -129,26 +129,8 @@ public class EntityBase : MonoBehaviour
     public void OnDeath()
     {
         isDead = true;
+        turnTaken = false;
         StartCoroutine(DeathAnimationCoroutine());
-        Death();
-
-        CombatManager combatManager = CombatManager.Instance;
-
-        //List<EntityBase> provokedEntities = combatManager.entitiesOnField
-        //    .Where(entity => entity.statusEffectList
-        //        .Any(debuff => debuff.StatusEffectData.statusEffectName == "Provoke" && debuff.giver == this))
-        //    .ToList();
-
-        //foreach (EntityBase provokedEntity in provokedEntities)
-        //{
-        //    foreach (StatusEffect statusEffect in provokedEntity.statusEffectList)
-        //    {
-        //        if (statusEffect.StatusEffectData.statusEffectName == "Provoke" && statusEffect.giver == this)
-        //        {
-        //            provokedEntity.RemoveStatusEffect(statusEffect);
-        //        }
-        //    }
-        //}
     }
 
     IEnumerator DeathAnimationCoroutine()
@@ -172,11 +154,6 @@ public class EntityBase : MonoBehaviour
             gameObject.SetActive(false);
             turnMeterUI.SetActive(false);
         }
-    }
-
-    void Death()
-    {
-        //delink everything
     }
 
     public void PostSkill()
@@ -208,6 +185,7 @@ public class EntityBase : MonoBehaviour
         }
     }
 
+    bool turnTaken = false;
     public virtual void TakeTurn()
     {
         CombatManager.Instance.CallEntityStartTurnEvent(this);
@@ -232,7 +210,7 @@ public class EntityBase : MonoBehaviour
 
         if (!isDead)
         {
-            isMoving = true; attacking = true;
+            isMoving = true; turnTaken = true;
             StartCoroutine(StartingTurn());
         }
     }
@@ -277,7 +255,7 @@ public class EntityBase : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        if (!unableToAct)
+        if (!unableToAct && turnTaken)
             StartTurn();
         else if (!attacking)
             PostSkill();
@@ -285,7 +263,7 @@ public class EntityBase : MonoBehaviour
 
     protected virtual void StartTurn()
     {
-        attacking = false;
+        turnTaken = false;
     }
 
     public virtual void Provoked(EntityBase provoker)
