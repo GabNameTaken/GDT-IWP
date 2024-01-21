@@ -4716,6 +4716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapZones:
+  - {fileID: 3559274696785205842, guid: 6329265d35072054880e7258c4c104bf, type: 3}
   - {fileID: 3559274696785205842, guid: e1ad7a73b7b7665498d771a6d9efb9f9, type: 3}
   - {fileID: 3559274696785205842, guid: dc2696d7722d98a47af6f384b72f8e3f, type: 3}
   - {fileID: 3559274696785205842, guid: 490df030d8275b14194ca212d9386056, type: 3}

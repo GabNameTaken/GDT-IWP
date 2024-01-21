@@ -53,7 +53,7 @@ public class CombatInfoUI : MonoBehaviour
 
     void SetUpButton(Button button, EntityBase entity)
     {
-        button.transform.GetChild(0).GetComponent<TMP_Text>().text = entity.entity.name;
+        button.transform.GetChild(0).GetComponent<TMP_Text>().text = entity.entity.entityName;
         button.transform.GetChild(1).GetComponent<TMP_Text>().text = Mathf.Round(entity.TurnMeter) + "%";
         button.onClick.AddListener(delegate { inspectionUI.InitTabs(entity); });
     }

@@ -50,14 +50,17 @@ public class InspectionUI : MonoBehaviour
         for (int i = 0; i < inspectEntity.skillSet.SkillDict.Count + 1; i++)
         {
             GameObject go = Instantiate(tabButtonPrefab.gameObject, tabsGO.transform);
-            SetTabName(go.transform, i);
             if (i > 0)
             {
                 SKILL_CODE selectedSkillCode = inspectEntity.skillSet.SkillDict.Keys.ElementAt(i - 1);
+                go.transform.GetChild(0).GetComponent<TMP_Text>().text = selectedSkillCode.ToString();
                 go.GetComponent<Button>().onClick.AddListener(delegate { DisplaySkills(inspectEntity, selectedSkillCode); });
             }
             else
+            {
+                go.transform.GetChild(0).GetComponent<TMP_Text>().text = "STATS";
                 go.GetComponent<Button>().onClick.AddListener(delegate { DisplayStats(inspectEntity); });
+            }
         }
     }
 
