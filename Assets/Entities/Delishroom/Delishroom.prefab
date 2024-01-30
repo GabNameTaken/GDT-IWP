@@ -218,16 +218,18 @@ MonoBehaviour:
   excessTurnMeter: 0
   unableToAct: 0
   isMoving: 0
+  damageTaken: 0
   turnMeterUI: {fileID: 0}
   hitParticleSystem: {fileID: 4357382495232645954}
   healingParticlePrefab: {fileID: -3410829410577542485, guid: 66ad8dcaafb163549891d191556b9755, type: 3}
-  outline: {fileID: 1856054992437607389}
+  hitSFX: {fileID: 8300000, guid: 942ede48edb64574d9b8e5ccc11f414c, type: 3}
   listOfTargets: []
   originalPosition: {x: 0, y: 0, z: 0}
   originalRotation: {x: 0, y: 0, z: 0, w: 0}
   terrainLayer:
     serializedVersion: 2
     m_Bits: 64
+  lockedOnTarget: {fileID: 0}
   isBoss: 0
   worldSpaceCanvas: {fileID: 5033039106207036769}
   lastHitElementUI: {fileID: 1763308373789122935}

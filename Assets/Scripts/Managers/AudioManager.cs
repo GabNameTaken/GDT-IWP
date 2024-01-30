@@ -4,10 +4,10 @@ using UnityEngine;
 using Common.DesignPatterns;
 public class AudioManager : Singleton<AudioManager>
 {
-    public static AudioManager instance;
-
     [SerializeField] private AudioSource sfxAudioSource;
     [SerializeField] private AudioSource musicAudioSource;
+
+    [SerializeField] List<AudioClip> combatBGMs;
 
     // Play a sound effect
     public void PlaySFX(AudioClip clip)

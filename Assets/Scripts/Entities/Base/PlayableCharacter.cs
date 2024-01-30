@@ -115,8 +115,6 @@ public class PlayableCharacter : EntityBase
     void SelectTargets(Skill.SKILL_TARGET_TEAM targettedTeam, Skill.SKILL_TARGETS targetType, bool turnOffHighlights)
     {
         List<EntityBase> primaryTargets = new List<EntityBase>(), secondaryTargets = new List<EntityBase>();
-        foreach (EntityBase entity in listOfTargets)
-            entity.outline.eraseRenderer = true;
         if (turnOffHighlights)
             return;
 
@@ -148,7 +146,6 @@ public class PlayableCharacter : EntityBase
             case Skill.SKILL_TARGETS.SINGLE_TARGET:
                 if (currentTargetNum >= listOfTargets.Count)
                     currentTargetNum = 0;
-                listOfTargets[currentTargetNum].outline.eraseRenderer = turnOffHighlights;
                 targets.Add(listOfTargets[currentTargetNum]);
                 primaryTargets.Add(listOfTargets[currentTargetNum]);
                 if (targettedTeam == Skill.SKILL_TARGET_TEAM.ENEMY)
@@ -158,7 +155,6 @@ public class PlayableCharacter : EntityBase
             case Skill.SKILL_TARGETS.ADJACENT:
                 if (currentTargetNum >= listOfTargets.Count)
                     currentTargetNum = 0;
-                listOfTargets[currentTargetNum].outline.eraseRenderer = turnOffHighlights;
                 targets.Add(listOfTargets[currentTargetNum]);
                 primaryTargets.Add(listOfTargets[currentTargetNum]);
                 if (targettedTeam == Skill.SKILL_TARGET_TEAM.ENEMY)
@@ -166,21 +162,17 @@ public class PlayableCharacter : EntityBase
 
                 if (currentTargetNum - 1 >= 0)
                 {
-                    listOfTargets[currentTargetNum - 1].outline.eraseRenderer = turnOffHighlights;
                     targets.Add(listOfTargets[currentTargetNum - 1]);
                     secondaryTargets.Add(listOfTargets[currentTargetNum - 1]);
                 }
                 if (currentTargetNum + 1 < listOfTargets.Count)
                 {
-                    listOfTargets[currentTargetNum + 1].outline.eraseRenderer = turnOffHighlights;
                     targets.Add(listOfTargets[currentTargetNum + 1]);
                     secondaryTargets.Add(listOfTargets[currentTargetNum + 1]);
                 }
                 break;
 
             case Skill.SKILL_TARGETS.ALL:
-                foreach (EntityBase entity in listOfTargets)
-                    entity.outline.eraseRenderer = turnOffHighlights;
                 targets.AddRange(listOfTargets);
                 primaryTargets.AddRange(listOfTargets);
                 break;

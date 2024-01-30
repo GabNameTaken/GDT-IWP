@@ -57,17 +57,17 @@ MonoBehaviour:
     speed: 0
     critRate: 0
     critDMG: 0
-  skillSet:
+  _skillSet:
     skillList: []
-  statusEffectUI: {fileID: 0}
-  turnMeter: 0
+  entityInfoUI: {fileID: 0}
   excessTurnMeter: 0
+  unableToAct: 0
   isMoving: 0
-  isDead: 0
+  damageTaken: 0
   turnMeterUI: {fileID: 0}
   hitParticleSystem: {fileID: 8458185174085011502}
   healingParticlePrefab: {fileID: -3410829410577542485, guid: 66ad8dcaafb163549891d191556b9755, type: 3}
-  outline: {fileID: 6782705139998356395}
+  hitSFX: {fileID: 8300000, guid: 942ede48edb64574d9b8e5ccc11f414c, type: 3}
   listOfTargets: []
   originalPosition: {x: 0, y: 0, z: 0}
   originalRotation: {x: 0, y: 0, z: 0, w: 0}

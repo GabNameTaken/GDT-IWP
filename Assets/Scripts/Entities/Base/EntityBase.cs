@@ -49,12 +49,15 @@ public class EntityBase : MonoBehaviour
 
     public GameObject turnMeterUI;
 
+    [Header("Particles needed")]
     public ParticleSystem hitParticleSystem;
     public SkillParticle healingParticlePrefab;
 
-    public cakeslice.Outline outline;
-    public List<EntityBase> listOfTargets;
+    [Header("SFX")]
+    [SerializeField] AudioClip hitSFX;
 
+    [Header("Debug purposes")]
+    public List<EntityBase> listOfTargets;
     public Vector3 originalPosition;
     public Quaternion originalRotation;
 
@@ -96,6 +99,7 @@ public class EntityBase : MonoBehaviour
                 RemoveStatusEffect(sleep);
             }
             animator.Play("GetHit");
+            AudioManager.Instance.PlaySFX(hitSFX);
             if (element && hitParticleSystem)
             {
                 hitParticleSystem.startColor = element.elementColor;

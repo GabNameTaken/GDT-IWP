@@ -5557,7 +5557,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 5025
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 0, y: 5.6e-44, z: 0, w: 1.6114932e-38}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: -2.2781963}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -10167,6 +10167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxAudioSource: {fileID: 1454372160}
   musicAudioSource: {fileID: 1454372159}
+  combatBGMs: []
 --- !u!1 &1463977379
 GameObject:
   m_ObjectHideFlags: 0
