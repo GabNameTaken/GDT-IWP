@@ -40,6 +40,7 @@ public class CombatUIManager : Singleton<CombatUIManager>
     }
 
     [Header("Player's Turn UI")]
+    public SkillUI skillUI;
     [SerializeField] List<Transform> skillSetUI;
     [SerializeField] TMP_Text controlsText;
     string[] skillKeyBindTexts = { "S1", "S2", "S3" };

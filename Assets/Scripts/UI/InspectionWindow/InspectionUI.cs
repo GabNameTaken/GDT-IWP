@@ -140,7 +140,10 @@ public class InspectionUI : MonoBehaviour
         skillNameText.text = skill.skillName;
         skillDescText.text = skill.skillDesc;
         skillCooldownText.text = "Cooldown: " + skill.currentCooldown;
-        skillCostText.text = "Skill Points: " + skill.skillCost;
+        if (skill.skillCost >= 0)
+            skillCostText.text = "Skill Points: " + skill.skillCost;
+        else
+            skillCostText.text = "Skill Points: " + "+" + -skill.skillCost;
         statsDesc.SetActive(false);
         skillDesc.SetActive(true);
     }

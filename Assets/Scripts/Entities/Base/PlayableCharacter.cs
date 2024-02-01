@@ -57,6 +57,7 @@ public class PlayableCharacter : EntityBase
                     skillSet.SkillDict[(SKILL_CODE)keyIndex].PlayReadyAnimation(this);
                     PlayerTeamManager.Instance.StopHover();
                     PlayerTeamManager.Instance.UpdateSkillPoints(skillSet.SkillDict[(SKILL_CODE)keyIndex].skillCost, false);
+                    CombatUIManager.Instance.skillUI.DisplayUI(skillSet.SkillDict[(SKILL_CODE)keyIndex]);
                 }
             }
             else if (Input.GetKeyDown(skillKeys[i]) && skillSet.SkillDict[(SKILL_CODE)i].currentCooldown > 0) PopupMessage.Instance.PopMessage("Skill on cooldown");
@@ -200,6 +201,7 @@ public class PlayableCharacter : EntityBase
 
         attacking = true;
         TargetingUIManager.Instance.SkillUsed();
+        CombatUIManager.Instance.skillUI.gameObject.SetActive(false);
         Attack(skillSet.SkillDict[skill]);
     }
 
