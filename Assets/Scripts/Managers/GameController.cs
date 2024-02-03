@@ -9,7 +9,7 @@ public class GameController : Singleton<GameController>
     public void CombatSetup(CombatZone zone)
     {
         currentZone = zone;
-        BlessingManager.Instance.StartSelection();
+        AugmentCardManager.Instance.StartSelection();
     }
     public void BeginBattle()
     {

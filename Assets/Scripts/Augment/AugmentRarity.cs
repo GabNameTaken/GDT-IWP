@@ -15,4 +15,6 @@ public class AugmentRarity : ScriptableObject
     [SerializeField] string label; public string Label => label; 
     [SerializeField] RARITY rarity; public RARITY Rarity => rarity;
     [SerializeField] Sprite cardBackground; public Sprite CardBackground => cardBackground;
+
+    [SerializeField] Color cardBackgroundColor; public Color backgroundColor => cardBackgroundColor;
 }

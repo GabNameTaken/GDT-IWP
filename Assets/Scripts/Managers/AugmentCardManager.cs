@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Common.DesignPatterns;
-public class BlessingManager : Singleton<BlessingManager>
+public class AugmentCardManager : Singleton<AugmentCardManager>
 {
-    [SerializeField] List<Blessing> obtainableBlessings;
-    List<Blessing> equippedBlessings;
-
     [SerializeField] GameObject selectionPage;
     [SerializeField] GameObject listUI;
     [SerializeField] GameObject selectionPrefab;

@@ -1906,7 +1906,7 @@ RectTransform:
   m_Father: {fileID: 542855727}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.02, y: 0}
   m_AnchorMax: {x: 1, y: 0.9}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -7212,7 +7212,7 @@ RectTransform:
   m_Father: {fileID: 213523611}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.01, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.89}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -12002,7 +12002,7 @@ GameObject:
   - component: {fileID: 1713563726}
   - component: {fileID: 1713563727}
   m_Layer: 0
-  m_Name: BlessingManager
+  m_Name: AugmentCardManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12035,7 +12035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5041fe6b8b0554e4db0314fadc56d023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obtainableBlessings: []
   selectionPage: {fileID: 1343627058}
   listUI: {fileID: 1123855854}
   selectionPrefab: {fileID: 3171337182660136552, guid: 83fa158f4e6c97841a4de29b735a97ef, type: 3}
@@ -15644,7 +15643,7 @@ RectTransform:
   m_Father: {fileID: 542855727}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.01, y: 0.9}
+  m_AnchorMin: {x: 0.02, y: 0.9}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -16359,6 +16358,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 295182915}
     m_Modifications:
+    - target: {fileID: 1365940216828999995, guid: 041665836791cdd43bf9ddc953219456, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1365940217345689668, guid: 041665836791cdd43bf9ddc953219456, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

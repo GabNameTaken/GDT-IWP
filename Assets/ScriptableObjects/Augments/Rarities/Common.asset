@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   label: Common
   rarity: 0
-  cardBackground: {fileID: 0}
+  cardBackground: {fileID: 2143109070, guid: 8bee83522e143eb47b3a524ebefa9cd0, type: 3}
+  cardBackgroundColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}

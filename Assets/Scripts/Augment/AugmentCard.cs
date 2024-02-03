@@ -16,6 +16,7 @@ public class AugmentCard : MonoBehaviour
 
         // If there is a card background for the rarity, replace the card background
         if (augment.AugmentRarity.CardBackground) cardBackground.sprite = augment.AugmentRarity.CardBackground;
+        cardBackground.color = augment.AugmentRarity.backgroundColor;
 
         labelText.text = augment.Label;
         descriptionText.text = augment.Description;
