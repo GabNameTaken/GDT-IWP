@@ -110,6 +110,7 @@ public class EntityBase : MonoBehaviour
         {
             SkillParticle healingParticle = Instantiate(healingParticlePrefab, transform);
             healingParticle.Play();
+            AudioManager.Instance.PlayHealSFX();
         }
         
         trueStats.health -= damageTaken;

@@ -14,6 +14,9 @@ public class CombatZone : MonoBehaviour
 
     List<PlayableCharacter> playableCharacters = null;
 
+    [Header("Soundtrack")]
+    [SerializeField] AudioClip soundtrack;
+
     private void Start()
     {
         currentWave = enemyWaves[0];
@@ -23,6 +26,11 @@ public class CombatZone : MonoBehaviour
         CameraManager.Instance.MoveCamera(battleground, CAMERA_POSITIONS.PLAYER_TEAM_BACK, 0f);
         CombatManager combatManager = CombatManager.Instance;
         combatManager.WaveClearedEvent += OnWaveCleared;
+
+        if (!soundtrack)
+            AudioManager.Instance.PlayRandomCombatBGM();
+        else
+            AudioManager.Instance.PlayMusic(soundtrack, true);
     }
 
     private void InstantiateWave()

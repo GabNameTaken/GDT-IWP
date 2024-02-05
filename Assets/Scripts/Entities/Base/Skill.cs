@@ -60,6 +60,8 @@ public class Skill : ScriptableObject
     [SerializeField] protected float _multiplier;
     public float multiplier => _multiplier;
 
+    [SerializeField] AudioClip skillSFX;
+
     protected float additionalScalings = 0;
 
     protected int damage;
@@ -76,6 +78,9 @@ public class Skill : ScriptableObject
     {
         if (attacker.weaponModel)
             attacker.weaponModel.AttachWeapon();
+
+        if (skillSFX)
+            AudioManager.Instance.PlaySFX(skillSFX);
 
         PlayerTeamManager.Instance.UpdateSkillPoints(skillCost, true);
 
