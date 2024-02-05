@@ -39,4 +39,9 @@ public class GameController : Singleton<GameController>
     {
         UIManager.Instance.SetGameCompletedScreenActive(true);
     }
+
+    public void ToMainMenu()
+    {
+        SceneTransitionManager.Instance.ToMenu();
+    }
 }

@@ -259,6 +259,11 @@ public class CombatManager : Singleton<CombatManager>
         battleEndedEvent -= OnEndBattle;
     }
 
+    private void OnDestroy()
+    {
+        battleEndedEvent -= OnEndBattle;
+    }
+
     public EntityBase GetEntityTakingTurn()
     {
         return entitiesOnField.Where(entity => entity.isMoving).FirstOrDefault();

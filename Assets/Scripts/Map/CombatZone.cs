@@ -119,6 +119,11 @@ public class CombatZone : MonoBehaviour
         currentWave = enemyWaves[++waveNumber];
         InstantiateWave();
     }
+
+    private void OnDestroy()
+    {
+        CombatManager.Instance.WaveClearedEvent -= OnWaveCleared;
+    }
 }
 
 [System.Serializable]

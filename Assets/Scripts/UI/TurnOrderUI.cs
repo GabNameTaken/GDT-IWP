@@ -56,6 +56,8 @@ public class TurnOrderUI : MonoBehaviour
             if (entity.turnMeterUI != null)
             {
                 turnSlider.value = Mathf.RoundToInt(entity.TurnMeter);
+                if (turnSlider.value > 100f)
+                    turnSlider.value = 100f;
             }
         }
     }

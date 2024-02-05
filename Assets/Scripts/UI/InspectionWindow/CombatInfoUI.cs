@@ -20,8 +20,15 @@ public class CombatInfoUI : MonoBehaviour
         gameObject.SetActive(!gameObject.activeSelf);
     }
 
+    [Header("GameObjects")]
+    [SerializeField] GameObject turnOrderGO;
+    [SerializeField] GameObject inspectionGO;
+
     private void OnEnable()
     {
+        turnOrderGO.SetActive(true);
+        inspectionGO.SetActive(true);
+        UIManager.Instance.DisplayToMenuPrompt(false);
         InitButtons();
     }
 

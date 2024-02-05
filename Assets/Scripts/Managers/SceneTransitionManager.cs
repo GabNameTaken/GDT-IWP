@@ -6,10 +6,16 @@ using Common.DesignPatterns;
 
 public class SceneTransitionManager : SingletonPersistent<SceneTransitionManager>
 {
-    [SerializeField] string gameSceneStr;
     public void EnterGame()
     {
-        SceneManager.LoadSceneAsync(gameSceneStr);
+        AudioManager.Instance.StopMusic();
+        SceneManager.LoadSceneAsync("GameScene");
+    }
+
+    public void ToMenu()
+    {
+        AudioManager.Instance.StopMusic();
+        SceneManager.LoadSceneAsync("MainMenu");
     }
 
     public void ExitGame()

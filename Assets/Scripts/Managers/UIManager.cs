@@ -41,4 +41,13 @@ public class UIManager : Singleton<UIManager>
                 break;
         }
     }
+
+    [Header("To Menu Scene")]
+    [SerializeField] GameObject menuPrompt;
+    [SerializeField] Button menuPromptButton;
+    public void DisplayToMenuPrompt(bool toDisplay)
+    {
+        menuPrompt.SetActive(toDisplay);
+        menuPromptButton.gameObject.SetActive(!toDisplay);
+    }
 }
