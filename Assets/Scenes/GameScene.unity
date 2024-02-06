@@ -1604,7 +1604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29459e4581321b2488c353c7e4ee1af4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slideType: 3
+  slideType: 2
   slideDuration: 0.5
 --- !u!1 &178148206
 GameObject:

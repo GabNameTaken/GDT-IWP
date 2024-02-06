@@ -54,6 +54,8 @@ public class TargetingUIManager : Singleton<TargetingUIManager>
 
     void ClearTargets()
     {
+        if (registerTargetsCoroutine != null)
+            StopCoroutine(registerTargetsCoroutine);
         foreach (GameObject targetUI in targetUIList) if (targetUI) Destroy(targetUI);
     }
 
