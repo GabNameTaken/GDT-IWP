@@ -39,6 +39,14 @@ public class CombatUIManager : Singleton<CombatUIManager>
         }
     }
 
+    [Header("Wave Number Display")]
+    [SerializeField] TMP_Text waveText;
+
+    public void SetWaveNumber(int num, int total)
+    {
+        waveText.text = "Wave: " + num + " / " + total;
+    }
+
     [Header("Player's Turn UI")]
     public SkillUI skillUI;
     [SerializeField] List<Transform> skillSetUI;

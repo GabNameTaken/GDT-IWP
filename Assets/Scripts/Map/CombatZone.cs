@@ -40,6 +40,8 @@ public class CombatZone : MonoBehaviour
         if (playableCharacters == null) InstantiatePlayableCharacters(playerToEnemyNormalized);
         else MovePlayableCharacters(playerToEnemyNormalized);
         InstantiateEnemies(-playerToEnemyNormalized);
+
+        CombatUIManager.Instance.SetWaveNumber(enemyWaves.IndexOf(currentWave) + 1, enemyWaves.Count);
     }
 
     private void InstantiatePlayableCharacters(Vector3 direction)

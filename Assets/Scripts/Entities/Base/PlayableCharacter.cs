@@ -78,25 +78,67 @@ public class PlayableCharacter : EntityBase
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
+            int originalTargetNum = currentTargetNum;
             if (invertTargetting)
             {
                 if (currentTargetNum < listOfTargets.Count - 1)
-                    currentTargetNum++;
+                {
+                    do
+                    {
+                        currentTargetNum++;
+                    } while (currentTargetNum < listOfTargets.Count && listOfTargets[currentTargetNum].IsDead);
+                }
+
+                if (currentTargetNum >= listOfTargets.Count || listOfTargets[currentTargetNum].IsDead)
+                {
+                    currentTargetNum = originalTargetNum;
+                }
             }
             else if (currentTargetNum > 0)
-                currentTargetNum--;
+            {
+                do
+                {
+                    currentTargetNum--;
+                } while (currentTargetNum >= 0 && listOfTargets[currentTargetNum].IsDead);
+
+                if (currentTargetNum < 0 || listOfTargets[currentTargetNum].IsDead)
+                {
+                    currentTargetNum = originalTargetNum;
+                }
+            }
             if (currentSkillCode != SKILL_CODE.NONE)
                 SelectTargets(skillSet.SkillDict[currentSkillCode].targetTeam, skillSet.SkillDict[currentSkillCode].targets,false);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
+            int originalTargetNum = currentTargetNum;
             if (invertTargetting)
             {
                 if (currentTargetNum > 0)
-                    currentTargetNum--;
+                {
+                    do
+                    {
+                        currentTargetNum--;
+                    } while (currentTargetNum >= 0 && listOfTargets[currentTargetNum].IsDead);
+                }
+
+                if (currentTargetNum < 0 || listOfTargets[currentTargetNum].IsDead)
+                {
+                    currentTargetNum = originalTargetNum;
+                }
             }
             else if (currentTargetNum < listOfTargets.Count - 1)
-                currentTargetNum++;
+            {
+                do
+                {
+                    currentTargetNum++;
+                } while (currentTargetNum < listOfTargets.Count && listOfTargets[currentTargetNum].IsDead);
+
+                if (currentTargetNum >= listOfTargets.Count || listOfTargets[currentTargetNum].IsDead)
+                {
+                    currentTargetNum = originalTargetNum;
+                }
+            }
             if (currentSkillCode != SKILL_CODE.NONE)
                 SelectTargets(skillSet.SkillDict[currentSkillCode].targetTeam, skillSet.SkillDict[currentSkillCode].targets,false);
         }
@@ -119,7 +161,7 @@ public class PlayableCharacter : EntityBase
         if (turnOffHighlights)
             return;
 
-        List<Enemy> enemies = CombatManager.Instance.EnemyParty.Where(enemy => !enemy.IsDead).ToList();
+        List<Enemy> enemies = CombatManager.Instance.EnemyParty;
         List<PlayableCharacter> allies = CombatManager.Instance.PlayerParty.Where(player => !player.IsDead).ToList();
 
         listOfTargets.Clear();
@@ -142,6 +184,18 @@ public class PlayableCharacter : EntityBase
         }
 
         targets.Clear();
+        if (listOfTargets[currentTargetNum].IsDead)
+        {
+            currentTargetNum = 0;
+            if (currentTargetNum < listOfTargets.Count - 1)
+            {
+                do
+                {
+                    currentTargetNum++;
+                } while (currentTargetNum < listOfTargets.Count && listOfTargets[currentTargetNum].IsDead);
+            }
+        }
+
         switch (targetType)
         {
             case Skill.SKILL_TARGETS.SINGLE_TARGET:
@@ -161,12 +215,12 @@ public class PlayableCharacter : EntityBase
                 if (targettedTeam == Skill.SKILL_TARGET_TEAM.ENEMY)
                     RotateToTarget();
 
-                if (currentTargetNum - 1 >= 0)
+                if (currentTargetNum - 1 >= 0 && !listOfTargets[currentTargetNum - 1].IsDead)
                 {
                     targets.Add(listOfTargets[currentTargetNum - 1]);
                     secondaryTargets.Add(listOfTargets[currentTargetNum - 1]);
                 }
-                if (currentTargetNum + 1 < listOfTargets.Count)
+                if (currentTargetNum + 1 < listOfTargets.Count && !listOfTargets[currentTargetNum + 1].IsDead)
                 {
                     targets.Add(listOfTargets[currentTargetNum + 1]);
                     secondaryTargets.Add(listOfTargets[currentTargetNum + 1]);
@@ -174,8 +228,9 @@ public class PlayableCharacter : EntityBase
                 break;
 
             case Skill.SKILL_TARGETS.ALL:
-                targets.AddRange(listOfTargets);
-                primaryTargets.AddRange(listOfTargets);
+                foreach (EntityBase entity in listOfTargets)
+                    if (!entity.IsDead) targets.Add(entity);
+                primaryTargets.AddRange(targets);
                 break;
 
             case Skill.SKILL_TARGETS.NONE:
