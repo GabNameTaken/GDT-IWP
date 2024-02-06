@@ -24,12 +24,12 @@ public class MapLayout : MonoBehaviour
 
     public void ActivateNextNode()
     {
-        if (currentNodeNum >= 0)
-            mapNodes[currentNodeNum].Completed();
+        currentNodeNum = MapManager.Instance.currentMapNum;
 
-        currentNodeNum++;
+        if (currentNodeNum - 1 >= 0)
+            mapNodes[currentNodeNum - 1].Completed();
 
-        if (currentNodeNum < mapNodes.Count - 1)
+        if (currentNodeNum < mapNodes.Count)
             mapNodes[currentNodeNum].Activate();
     }
 

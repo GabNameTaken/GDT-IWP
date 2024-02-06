@@ -19,8 +19,8 @@ public class GameController : Singleton<GameController>
     public void Restart()
     {
         AugmentManager.Instance.ClearAugments();
-        MapManager.Instance.currentMapNum = 0;
-        MapManager.Instance.SetMap();
+        MapManager.Instance.currentMapNum = -1;
+        MapManager.Instance.NextMap();
     }
 
     public void Victory(bool win)
@@ -32,6 +32,7 @@ public class GameController : Singleton<GameController>
         else
         {
             UIManager.Instance.SetLoseScreenActive(true);
+            AudioManager.Instance.StopMusic();
         }
     }
 
