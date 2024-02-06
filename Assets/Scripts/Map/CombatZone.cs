@@ -8,6 +8,8 @@ public class CombatZone : MonoBehaviour
     public GameObject battleground;
     [SerializeField] Transform playerTransform, enemyTransform;
 
+    public bool isBossZone = false;
+
     [Header("Waves")]
     public List<Wave> enemyWaves;
     private Wave currentWave = null;
@@ -120,11 +122,6 @@ public class CombatZone : MonoBehaviour
 
         currentWave = enemyWaves[++waveNumber];
         InstantiateWave();
-    }
-
-    private void OnDestroy()
-    {
-        CombatManager.Instance.WaveClearedEvent -= OnWaveCleared;
     }
 }
 

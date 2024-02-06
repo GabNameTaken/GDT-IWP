@@ -115,6 +115,7 @@ MonoBehaviour:
   battleground: {fileID: 317856970399685465}
   playerTransform: {fileID: 6093154959728579225}
   enemyTransform: {fileID: 7937424175971469555}
+  isBossZone: 1
   enemyWaves:
   - playerPosition: {fileID: 4810074527338416180}
     enemyPosition: {fileID: 7012010528637703363}
@@ -124,6 +125,7 @@ MonoBehaviour:
     - {fileID: 3155058319838657794, guid: baabc989ea9c48342850345627c3bfb8, type: 3}
     - {fileID: 1997902569578628670, guid: 459722ec8139cef4391a6fd262587346, type: 3}
     - {fileID: 4530003306004163418, guid: 5dcd3ec4eb4437a4894a5ee149692a94, type: 3}
+  soundtrack: {fileID: 0}
 --- !u!1 &4342402656155778763
 GameObject:
   m_ObjectHideFlags: 0

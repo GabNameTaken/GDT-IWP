@@ -17,6 +17,8 @@ public class MapLayout : MonoBehaviour
         {
             MapNode node = Instantiate(mapNodePrefab, layoutGO.transform);
             mapNodes.Add(node);
+            if (MapManager.Instance.map[i].GetComponent<CombatZone>() && MapManager.Instance.map[i].GetComponent<CombatZone>().isBossZone)
+                node.transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 
