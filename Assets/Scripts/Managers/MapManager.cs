@@ -25,18 +25,23 @@ public class MapManager : MonoBehaviour
 
     public GameObject battleground { get; private set; }
 
+    [Header("Map Layout")]
+    [SerializeField] MapLayout mapLayout;
+
     private void Start()
     {
-        SetMap();
+        StartCoroutine(TransitionToNextMap());
     }
 
     public void NextMap()
     {
+        Camera.main.transform.SetParent(transform);
+
         Destroy(currentMap);
         if (currentMapNum + 1 < mapZones.Count)
         {
             currentMapNum += 1;
-            SetMap();
+            StartCoroutine(TransitionToNextMap());
         }
         else
         {
@@ -49,5 +54,16 @@ public class MapManager : MonoBehaviour
         currentMap = Instantiate(map[currentMapNum]);
         GameController.Instance.CombatSetup(currentMap.GetComponent<CombatZone>());
         battleground = currentMap.GetComponent<CombatZone>().battleground;
+    }
+
+    IEnumerator TransitionToNextMap()
+    {
+        mapLayout.gameObject.SetActive(true);
+        mapLayout.ActivateNextNode();
+
+        yield return new WaitForSecondsRealtime(2.5f);
+
+        mapLayout.SlideOut();
+        SetMap();
     }
 }
