@@ -45,4 +45,10 @@ public class StatusIcon : MonoBehaviour
         background.GetChild(2).GetComponent<Image>().sprite = statusEffect.StatusEffectData.icon;
         background.GetChild(3).GetComponent<TMP_Text>().text = statusEffect.remainingDuration + " Turns";
     }
+
+    private void OnDestroy()
+    {
+        if (inspectDisplay)
+            Destroy(inspectDisplay);
+    }
 }
