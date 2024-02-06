@@ -4528,6 +4528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxAudioSource: {fileID: 2084547166}
   musicAudioSource: {fileID: 2084547165}
+  mainMenuBGM: {fileID: 8300000, guid: 62954b28325bd074998a172d605dcaf0, type: 3}
   combatBGMs:
   - {fileID: 8300000, guid: 495d8ffc9d16b5b4ba2290b12ffb6f9c, type: 3}
   - {fileID: 8300000, guid: 095bfb53b0b2e344fa75737c1039ce07, type: 3}

@@ -23,5 +23,6 @@ MonoBehaviour:
   _Cooldown: 0
   currentCooldown: 0
   _multiplier: 0.2
+  skillSFX: {fileID: 8300000, guid: f4e2946f191b4164e8da45dc4ec687bd, type: 3}
   statusEffectData: {fileID: 11400000, guid: 8d8c22143eda0044ca1ee53e1804e3cb, type: 2}
   debuffChance: 0.3

@@ -10,6 +10,7 @@ public class AudioManager : SingletonPersistent<AudioManager>
     private const string SFXVolumeKey = "SFXVolume";
     private const string MusicVolumeKey = "MusicVolume";
 
+    [SerializeField] AudioClip mainMenuBGM;
     [SerializeField] AudioClip[] combatBGMs;
 
     [Header("Common audio")]
@@ -58,6 +59,11 @@ public class AudioManager : SingletonPersistent<AudioManager>
     {
         musicAudioSource.volume = volume;
         PlayerPrefs.SetFloat(MusicVolumeKey, volume);
+    }
+
+    public void PlayMainMenuBGM()
+    {
+        PlayMusic(mainMenuBGM, true);
     }
 
     public void PlayRandomCombatBGM()

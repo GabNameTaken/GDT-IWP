@@ -23,3 +23,4 @@ MonoBehaviour:
   _Cooldown: 0
   currentCooldown: 0
   _multiplier: 1.3
+  skillSFX: {fileID: 8300000, guid: c8e88ec0ef7876f40b6c6b7985dacbaa, type: 3}

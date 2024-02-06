@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MenuPage : MonoBehaviour
 {
+    private void Start()
+    {
+        AudioManager.Instance.PlayMainMenuBGM();
+    }
     public void EnterGame()
     {
         SceneTransitionManager.Instance.EnterGame();

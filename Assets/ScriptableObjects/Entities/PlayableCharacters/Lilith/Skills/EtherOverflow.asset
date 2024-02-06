@@ -21,8 +21,9 @@ MonoBehaviour:
   readyAnimationString: 
   skillParticle: {fileID: 1988028456624135357, guid: 365611ec0a0e7a44797bbbcf3d9aa878, type: 3}
   _Cooldown: 5
-  currentCooldown: 0
+  currentCooldown: 5
   _multiplier: 0
+  skillSFX: {fileID: 8300000, guid: f085f6b000038cd4998894ccf4218467, type: 3}
   statusEffectDatas:
   - {fileID: 11400000, guid: 06ea24d9dec3f1e43b0f78fed23152a4, type: 2}
   - {fileID: 11400000, guid: ac3cdc7b2ace71044b1ee4d3cc54b0a9, type: 2}
