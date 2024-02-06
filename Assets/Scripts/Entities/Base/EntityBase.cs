@@ -240,7 +240,8 @@ public class EntityBase : MonoBehaviour
     {
         statusEffect.StatusEffectData.OnStatusEffectRemove(statusEffect.giver, statusEffect.receiver);
         statusEffectList.Remove(statusEffect);
-        entityInfoUI.statusEffectUI.RemoveStatus(statusEffect.icon);
+        if (statusEffect.icon)
+            entityInfoUI.statusEffectUI.RemoveStatus(statusEffect.icon);
     }
 
     public void ClearStatusEffects()

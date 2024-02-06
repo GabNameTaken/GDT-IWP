@@ -46,6 +46,12 @@ public class StatusIcon : MonoBehaviour
         background.GetChild(3).GetComponent<TMP_Text>().text = statusEffect.remainingDuration + " Turns";
     }
 
+    private void FixedUpdate()
+    {
+        if (statusEffect.remainingDuration == 0)
+            Destroy(gameObject);
+    }
+
     private void OnDestroy()
     {
         if (inspectDisplay)

@@ -26,6 +26,7 @@ public class StatusEffectUI : MonoBehaviour
 
     public void RemoveStatus(StatusIcon icon)
     {
-        Destroy(icon.gameObject);
+        if (icon.gameObject)
+            Destroy(icon.gameObject);
     }
 }

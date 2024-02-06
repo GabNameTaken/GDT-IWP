@@ -112,6 +112,10 @@ public class CombatManager : Singleton<CombatManager>
         foreach (EntityBase entity in entitiesOnField)
         {
             if (entity.IsDead) continue;
+            if (entity.TurnMeter >= 100)
+            {
+                break;
+            }
             entity.TurnMeter += (float)(entity.trueStats.speed / 100f) * numberOfIncrease;
         }
         UpdateTurnOrderUI();

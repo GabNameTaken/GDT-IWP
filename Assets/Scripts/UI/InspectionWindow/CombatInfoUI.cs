@@ -35,12 +35,16 @@ public class CombatInfoUI : MonoBehaviour
     void InitButtons()
     {
         ClearTurnOrder();
-        List<EntityBase> turnOrder = turnOrderUI.unitsOnField.OrderByDescending(entity => entity.TurnMeter).ToList();
+        List<EntityBase> turnOrder = turnOrderUI.unitsOnField
+            .OrderByDescending(entity => entity.TurnMeter)
+            .ToList();
 
         foreach (EntityBase entity in turnOrder)
         {
             GameObject buttonGO = Instantiate(turnOrderPrefab, scrollContentGO.transform);
             SetUpButton(buttonGO.GetComponent<Button>(), entity);
+            if (entity.IsDead)
+                buttonGO.SetActive(false);
         }
         inspectionUI.InitTabs(turnOrder[0]);
     }
